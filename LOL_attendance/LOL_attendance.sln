@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LOL_attendance", "LOL_attendance\LOL_attendance.csproj", "{20E772B8-8286-4C8B-A6C5-856FE646B964}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20E772B8-8286-4C8B-A6C5-856FE646B964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20E772B8-8286-4C8B-A6C5-856FE646B964}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20E772B8-8286-4C8B-A6C5-856FE646B964}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20E772B8-8286-4C8B-A6C5-856FE646B964}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {145D22E6-612C-4298-AED9-B1F32A0DCBB7}
+	EndGlobalSection
+EndGlobal
