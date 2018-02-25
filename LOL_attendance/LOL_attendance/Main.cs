@@ -15,6 +15,17 @@ namespace LOL_attendance
         public Main()
         {
             InitializeComponent();
+            stlbl_date.Text = DateTime.Now.Date.ToString();
+        }
+
+        private void btn_login_Click(object sender, EventArgs e)
+        {
+            pnl_login.Visible = false;
+        }
+
+        private void stlbl_date_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
