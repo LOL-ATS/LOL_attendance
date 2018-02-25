@@ -10,11 +10,31 @@ using System.Windows.Forms;
 
 namespace LOL_attendance
 {
-    public partial class Timesheet : Form
+    public partial class frmTimesheet : Form
     {
-        public Timesheet()
+        public frmTimesheet()
         {
             InitializeComponent();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBoxStatus_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
