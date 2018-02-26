@@ -12,19 +12,50 @@ namespace LOL_attendance
 {
     public partial class Main : Form
     {
+        public string username="";
         public Main()
         {
             InitializeComponent();
-            stlbl_date.Text = DateTime.Now.Date.ToString();
+           
+             statusStrip1.Enabled = false;
+            login formLogin = new login();
+            formLogin.MdiParent = this;
+            formLogin.TopMost = true;
+            formLogin.Show();
+           
         }
 
-        private void btn_login_Click(object sender, EventArgs e)
+     
+
+     
+        private void btnReg_Click(object sender, EventArgs e)
         {
-            pnl_login.Visible = false;
+
         }
 
-        private void stlbl_date_Click(object sender, EventArgs e)
+        private void Main_Activated(object sender, EventArgs e)
         {
+   
+        }
+
+        private void StLblUsername(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tSSBUser_ButtonClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pnlMainBtn.Visible = false;
+            statusStrip1.Enabled = false;
+            login formLogin = new login();
+            formLogin.MdiParent = this;
+            formLogin.TopMost = true;
+            formLogin.Show();
 
         }
     }

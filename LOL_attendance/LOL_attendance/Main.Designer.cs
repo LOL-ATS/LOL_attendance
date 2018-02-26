@@ -29,21 +29,17 @@
         private void InitializeComponent()
         {
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.btn_reg = new System.Windows.Forms.Button();
-            this.btn_TS = new System.Windows.Forms.Button();
-            this.btn_aprov = new System.Windows.Forms.Button();
-            this.btn_exit = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.pnl_login = new System.Windows.Forms.Panel();
-            this.txtb_username = new System.Windows.Forms.TextBox();
-            this.txtb_psw = new System.Windows.Forms.TextBox();
-            this.lbl_user = new System.Windows.Forms.Label();
-            this.lbl_psw = new System.Windows.Forms.Label();
-            this.btn_login = new System.Windows.Forms.Button();
-            this.stlbl_date = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tSSLUsername = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tSSBUser = new System.Windows.Forms.ToolStripSplitButton();
+            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pnlMainBtn = new System.Windows.Forms.Panel();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnAprove = new System.Windows.Forms.Button();
+            this.btnTimesheet = new System.Windows.Forms.Button();
+            this.btnReg = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
-            this.pnl_login.SuspendLayout();
+            this.pnlMainBtn.SuspendLayout();
             this.SuspendLayout();
             // 
             // checkBox1
@@ -56,141 +52,117 @@
             this.checkBox1.Text = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // btn_reg
-            // 
-            this.btn_reg.Location = new System.Drawing.Point(46, 61);
-            this.btn_reg.Name = "btn_reg";
-            this.btn_reg.Size = new System.Drawing.Size(285, 65);
-            this.btn_reg.TabIndex = 0;
-            this.btn_reg.Text = "Registration";
-            this.btn_reg.UseVisualStyleBackColor = true;
-            // 
-            // btn_TS
-            // 
-            this.btn_TS.Location = new System.Drawing.Point(46, 147);
-            this.btn_TS.Name = "btn_TS";
-            this.btn_TS.Size = new System.Drawing.Size(285, 65);
-            this.btn_TS.TabIndex = 1;
-            this.btn_TS.Text = "Timesheets";
-            this.btn_TS.UseVisualStyleBackColor = true;
-            // 
-            // btn_aprov
-            // 
-            this.btn_aprov.Location = new System.Drawing.Point(46, 235);
-            this.btn_aprov.Name = "btn_aprov";
-            this.btn_aprov.Size = new System.Drawing.Size(285, 65);
-            this.btn_aprov.TabIndex = 2;
-            this.btn_aprov.Text = "Approve";
-            this.btn_aprov.UseVisualStyleBackColor = true;
-            // 
-            // btn_exit
-            // 
-            this.btn_exit.Location = new System.Drawing.Point(46, 320);
-            this.btn_exit.Name = "btn_exit";
-            this.btn_exit.Size = new System.Drawing.Size(285, 65);
-            this.btn_exit.TabIndex = 3;
-            this.btn_exit.Text = "Exit";
-            this.btn_exit.UseVisualStyleBackColor = true;
-            // 
             // statusStrip1
             // 
             this.statusStrip1.Dock = System.Windows.Forms.DockStyle.Top;
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.stlbl_date});
+            this.tSSLUsername,
+            this.tSSBUser});
             this.statusStrip1.Location = new System.Drawing.Point(0, 0);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(383, 38);
+            this.statusStrip1.Size = new System.Drawing.Size(774, 38);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // tSSLUsername
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(62, 33);
-            this.toolStripStatusLabel1.Text = "User";
+            this.tSSLUsername.Name = "tSSLUsername";
+            this.tSSLUsername.Size = new System.Drawing.Size(122, 33);
+            this.tSSLUsername.Text = "Username";
             // 
-            // pnl_login
+            // tSSBUser
             // 
-            this.pnl_login.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnl_login.Controls.Add(this.btn_login);
-            this.pnl_login.Controls.Add(this.lbl_psw);
-            this.pnl_login.Controls.Add(this.lbl_user);
-            this.pnl_login.Controls.Add(this.txtb_psw);
-            this.pnl_login.Controls.Add(this.txtb_username);
-            this.pnl_login.Location = new System.Drawing.Point(38, 63);
-            this.pnl_login.Name = "pnl_login";
-            this.pnl_login.Size = new System.Drawing.Size(299, 237);
-            this.pnl_login.TabIndex = 5;
+            this.tSSBUser.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tSSBUser.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.logoutToolStripMenuItem});
+            this.tSSBUser.Image = global::LOL_attendance.Properties.Resources.avatar;
+            this.tSSBUser.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tSSBUser.Name = "tSSBUser";
+            this.tSSBUser.Size = new System.Drawing.Size(59, 36);
+            this.tSSBUser.Text = "toolStripSplitButton1";
+            this.tSSBUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tSSBUser.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.tSSBUser.ButtonClick += new System.EventHandler(this.tSSBUser_ButtonClick);
             // 
-            // txtb_username
+            // logoutToolStripMenuItem
             // 
-            this.txtb_username.Location = new System.Drawing.Point(134, 40);
-            this.txtb_username.Name = "txtb_username";
-            this.txtb_username.Size = new System.Drawing.Size(145, 31);
-            this.txtb_username.TabIndex = 0;
+            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
+            this.logoutToolStripMenuItem.Text = "Log out";
+            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
-            // txtb_psw
+            // pnlMainBtn
             // 
-            this.txtb_psw.Location = new System.Drawing.Point(134, 87);
-            this.txtb_psw.Name = "txtb_psw";
-            this.txtb_psw.PasswordChar = '*';
-            this.txtb_psw.Size = new System.Drawing.Size(145, 31);
-            this.txtb_psw.TabIndex = 1;
+            this.pnlMainBtn.BackColor = System.Drawing.Color.Transparent;
+            this.pnlMainBtn.Controls.Add(this.btnExit);
+            this.pnlMainBtn.Controls.Add(this.btnAprove);
+            this.pnlMainBtn.Controls.Add(this.btnTimesheet);
+            this.pnlMainBtn.Controls.Add(this.btnReg);
+            this.pnlMainBtn.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pnlMainBtn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlMainBtn.Location = new System.Drawing.Point(0, 38);
+            this.pnlMainBtn.Name = "pnlMainBtn";
+            this.pnlMainBtn.Size = new System.Drawing.Size(361, 491);
+            this.pnlMainBtn.TabIndex = 7;
+            this.pnlMainBtn.Visible = false;
             // 
-            // lbl_user
+            // btnExit
             // 
-            this.lbl_user.AutoSize = true;
-            this.lbl_user.Location = new System.Drawing.Point(13, 43);
-            this.lbl_user.Name = "lbl_user";
-            this.lbl_user.Size = new System.Drawing.Size(119, 25);
-            this.lbl_user.TabIndex = 2;
-            this.lbl_user.Text = "User Name";
+            this.btnExit.Location = new System.Drawing.Point(38, 288);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(285, 65);
+            this.btnExit.TabIndex = 7;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = true;
             // 
-            // lbl_psw
+            // btnAprove
             // 
-            this.lbl_psw.AutoSize = true;
-            this.lbl_psw.Location = new System.Drawing.Point(13, 90);
-            this.lbl_psw.Name = "lbl_psw";
-            this.lbl_psw.Size = new System.Drawing.Size(106, 25);
-            this.lbl_psw.TabIndex = 3;
-            this.lbl_psw.Text = "Password";
+            this.btnAprove.Location = new System.Drawing.Point(38, 203);
+            this.btnAprove.Name = "btnAprove";
+            this.btnAprove.Size = new System.Drawing.Size(285, 65);
+            this.btnAprove.TabIndex = 6;
+            this.btnAprove.Text = "Approve";
+            this.btnAprove.UseVisualStyleBackColor = true;
             // 
-            // btn_login
+            // btnTimesheet
             // 
-            this.btn_login.Location = new System.Drawing.Point(53, 155);
-            this.btn_login.Name = "btn_login";
-            this.btn_login.Size = new System.Drawing.Size(183, 49);
-            this.btn_login.TabIndex = 6;
-            this.btn_login.Text = "Login";
-            this.btn_login.UseVisualStyleBackColor = true;
-            this.btn_login.Click += new System.EventHandler(this.btn_login_Click);
+            this.btnTimesheet.Location = new System.Drawing.Point(38, 115);
+            this.btnTimesheet.Name = "btnTimesheet";
+            this.btnTimesheet.Size = new System.Drawing.Size(285, 65);
+            this.btnTimesheet.TabIndex = 5;
+            this.btnTimesheet.Text = "Timesheets";
+            this.btnTimesheet.UseVisualStyleBackColor = true;
             // 
-            // stlbl_date
+            // btnReg
             // 
-            this.stlbl_date.Name = "stlbl_date";
-            this.stlbl_date.Size = new System.Drawing.Size(0, 33);
-            this.stlbl_date.Click += new System.EventHandler(this.stlbl_date_Click);
+            this.btnReg.Location = new System.Drawing.Point(38, 29);
+            this.btnReg.Name = "btnReg";
+            this.btnReg.Size = new System.Drawing.Size(285, 65);
+            this.btnReg.TabIndex = 4;
+            this.btnReg.Text = "Registration";
+            this.btnReg.UseVisualStyleBackColor = true;
+            this.btnReg.Click += new System.EventHandler(this.btnReg_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(383, 419);
-            this.Controls.Add(this.pnl_login);
+            this.BackColor = System.Drawing.SystemColors.Window;
+            this.BackgroundImage = global::LOL_attendance.Properties.Resources.Lunch_Atop_a_skyscraper_1932_1120x840;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(774, 529);
+            this.Controls.Add(this.pnlMainBtn);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.btn_exit);
-            this.Controls.Add(this.btn_aprov);
-            this.Controls.Add(this.btn_TS);
-            this.Controls.Add(this.btn_reg);
+            this.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.IsMdiContainer = true;
             this.Name = "Main";
             this.Text = "LOL";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Activated += new System.EventHandler(this.Main_Activated);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.pnl_login.ResumeLayout(false);
-            this.pnl_login.PerformLayout();
+            this.pnlMainBtn.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -199,19 +171,15 @@
         #endregion
 
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Button btn_reg;
-        private System.Windows.Forms.Button btn_TS;
-        private System.Windows.Forms.Button btn_aprov;
-        private System.Windows.Forms.Button btn_exit;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.Panel pnl_login;
-        private System.Windows.Forms.TextBox txtb_username;
-        private System.Windows.Forms.Button btn_login;
-        private System.Windows.Forms.Label lbl_psw;
-        private System.Windows.Forms.Label lbl_user;
-        private System.Windows.Forms.TextBox txtb_psw;
-        private System.Windows.Forms.ToolStripStatusLabel stlbl_date;
+        private System.Windows.Forms.Panel pnlMainBtn;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnAprove;
+        private System.Windows.Forms.Button btnTimesheet;
+        private System.Windows.Forms.Button btnReg;
+        private System.Windows.Forms.ToolStripSplitButton tSSBUser;
+        private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel tSSLUsername;
     }
 }
 
