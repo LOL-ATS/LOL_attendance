@@ -29,22 +29,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(login));
-            this.pnlLogin = new System.Windows.Forms.Panel();
             this.btnLogin = new System.Windows.Forms.Button();
             this.lbl_psw = new System.Windows.Forms.Label();
             this.lbl_user = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtUsername = new System.Windows.Forms.TextBox();
+            this.pnlLogin = new System.Windows.Forms.Panel();
             this.SuspendLayout();
-            // 
-            // pnlLogin
-            // 
-            this.pnlLogin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlLogin.BackgroundImage")));
-            this.pnlLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlLogin.Location = new System.Drawing.Point(12, 27);
-            this.pnlLogin.Name = "pnlLogin";
-            this.pnlLogin.Size = new System.Drawing.Size(195, 193);
-            this.pnlLogin.TabIndex = 6;
             // 
             // btnLogin
             // 
@@ -90,6 +81,15 @@
             this.txtUsername.Size = new System.Drawing.Size(145, 31);
             this.txtUsername.TabIndex = 0;
             // 
+            // pnlLogin
+            // 
+            this.pnlLogin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlLogin.BackgroundImage")));
+            this.pnlLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlLogin.Location = new System.Drawing.Point(12, 27);
+            this.pnlLogin.Name = "pnlLogin";
+            this.pnlLogin.Size = new System.Drawing.Size(195, 193);
+            this.pnlLogin.TabIndex = 6;
+            // 
             // login
             // 
             this.AcceptButton = this.btnLogin;
@@ -111,8 +111,9 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "login";
+            this.Text = "Login";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

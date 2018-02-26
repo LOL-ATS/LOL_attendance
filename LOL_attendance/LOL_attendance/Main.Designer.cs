@@ -35,7 +35,6 @@
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlMainBtn = new System.Windows.Forms.Panel();
             this.btnExit = new System.Windows.Forms.Button();
-            this.btnAprove = new System.Windows.Forms.Button();
             this.btnTimesheet = new System.Windows.Forms.Button();
             this.btnReg = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
@@ -96,49 +95,41 @@
             // 
             this.pnlMainBtn.BackColor = System.Drawing.Color.Transparent;
             this.pnlMainBtn.Controls.Add(this.btnExit);
-            this.pnlMainBtn.Controls.Add(this.btnAprove);
             this.pnlMainBtn.Controls.Add(this.btnTimesheet);
             this.pnlMainBtn.Controls.Add(this.btnReg);
             this.pnlMainBtn.Cursor = System.Windows.Forms.Cursors.Default;
             this.pnlMainBtn.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMainBtn.Location = new System.Drawing.Point(0, 38);
             this.pnlMainBtn.Name = "pnlMainBtn";
-            this.pnlMainBtn.Size = new System.Drawing.Size(361, 491);
+            this.pnlMainBtn.Size = new System.Drawing.Size(270, 491);
             this.pnlMainBtn.TabIndex = 7;
             this.pnlMainBtn.Visible = false;
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(38, 288);
+            this.btnExit.Location = new System.Drawing.Point(38, 205);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(285, 65);
+            this.btnExit.Size = new System.Drawing.Size(194, 65);
             this.btnExit.TabIndex = 7;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
-            // 
-            // btnAprove
-            // 
-            this.btnAprove.Location = new System.Drawing.Point(38, 203);
-            this.btnAprove.Name = "btnAprove";
-            this.btnAprove.Size = new System.Drawing.Size(285, 65);
-            this.btnAprove.TabIndex = 6;
-            this.btnAprove.Text = "Approve";
-            this.btnAprove.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnTimesheet
             // 
             this.btnTimesheet.Location = new System.Drawing.Point(38, 115);
             this.btnTimesheet.Name = "btnTimesheet";
-            this.btnTimesheet.Size = new System.Drawing.Size(285, 65);
+            this.btnTimesheet.Size = new System.Drawing.Size(194, 65);
             this.btnTimesheet.TabIndex = 5;
             this.btnTimesheet.Text = "Timesheets";
             this.btnTimesheet.UseVisualStyleBackColor = true;
+            this.btnTimesheet.Click += new System.EventHandler(this.btnTimesheet_Click);
             // 
             // btnReg
             // 
             this.btnReg.Location = new System.Drawing.Point(38, 29);
             this.btnReg.Name = "btnReg";
-            this.btnReg.Size = new System.Drawing.Size(285, 65);
+            this.btnReg.Size = new System.Drawing.Size(194, 65);
             this.btnReg.TabIndex = 4;
             this.btnReg.Text = "Registration";
             this.btnReg.UseVisualStyleBackColor = true;
@@ -146,8 +137,9 @@
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = global::LOL_attendance.Properties.Resources.Lunch_Atop_a_skyscraper_1932_1120x840;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -156,10 +148,12 @@
             this.Controls.Add(this.statusStrip1);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.IsMdiContainer = true;
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "Main";
             this.Text = "LOL";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.Main_Activated);
+            this.Resize += new System.EventHandler(this.Main_Resize);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.pnlMainBtn.ResumeLayout(false);
@@ -174,7 +168,6 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Panel pnlMainBtn;
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Button btnAprove;
         private System.Windows.Forms.Button btnTimesheet;
         private System.Windows.Forms.Button btnReg;
         private System.Windows.Forms.ToolStripSplitButton tSSBUser;
