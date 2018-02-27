@@ -65,8 +65,6 @@
             this.cboRole = new System.Windows.Forms.ComboBox();
             this.tabProject = new System.Windows.Forms.TabPage();
             this.groupBoxProject = new System.Windows.Forms.GroupBox();
-            this.txtBoxPWH = new System.Windows.Forms.TextBox();
-            this.lblWorkingH = new System.Windows.Forms.Label();
             this.lblPMName = new System.Windows.Forms.Label();
             this.lblProjectAAddress = new System.Windows.Forms.Label();
             this.cboPM = new System.Windows.Forms.ComboBox();
@@ -77,25 +75,14 @@
             this.btnShowAllProjects = new System.Windows.Forms.Button();
             this.txtBoxSearchP = new System.Windows.Forms.TextBox();
             this.dgdViewProject = new System.Windows.Forms.DataGridView();
-            this.PName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PM = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabSite = new System.Windows.Forms.TabPage();
             this.grpBoxSiteName = new System.Windows.Forms.GroupBox();
             this.btnShowAllSites = new System.Windows.Forms.Button();
             this.txtBoxSiteSearch = new System.Windows.Forms.TextBox();
             this.dgdVieSite = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Project = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpBoxSiteInfo = new System.Windows.Forms.GroupBox();
             this.lblProject = new System.Windows.Forms.Label();
             this.cboProject = new System.Windows.Forms.ComboBox();
-            this.txtBoxSiteWH = new System.Windows.Forms.TextBox();
-            this.lblSiteWH = new System.Windows.Forms.Label();
             this.lblSiteManager = new System.Windows.Forms.Label();
             this.lblSiteAddress = new System.Windows.Forms.Label();
             this.cboSiteManager = new System.Windows.Forms.ComboBox();
@@ -103,6 +90,13 @@
             this.txtBoxSiteName = new System.Windows.Forms.TextBox();
             this.lblSiteName = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Project = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PM = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabRegistration.SuspendLayout();
             this.tabUser.SuspendLayout();
             this.grpBoxSearchByID.SuspendLayout();
@@ -453,8 +447,6 @@
             // 
             // groupBoxProject
             // 
-            this.groupBoxProject.Controls.Add(this.txtBoxPWH);
-            this.groupBoxProject.Controls.Add(this.lblWorkingH);
             this.groupBoxProject.Controls.Add(this.lblPMName);
             this.groupBoxProject.Controls.Add(this.lblProjectAAddress);
             this.groupBoxProject.Controls.Add(this.cboPM);
@@ -468,24 +460,6 @@
             this.groupBoxProject.TabStop = false;
             this.groupBoxProject.Text = "Project Information";
             this.groupBoxProject.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // txtBoxPWH
-            // 
-            this.txtBoxPWH.Location = new System.Drawing.Point(125, 125);
-            this.txtBoxPWH.Margin = new System.Windows.Forms.Padding(4);
-            this.txtBoxPWH.Name = "txtBoxPWH";
-            this.txtBoxPWH.Size = new System.Drawing.Size(159, 22);
-            this.txtBoxPWH.TabIndex = 23;
-            // 
-            // lblWorkingH
-            // 
-            this.lblWorkingH.AutoSize = true;
-            this.lblWorkingH.Location = new System.Drawing.Point(0, 125);
-            this.lblWorkingH.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblWorkingH.Name = "lblWorkingH";
-            this.lblWorkingH.Size = new System.Drawing.Size(102, 17);
-            this.lblWorkingH.TabIndex = 22;
-            this.lblWorkingH.Text = "Working Hours";
             // 
             // lblPMName
             // 
@@ -577,34 +551,13 @@
             this.dgdViewProject.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.PName,
             this.PM,
-            this.PAddress,
-            this.WH});
+            this.PAddress});
             this.dgdViewProject.Location = new System.Drawing.Point(7, 65);
             this.dgdViewProject.Name = "dgdViewProject";
             this.dgdViewProject.RowTemplate.Height = 24;
             this.dgdViewProject.Size = new System.Drawing.Size(250, 220);
             this.dgdViewProject.TabIndex = 30;
             this.dgdViewProject.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProject_CellContentClick);
-            // 
-            // PName
-            // 
-            this.PName.HeaderText = "Name";
-            this.PName.Name = "PName";
-            // 
-            // PM
-            // 
-            this.PM.HeaderText = "PM";
-            this.PM.Name = "PM";
-            // 
-            // PAddress
-            // 
-            this.PAddress.HeaderText = "Address";
-            this.PAddress.Name = "PAddress";
-            // 
-            // WH
-            // 
-            this.WH.HeaderText = "WH";
-            this.WH.Name = "WH";
             // 
             // tabSite
             // 
@@ -653,7 +606,6 @@
             this.dgdVieSite.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8,
             this.Project});
             this.dgdVieSite.Location = new System.Drawing.Point(6, 64);
@@ -662,37 +614,10 @@
             this.dgdVieSite.Size = new System.Drawing.Size(251, 215);
             this.dgdVieSite.TabIndex = 30;
             // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Site Name";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Address";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "WH";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.HeaderText = "Site Manager";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            // 
-            // Project
-            // 
-            this.Project.HeaderText = "Project";
-            this.Project.Name = "Project";
-            // 
             // grpBoxSiteInfo
             // 
             this.grpBoxSiteInfo.Controls.Add(this.lblProject);
             this.grpBoxSiteInfo.Controls.Add(this.cboProject);
-            this.grpBoxSiteInfo.Controls.Add(this.txtBoxSiteWH);
-            this.grpBoxSiteInfo.Controls.Add(this.lblSiteWH);
             this.grpBoxSiteInfo.Controls.Add(this.lblSiteManager);
             this.grpBoxSiteInfo.Controls.Add(this.lblSiteAddress);
             this.grpBoxSiteInfo.Controls.Add(this.cboSiteManager);
@@ -724,24 +649,6 @@
             this.cboProject.Name = "cboProject";
             this.cboProject.Size = new System.Drawing.Size(160, 24);
             this.cboProject.TabIndex = 30;
-            // 
-            // txtBoxSiteWH
-            // 
-            this.txtBoxSiteWH.Location = new System.Drawing.Point(123, 156);
-            this.txtBoxSiteWH.Margin = new System.Windows.Forms.Padding(4);
-            this.txtBoxSiteWH.Name = "txtBoxSiteWH";
-            this.txtBoxSiteWH.Size = new System.Drawing.Size(159, 22);
-            this.txtBoxSiteWH.TabIndex = 23;
-            // 
-            // lblSiteWH
-            // 
-            this.lblSiteWH.AutoSize = true;
-            this.lblSiteWH.Location = new System.Drawing.Point(-2, 156);
-            this.lblSiteWH.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblSiteWH.Name = "lblSiteWH";
-            this.lblSiteWH.Size = new System.Drawing.Size(102, 17);
-            this.lblSiteWH.TabIndex = 22;
-            this.lblSiteWH.Text = "Working Hours";
             // 
             // lblSiteManager
             // 
@@ -810,6 +717,41 @@
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Site Name";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Address";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "Site Manager";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            // 
+            // Project
+            // 
+            this.Project.HeaderText = "Project";
+            this.Project.Name = "Project";
+            // 
+            // PName
+            // 
+            this.PName.HeaderText = "Name";
+            this.PName.Name = "PName";
+            // 
+            // PM
+            // 
+            this.PM.HeaderText = "PM";
+            this.PM.Name = "PM";
+            // 
+            // PAddress
+            // 
+            this.PAddress.HeaderText = "Address";
+            this.PAddress.Name = "PAddress";
+            // 
             // frmRegistration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -876,18 +818,12 @@
         private System.Windows.Forms.Label lblProjectName;
         private System.Windows.Forms.TextBox txtBoxPAddress;
         private System.Windows.Forms.Label lblProjectAAddress;
-        private System.Windows.Forms.TextBox txtBoxPWH;
-        private System.Windows.Forms.Label lblWorkingH;
         private System.Windows.Forms.DataGridView dgdViewProject;
         private System.Windows.Forms.GroupBox groupBoxSearch;
         private System.Windows.Forms.TextBox txtBoxSearchP;
         private System.Windows.Forms.GroupBox groupBoxProject;
         private System.Windows.Forms.Button btnShowAllProjects;
         private System.Windows.Forms.GroupBox grpBoxUserInfo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PM;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PAddress;
-        private System.Windows.Forms.DataGridViewTextBoxColumn WH;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.GroupBox grpBoxSearchByID;
         private System.Windows.Forms.Button btnShowAllID;
@@ -907,8 +843,6 @@
         private System.Windows.Forms.TextBox txtBoxSiteSearch;
         private System.Windows.Forms.DataGridView dgdVieSite;
         private System.Windows.Forms.GroupBox grpBoxSiteInfo;
-        private System.Windows.Forms.TextBox txtBoxSiteWH;
-        private System.Windows.Forms.Label lblSiteWH;
         private System.Windows.Forms.Label lblSiteManager;
         private System.Windows.Forms.Label lblSiteAddress;
         private System.Windows.Forms.ComboBox cboSiteManager;
@@ -917,9 +851,11 @@
         private System.Windows.Forms.Label lblSiteName;
         private System.Windows.Forms.Label lblProject;
         private System.Windows.Forms.ComboBox cboProject;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PM;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PAddress;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Project;
     }
