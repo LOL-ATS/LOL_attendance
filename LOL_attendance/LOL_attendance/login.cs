@@ -25,7 +25,7 @@ namespace LOL_attendance
             if (txtUsername.Text == "admin" && txtPassword.Text == "123")
             {
         
-                Form frm = ((Form)this.MdiParent);
+                Form frm = (Form)this.MdiParent;
                 frm.Controls["pnlMainBtn"].Visible = true;
                 StatusStrip SS = (StatusStrip)frm.Controls["StatusStrip1"];             
                 SS.Items["tSSLUsername"].Text = "admin";
@@ -33,6 +33,12 @@ namespace LOL_attendance
 
 
             }
+        }
+
+        private void login_Load(object sender, EventArgs e)
+        {
+            Left = (MdiParent.ClientRectangle.Width - Width) / 2;
+            Top = (MdiParent.ClientRectangle.Height - Height) / 2;
         }
     }
 }
