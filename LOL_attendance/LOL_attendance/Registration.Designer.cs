@@ -31,49 +31,10 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.tabRegistration = new System.Windows.Forms.TabControl();
             this.tabUser = new System.Windows.Forms.TabPage();
-            this.textBoxAddress = new System.Windows.Forms.TextBox();
-            this.labelAddress = new System.Windows.Forms.Label();
-            this.textBoxPhone = new System.Windows.Forms.TextBox();
-            this.labelPhone = new System.Windows.Forms.Label();
-            this.textBoxEmail = new System.Windows.Forms.TextBox();
-            this.labelEmail = new System.Windows.Forms.Label();
-            this.textBoxName = new System.Windows.Forms.TextBox();
-            this.labelName = new System.Windows.Forms.Label();
-            this.textBoxSurname = new System.Windows.Forms.TextBox();
-            this.labelSurname = new System.Windows.Forms.Label();
-            this.textBoxEmplID = new System.Windows.Forms.TextBox();
-            this.labelEmplID = new System.Windows.Forms.Label();
-            this.textBoxPass = new System.Windows.Forms.TextBox();
-            this.labelPassword = new System.Windows.Forms.Label();
-            this.txtBoxLogin = new System.Windows.Forms.TextBox();
-            this.lblLogin = new System.Windows.Forms.Label();
-            this.lblRole = new System.Windows.Forms.Label();
-            this.comboBoxRole = new System.Windows.Forms.ComboBox();
-            this.tabProject = new System.Windows.Forms.TabPage();
-            this.dataGridViewProject = new System.Windows.Forms.DataGridView();
-            this.labelPMName = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.labelProjectName = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.labelProjectAAddress = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.labelWorkingH = new System.Windows.Forms.Label();
-            this.tabSite = new System.Windows.Forms.TabPage();
-            this.groupBoxSearch = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.btnShowAllProjects = new System.Windows.Forms.Button();
-            this.groupBoxProject = new System.Windows.Forms.GroupBox();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.PName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PM = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grpBoxUserInfo = new System.Windows.Forms.GroupBox();
             this.grpBoxSearchByID = new System.Windows.Forms.GroupBox();
             this.btnShowAllID = new System.Windows.Forms.Button();
             this.txtBoxSearchByID = new System.Windows.Forms.TextBox();
-            this.dataGridViewEmployee = new System.Windows.Forms.DataGridView();
+            this.dgdViewEmployee = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,38 +44,77 @@
             this.Role = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Login = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grpBoxUserInfo = new System.Windows.Forms.GroupBox();
+            this.lblName = new System.Windows.Forms.Label();
+            this.txtBoxAddress = new System.Windows.Forms.TextBox();
+            this.lblEmplID = new System.Windows.Forms.Label();
+            this.lblAddress = new System.Windows.Forms.Label();
+            this.txtBoxEmplID = new System.Windows.Forms.TextBox();
+            this.txtBoxPhone = new System.Windows.Forms.TextBox();
+            this.lblSurname = new System.Windows.Forms.Label();
+            this.lblPhone = new System.Windows.Forms.Label();
+            this.txtBoxSurname = new System.Windows.Forms.TextBox();
+            this.txtBoxEmail = new System.Windows.Forms.TextBox();
+            this.txtBoxName = new System.Windows.Forms.TextBox();
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.txtBoxPass = new System.Windows.Forms.TextBox();
+            this.lblPassword = new System.Windows.Forms.Label();
+            this.txtBoxLogin = new System.Windows.Forms.TextBox();
+            this.lblLogin = new System.Windows.Forms.Label();
+            this.lblRole = new System.Windows.Forms.Label();
+            this.cboRole = new System.Windows.Forms.ComboBox();
+            this.tabProject = new System.Windows.Forms.TabPage();
+            this.groupBoxProject = new System.Windows.Forms.GroupBox();
+            this.txtBoxPWH = new System.Windows.Forms.TextBox();
+            this.lblWorkingH = new System.Windows.Forms.Label();
+            this.lblPMName = new System.Windows.Forms.Label();
+            this.lblProjectAAddress = new System.Windows.Forms.Label();
+            this.cboPM = new System.Windows.Forms.ComboBox();
+            this.txtBoxPAddress = new System.Windows.Forms.TextBox();
+            this.txtBoxPMName = new System.Windows.Forms.TextBox();
+            this.lblProjectName = new System.Windows.Forms.Label();
+            this.groupBoxSearch = new System.Windows.Forms.GroupBox();
+            this.btnShowAllProjects = new System.Windows.Forms.Button();
+            this.txtBoxSearchP = new System.Windows.Forms.TextBox();
+            this.dgdViewProject = new System.Windows.Forms.DataGridView();
+            this.PName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PM = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabSite = new System.Windows.Forms.TabPage();
             this.grpBoxSiteName = new System.Windows.Forms.GroupBox();
             this.btnShowAllSites = new System.Windows.Forms.Button();
-            this.txtBoxSite = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.grpBoxSiteInfo = new System.Windows.Forms.GroupBox();
-            this.txtBoxWH = new System.Windows.Forms.TextBox();
-            this.lblSiteWH = new System.Windows.Forms.Label();
-            this.lblSiteManager = new System.Windows.Forms.Label();
-            this.lblSiteAddress = new System.Windows.Forms.Label();
-            this.comboBoxSiteManager = new System.Windows.Forms.ComboBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.txtBoxSiteName = new System.Windows.Forms.TextBox();
-            this.lblSiteName = new System.Windows.Forms.Label();
-            this.lblProject = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.txtBoxSiteSearch = new System.Windows.Forms.TextBox();
+            this.dgdVieSite = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Project = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grpBoxSiteInfo = new System.Windows.Forms.GroupBox();
+            this.lblProject = new System.Windows.Forms.Label();
+            this.cboProject = new System.Windows.Forms.ComboBox();
+            this.txtBoxSiteWH = new System.Windows.Forms.TextBox();
+            this.lblSiteWH = new System.Windows.Forms.Label();
+            this.lblSiteManager = new System.Windows.Forms.Label();
+            this.lblSiteAddress = new System.Windows.Forms.Label();
+            this.cboSiteManager = new System.Windows.Forms.ComboBox();
+            this.txtBoxSiteAddress = new System.Windows.Forms.TextBox();
+            this.txtBoxSiteName = new System.Windows.Forms.TextBox();
+            this.lblSiteName = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
             this.tabRegistration.SuspendLayout();
             this.tabUser.SuspendLayout();
-            this.tabProject.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProject)).BeginInit();
-            this.tabSite.SuspendLayout();
-            this.groupBoxSearch.SuspendLayout();
-            this.groupBoxProject.SuspendLayout();
-            this.grpBoxUserInfo.SuspendLayout();
             this.grpBoxSearchByID.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployee)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgdViewEmployee)).BeginInit();
+            this.grpBoxUserInfo.SuspendLayout();
+            this.tabProject.SuspendLayout();
+            this.groupBoxProject.SuspendLayout();
+            this.groupBoxSearch.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgdViewProject)).BeginInit();
+            this.tabSite.SuspendLayout();
             this.grpBoxSiteName.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgdVieSite)).BeginInit();
             this.grpBoxSiteInfo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -144,12 +144,12 @@
             // 
             this.tabUser.Controls.Add(this.grpBoxSearchByID);
             this.tabUser.Controls.Add(this.grpBoxUserInfo);
-            this.tabUser.Controls.Add(this.textBoxPass);
-            this.tabUser.Controls.Add(this.labelPassword);
+            this.tabUser.Controls.Add(this.txtBoxPass);
+            this.tabUser.Controls.Add(this.lblPassword);
             this.tabUser.Controls.Add(this.txtBoxLogin);
             this.tabUser.Controls.Add(this.lblLogin);
             this.tabUser.Controls.Add(this.lblRole);
-            this.tabUser.Controls.Add(this.comboBoxRole);
+            this.tabUser.Controls.Add(this.cboRole);
             this.tabUser.Location = new System.Drawing.Point(4, 25);
             this.tabUser.Name = "tabUser";
             this.tabUser.Padding = new System.Windows.Forms.Padding(3);
@@ -158,386 +158,11 @@
             this.tabUser.Text = "User and Roles";
             this.tabUser.UseVisualStyleBackColor = true;
             // 
-            // textBoxAddress
-            // 
-            this.textBoxAddress.Location = new System.Drawing.Point(109, 179);
-            this.textBoxAddress.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxAddress.Name = "textBoxAddress";
-            this.textBoxAddress.Size = new System.Drawing.Size(159, 22);
-            this.textBoxAddress.TabIndex = 27;
-            // 
-            // labelAddress
-            // 
-            this.labelAddress.AutoSize = true;
-            this.labelAddress.Location = new System.Drawing.Point(8, 182);
-            this.labelAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelAddress.Name = "labelAddress";
-            this.labelAddress.Size = new System.Drawing.Size(60, 17);
-            this.labelAddress.TabIndex = 26;
-            this.labelAddress.Text = "Address";
-            // 
-            // textBoxPhone
-            // 
-            this.textBoxPhone.Location = new System.Drawing.Point(109, 149);
-            this.textBoxPhone.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxPhone.Name = "textBoxPhone";
-            this.textBoxPhone.Size = new System.Drawing.Size(159, 22);
-            this.textBoxPhone.TabIndex = 25;
-            // 
-            // labelPhone
-            // 
-            this.labelPhone.AutoSize = true;
-            this.labelPhone.Location = new System.Drawing.Point(7, 152);
-            this.labelPhone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelPhone.Name = "labelPhone";
-            this.labelPhone.Size = new System.Drawing.Size(49, 17);
-            this.labelPhone.TabIndex = 24;
-            this.labelPhone.Text = "Phone";
-            // 
-            // textBoxEmail
-            // 
-            this.textBoxEmail.Location = new System.Drawing.Point(109, 119);
-            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(159, 22);
-            this.textBoxEmail.TabIndex = 23;
-            // 
-            // labelEmail
-            // 
-            this.labelEmail.AutoSize = true;
-            this.labelEmail.Location = new System.Drawing.Point(7, 122);
-            this.labelEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelEmail.Name = "labelEmail";
-            this.labelEmail.Size = new System.Drawing.Size(42, 17);
-            this.labelEmail.TabIndex = 22;
-            this.labelEmail.Text = "Email";
-            // 
-            // textBoxName
-            // 
-            this.textBoxName.Location = new System.Drawing.Point(109, 29);
-            this.textBoxName.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(159, 22);
-            this.textBoxName.TabIndex = 21;
-            // 
-            // labelName
-            // 
-            this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(7, 32);
-            this.labelName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(45, 17);
-            this.labelName.TabIndex = 20;
-            this.labelName.Text = "Name";
-            // 
-            // textBoxSurname
-            // 
-            this.textBoxSurname.Location = new System.Drawing.Point(109, 59);
-            this.textBoxSurname.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxSurname.Name = "textBoxSurname";
-            this.textBoxSurname.Size = new System.Drawing.Size(159, 22);
-            this.textBoxSurname.TabIndex = 19;
-            // 
-            // labelSurname
-            // 
-            this.labelSurname.AutoSize = true;
-            this.labelSurname.Location = new System.Drawing.Point(8, 64);
-            this.labelSurname.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelSurname.Name = "labelSurname";
-            this.labelSurname.Size = new System.Drawing.Size(65, 17);
-            this.labelSurname.TabIndex = 18;
-            this.labelSurname.Text = "Surname";
-            // 
-            // textBoxEmplID
-            // 
-            this.textBoxEmplID.Location = new System.Drawing.Point(109, 89);
-            this.textBoxEmplID.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxEmplID.Name = "textBoxEmplID";
-            this.textBoxEmplID.Size = new System.Drawing.Size(159, 22);
-            this.textBoxEmplID.TabIndex = 17;
-            // 
-            // labelEmplID
-            // 
-            this.labelEmplID.AutoSize = true;
-            this.labelEmplID.Location = new System.Drawing.Point(7, 92);
-            this.labelEmplID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelEmplID.Name = "labelEmplID";
-            this.labelEmplID.Size = new System.Drawing.Size(87, 17);
-            this.labelEmplID.TabIndex = 16;
-            this.labelEmplID.Text = "Employee ID";
-            // 
-            // textBoxPass
-            // 
-            this.textBoxPass.Location = new System.Drawing.Point(108, 70);
-            this.textBoxPass.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxPass.Name = "textBoxPass";
-            this.textBoxPass.Size = new System.Drawing.Size(159, 22);
-            this.textBoxPass.TabIndex = 15;
-            // 
-            // labelPassword
-            // 
-            this.labelPassword.AutoSize = true;
-            this.labelPassword.Location = new System.Drawing.Point(6, 73);
-            this.labelPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(69, 17);
-            this.labelPassword.TabIndex = 14;
-            this.labelPassword.Text = "Password";
-            // 
-            // txtBoxLogin
-            // 
-            this.txtBoxLogin.Location = new System.Drawing.Point(109, 43);
-            this.txtBoxLogin.Margin = new System.Windows.Forms.Padding(4);
-            this.txtBoxLogin.Name = "txtBoxLogin";
-            this.txtBoxLogin.Size = new System.Drawing.Size(159, 22);
-            this.txtBoxLogin.TabIndex = 13;
-            // 
-            // lblLogin
-            // 
-            this.lblLogin.AutoSize = true;
-            this.lblLogin.Location = new System.Drawing.Point(7, 46);
-            this.lblLogin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblLogin.Name = "lblLogin";
-            this.lblLogin.Size = new System.Drawing.Size(43, 17);
-            this.lblLogin.TabIndex = 12;
-            this.lblLogin.Text = "Login";
-            // 
-            // lblRole
-            // 
-            this.lblRole.AutoSize = true;
-            this.lblRole.Location = new System.Drawing.Point(7, 16);
-            this.lblRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(37, 17);
-            this.lblRole.TabIndex = 5;
-            this.lblRole.Text = "Role";
-            this.lblRole.Click += new System.EventHandler(this.lblSitemngr_Click);
-            // 
-            // comboBoxRole
-            // 
-            this.comboBoxRole.FormattingEnabled = true;
-            this.comboBoxRole.Location = new System.Drawing.Point(108, 11);
-            this.comboBoxRole.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBoxRole.Name = "comboBoxRole";
-            this.comboBoxRole.Size = new System.Drawing.Size(160, 24);
-            this.comboBoxRole.TabIndex = 4;
-            this.comboBoxRole.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // tabProject
-            // 
-            this.tabProject.Controls.Add(this.groupBoxProject);
-            this.tabProject.Controls.Add(this.groupBoxSearch);
-            this.tabProject.Location = new System.Drawing.Point(4, 25);
-            this.tabProject.Name = "tabProject";
-            this.tabProject.Padding = new System.Windows.Forms.Padding(3);
-            this.tabProject.Size = new System.Drawing.Size(577, 319);
-            this.tabProject.TabIndex = 1;
-            this.tabProject.Text = "Project";
-            this.tabProject.UseVisualStyleBackColor = true;
-            // 
-            // dataGridViewProject
-            // 
-            this.dataGridViewProject.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewProject.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.PName,
-            this.PM,
-            this.PAddress,
-            this.WH});
-            this.dataGridViewProject.Location = new System.Drawing.Point(7, 65);
-            this.dataGridViewProject.Name = "dataGridViewProject";
-            this.dataGridViewProject.RowTemplate.Height = 24;
-            this.dataGridViewProject.Size = new System.Drawing.Size(250, 220);
-            this.dataGridViewProject.TabIndex = 30;
-            this.dataGridViewProject.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProject_CellContentClick);
-            // 
-            // labelPMName
-            // 
-            this.labelPMName.AutoSize = true;
-            this.labelPMName.Location = new System.Drawing.Point(1, 65);
-            this.labelPMName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelPMName.Name = "labelPMName";
-            this.labelPMName.Size = new System.Drawing.Size(113, 17);
-            this.labelPMName.TabIndex = 29;
-            this.labelPMName.Text = "Rroject Manager";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(125, 63);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(160, 24);
-            this.comboBox1.TabIndex = 28;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(125, 33);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(159, 22);
-            this.textBox1.TabIndex = 27;
-            // 
-            // labelProjectName
-            // 
-            this.labelProjectName.AutoSize = true;
-            this.labelProjectName.Location = new System.Drawing.Point(0, 33);
-            this.labelProjectName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelProjectName.Name = "labelProjectName";
-            this.labelProjectName.Size = new System.Drawing.Size(93, 17);
-            this.labelProjectName.TabIndex = 26;
-            this.labelProjectName.Text = "Project Name";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(125, 95);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(159, 22);
-            this.textBox2.TabIndex = 25;
-            // 
-            // labelProjectAAddress
-            // 
-            this.labelProjectAAddress.AutoSize = true;
-            this.labelProjectAAddress.Location = new System.Drawing.Point(1, 97);
-            this.labelProjectAAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelProjectAAddress.Name = "labelProjectAAddress";
-            this.labelProjectAAddress.Size = new System.Drawing.Size(108, 17);
-            this.labelProjectAAddress.TabIndex = 24;
-            this.labelProjectAAddress.Text = "Project Address";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(125, 125);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(159, 22);
-            this.textBox3.TabIndex = 23;
-            // 
-            // labelWorkingH
-            // 
-            this.labelWorkingH.AutoSize = true;
-            this.labelWorkingH.Location = new System.Drawing.Point(0, 125);
-            this.labelWorkingH.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelWorkingH.Name = "labelWorkingH";
-            this.labelWorkingH.Size = new System.Drawing.Size(102, 17);
-            this.labelWorkingH.TabIndex = 22;
-            this.labelWorkingH.Text = "Working Hours";
-            // 
-            // tabSite
-            // 
-            this.tabSite.Controls.Add(this.grpBoxSiteName);
-            this.tabSite.Controls.Add(this.grpBoxSiteInfo);
-            this.tabSite.Location = new System.Drawing.Point(4, 25);
-            this.tabSite.Name = "tabSite";
-            this.tabSite.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSite.Size = new System.Drawing.Size(577, 319);
-            this.tabSite.TabIndex = 2;
-            this.tabSite.Text = "Site";
-            this.tabSite.UseVisualStyleBackColor = true;
-            // 
-            // groupBoxSearch
-            // 
-            this.groupBoxSearch.Controls.Add(this.btnShowAllProjects);
-            this.groupBoxSearch.Controls.Add(this.textBox4);
-            this.groupBoxSearch.Controls.Add(this.dataGridViewProject);
-            this.groupBoxSearch.Location = new System.Drawing.Point(308, 22);
-            this.groupBoxSearch.Name = "groupBoxSearch";
-            this.groupBoxSearch.Size = new System.Drawing.Size(263, 291);
-            this.groupBoxSearch.TabIndex = 31;
-            this.groupBoxSearch.TabStop = false;
-            this.groupBoxSearch.Text = "Search by Project Name";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(7, 32);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(167, 22);
-            this.textBox4.TabIndex = 32;
-            // 
-            // btnShowAllProjects
-            // 
-            this.btnShowAllProjects.Location = new System.Drawing.Point(182, 30);
-            this.btnShowAllProjects.Name = "btnShowAllProjects";
-            this.btnShowAllProjects.Size = new System.Drawing.Size(75, 23);
-            this.btnShowAllProjects.TabIndex = 33;
-            this.btnShowAllProjects.Text = "Show All";
-            this.btnShowAllProjects.UseVisualStyleBackColor = true;
-            // 
-            // groupBoxProject
-            // 
-            this.groupBoxProject.Controls.Add(this.textBox3);
-            this.groupBoxProject.Controls.Add(this.labelWorkingH);
-            this.groupBoxProject.Controls.Add(this.labelPMName);
-            this.groupBoxProject.Controls.Add(this.labelProjectAAddress);
-            this.groupBoxProject.Controls.Add(this.comboBox1);
-            this.groupBoxProject.Controls.Add(this.textBox2);
-            this.groupBoxProject.Controls.Add(this.textBox1);
-            this.groupBoxProject.Controls.Add(this.labelProjectName);
-            this.groupBoxProject.Location = new System.Drawing.Point(11, 22);
-            this.groupBoxProject.Name = "groupBoxProject";
-            this.groupBoxProject.Size = new System.Drawing.Size(291, 291);
-            this.groupBoxProject.TabIndex = 32;
-            this.groupBoxProject.TabStop = false;
-            this.groupBoxProject.Text = "Project Information";
-            this.groupBoxProject.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(402, 375);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(100, 28);
-            this.btnSave.TabIndex = 10;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            // 
-            // PName
-            // 
-            this.PName.HeaderText = "Name";
-            this.PName.Name = "PName";
-            // 
-            // PM
-            // 
-            this.PM.HeaderText = "PM";
-            this.PM.Name = "PM";
-            // 
-            // PAddress
-            // 
-            this.PAddress.HeaderText = "Address";
-            this.PAddress.Name = "PAddress";
-            // 
-            // WH
-            // 
-            this.WH.HeaderText = "WH";
-            this.WH.Name = "WH";
-            // 
-            // grpBoxUserInfo
-            // 
-            this.grpBoxUserInfo.Controls.Add(this.labelName);
-            this.grpBoxUserInfo.Controls.Add(this.textBoxAddress);
-            this.grpBoxUserInfo.Controls.Add(this.labelEmplID);
-            this.grpBoxUserInfo.Controls.Add(this.labelAddress);
-            this.grpBoxUserInfo.Controls.Add(this.textBoxEmplID);
-            this.grpBoxUserInfo.Controls.Add(this.textBoxPhone);
-            this.grpBoxUserInfo.Controls.Add(this.labelSurname);
-            this.grpBoxUserInfo.Controls.Add(this.labelPhone);
-            this.grpBoxUserInfo.Controls.Add(this.textBoxSurname);
-            this.grpBoxUserInfo.Controls.Add(this.textBoxEmail);
-            this.grpBoxUserInfo.Controls.Add(this.textBoxName);
-            this.grpBoxUserInfo.Controls.Add(this.labelEmail);
-            this.grpBoxUserInfo.Location = new System.Drawing.Point(0, 99);
-            this.grpBoxUserInfo.Name = "grpBoxUserInfo";
-            this.grpBoxUserInfo.Size = new System.Drawing.Size(296, 211);
-            this.grpBoxUserInfo.TabIndex = 28;
-            this.grpBoxUserInfo.TabStop = false;
-            this.grpBoxUserInfo.Text = "User Information";
-            // 
             // grpBoxSearchByID
             // 
             this.grpBoxSearchByID.Controls.Add(this.btnShowAllID);
             this.grpBoxSearchByID.Controls.Add(this.txtBoxSearchByID);
-            this.grpBoxSearchByID.Controls.Add(this.dataGridViewEmployee);
+            this.grpBoxSearchByID.Controls.Add(this.dgdViewEmployee);
             this.grpBoxSearchByID.Location = new System.Drawing.Point(302, 11);
             this.grpBoxSearchByID.Name = "grpBoxSearchByID";
             this.grpBoxSearchByID.Size = new System.Drawing.Size(260, 299);
@@ -562,10 +187,10 @@
             this.txtBoxSearchByID.Size = new System.Drawing.Size(167, 22);
             this.txtBoxSearchByID.TabIndex = 32;
             // 
-            // dataGridViewEmployee
+            // dgdViewEmployee
             // 
-            this.dataGridViewEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewEmployee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgdViewEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgdViewEmployee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
@@ -575,12 +200,12 @@
             this.Role,
             this.Login,
             this.Password});
-            this.dataGridViewEmployee.Location = new System.Drawing.Point(6, 64);
-            this.dataGridViewEmployee.Name = "dataGridViewEmployee";
-            this.dataGridViewEmployee.RowTemplate.Height = 24;
-            this.dataGridViewEmployee.Size = new System.Drawing.Size(251, 223);
-            this.dataGridViewEmployee.TabIndex = 30;
-            this.dataGridViewEmployee.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployee_CellContentClick);
+            this.dgdViewEmployee.Location = new System.Drawing.Point(6, 64);
+            this.dgdViewEmployee.Name = "dgdViewEmployee";
+            this.dgdViewEmployee.RowTemplate.Height = 24;
+            this.dgdViewEmployee.Size = new System.Drawing.Size(251, 223);
+            this.dgdViewEmployee.TabIndex = 30;
+            this.dgdViewEmployee.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployee_CellContentClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -627,11 +252,377 @@
             this.Password.HeaderText = "Password";
             this.Password.Name = "Password";
             // 
+            // grpBoxUserInfo
+            // 
+            this.grpBoxUserInfo.Controls.Add(this.lblName);
+            this.grpBoxUserInfo.Controls.Add(this.txtBoxAddress);
+            this.grpBoxUserInfo.Controls.Add(this.lblEmplID);
+            this.grpBoxUserInfo.Controls.Add(this.lblAddress);
+            this.grpBoxUserInfo.Controls.Add(this.txtBoxEmplID);
+            this.grpBoxUserInfo.Controls.Add(this.txtBoxPhone);
+            this.grpBoxUserInfo.Controls.Add(this.lblSurname);
+            this.grpBoxUserInfo.Controls.Add(this.lblPhone);
+            this.grpBoxUserInfo.Controls.Add(this.txtBoxSurname);
+            this.grpBoxUserInfo.Controls.Add(this.txtBoxEmail);
+            this.grpBoxUserInfo.Controls.Add(this.txtBoxName);
+            this.grpBoxUserInfo.Controls.Add(this.lblEmail);
+            this.grpBoxUserInfo.Location = new System.Drawing.Point(0, 99);
+            this.grpBoxUserInfo.Name = "grpBoxUserInfo";
+            this.grpBoxUserInfo.Size = new System.Drawing.Size(296, 211);
+            this.grpBoxUserInfo.TabIndex = 28;
+            this.grpBoxUserInfo.TabStop = false;
+            this.grpBoxUserInfo.Text = "User Information";
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(7, 32);
+            this.lblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(45, 17);
+            this.lblName.TabIndex = 20;
+            this.lblName.Text = "Name";
+            // 
+            // txtBoxAddress
+            // 
+            this.txtBoxAddress.AcceptsReturn = true;
+            this.txtBoxAddress.Location = new System.Drawing.Point(109, 179);
+            this.txtBoxAddress.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxAddress.Name = "txtBoxAddress";
+            this.txtBoxAddress.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxAddress.TabIndex = 27;
+            // 
+            // lblEmplID
+            // 
+            this.lblEmplID.AutoSize = true;
+            this.lblEmplID.Location = new System.Drawing.Point(7, 92);
+            this.lblEmplID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblEmplID.Name = "lblEmplID";
+            this.lblEmplID.Size = new System.Drawing.Size(87, 17);
+            this.lblEmplID.TabIndex = 16;
+            this.lblEmplID.Text = "Employee ID";
+            // 
+            // lblAddress
+            // 
+            this.lblAddress.AutoSize = true;
+            this.lblAddress.Location = new System.Drawing.Point(8, 182);
+            this.lblAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAddress.Name = "lblAddress";
+            this.lblAddress.Size = new System.Drawing.Size(60, 17);
+            this.lblAddress.TabIndex = 26;
+            this.lblAddress.Text = "Address";
+            // 
+            // txtBoxEmplID
+            // 
+            this.txtBoxEmplID.Location = new System.Drawing.Point(109, 89);
+            this.txtBoxEmplID.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxEmplID.Name = "txtBoxEmplID";
+            this.txtBoxEmplID.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxEmplID.TabIndex = 17;
+            // 
+            // txtBoxPhone
+            // 
+            this.txtBoxPhone.Location = new System.Drawing.Point(109, 149);
+            this.txtBoxPhone.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxPhone.Name = "txtBoxPhone";
+            this.txtBoxPhone.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxPhone.TabIndex = 25;
+            // 
+            // lblSurname
+            // 
+            this.lblSurname.AutoSize = true;
+            this.lblSurname.Location = new System.Drawing.Point(8, 64);
+            this.lblSurname.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSurname.Name = "lblSurname";
+            this.lblSurname.Size = new System.Drawing.Size(65, 17);
+            this.lblSurname.TabIndex = 18;
+            this.lblSurname.Text = "Surname";
+            // 
+            // lblPhone
+            // 
+            this.lblPhone.AutoSize = true;
+            this.lblPhone.Location = new System.Drawing.Point(7, 152);
+            this.lblPhone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPhone.Name = "lblPhone";
+            this.lblPhone.Size = new System.Drawing.Size(49, 17);
+            this.lblPhone.TabIndex = 24;
+            this.lblPhone.Text = "Phone";
+            // 
+            // txtBoxSurname
+            // 
+            this.txtBoxSurname.Location = new System.Drawing.Point(109, 59);
+            this.txtBoxSurname.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxSurname.Name = "txtBoxSurname";
+            this.txtBoxSurname.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxSurname.TabIndex = 19;
+            // 
+            // txtBoxEmail
+            // 
+            this.txtBoxEmail.Location = new System.Drawing.Point(109, 119);
+            this.txtBoxEmail.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxEmail.Name = "txtBoxEmail";
+            this.txtBoxEmail.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxEmail.TabIndex = 23;
+            // 
+            // txtBoxName
+            // 
+            this.txtBoxName.Location = new System.Drawing.Point(109, 29);
+            this.txtBoxName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxName.Name = "txtBoxName";
+            this.txtBoxName.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxName.TabIndex = 21;
+            // 
+            // lblEmail
+            // 
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Location = new System.Drawing.Point(7, 122);
+            this.lblEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(42, 17);
+            this.lblEmail.TabIndex = 22;
+            this.lblEmail.Text = "Email";
+            // 
+            // txtBoxPass
+            // 
+            this.txtBoxPass.Location = new System.Drawing.Point(108, 70);
+            this.txtBoxPass.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxPass.Name = "txtBoxPass";
+            this.txtBoxPass.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxPass.TabIndex = 15;
+            // 
+            // lblPassword
+            // 
+            this.lblPassword.AutoSize = true;
+            this.lblPassword.Location = new System.Drawing.Point(6, 73);
+            this.lblPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(69, 17);
+            this.lblPassword.TabIndex = 14;
+            this.lblPassword.Text = "Password";
+            // 
+            // txtBoxLogin
+            // 
+            this.txtBoxLogin.Location = new System.Drawing.Point(109, 43);
+            this.txtBoxLogin.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxLogin.Name = "txtBoxLogin";
+            this.txtBoxLogin.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxLogin.TabIndex = 13;
+            // 
+            // lblLogin
+            // 
+            this.lblLogin.AutoSize = true;
+            this.lblLogin.Location = new System.Drawing.Point(7, 45);
+            this.lblLogin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblLogin.Name = "lblLogin";
+            this.lblLogin.Size = new System.Drawing.Size(43, 17);
+            this.lblLogin.TabIndex = 12;
+            this.lblLogin.Text = "Login";
+            // 
+            // lblRole
+            // 
+            this.lblRole.AutoSize = true;
+            this.lblRole.Location = new System.Drawing.Point(7, 16);
+            this.lblRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRole.Name = "lblRole";
+            this.lblRole.Size = new System.Drawing.Size(37, 17);
+            this.lblRole.TabIndex = 5;
+            this.lblRole.Text = "Role";
+            this.lblRole.Click += new System.EventHandler(this.lblSitemngr_Click);
+            // 
+            // cboRole
+            // 
+            this.cboRole.FormattingEnabled = true;
+            this.cboRole.Location = new System.Drawing.Point(108, 11);
+            this.cboRole.Margin = new System.Windows.Forms.Padding(4);
+            this.cboRole.Name = "cboRole";
+            this.cboRole.Size = new System.Drawing.Size(160, 24);
+            this.cboRole.TabIndex = 4;
+            this.cboRole.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // tabProject
+            // 
+            this.tabProject.Controls.Add(this.groupBoxProject);
+            this.tabProject.Controls.Add(this.groupBoxSearch);
+            this.tabProject.Location = new System.Drawing.Point(4, 25);
+            this.tabProject.Name = "tabProject";
+            this.tabProject.Padding = new System.Windows.Forms.Padding(3);
+            this.tabProject.Size = new System.Drawing.Size(577, 319);
+            this.tabProject.TabIndex = 1;
+            this.tabProject.Text = "Project";
+            this.tabProject.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxProject
+            // 
+            this.groupBoxProject.Controls.Add(this.txtBoxPWH);
+            this.groupBoxProject.Controls.Add(this.lblWorkingH);
+            this.groupBoxProject.Controls.Add(this.lblPMName);
+            this.groupBoxProject.Controls.Add(this.lblProjectAAddress);
+            this.groupBoxProject.Controls.Add(this.cboPM);
+            this.groupBoxProject.Controls.Add(this.txtBoxPAddress);
+            this.groupBoxProject.Controls.Add(this.txtBoxPMName);
+            this.groupBoxProject.Controls.Add(this.lblProjectName);
+            this.groupBoxProject.Location = new System.Drawing.Point(11, 22);
+            this.groupBoxProject.Name = "groupBoxProject";
+            this.groupBoxProject.Size = new System.Drawing.Size(291, 291);
+            this.groupBoxProject.TabIndex = 32;
+            this.groupBoxProject.TabStop = false;
+            this.groupBoxProject.Text = "Project Information";
+            this.groupBoxProject.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // txtBoxPWH
+            // 
+            this.txtBoxPWH.Location = new System.Drawing.Point(125, 125);
+            this.txtBoxPWH.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxPWH.Name = "txtBoxPWH";
+            this.txtBoxPWH.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxPWH.TabIndex = 23;
+            // 
+            // lblWorkingH
+            // 
+            this.lblWorkingH.AutoSize = true;
+            this.lblWorkingH.Location = new System.Drawing.Point(0, 125);
+            this.lblWorkingH.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblWorkingH.Name = "lblWorkingH";
+            this.lblWorkingH.Size = new System.Drawing.Size(102, 17);
+            this.lblWorkingH.TabIndex = 22;
+            this.lblWorkingH.Text = "Working Hours";
+            // 
+            // lblPMName
+            // 
+            this.lblPMName.AutoSize = true;
+            this.lblPMName.Location = new System.Drawing.Point(1, 65);
+            this.lblPMName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPMName.Name = "lblPMName";
+            this.lblPMName.Size = new System.Drawing.Size(113, 17);
+            this.lblPMName.TabIndex = 29;
+            this.lblPMName.Text = "Rroject Manager";
+            // 
+            // lblProjectAAddress
+            // 
+            this.lblProjectAAddress.AutoSize = true;
+            this.lblProjectAAddress.Location = new System.Drawing.Point(1, 97);
+            this.lblProjectAAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblProjectAAddress.Name = "lblProjectAAddress";
+            this.lblProjectAAddress.Size = new System.Drawing.Size(108, 17);
+            this.lblProjectAAddress.TabIndex = 24;
+            this.lblProjectAAddress.Text = "Project Address";
+            // 
+            // cboPM
+            // 
+            this.cboPM.FormattingEnabled = true;
+            this.cboPM.Location = new System.Drawing.Point(125, 63);
+            this.cboPM.Margin = new System.Windows.Forms.Padding(4);
+            this.cboPM.Name = "cboPM";
+            this.cboPM.Size = new System.Drawing.Size(160, 24);
+            this.cboPM.TabIndex = 28;
+            // 
+            // txtBoxPAddress
+            // 
+            this.txtBoxPAddress.Location = new System.Drawing.Point(125, 95);
+            this.txtBoxPAddress.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxPAddress.Name = "txtBoxPAddress";
+            this.txtBoxPAddress.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxPAddress.TabIndex = 25;
+            // 
+            // txtBoxPMName
+            // 
+            this.txtBoxPMName.Location = new System.Drawing.Point(125, 33);
+            this.txtBoxPMName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxPMName.Name = "txtBoxPMName";
+            this.txtBoxPMName.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxPMName.TabIndex = 27;
+            // 
+            // lblProjectName
+            // 
+            this.lblProjectName.AutoSize = true;
+            this.lblProjectName.Location = new System.Drawing.Point(0, 33);
+            this.lblProjectName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblProjectName.Name = "lblProjectName";
+            this.lblProjectName.Size = new System.Drawing.Size(93, 17);
+            this.lblProjectName.TabIndex = 26;
+            this.lblProjectName.Text = "Project Name";
+            // 
+            // groupBoxSearch
+            // 
+            this.groupBoxSearch.Controls.Add(this.btnShowAllProjects);
+            this.groupBoxSearch.Controls.Add(this.txtBoxSearchP);
+            this.groupBoxSearch.Controls.Add(this.dgdViewProject);
+            this.groupBoxSearch.Location = new System.Drawing.Point(308, 22);
+            this.groupBoxSearch.Name = "groupBoxSearch";
+            this.groupBoxSearch.Size = new System.Drawing.Size(263, 291);
+            this.groupBoxSearch.TabIndex = 31;
+            this.groupBoxSearch.TabStop = false;
+            this.groupBoxSearch.Text = "Search by Project Name";
+            // 
+            // btnShowAllProjects
+            // 
+            this.btnShowAllProjects.Location = new System.Drawing.Point(182, 30);
+            this.btnShowAllProjects.Name = "btnShowAllProjects";
+            this.btnShowAllProjects.Size = new System.Drawing.Size(75, 23);
+            this.btnShowAllProjects.TabIndex = 33;
+            this.btnShowAllProjects.Text = "Show All";
+            this.btnShowAllProjects.UseVisualStyleBackColor = true;
+            // 
+            // txtBoxSearchP
+            // 
+            this.txtBoxSearchP.Location = new System.Drawing.Point(7, 32);
+            this.txtBoxSearchP.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxSearchP.Name = "txtBoxSearchP";
+            this.txtBoxSearchP.Size = new System.Drawing.Size(167, 22);
+            this.txtBoxSearchP.TabIndex = 32;
+            // 
+            // dgdViewProject
+            // 
+            this.dgdViewProject.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgdViewProject.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.PName,
+            this.PM,
+            this.PAddress,
+            this.WH});
+            this.dgdViewProject.Location = new System.Drawing.Point(7, 65);
+            this.dgdViewProject.Name = "dgdViewProject";
+            this.dgdViewProject.RowTemplate.Height = 24;
+            this.dgdViewProject.Size = new System.Drawing.Size(250, 220);
+            this.dgdViewProject.TabIndex = 30;
+            this.dgdViewProject.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProject_CellContentClick);
+            // 
+            // PName
+            // 
+            this.PName.HeaderText = "Name";
+            this.PName.Name = "PName";
+            // 
+            // PM
+            // 
+            this.PM.HeaderText = "PM";
+            this.PM.Name = "PM";
+            // 
+            // PAddress
+            // 
+            this.PAddress.HeaderText = "Address";
+            this.PAddress.Name = "PAddress";
+            // 
+            // WH
+            // 
+            this.WH.HeaderText = "WH";
+            this.WH.Name = "WH";
+            // 
+            // tabSite
+            // 
+            this.tabSite.Controls.Add(this.grpBoxSiteName);
+            this.tabSite.Controls.Add(this.grpBoxSiteInfo);
+            this.tabSite.Location = new System.Drawing.Point(4, 25);
+            this.tabSite.Name = "tabSite";
+            this.tabSite.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSite.Size = new System.Drawing.Size(577, 319);
+            this.tabSite.TabIndex = 2;
+            this.tabSite.Text = "Site";
+            this.tabSite.UseVisualStyleBackColor = true;
+            // 
             // grpBoxSiteName
             // 
             this.grpBoxSiteName.Controls.Add(this.btnShowAllSites);
-            this.grpBoxSiteName.Controls.Add(this.txtBoxSite);
-            this.grpBoxSiteName.Controls.Add(this.dataGridView1);
+            this.grpBoxSiteName.Controls.Add(this.txtBoxSiteSearch);
+            this.grpBoxSiteName.Controls.Add(this.dgdVieSite);
             this.grpBoxSiteName.Location = new System.Drawing.Point(305, 28);
             this.grpBoxSiteName.Name = "grpBoxSiteName";
             this.grpBoxSiteName.Size = new System.Drawing.Size(263, 285);
@@ -648,39 +639,64 @@
             this.btnShowAllSites.Text = "Show All";
             this.btnShowAllSites.UseVisualStyleBackColor = true;
             // 
-            // txtBoxSite
+            // txtBoxSiteSearch
             // 
-            this.txtBoxSite.Location = new System.Drawing.Point(7, 32);
-            this.txtBoxSite.Margin = new System.Windows.Forms.Padding(4);
-            this.txtBoxSite.Name = "txtBoxSite";
-            this.txtBoxSite.Size = new System.Drawing.Size(167, 22);
-            this.txtBoxSite.TabIndex = 32;
+            this.txtBoxSiteSearch.Location = new System.Drawing.Point(7, 32);
+            this.txtBoxSiteSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxSiteSearch.Name = "txtBoxSiteSearch";
+            this.txtBoxSiteSearch.Size = new System.Drawing.Size(167, 22);
+            this.txtBoxSiteSearch.TabIndex = 32;
             // 
-            // dataGridView1
+            // dgdVieSite
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgdVieSite.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgdVieSite.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8,
             this.Project});
-            this.dataGridView1.Location = new System.Drawing.Point(6, 64);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(251, 215);
-            this.dataGridView1.TabIndex = 30;
+            this.dgdVieSite.Location = new System.Drawing.Point(6, 64);
+            this.dgdVieSite.Name = "dgdVieSite";
+            this.dgdVieSite.RowTemplate.Height = 24;
+            this.dgdVieSite.Size = new System.Drawing.Size(251, 215);
+            this.dgdVieSite.TabIndex = 30;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Site Name";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Address";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "WH";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "Site Manager";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            // 
+            // Project
+            // 
+            this.Project.HeaderText = "Project";
+            this.Project.Name = "Project";
             // 
             // grpBoxSiteInfo
             // 
             this.grpBoxSiteInfo.Controls.Add(this.lblProject);
-            this.grpBoxSiteInfo.Controls.Add(this.comboBox2);
-            this.grpBoxSiteInfo.Controls.Add(this.txtBoxWH);
+            this.grpBoxSiteInfo.Controls.Add(this.cboProject);
+            this.grpBoxSiteInfo.Controls.Add(this.txtBoxSiteWH);
             this.grpBoxSiteInfo.Controls.Add(this.lblSiteWH);
             this.grpBoxSiteInfo.Controls.Add(this.lblSiteManager);
             this.grpBoxSiteInfo.Controls.Add(this.lblSiteAddress);
-            this.grpBoxSiteInfo.Controls.Add(this.comboBoxSiteManager);
-            this.grpBoxSiteInfo.Controls.Add(this.textBox7);
+            this.grpBoxSiteInfo.Controls.Add(this.cboSiteManager);
+            this.grpBoxSiteInfo.Controls.Add(this.txtBoxSiteAddress);
             this.grpBoxSiteInfo.Controls.Add(this.txtBoxSiteName);
             this.grpBoxSiteInfo.Controls.Add(this.lblSiteName);
             this.grpBoxSiteInfo.Location = new System.Drawing.Point(8, 28);
@@ -690,13 +706,32 @@
             this.grpBoxSiteInfo.TabStop = false;
             this.grpBoxSiteInfo.Text = "Site Information";
             // 
-            // txtBoxWH
+            // lblProject
             // 
-            this.txtBoxWH.Location = new System.Drawing.Point(123, 156);
-            this.txtBoxWH.Margin = new System.Windows.Forms.Padding(4);
-            this.txtBoxWH.Name = "txtBoxWH";
-            this.txtBoxWH.Size = new System.Drawing.Size(159, 22);
-            this.txtBoxWH.TabIndex = 23;
+            this.lblProject.AutoSize = true;
+            this.lblProject.Location = new System.Drawing.Point(0, 33);
+            this.lblProject.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblProject.Name = "lblProject";
+            this.lblProject.Size = new System.Drawing.Size(52, 17);
+            this.lblProject.TabIndex = 31;
+            this.lblProject.Text = "Project";
+            // 
+            // cboProject
+            // 
+            this.cboProject.FormattingEnabled = true;
+            this.cboProject.Location = new System.Drawing.Point(123, 29);
+            this.cboProject.Margin = new System.Windows.Forms.Padding(4);
+            this.cboProject.Name = "cboProject";
+            this.cboProject.Size = new System.Drawing.Size(160, 24);
+            this.cboProject.TabIndex = 30;
+            // 
+            // txtBoxSiteWH
+            // 
+            this.txtBoxSiteWH.Location = new System.Drawing.Point(123, 156);
+            this.txtBoxSiteWH.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxSiteWH.Name = "txtBoxSiteWH";
+            this.txtBoxSiteWH.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxSiteWH.TabIndex = 23;
             // 
             // lblSiteWH
             // 
@@ -728,22 +763,22 @@
             this.lblSiteAddress.TabIndex = 24;
             this.lblSiteAddress.Text = "Site Address";
             // 
-            // comboBoxSiteManager
+            // cboSiteManager
             // 
-            this.comboBoxSiteManager.FormattingEnabled = true;
-            this.comboBoxSiteManager.Location = new System.Drawing.Point(123, 64);
-            this.comboBoxSiteManager.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBoxSiteManager.Name = "comboBoxSiteManager";
-            this.comboBoxSiteManager.Size = new System.Drawing.Size(160, 24);
-            this.comboBoxSiteManager.TabIndex = 28;
+            this.cboSiteManager.FormattingEnabled = true;
+            this.cboSiteManager.Location = new System.Drawing.Point(123, 64);
+            this.cboSiteManager.Margin = new System.Windows.Forms.Padding(4);
+            this.cboSiteManager.Name = "cboSiteManager";
+            this.cboSiteManager.Size = new System.Drawing.Size(160, 24);
+            this.cboSiteManager.TabIndex = 28;
             // 
-            // textBox7
+            // txtBoxSiteAddress
             // 
-            this.textBox7.Location = new System.Drawing.Point(123, 126);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(159, 22);
-            this.textBox7.TabIndex = 25;
+            this.txtBoxSiteAddress.Location = new System.Drawing.Point(123, 126);
+            this.txtBoxSiteAddress.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxSiteAddress.Name = "txtBoxSiteAddress";
+            this.txtBoxSiteAddress.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxSiteAddress.TabIndex = 25;
             // 
             // txtBoxSiteName
             // 
@@ -765,49 +800,15 @@
             this.lblSiteName.Text = "Site Name";
             this.lblSiteName.Click += new System.EventHandler(this.lblSiteName_Click);
             // 
-            // lblProject
+            // btnSave
             // 
-            this.lblProject.AutoSize = true;
-            this.lblProject.Location = new System.Drawing.Point(0, 30);
-            this.lblProject.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblProject.Name = "lblProject";
-            this.lblProject.Size = new System.Drawing.Size(52, 17);
-            this.lblProject.TabIndex = 31;
-            this.lblProject.Text = "Project";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(123, 29);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(160, 24);
-            this.comboBox2.TabIndex = 30;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Site Name";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Address";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "WH";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.HeaderText = "Site Manager";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            // 
-            // Project
-            // 
-            this.Project.HeaderText = "Project";
-            this.Project.Name = "Project";
+            this.btnSave.Location = new System.Drawing.Point(402, 375);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(100, 28);
+            this.btnSave.TabIndex = 10;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
             // 
             // frmRegistration
             // 
@@ -824,21 +825,21 @@
             this.tabRegistration.ResumeLayout(false);
             this.tabUser.ResumeLayout(false);
             this.tabUser.PerformLayout();
-            this.tabProject.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProject)).EndInit();
-            this.tabSite.ResumeLayout(false);
-            this.groupBoxSearch.ResumeLayout(false);
-            this.groupBoxSearch.PerformLayout();
-            this.groupBoxProject.ResumeLayout(false);
-            this.groupBoxProject.PerformLayout();
-            this.grpBoxUserInfo.ResumeLayout(false);
-            this.grpBoxUserInfo.PerformLayout();
             this.grpBoxSearchByID.ResumeLayout(false);
             this.grpBoxSearchByID.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployee)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgdViewEmployee)).EndInit();
+            this.grpBoxUserInfo.ResumeLayout(false);
+            this.grpBoxUserInfo.PerformLayout();
+            this.tabProject.ResumeLayout(false);
+            this.groupBoxProject.ResumeLayout(false);
+            this.groupBoxProject.PerformLayout();
+            this.groupBoxSearch.ResumeLayout(false);
+            this.groupBoxSearch.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgdViewProject)).EndInit();
+            this.tabSite.ResumeLayout(false);
             this.grpBoxSiteName.ResumeLayout(false);
             this.grpBoxSiteName.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgdVieSite)).EndInit();
             this.grpBoxSiteInfo.ResumeLayout(false);
             this.grpBoxSiteInfo.PerformLayout();
             this.ResumeLayout(false);
@@ -852,34 +853,34 @@
         private System.Windows.Forms.TabPage tabProject;
         private System.Windows.Forms.TabPage tabSite;
         private System.Windows.Forms.Label lblRole;
-        private System.Windows.Forms.ComboBox comboBoxRole;
-        private System.Windows.Forms.TextBox textBoxAddress;
-        private System.Windows.Forms.Label labelAddress;
-        private System.Windows.Forms.TextBox textBoxPhone;
-        private System.Windows.Forms.Label labelPhone;
-        private System.Windows.Forms.TextBox textBoxEmail;
-        private System.Windows.Forms.Label labelEmail;
-        private System.Windows.Forms.TextBox textBoxName;
-        private System.Windows.Forms.Label labelName;
-        private System.Windows.Forms.TextBox textBoxSurname;
-        private System.Windows.Forms.Label labelSurname;
-        private System.Windows.Forms.TextBox textBoxEmplID;
-        private System.Windows.Forms.Label labelEmplID;
-        private System.Windows.Forms.TextBox textBoxPass;
-        private System.Windows.Forms.Label labelPassword;
+        private System.Windows.Forms.ComboBox cboRole;
+        private System.Windows.Forms.TextBox txtBoxAddress;
+        private System.Windows.Forms.Label lblAddress;
+        private System.Windows.Forms.TextBox txtBoxPhone;
+        private System.Windows.Forms.Label lblPhone;
+        private System.Windows.Forms.TextBox txtBoxEmail;
+        private System.Windows.Forms.Label lblEmail;
+        private System.Windows.Forms.TextBox txtBoxName;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.TextBox txtBoxSurname;
+        private System.Windows.Forms.Label lblSurname;
+        private System.Windows.Forms.TextBox txtBoxEmplID;
+        private System.Windows.Forms.Label lblEmplID;
+        private System.Windows.Forms.TextBox txtBoxPass;
+        private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.TextBox txtBoxLogin;
         private System.Windows.Forms.Label lblLogin;
-        private System.Windows.Forms.Label labelPMName;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label labelProjectName;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label labelProjectAAddress;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label labelWorkingH;
-        private System.Windows.Forms.DataGridView dataGridViewProject;
+        private System.Windows.Forms.Label lblPMName;
+        private System.Windows.Forms.ComboBox cboPM;
+        private System.Windows.Forms.TextBox txtBoxPMName;
+        private System.Windows.Forms.Label lblProjectName;
+        private System.Windows.Forms.TextBox txtBoxPAddress;
+        private System.Windows.Forms.Label lblProjectAAddress;
+        private System.Windows.Forms.TextBox txtBoxPWH;
+        private System.Windows.Forms.Label lblWorkingH;
+        private System.Windows.Forms.DataGridView dgdViewProject;
         private System.Windows.Forms.GroupBox groupBoxSearch;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtBoxSearchP;
         private System.Windows.Forms.GroupBox groupBoxProject;
         private System.Windows.Forms.Button btnShowAllProjects;
         private System.Windows.Forms.GroupBox grpBoxUserInfo;
@@ -891,7 +892,7 @@
         private System.Windows.Forms.GroupBox grpBoxSearchByID;
         private System.Windows.Forms.Button btnShowAllID;
         private System.Windows.Forms.TextBox txtBoxSearchByID;
-        private System.Windows.Forms.DataGridView dataGridViewEmployee;
+        private System.Windows.Forms.DataGridView dgdViewEmployee;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -903,19 +904,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Password;
         private System.Windows.Forms.GroupBox grpBoxSiteName;
         private System.Windows.Forms.Button btnShowAllSites;
-        private System.Windows.Forms.TextBox txtBoxSite;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox txtBoxSiteSearch;
+        private System.Windows.Forms.DataGridView dgdVieSite;
         private System.Windows.Forms.GroupBox grpBoxSiteInfo;
-        private System.Windows.Forms.TextBox txtBoxWH;
+        private System.Windows.Forms.TextBox txtBoxSiteWH;
         private System.Windows.Forms.Label lblSiteWH;
         private System.Windows.Forms.Label lblSiteManager;
         private System.Windows.Forms.Label lblSiteAddress;
-        private System.Windows.Forms.ComboBox comboBoxSiteManager;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.ComboBox cboSiteManager;
+        private System.Windows.Forms.TextBox txtBoxSiteAddress;
         private System.Windows.Forms.TextBox txtBoxSiteName;
         private System.Windows.Forms.Label lblSiteName;
         private System.Windows.Forms.Label lblProject;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cboProject;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
