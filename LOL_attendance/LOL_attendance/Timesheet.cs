@@ -8,6 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//Add namespaces for interaction to database
+//added by Liana
+using System.Data.SqlClient;
+using System.Configuration;
+
 namespace LOL_attendance
 {
     public partial class frmTimesheet : Form
@@ -16,6 +21,10 @@ namespace LOL_attendance
         {
             InitializeComponent();
         }
+
+        //connect to DB
+        //added by Liana
+        string connStr = ConfigurationManager.ConnectionStrings["LOL_attendance.Properties.Settings.myConnection"].ConnectionString;
 
         private void label2_Click(object sender, EventArgs e)
         {
@@ -33,6 +42,11 @@ namespace LOL_attendance
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void frmTimesheet_Load(object sender, EventArgs e)
         {
 
         }

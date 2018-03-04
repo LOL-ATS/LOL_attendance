@@ -35,14 +35,14 @@
             this.lblSitename = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.clmnEmployeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmnEmployeeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmnWorkingHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnApprove = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.txtBoxStatus = new System.Windows.Forms.TextBox();
-            this.clmnEmployeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnEmployeeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnWorkingHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -111,6 +111,23 @@
             this.dataGridView1.TabIndex = 6;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // clmnEmployeeName
+            // 
+            this.clmnEmployeeName.HeaderText = "Employee Name";
+            this.clmnEmployeeName.Name = "clmnEmployeeName";
+            this.clmnEmployeeName.Width = 150;
+            // 
+            // clmnEmployeeId
+            // 
+            this.clmnEmployeeId.HeaderText = "Employee Id";
+            this.clmnEmployeeId.Name = "clmnEmployeeId";
+            // 
+            // clmnWorkingHours
+            // 
+            this.clmnWorkingHours.HeaderText = "Working Hours";
+            this.clmnWorkingHours.Name = "clmnWorkingHours";
+            this.clmnWorkingHours.Width = 150;
+            // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(226, 282);
@@ -155,23 +172,6 @@
             this.txtBoxStatus.TabIndex = 11;
             this.txtBoxStatus.TextChanged += new System.EventHandler(this.txtBoxStatus_TextChanged);
             // 
-            // clmnEmployeeName
-            // 
-            this.clmnEmployeeName.HeaderText = "Employee Name";
-            this.clmnEmployeeName.Name = "clmnEmployeeName";
-            this.clmnEmployeeName.Width = 150;
-            // 
-            // clmnEmployeeId
-            // 
-            this.clmnEmployeeId.HeaderText = "Employee Id";
-            this.clmnEmployeeId.Name = "clmnEmployeeId";
-            // 
-            // clmnWorkingHours
-            // 
-            this.clmnWorkingHours.HeaderText = "Working Hours";
-            this.clmnWorkingHours.Name = "clmnWorkingHours";
-            this.clmnWorkingHours.Width = 150;
-            // 
             // frmTimesheet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -191,6 +191,7 @@
             this.Controls.Add(this.dateTimePicker1);
             this.Name = "frmTimesheet";
             this.Text = "Site Timesheet";
+            this.Load += new System.EventHandler(this.frmTimesheet_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
