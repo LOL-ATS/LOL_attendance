@@ -24,8 +24,11 @@ namespace LOL_attendance
 
         //connect to DB
         //added by Liana
-        string connStr = ConfigurationManager.ConnectionStrings["LOL_attendance.Properties.Settings.myConnection"].ConnectionString;
-
+        /*
+         string connStr = ConfigurationManager.ConnectionStrings["LOL_attendance.Properties.Settings.myConnection"].ConnectionString;
+        */ 
+        // changed by omid
+        string connStr = ConfigurationManager.ConnectionStrings["myConnection"].ConnectionString;
         private void label2_Click(object sender, EventArgs e)
         {
 
