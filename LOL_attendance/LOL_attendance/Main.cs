@@ -95,5 +95,10 @@ namespace LOL_attendance
             MessageBox.Show("Goodbye");
             this.Close();
         }
+
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

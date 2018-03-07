@@ -53,5 +53,15 @@ namespace LOL_attendance
         {
 
         }
+
+        private void btnApprove_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -60,14 +60,15 @@
             this.tSSBUser});
             this.statusStrip1.Location = new System.Drawing.Point(0, 0);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(774, 38);
+            this.statusStrip1.Size = new System.Drawing.Size(784, 38);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
+            this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
             // 
             // tSSLUsername
             // 
             this.tSSLUsername.Name = "tSSLUsername";
-            this.tSSLUsername.Size = new System.Drawing.Size(122, 33);
+            this.tSSLUsername.Size = new System.Drawing.Size(60, 33);
             this.tSSLUsername.Text = "Username";
             // 
             // tSSBUser
@@ -78,7 +79,7 @@
             this.tSSBUser.Image = global::LOL_attendance.Properties.Resources.avatar;
             this.tSSBUser.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tSSBUser.Name = "tSSBUser";
-            this.tSSBUser.Size = new System.Drawing.Size(59, 36);
+            this.tSSBUser.Size = new System.Drawing.Size(48, 36);
             this.tSSBUser.Text = "toolStripSplitButton1";
             this.tSSBUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tSSBUser.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -87,7 +88,7 @@
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.logoutToolStripMenuItem.Text = "Log out";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
@@ -101,7 +102,7 @@
             this.pnlMainBtn.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMainBtn.Location = new System.Drawing.Point(0, 38);
             this.pnlMainBtn.Name = "pnlMainBtn";
-            this.pnlMainBtn.Size = new System.Drawing.Size(270, 491);
+            this.pnlMainBtn.Size = new System.Drawing.Size(270, 523);
             this.pnlMainBtn.TabIndex = 7;
             this.pnlMainBtn.Visible = false;
             // 
@@ -143,7 +144,7 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = global::LOL_attendance.Properties.Resources.Lunch_Atop_a_skyscraper_1932_1120x840;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(774, 529);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.pnlMainBtn);
             this.Controls.Add(this.statusStrip1);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
