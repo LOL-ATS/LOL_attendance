@@ -43,7 +43,6 @@
             this.btnApprove = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.txtBoxStatus = new System.Windows.Forms.TextBox();
-            this.btnReject = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -106,7 +105,7 @@
             this.clmnEmployeeName,
             this.clmnEmployeeId,
             this.clmnWorkingHours});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 102);
+            this.dataGridView1.Location = new System.Drawing.Point(15, 102);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(436, 174);
             this.dataGridView1.TabIndex = 6;
@@ -131,7 +130,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(147, 282);
+            this.btnSave.Location = new System.Drawing.Point(226, 282);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 7;
@@ -140,7 +139,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(375, 282);
+            this.btnCancel.Location = new System.Drawing.Point(376, 282);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 8;
@@ -149,13 +148,12 @@
             // 
             // btnApprove
             // 
-            this.btnApprove.Location = new System.Drawing.Point(223, 282);
+            this.btnApprove.Location = new System.Drawing.Point(301, 282);
             this.btnApprove.Name = "btnApprove";
             this.btnApprove.Size = new System.Drawing.Size(75, 23);
             this.btnApprove.TabIndex = 9;
             this.btnApprove.Text = "Approve";
             this.btnApprove.UseVisualStyleBackColor = true;
-            this.btnApprove.Click += new System.EventHandler(this.btnApprove_Click);
             // 
             // lblStatus
             // 
@@ -174,22 +172,11 @@
             this.txtBoxStatus.TabIndex = 11;
             this.txtBoxStatus.TextChanged += new System.EventHandler(this.txtBoxStatus_TextChanged);
             // 
-            // btnReject
-            // 
-            this.btnReject.Location = new System.Drawing.Point(299, 282);
-            this.btnReject.Name = "btnReject";
-            this.btnReject.Size = new System.Drawing.Size(75, 23);
-            this.btnReject.TabIndex = 12;
-            this.btnReject.Text = "Reject";
-            this.btnReject.UseVisualStyleBackColor = true;
-            this.btnReject.Click += new System.EventHandler(this.button1_Click);
-            // 
             // frmTimesheet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(463, 314);
-            this.Controls.Add(this.btnReject);
             this.Controls.Add(this.txtBoxStatus);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnApprove);
@@ -228,6 +215,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnEmployeeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnEmployeeId;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnWorkingHours;
-        private System.Windows.Forms.Button btnReject;
     }
 }
