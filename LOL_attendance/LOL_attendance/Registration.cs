@@ -84,7 +84,7 @@ namespace LOL_attendance
 
         }
 
-        private void btnSaveUser_Click(object sender, EventArgs e)
+        private void btnCreateUser_Click(object sender, EventArgs e)
         {
             //int role_id=0;
             int role_id = 0;
@@ -125,6 +125,16 @@ namespace LOL_attendance
         }
 
         private void tabUser_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grpBoxSearchByID_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
         {
 
         }
