@@ -43,6 +43,7 @@
             this.btnApprove = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.txtBoxStatus = new System.Windows.Forms.TextBox();
+            this.btnReject = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -130,7 +131,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(226, 282);
+            this.btnSave.Location = new System.Drawing.Point(139, 282);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 7;
@@ -148,7 +149,7 @@
             // 
             // btnApprove
             // 
-            this.btnApprove.Location = new System.Drawing.Point(301, 282);
+            this.btnApprove.Location = new System.Drawing.Point(214, 282);
             this.btnApprove.Name = "btnApprove";
             this.btnApprove.Size = new System.Drawing.Size(75, 23);
             this.btnApprove.TabIndex = 9;
@@ -172,11 +173,22 @@
             this.txtBoxStatus.TabIndex = 11;
             this.txtBoxStatus.TextChanged += new System.EventHandler(this.txtBoxStatus_TextChanged);
             // 
+            // btnReject
+            // 
+            this.btnReject.Location = new System.Drawing.Point(295, 282);
+            this.btnReject.Name = "btnReject";
+            this.btnReject.Size = new System.Drawing.Size(75, 23);
+            this.btnReject.TabIndex = 12;
+            this.btnReject.Text = "Reject";
+            this.btnReject.UseVisualStyleBackColor = true;
+            this.btnReject.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmTimesheet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(463, 314);
+            this.Controls.Add(this.btnReject);
             this.Controls.Add(this.txtBoxStatus);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnApprove);
@@ -215,5 +227,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnEmployeeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnEmployeeId;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnWorkingHours;
+        private System.Windows.Forms.Button btnReject;
     }
 }
