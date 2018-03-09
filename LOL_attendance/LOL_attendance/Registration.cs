@@ -99,7 +99,7 @@ namespace LOL_attendance
             {
                 rdr.Read();                
                 role_id = rdr.GetInt32(0);
-                MessageBox.Show("id: " + role_id);
+                //MessageBox.Show("id: " + role_id);
             }
 
             
