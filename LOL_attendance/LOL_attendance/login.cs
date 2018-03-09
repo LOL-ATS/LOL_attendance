@@ -22,17 +22,18 @@ namespace LOL_attendance
         {
 
             this.Hide();
+            /*
             if (txtUsername.Text == "admin" && txtPassword.Text == "123")
-            {
+            { */
         
                 Form frm = (Form)this.MdiParent;
                 frm.Controls["pnlMainBtn"].Visible = true;
                 StatusStrip SS = (StatusStrip)frm.Controls["StatusStrip1"];             
                 SS.Items["tSSLUsername"].Text = "admin";
                 SS.Enabled = true;
+            /*
 
-
-            }
+            }*/
         }
 
         private void login_Load(object sender, EventArgs e)

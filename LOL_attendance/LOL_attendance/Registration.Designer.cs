@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnCancelUser = new System.Windows.Forms.Button();
             this.tabRegistration = new System.Windows.Forms.TabControl();
             this.tabUser = new System.Windows.Forms.TabPage();
             this.grpBoxSearchByID = new System.Windows.Forms.GroupBox();
@@ -96,8 +96,15 @@
             this.txtBoxSiteAddress = new System.Windows.Forms.TextBox();
             this.txtBoxSiteName = new System.Windows.Forms.TextBox();
             this.lblSiteName = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnRegDelete = new System.Windows.Forms.Button();
+            this.btnSaveUser = new System.Windows.Forms.Button();
+            this.btnDeleteUser = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.lblUserStatus = new System.Windows.Forms.Label();
             this.tabRegistration.SuspendLayout();
             this.tabUser.SuspendLayout();
             this.grpBoxSearchByID.SuspendLayout();
@@ -113,15 +120,15 @@
             this.grpBoxSiteInfo.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnCancel
+            // btnCancelUser
             // 
-            this.btnCancel.Location = new System.Drawing.Point(501, 375);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(100, 28);
-            this.btnCancel.TabIndex = 11;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancelUser.Location = new System.Drawing.Point(466, 317);
+            this.btnCancelUser.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancelUser.Name = "btnCancelUser";
+            this.btnCancelUser.Size = new System.Drawing.Size(100, 28);
+            this.btnCancelUser.TabIndex = 11;
+            this.btnCancelUser.Text = "Cancel";
+            this.btnCancelUser.UseVisualStyleBackColor = true;
             // 
             // tabRegistration
             // 
@@ -132,13 +139,17 @@
             this.tabRegistration.Location = new System.Drawing.Point(16, 20);
             this.tabRegistration.Name = "tabRegistration";
             this.tabRegistration.SelectedIndex = 0;
-            this.tabRegistration.Size = new System.Drawing.Size(585, 348);
+            this.tabRegistration.Size = new System.Drawing.Size(660, 446);
             this.tabRegistration.TabIndex = 13;
             // 
             // tabUser
             // 
+            this.tabUser.Controls.Add(this.lblUserStatus);
+            this.tabUser.Controls.Add(this.btnDeleteUser);
             this.tabUser.Controls.Add(this.grpBoxSearchByID);
+            this.tabUser.Controls.Add(this.btnCancelUser);
             this.tabUser.Controls.Add(this.grpBoxUserInfo);
+            this.tabUser.Controls.Add(this.btnSaveUser);
             this.tabUser.Controls.Add(this.txtBoxPass);
             this.tabUser.Controls.Add(this.lblPassword);
             this.tabUser.Controls.Add(this.txtBoxLogin);
@@ -148,10 +159,11 @@
             this.tabUser.Location = new System.Drawing.Point(4, 25);
             this.tabUser.Name = "tabUser";
             this.tabUser.Padding = new System.Windows.Forms.Padding(3);
-            this.tabUser.Size = new System.Drawing.Size(577, 319);
+            this.tabUser.Size = new System.Drawing.Size(652, 417);
             this.tabUser.TabIndex = 0;
             this.tabUser.Text = "User and Roles";
             this.tabUser.UseVisualStyleBackColor = true;
+            this.tabUser.Click += new System.EventHandler(this.tabUser_Click);
             // 
             // grpBoxSearchByID
             // 
@@ -427,6 +439,11 @@
             // cboRole
             // 
             this.cboRole.FormattingEnabled = true;
+            this.cboRole.Items.AddRange(new object[] {
+            "Admin",
+            "Project Manager",
+            "Site Manager",
+            "Worker"});
             this.cboRole.Location = new System.Drawing.Point(108, 11);
             this.cboRole.Margin = new System.Windows.Forms.Padding(4);
             this.cboRole.Name = "cboRole";
@@ -436,12 +453,15 @@
             // 
             // tabProject
             // 
+            this.tabProject.Controls.Add(this.button1);
+            this.tabProject.Controls.Add(this.button2);
+            this.tabProject.Controls.Add(this.button3);
             this.tabProject.Controls.Add(this.groupBoxProject);
             this.tabProject.Controls.Add(this.groupBoxSearch);
             this.tabProject.Location = new System.Drawing.Point(4, 25);
             this.tabProject.Name = "tabProject";
             this.tabProject.Padding = new System.Windows.Forms.Padding(3);
-            this.tabProject.Size = new System.Drawing.Size(577, 319);
+            this.tabProject.Size = new System.Drawing.Size(577, 358);
             this.tabProject.TabIndex = 1;
             this.tabProject.Text = "Project";
             this.tabProject.UseVisualStyleBackColor = true;
@@ -577,12 +597,15 @@
             // 
             // tabSite
             // 
+            this.tabSite.Controls.Add(this.button4);
+            this.tabSite.Controls.Add(this.button5);
+            this.tabSite.Controls.Add(this.button6);
             this.tabSite.Controls.Add(this.grpBoxSiteName);
             this.tabSite.Controls.Add(this.grpBoxSiteInfo);
             this.tabSite.Location = new System.Drawing.Point(4, 25);
             this.tabSite.Name = "tabSite";
             this.tabSite.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSite.Size = new System.Drawing.Size(577, 319);
+            this.tabSite.Size = new System.Drawing.Size(577, 358);
             this.tabSite.TabIndex = 2;
             this.tabSite.Text = "Site";
             this.tabSite.UseVisualStyleBackColor = true;
@@ -743,40 +766,111 @@
             this.lblSiteName.Text = "Site Name";
             this.lblSiteName.Click += new System.EventHandler(this.lblSiteName_Click);
             // 
-            // btnSave
+            // btnSaveUser
             // 
-            this.btnSave.Location = new System.Drawing.Point(288, 375);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(100, 28);
-            this.btnSave.TabIndex = 10;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSaveUser.Location = new System.Drawing.Point(253, 317);
+            this.btnSaveUser.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSaveUser.Name = "btnSaveUser";
+            this.btnSaveUser.Size = new System.Drawing.Size(100, 28);
+            this.btnSaveUser.TabIndex = 10;
+            this.btnSaveUser.Text = "Save";
+            this.btnSaveUser.UseVisualStyleBackColor = true;
+            this.btnSaveUser.Click += new System.EventHandler(this.btnSaveUser_Click);
             // 
-            // btnRegDelete
+            // btnDeleteUser
             // 
-            this.btnRegDelete.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnRegDelete.Location = new System.Drawing.Point(396, 375);
-            this.btnRegDelete.Margin = new System.Windows.Forms.Padding(4);
-            this.btnRegDelete.Name = "btnRegDelete";
-            this.btnRegDelete.Size = new System.Drawing.Size(100, 28);
-            this.btnRegDelete.TabIndex = 14;
-            this.btnRegDelete.Text = "Delete";
-            this.btnRegDelete.UseVisualStyleBackColor = true;
-            this.btnRegDelete.Click += new System.EventHandler(this.button1_Click);
+            this.btnDeleteUser.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnDeleteUser.Location = new System.Drawing.Point(361, 317);
+            this.btnDeleteUser.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteUser.Name = "btnDeleteUser";
+            this.btnDeleteUser.Size = new System.Drawing.Size(100, 28);
+            this.btnDeleteUser.TabIndex = 14;
+            this.btnDeleteUser.Text = "Delete";
+            this.btnDeleteUser.UseVisualStyleBackColor = true;
+            this.btnDeleteUser.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button1
+            // 
+            this.button1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.button1.Location = new System.Drawing.Point(359, 320);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 28);
+            this.button1.TabIndex = 35;
+            this.button1.Text = "Delete";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(464, 320);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(100, 28);
+            this.button2.TabIndex = 34;
+            this.button2.Text = "Cancel";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(251, 320);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(100, 28);
+            this.button3.TabIndex = 33;
+            this.button3.Text = "Save";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Cursor = System.Windows.Forms.Cursors.Default;
+            this.button4.Location = new System.Drawing.Point(366, 320);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(100, 28);
+            this.button4.TabIndex = 37;
+            this.button4.Text = "Delete";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(471, 320);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(100, 28);
+            this.button5.TabIndex = 36;
+            this.button5.Text = "Cancel";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(258, 320);
+            this.button6.Margin = new System.Windows.Forms.Padding(4);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(100, 28);
+            this.button6.TabIndex = 35;
+            this.button6.Text = "Save";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // lblUserStatus
+            // 
+            this.lblUserStatus.AutoSize = true;
+            this.lblUserStatus.Location = new System.Drawing.Point(8, 317);
+            this.lblUserStatus.Name = "lblUserStatus";
+            this.lblUserStatus.Size = new System.Drawing.Size(0, 17);
+            this.lblUserStatus.TabIndex = 33;
             // 
             // frmRegistration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(617, 416);
-            this.Controls.Add(this.btnRegDelete);
+            this.ClientSize = new System.Drawing.Size(754, 523);
             this.Controls.Add(this.tabRegistration);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnSave);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmRegistration";
             this.Text = "Regisration";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Registration_Load);
             this.tabRegistration.ResumeLayout(false);
             this.tabUser.ResumeLayout(false);
@@ -803,7 +897,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnCancelUser;
         private System.Windows.Forms.TabControl tabRegistration;
         private System.Windows.Forms.TabPage tabUser;
         private System.Windows.Forms.TabPage tabProject;
@@ -838,7 +932,7 @@
         private System.Windows.Forms.GroupBox groupBoxProject;
         private System.Windows.Forms.Button btnShowAllProjects;
         private System.Windows.Forms.GroupBox grpBoxUserInfo;
-        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnSaveUser;
         private System.Windows.Forms.GroupBox grpBoxSearchByID;
         private System.Windows.Forms.Button btnShowAllID;
         private System.Windows.Forms.TextBox txtBoxSearchByID;
@@ -872,6 +966,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Project;
-        private System.Windows.Forms.Button btnRegDelete;
+        private System.Windows.Forms.Button btnDeleteUser;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Label lblUserStatus;
     }
 }

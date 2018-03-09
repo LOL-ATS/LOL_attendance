@@ -95,5 +95,10 @@ namespace LOL_attendance
             MessageBox.Show("Goodbye");
             this.Close();
         }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
