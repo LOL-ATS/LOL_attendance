@@ -117,6 +117,7 @@
             // 
             // btnTimesheet
             // 
+            this.btnTimesheet.Enabled = false;
             this.btnTimesheet.Location = new System.Drawing.Point(38, 115);
             this.btnTimesheet.Name = "btnTimesheet";
             this.btnTimesheet.Size = new System.Drawing.Size(194, 65);
@@ -127,6 +128,7 @@
             // 
             // btnReg
             // 
+            this.btnReg.Enabled = false;
             this.btnReg.Location = new System.Drawing.Point(38, 29);
             this.btnReg.Name = "btnReg";
             this.btnReg.Size = new System.Drawing.Size(194, 65);
