@@ -66,6 +66,10 @@
             this.lblRole = new System.Windows.Forms.Label();
             this.cboRole = new System.Windows.Forms.ComboBox();
             this.tabProject = new System.Windows.Forms.TabPage();
+            this.btnUpdateProject = new System.Windows.Forms.Button();
+            this.btnDeleteProject = new System.Windows.Forms.Button();
+            this.btnCancelProject = new System.Windows.Forms.Button();
+            this.btnCreateProject = new System.Windows.Forms.Button();
             this.groupBoxProject = new System.Windows.Forms.GroupBox();
             this.lblPMName = new System.Windows.Forms.Label();
             this.lblProjectAAddress = new System.Windows.Forms.Label();
@@ -81,6 +85,8 @@
             this.PM = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabSite = new System.Windows.Forms.TabPage();
+            this.btnUpdateSite = new System.Windows.Forms.Button();
+            this.btnDeleteSite = new System.Windows.Forms.Button();
             this.grpBoxSiteName = new System.Windows.Forms.GroupBox();
             this.btnShowAllSites = new System.Windows.Forms.Button();
             this.txtBoxSiteSearch = new System.Windows.Forms.TextBox();
@@ -89,6 +95,7 @@
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Project = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCancelSite = new System.Windows.Forms.Button();
             this.grpBoxSiteInfo = new System.Windows.Forms.GroupBox();
             this.lblProject = new System.Windows.Forms.Label();
             this.cboProject = new System.Windows.Forms.ComboBox();
@@ -98,14 +105,7 @@
             this.txtBoxSiteAddress = new System.Windows.Forms.TextBox();
             this.txtBoxSiteName = new System.Windows.Forms.TextBox();
             this.lblSiteName = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.btnCreateSite = new System.Windows.Forms.Button();
             this.tabRegistration.SuspendLayout();
             this.tabUser.SuspendLayout();
             this.grpBoxSearchByName.SuspendLayout();
@@ -478,10 +478,10 @@
             // 
             // tabProject
             // 
-            this.tabProject.Controls.Add(this.button1);
-            this.tabProject.Controls.Add(this.button2);
-            this.tabProject.Controls.Add(this.button3);
-            this.tabProject.Controls.Add(this.button7);
+            this.tabProject.Controls.Add(this.btnUpdateProject);
+            this.tabProject.Controls.Add(this.btnDeleteProject);
+            this.tabProject.Controls.Add(this.btnCancelProject);
+            this.tabProject.Controls.Add(this.btnCreateProject);
             this.tabProject.Controls.Add(this.groupBoxProject);
             this.tabProject.Controls.Add(this.groupBoxSearch);
             this.tabProject.Location = new System.Drawing.Point(4, 25);
@@ -491,6 +491,47 @@
             this.tabProject.TabIndex = 1;
             this.tabProject.Text = "Project";
             this.tabProject.UseVisualStyleBackColor = true;
+            // 
+            // btnUpdateProject
+            // 
+            this.btnUpdateProject.Location = new System.Drawing.Point(258, 330);
+            this.btnUpdateProject.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUpdateProject.Name = "btnUpdateProject";
+            this.btnUpdateProject.Size = new System.Drawing.Size(100, 28);
+            this.btnUpdateProject.TabIndex = 38;
+            this.btnUpdateProject.Text = "Update";
+            this.btnUpdateProject.UseVisualStyleBackColor = true;
+            // 
+            // btnDeleteProject
+            // 
+            this.btnDeleteProject.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnDeleteProject.Location = new System.Drawing.Point(366, 330);
+            this.btnDeleteProject.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteProject.Name = "btnDeleteProject";
+            this.btnDeleteProject.Size = new System.Drawing.Size(100, 28);
+            this.btnDeleteProject.TabIndex = 37;
+            this.btnDeleteProject.Text = "Delete";
+            this.btnDeleteProject.UseVisualStyleBackColor = true;
+            // 
+            // btnCancelProject
+            // 
+            this.btnCancelProject.Location = new System.Drawing.Point(471, 330);
+            this.btnCancelProject.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancelProject.Name = "btnCancelProject";
+            this.btnCancelProject.Size = new System.Drawing.Size(100, 28);
+            this.btnCancelProject.TabIndex = 36;
+            this.btnCancelProject.Text = "Cancel";
+            this.btnCancelProject.UseVisualStyleBackColor = true;
+            // 
+            // btnCreateProject
+            // 
+            this.btnCreateProject.Location = new System.Drawing.Point(150, 330);
+            this.btnCreateProject.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCreateProject.Name = "btnCreateProject";
+            this.btnCreateProject.Size = new System.Drawing.Size(100, 28);
+            this.btnCreateProject.TabIndex = 35;
+            this.btnCreateProject.Text = "Create";
+            this.btnCreateProject.UseVisualStyleBackColor = true;
             // 
             // groupBoxProject
             // 
@@ -623,12 +664,12 @@
             // 
             // tabSite
             // 
-            this.tabSite.Controls.Add(this.button4);
-            this.tabSite.Controls.Add(this.button5);
+            this.tabSite.Controls.Add(this.btnUpdateSite);
+            this.tabSite.Controls.Add(this.btnDeleteSite);
             this.tabSite.Controls.Add(this.grpBoxSiteName);
-            this.tabSite.Controls.Add(this.button6);
+            this.tabSite.Controls.Add(this.btnCancelSite);
             this.tabSite.Controls.Add(this.grpBoxSiteInfo);
-            this.tabSite.Controls.Add(this.button8);
+            this.tabSite.Controls.Add(this.btnCreateSite);
             this.tabSite.Location = new System.Drawing.Point(4, 25);
             this.tabSite.Name = "tabSite";
             this.tabSite.Padding = new System.Windows.Forms.Padding(3);
@@ -636,6 +677,27 @@
             this.tabSite.TabIndex = 2;
             this.tabSite.Text = "Site";
             this.tabSite.UseVisualStyleBackColor = true;
+            // 
+            // btnUpdateSite
+            // 
+            this.btnUpdateSite.Location = new System.Drawing.Point(259, 330);
+            this.btnUpdateSite.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUpdateSite.Name = "btnUpdateSite";
+            this.btnUpdateSite.Size = new System.Drawing.Size(100, 28);
+            this.btnUpdateSite.TabIndex = 38;
+            this.btnUpdateSite.Text = "Update";
+            this.btnUpdateSite.UseVisualStyleBackColor = true;
+            // 
+            // btnDeleteSite
+            // 
+            this.btnDeleteSite.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnDeleteSite.Location = new System.Drawing.Point(367, 330);
+            this.btnDeleteSite.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteSite.Name = "btnDeleteSite";
+            this.btnDeleteSite.Size = new System.Drawing.Size(100, 28);
+            this.btnDeleteSite.TabIndex = 37;
+            this.btnDeleteSite.Text = "Delete";
+            this.btnDeleteSite.UseVisualStyleBackColor = true;
             // 
             // grpBoxSiteName
             // 
@@ -699,6 +761,16 @@
             // 
             this.Project.HeaderText = "Project";
             this.Project.Name = "Project";
+            // 
+            // btnCancelSite
+            // 
+            this.btnCancelSite.Location = new System.Drawing.Point(472, 330);
+            this.btnCancelSite.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancelSite.Name = "btnCancelSite";
+            this.btnCancelSite.Size = new System.Drawing.Size(100, 28);
+            this.btnCancelSite.TabIndex = 36;
+            this.btnCancelSite.Text = "Cancel";
+            this.btnCancelSite.UseVisualStyleBackColor = true;
             // 
             // grpBoxSiteInfo
             // 
@@ -793,87 +865,15 @@
             this.lblSiteName.Text = "Site Name";
             this.lblSiteName.Click += new System.EventHandler(this.lblSiteName_Click);
             // 
-            // button1
+            // btnCreateSite
             // 
-            this.button1.Location = new System.Drawing.Point(258, 330);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 28);
-            this.button1.TabIndex = 38;
-            this.button1.Text = "Update";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.button2.Location = new System.Drawing.Point(366, 330);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 28);
-            this.button2.TabIndex = 37;
-            this.button2.Text = "Delete";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(471, 330);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 28);
-            this.button3.TabIndex = 36;
-            this.button3.Text = "Cancel";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(150, 330);
-            this.button7.Margin = new System.Windows.Forms.Padding(4);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(100, 28);
-            this.button7.TabIndex = 35;
-            this.button7.Text = "Create";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(259, 330);
-            this.button4.Margin = new System.Windows.Forms.Padding(4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(100, 28);
-            this.button4.TabIndex = 38;
-            this.button4.Text = "Update";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Cursor = System.Windows.Forms.Cursors.Default;
-            this.button5.Location = new System.Drawing.Point(367, 330);
-            this.button5.Margin = new System.Windows.Forms.Padding(4);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(100, 28);
-            this.button5.TabIndex = 37;
-            this.button5.Text = "Delete";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(472, 330);
-            this.button6.Margin = new System.Windows.Forms.Padding(4);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(100, 28);
-            this.button6.TabIndex = 36;
-            this.button6.Text = "Cancel";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(151, 330);
-            this.button8.Margin = new System.Windows.Forms.Padding(4);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(100, 28);
-            this.button8.TabIndex = 35;
-            this.button8.Text = "Create";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnCreateSite.Location = new System.Drawing.Point(151, 330);
+            this.btnCreateSite.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCreateSite.Name = "btnCreateSite";
+            this.btnCreateSite.Size = new System.Drawing.Size(100, 28);
+            this.btnCreateSite.TabIndex = 35;
+            this.btnCreateSite.Text = "Create";
+            this.btnCreateSite.UseVisualStyleBackColor = true;
             // 
             // frmRegistration
             // 
@@ -981,13 +981,13 @@
         private System.Windows.Forms.Button btnDeleteUser;
         private System.Windows.Forms.Label lblUserStatus;
         private System.Windows.Forms.Button btnUpdateUser;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btnUpdateProject;
+        private System.Windows.Forms.Button btnDeleteProject;
+        private System.Windows.Forms.Button btnCancelProject;
+        private System.Windows.Forms.Button btnCreateProject;
+        private System.Windows.Forms.Button btnUpdateSite;
+        private System.Windows.Forms.Button btnDeleteSite;
+        private System.Windows.Forms.Button btnCancelSite;
+        private System.Windows.Forms.Button btnCreateSite;
     }
 }
