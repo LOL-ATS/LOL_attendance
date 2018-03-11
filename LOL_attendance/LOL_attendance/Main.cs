@@ -7,16 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+ 
 
 namespace LOL_attendance
 {
     public partial class Main : Form
     {
-        public string username="";
-        public Main()
+
+        
+        public userClass User{ get; set;}
+        public Main(userClass usr)
         {
             InitializeComponent();
-           
+            User = usr;
              statusStrip1.Enabled = false;
             login formLogin = new login();
             formLogin.MdiParent = this;
@@ -24,10 +27,14 @@ namespace LOL_attendance
             formLogin.Show();
            
         }
+        
+        public void setlogin(userClass usr)
+        {
+            User = usr;
+        }
 
-     
 
-     
+
         private void btnReg_Click(object sender, EventArgs e)
         {
             frmRegistration formLogin = new frmRegistration();

@@ -15,11 +15,14 @@ namespace LOL_attendance
         public frmRegistration()
         {
             InitializeComponent();
+           
         }
 
         private void Registration_Load(object sender, EventArgs e)
         {
+            Main frm = (Main)this.MdiParent;
 
+            MessageBox.Show(frm.User.userRole.ToString());
         }
 
         private void lblSitemngr_Click(object sender, EventArgs e)
