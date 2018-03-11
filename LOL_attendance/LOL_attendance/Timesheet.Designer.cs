@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.components = new System.ComponentModel.Container();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.comboBoxSitemngr = new System.Windows.Forms.ComboBox();
+            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lOLDBDataSet = new LOL_attendance.LOLDBDataSet();
+            this.comboBoxSitename = new System.Windows.Forms.ComboBox();
             this.lblSitemngr = new System.Windows.Forms.Label();
             this.lblSitename = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
@@ -43,32 +46,47 @@
             this.btnApprove = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.txtBoxStatus = new System.Windows.Forms.TextBox();
+            this.btnReject = new System.Windows.Forms.Button();
+            this.employeeTableAdapter = new LOL_attendance.LOLDBDataSetTableAdapters.employeeTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lOLDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // dateTimePicker1
+            // dateTimePicker
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(88, 62);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 0;
+            this.dateTimePicker.Location = new System.Drawing.Point(88, 62);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker.TabIndex = 0;
             // 
-            // comboBox1
+            // comboBoxSitemngr
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(88, 12);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 1;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBoxSitemngr.FormattingEnabled = true;
+            this.comboBoxSitemngr.Location = new System.Drawing.Point(88, 12);
+            this.comboBoxSitemngr.Name = "comboBoxSitemngr";
+            this.comboBoxSitemngr.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxSitemngr.TabIndex = 1;
+            this.comboBoxSitemngr.ValueMember = "name";
+            this.comboBoxSitemngr.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // comboBox2
+            // employeeBindingSource
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(88, 37);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 2;
+            this.employeeBindingSource.DataMember = "employee";
+            this.employeeBindingSource.DataSource = this.lOLDBDataSet;
+            // 
+            // lOLDBDataSet
+            // 
+            this.lOLDBDataSet.DataSetName = "LOLDBDataSet";
+            this.lOLDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // comboBoxSitename
+            // 
+            this.comboBoxSitename.FormattingEnabled = true;
+            this.comboBoxSitename.Location = new System.Drawing.Point(88, 37);
+            this.comboBoxSitename.Name = "comboBoxSitename";
+            this.comboBoxSitename.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxSitename.TabIndex = 2;
             // 
             // lblSitemngr
             // 
@@ -130,7 +148,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(226, 282);
+            this.btnSave.Location = new System.Drawing.Point(139, 282);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 7;
@@ -148,7 +166,7 @@
             // 
             // btnApprove
             // 
-            this.btnApprove.Location = new System.Drawing.Point(301, 282);
+            this.btnApprove.Location = new System.Drawing.Point(218, 282);
             this.btnApprove.Name = "btnApprove";
             this.btnApprove.Size = new System.Drawing.Size(75, 23);
             this.btnApprove.TabIndex = 9;
@@ -172,11 +190,26 @@
             this.txtBoxStatus.TabIndex = 11;
             this.txtBoxStatus.TextChanged += new System.EventHandler(this.txtBoxStatus_TextChanged);
             // 
+            // btnReject
+            // 
+            this.btnReject.Location = new System.Drawing.Point(297, 282);
+            this.btnReject.Name = "btnReject";
+            this.btnReject.Size = new System.Drawing.Size(75, 23);
+            this.btnReject.TabIndex = 12;
+            this.btnReject.Text = "Reject";
+            this.btnReject.UseVisualStyleBackColor = true;
+            this.btnReject.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // employeeTableAdapter
+            // 
+            this.employeeTableAdapter.ClearBeforeFill = true;
+            // 
             // frmTimesheet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(463, 314);
+            this.Controls.Add(this.btnReject);
             this.Controls.Add(this.txtBoxStatus);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnApprove);
@@ -186,12 +219,14 @@
             this.Controls.Add(this.lblDate);
             this.Controls.Add(this.lblSitename);
             this.Controls.Add(this.lblSitemngr);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.comboBoxSitename);
+            this.Controls.Add(this.comboBoxSitemngr);
+            this.Controls.Add(this.dateTimePicker);
             this.Name = "frmTimesheet";
             this.Text = "Site Timesheet";
             this.Load += new System.EventHandler(this.frmTimesheet_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lOLDBDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -200,9 +235,9 @@
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker;
+        private System.Windows.Forms.ComboBox comboBoxSitemngr;
+        private System.Windows.Forms.ComboBox comboBoxSitename;
         private System.Windows.Forms.Label lblSitemngr;
         private System.Windows.Forms.Label lblSitename;
         private System.Windows.Forms.Label lblDate;
@@ -215,5 +250,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnEmployeeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnEmployeeId;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmnWorkingHours;
+        private System.Windows.Forms.Button btnReject;
+        private LOLDBDataSet lOLDBDataSet;
+        private System.Windows.Forms.BindingSource employeeBindingSource;
+        private LOLDBDataSetTableAdapters.employeeTableAdapter employeeTableAdapter;
     }
 }

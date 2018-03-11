@@ -53,6 +53,11 @@
     <Compile Include="login.Designer.cs">
       <DependentUpon>login.cs</DependentUpon>
     </Compile>
+    <Compile Include="LOLDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LOLDBDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +100,17 @@
     <EmbeddedResource Include="Timesheet.resx">
       <DependentUpon>Timesheet.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="LOLDBDataSet.xsc">
+      <DependentUpon>LOLDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="LOLDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LOLDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="LOLDBDataSet.xss">
+      <DependentUpon>LOLDBDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
