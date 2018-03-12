@@ -15,7 +15,7 @@ namespace LOL_attendance
 {
     public partial class frmRegistration : Form
     {
-        //Liand and Lana: 
+        //Liana and Lana: 
         //Add connection to DB
         
         SqlConnection conn;
@@ -104,8 +104,6 @@ namespace LOL_attendance
                 role_id = rdr.GetInt32(0);
                 //MessageBox.Show("id: " + role_id);
             }
-
-            
             
             conn.Close();
 
@@ -138,6 +136,11 @@ namespace LOL_attendance
         }
 
         private void button7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboPM_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

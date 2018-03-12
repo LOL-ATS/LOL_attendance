@@ -577,6 +577,7 @@
             this.cboPM.Name = "cboPM";
             this.cboPM.Size = new System.Drawing.Size(160, 24);
             this.cboPM.TabIndex = 28;
+            this.cboPM.SelectedIndexChanged += new System.EventHandler(this.cboPM_SelectedIndexChanged);
             // 
             // txtBoxPAddress
             // 
