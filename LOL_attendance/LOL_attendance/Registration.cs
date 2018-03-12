@@ -144,5 +144,24 @@ namespace LOL_attendance
         {
 
         }
+
+        private void btnCreateProject_Click(object sender, EventArgs e)
+        {
+            //Lana:
+            //Connect values from Registration to DB
+            conn = new SqlConnection(connstr);
+            cmd = new SqlCommand("INSERT INTO project (name, address) VALUES (@name,@address)", conn);
+
+            cmd.Parameters.AddWithValue("@name", txtBoxPMName.Text);
+            cmd.Parameters.AddWithValue("@address", txtBoxPAddress.Text);
+
+            conn.Open();
+            if (cmd.ExecuteNonQuery() == 1)
+            {
+                lblPStatus.ForeColor = System.Drawing.Color.Green;
+                lblPStatus.Text = "Successfully added!";
+            }
+            conn.Close();
+        }
     }
 }

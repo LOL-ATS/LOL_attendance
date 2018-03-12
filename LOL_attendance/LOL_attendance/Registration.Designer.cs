@@ -66,6 +66,7 @@
             this.lblRole = new System.Windows.Forms.Label();
             this.cboRole = new System.Windows.Forms.ComboBox();
             this.tabProject = new System.Windows.Forms.TabPage();
+            this.lblPStatus = new System.Windows.Forms.Label();
             this.btnUpdateProject = new System.Windows.Forms.Button();
             this.btnDeleteProject = new System.Windows.Forms.Button();
             this.btnCancelProject = new System.Windows.Forms.Button();
@@ -181,7 +182,7 @@
             // lblUserStatus
             // 
             this.lblUserStatus.AutoSize = true;
-            this.lblUserStatus.Location = new System.Drawing.Point(8, 317);
+            this.lblUserStatus.Location = new System.Drawing.Point(8, 323);
             this.lblUserStatus.Name = "lblUserStatus";
             this.lblUserStatus.Size = new System.Drawing.Size(0, 17);
             this.lblUserStatus.TabIndex = 33;
@@ -478,6 +479,7 @@
             // 
             // tabProject
             // 
+            this.tabProject.Controls.Add(this.lblPStatus);
             this.tabProject.Controls.Add(this.btnUpdateProject);
             this.tabProject.Controls.Add(this.btnDeleteProject);
             this.tabProject.Controls.Add(this.btnCancelProject);
@@ -491,6 +493,14 @@
             this.tabProject.TabIndex = 1;
             this.tabProject.Text = "Project";
             this.tabProject.UseVisualStyleBackColor = true;
+            // 
+            // lblPStatus
+            // 
+            this.lblPStatus.AutoSize = true;
+            this.lblPStatus.Location = new System.Drawing.Point(11, 330);
+            this.lblPStatus.Name = "lblPStatus";
+            this.lblPStatus.Size = new System.Drawing.Size(0, 17);
+            this.lblPStatus.TabIndex = 39;
             // 
             // btnUpdateProject
             // 
@@ -532,6 +542,7 @@
             this.btnCreateProject.TabIndex = 35;
             this.btnCreateProject.Text = "Create";
             this.btnCreateProject.UseVisualStyleBackColor = true;
+            this.btnCreateProject.Click += new System.EventHandler(this.btnCreateProject_Click);
             // 
             // groupBoxProject
             // 
@@ -572,6 +583,11 @@
             // cboPM
             // 
             this.cboPM.FormattingEnabled = true;
+            this.cboPM.Items.AddRange(new object[] {
+            "Admin",
+            "Project Manager",
+            "Site Manager",
+            "Worker"});
             this.cboPM.Location = new System.Drawing.Point(125, 63);
             this.cboPM.Margin = new System.Windows.Forms.Padding(4);
             this.cboPM.Name = "cboPM";
@@ -896,6 +912,7 @@
             this.grpBoxUserInfo.ResumeLayout(false);
             this.grpBoxUserInfo.PerformLayout();
             this.tabProject.ResumeLayout(false);
+            this.tabProject.PerformLayout();
             this.groupBoxProject.ResumeLayout(false);
             this.groupBoxProject.PerformLayout();
             this.groupBoxSearch.ResumeLayout(false);
@@ -990,5 +1007,6 @@
         private System.Windows.Forms.Button btnDeleteSite;
         private System.Windows.Forms.Button btnCancelSite;
         private System.Windows.Forms.Button btnCreateSite;
+        private System.Windows.Forms.Label lblPStatus;
     }
 }
