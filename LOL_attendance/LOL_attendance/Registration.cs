@@ -163,5 +163,24 @@ namespace LOL_attendance
             }
             conn.Close();
         }
+
+        private void btnCreateSite_Click(object sender, EventArgs e)
+        {
+            //Lana:
+            //Connect values from Registration to DB
+            conn = new SqlConnection(connstr);
+            cmd = new SqlCommand("INSERT INTO site (name, address) VALUES (@name,@address)", conn);
+
+            cmd.Parameters.AddWithValue("@name", txtBoxSiteName.Text);
+            cmd.Parameters.AddWithValue("@address", txtBoxSiteAddress.Text);
+
+            conn.Open();
+            if (cmd.ExecuteNonQuery() == 1)
+            {
+                lblSiteStatus.ForeColor = System.Drawing.Color.Green;
+                lblSiteStatus.Text = "Successfully added!";
+            }
+            conn.Close();
+        }
     }
 }

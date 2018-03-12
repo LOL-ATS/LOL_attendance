@@ -107,6 +107,7 @@
             this.txtBoxSiteName = new System.Windows.Forms.TextBox();
             this.lblSiteName = new System.Windows.Forms.Label();
             this.btnCreateSite = new System.Windows.Forms.Button();
+            this.lblSiteStatus = new System.Windows.Forms.Label();
             this.tabRegistration.SuspendLayout();
             this.tabUser.SuspendLayout();
             this.grpBoxSearchByName.SuspendLayout();
@@ -681,6 +682,7 @@
             // 
             // tabSite
             // 
+            this.tabSite.Controls.Add(this.lblSiteStatus);
             this.tabSite.Controls.Add(this.btnUpdateSite);
             this.tabSite.Controls.Add(this.btnDeleteSite);
             this.tabSite.Controls.Add(this.grpBoxSiteName);
@@ -891,6 +893,15 @@
             this.btnCreateSite.TabIndex = 35;
             this.btnCreateSite.Text = "Create";
             this.btnCreateSite.UseVisualStyleBackColor = true;
+            this.btnCreateSite.Click += new System.EventHandler(this.btnCreateSite_Click);
+            // 
+            // lblSiteStatus
+            // 
+            this.lblSiteStatus.AutoSize = true;
+            this.lblSiteStatus.Location = new System.Drawing.Point(11, 330);
+            this.lblSiteStatus.Name = "lblSiteStatus";
+            this.lblSiteStatus.Size = new System.Drawing.Size(0, 17);
+            this.lblSiteStatus.TabIndex = 39;
             // 
             // frmRegistration
             // 
@@ -919,6 +930,7 @@
             this.groupBoxSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgdViewProject)).EndInit();
             this.tabSite.ResumeLayout(false);
+            this.tabSite.PerformLayout();
             this.grpBoxSiteName.ResumeLayout(false);
             this.grpBoxSiteName.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgdVieSite)).EndInit();
@@ -1008,5 +1020,6 @@
         private System.Windows.Forms.Button btnCancelSite;
         private System.Windows.Forms.Button btnCreateSite;
         private System.Windows.Forms.Label lblPStatus;
+        private System.Windows.Forms.Label lblSiteStatus;
     }
 }
