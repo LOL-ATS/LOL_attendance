@@ -86,6 +86,7 @@
             this.PM = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabSite = new System.Windows.Forms.TabPage();
+            this.lblSiteStatus = new System.Windows.Forms.Label();
             this.btnUpdateSite = new System.Windows.Forms.Button();
             this.btnDeleteSite = new System.Windows.Forms.Button();
             this.grpBoxSiteName = new System.Windows.Forms.GroupBox();
@@ -107,7 +108,6 @@
             this.txtBoxSiteName = new System.Windows.Forms.TextBox();
             this.lblSiteName = new System.Windows.Forms.Label();
             this.btnCreateSite = new System.Windows.Forms.Button();
-            this.lblSiteStatus = new System.Windows.Forms.Label();
             this.tabRegistration.SuspendLayout();
             this.tabUser.SuspendLayout();
             this.grpBoxSearchByName.SuspendLayout();
@@ -584,12 +584,7 @@
             // cboPM
             // 
             this.cboPM.FormattingEnabled = true;
-            this.cboPM.Items.AddRange(new object[] {
-            "Admin",
-            "Project Manager",
-            "Site Manager",
-            "Worker"});
-            this.cboPM.Location = new System.Drawing.Point(125, 63);
+            this.cboPM.Location = new System.Drawing.Point(125, 66);
             this.cboPM.Margin = new System.Windows.Forms.Padding(4);
             this.cboPM.Name = "cboPM";
             this.cboPM.Size = new System.Drawing.Size(160, 24);
@@ -696,6 +691,14 @@
             this.tabSite.TabIndex = 2;
             this.tabSite.Text = "Site";
             this.tabSite.UseVisualStyleBackColor = true;
+            // 
+            // lblSiteStatus
+            // 
+            this.lblSiteStatus.AutoSize = true;
+            this.lblSiteStatus.Location = new System.Drawing.Point(11, 330);
+            this.lblSiteStatus.Name = "lblSiteStatus";
+            this.lblSiteStatus.Size = new System.Drawing.Size(0, 17);
+            this.lblSiteStatus.TabIndex = 39;
             // 
             // btnUpdateSite
             // 
@@ -894,14 +897,6 @@
             this.btnCreateSite.Text = "Create";
             this.btnCreateSite.UseVisualStyleBackColor = true;
             this.btnCreateSite.Click += new System.EventHandler(this.btnCreateSite_Click);
-            // 
-            // lblSiteStatus
-            // 
-            this.lblSiteStatus.AutoSize = true;
-            this.lblSiteStatus.Location = new System.Drawing.Point(11, 330);
-            this.lblSiteStatus.Name = "lblSiteStatus";
-            this.lblSiteStatus.Size = new System.Drawing.Size(0, 17);
-            this.lblSiteStatus.TabIndex = 39;
             // 
             // frmRegistration
             // 

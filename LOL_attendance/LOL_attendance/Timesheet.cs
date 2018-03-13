@@ -73,7 +73,7 @@ namespace LOL_attendance
         private void frmTimesheet_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'lOLDBDataSet.employee' table. You can move, or remove it, as needed.
-            this.employeeTableAdapter.Fill(this.lOLDBDataSet.employee);
+  //          this.employeeTableAdapter.Fill(this.lOLDBDataSet.employee);
 
         }
 

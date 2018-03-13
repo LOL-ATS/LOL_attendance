@@ -27,7 +27,58 @@ namespace LOL_attendance
         public frmRegistration()
         {
             InitializeComponent();
+            //Lana:
+            //Fill in Project Manager dropdown with values from db
+            conn = new SqlConnection(connstr);
+            //Need to add ASC list order
+            cmd = new SqlCommand("SELECT e.surname FROM employee e, role r WHERE e.role_id=r.id and r.name='Project Manager'", conn);
+
+            conn.Open();
+            rdr = cmd.ExecuteReader();
+            if (rdr.HasRows)
+            {
+                while (rdr.Read())
+                {
+                    cboPM.Items.Add(rdr.GetString(0));
+                }
+            }
+            conn.Close();
            
+
+            //Lana:
+            //Fill in Site Manager dropdown with values from db
+            conn = new SqlConnection(connstr);
+            //Need to add ASC list order
+            cmd = new SqlCommand("SELECT e.surname FROM employee e, role r WHERE e.role_id=r.id and r.name='Site Manager'", conn);
+
+            conn.Open();
+            rdr = cmd.ExecuteReader();
+            if (rdr.HasRows)
+            {
+                while (rdr.Read())
+                {
+                    cboSiteManager.Items.Add(rdr.GetString(0));
+                }
+            }
+            conn.Close();
+            
+
+            //Lana:
+            //Fill in Project dropdown with values from db
+            conn = new SqlConnection(connstr);
+            cmd = new SqlCommand("SELECT name FROM project ORDER BY name ASC", conn);
+
+            conn.Open();
+            rdr = cmd.ExecuteReader();
+            if (rdr.HasRows)
+            {
+                while (rdr.Read())
+                {
+                    cboProject.Items.Add(rdr.GetString(0));
+                }
+            }
+            conn.Close();
+            
         }
 
         private void Registration_Load(object sender, EventArgs e)
@@ -148,12 +199,26 @@ namespace LOL_attendance
         private void btnCreateProject_Click(object sender, EventArgs e)
         {
             //Lana:
-            //Connect values from Registration to DB
+            //Define selected ProjectManager ID
+            int currentProjectManagerID = 0;
+            
             conn = new SqlConnection(connstr);
-            cmd = new SqlCommand("INSERT INTO project (name, address) VALUES (@name,@address)", conn);
+            cmd = new SqlCommand("SELECT id FROM employee WHERE surname='" + cboPM.SelectedItem + "'", conn);
+
+            conn.Open();
+            rdr = cmd.ExecuteReader();
+            if (rdr.HasRows)
+            {
+                rdr.Read();
+                currentProjectManagerID = rdr.GetInt32(0);
+            }
+            conn.Close();
+
+            cmd = new SqlCommand("INSERT INTO project (name, mngr_id, address) VALUES (@name,@mngr_id,@address)", conn);
 
             cmd.Parameters.AddWithValue("@name", txtBoxPMName.Text);
             cmd.Parameters.AddWithValue("@address", txtBoxPAddress.Text);
+            cmd.Parameters.AddWithValue("@mngr_id", currentProjectManagerID);
 
             conn.Open();
             if (cmd.ExecuteNonQuery() == 1)
@@ -167,12 +232,43 @@ namespace LOL_attendance
         private void btnCreateSite_Click(object sender, EventArgs e)
         {
             //Lana:
-            //Connect values from Registration to DB
+            //Define selected SiteManager ID
+            int currentSiteManagerID = 0;
+
             conn = new SqlConnection(connstr);
-            cmd = new SqlCommand("INSERT INTO site (name, address) VALUES (@name,@address)", conn);
+            cmd = new SqlCommand("SELECT id FROM employee WHERE surname='" + cboSiteManager.SelectedItem + "'", conn);
+
+            conn.Open();
+            rdr = cmd.ExecuteReader();
+            if (rdr.HasRows)
+            {
+                rdr.Read();
+                currentSiteManagerID = rdr.GetInt32(0);
+            }
+            conn.Close();
+
+            //Define selected Project ID
+            int currentProjectID = 0;
+
+            conn = new SqlConnection(connstr);
+            cmd = new SqlCommand("SELECT id FROM project WHERE name='" + cboProject.SelectedItem + "'", conn);
+
+            conn.Open();
+            rdr = cmd.ExecuteReader();
+            if (rdr.HasRows)
+            {
+                rdr.Read();
+                currentProjectID = rdr.GetInt32(0);
+            }
+            conn.Close();
+
+
+            cmd = new SqlCommand("INSERT INTO site (name, mngr_id, address, proj_id) VALUES (@name,@mngr_id,@address,@proj_id)", conn);
 
             cmd.Parameters.AddWithValue("@name", txtBoxSiteName.Text);
             cmd.Parameters.AddWithValue("@address", txtBoxSiteAddress.Text);
+            cmd.Parameters.AddWithValue("@mngr_id", currentSiteManagerID);
+            cmd.Parameters.AddWithValue("@proj_id", currentProjectID);
 
             conn.Open();
             if (cmd.ExecuteNonQuery() == 1)
