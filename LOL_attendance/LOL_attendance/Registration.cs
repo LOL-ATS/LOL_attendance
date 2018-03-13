@@ -138,6 +138,7 @@ namespace LOL_attendance
 
         }
 
+        //Add fields clearness after clicking on the button Create 
         private void btnCreateUser_Click(object sender, EventArgs e)
         {
             //int role_id=0;
@@ -196,6 +197,7 @@ namespace LOL_attendance
 
         }
 
+        //Add fields clearness after clicking on the button Create 
         private void btnCreateProject_Click(object sender, EventArgs e)
         {
             //Lana:
@@ -228,7 +230,7 @@ namespace LOL_attendance
             }
             conn.Close();
         }
-
+        //Add fields clearness after clicking on the button Create 
         private void btnCreateSite_Click(object sender, EventArgs e)
         {
             //Lana:
