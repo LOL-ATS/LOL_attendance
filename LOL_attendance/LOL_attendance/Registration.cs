@@ -280,5 +280,81 @@ namespace LOL_attendance
             }
             conn.Close();
         }
+
+        private void btnShowAllSites_Click(object sender, EventArgs e)
+        {
+            ShowAll();
+        }
+        private void ShowAll()
+        {
+            conn = new SqlConnection(connstr);
+            cmd = new SqlCommand("SELECT * FROM site", conn);
+            DataTable dt = new DataTable();
+
+            conn.Open();
+            rdr = cmd.ExecuteReader();
+
+            if (rdr.HasRows)
+            {
+                dt.Load(rdr);
+                dgdVieSite.DataSource = dt;
+            }
+            else
+            {
+                MessageBox.Show("No Data to show");
+            }
+            conn.Close();
+        }
+
+        private void btnShowAllProjects_Click(object sender, EventArgs e)
+            {
+                ShowAllProjects();
+            }
+            private void ShowAllProjects()
+            {
+                conn = new SqlConnection(connstr);
+                cmd = new SqlCommand("SELECT * FROM project", conn);
+                DataTable dt = new DataTable();
+
+                conn.Open();
+                rdr = cmd.ExecuteReader();
+
+                if (rdr.HasRows)
+                {
+                    dt.Load(rdr);
+                    dgdViewProject.DataSource = dt;
+                }
+                else
+                {
+                    MessageBox.Show("No Data to show");
+                }
+                conn.Close();
+            }
+
+        private void btnShowAllID_Click(object sender, EventArgs e)
+            {
+                ShowAllEmployees();
+            }
+            private void ShowAllEmployees()
+            {
+                conn = new SqlConnection(connstr);
+                cmd = new SqlCommand("SELECT * FROM employee", conn);
+                DataTable dt = new DataTable();
+
+                conn.Open();
+                rdr = cmd.ExecuteReader();
+
+                if (rdr.HasRows)
+                {
+                    dt.Load(rdr);
+                    dgdViewEmployee.DataSource = dt;
+                }
+                else
+                {
+                    MessageBox.Show("No Data to show");
+                }
+                conn.Close();
+            }
     }
 }
+
