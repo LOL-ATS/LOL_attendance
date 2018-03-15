@@ -38,15 +38,6 @@
             this.btnShowAllID = new System.Windows.Forms.Button();
             this.txtBoxSearchByID = new System.Windows.Forms.TextBox();
             this.dgdViewEmployee = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Role = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Login = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpBoxUserInfo = new System.Windows.Forms.GroupBox();
             this.lblName = new System.Windows.Forms.Label();
             this.txtBoxAddress = new System.Windows.Forms.TextBox();
@@ -66,6 +57,11 @@
             this.lblRole = new System.Windows.Forms.Label();
             this.cboRole = new System.Windows.Forms.ComboBox();
             this.tabProject = new System.Windows.Forms.TabPage();
+            this.lblPStatus = new System.Windows.Forms.Label();
+            this.btnUpdateProject = new System.Windows.Forms.Button();
+            this.btnDeleteProject = new System.Windows.Forms.Button();
+            this.btnCancelProject = new System.Windows.Forms.Button();
+            this.btnCreateProject = new System.Windows.Forms.Button();
             this.groupBoxProject = new System.Windows.Forms.GroupBox();
             this.lblPMName = new System.Windows.Forms.Label();
             this.lblProjectAAddress = new System.Windows.Forms.Label();
@@ -77,18 +73,15 @@
             this.btnShowAllProjects = new System.Windows.Forms.Button();
             this.txtBoxSearchP = new System.Windows.Forms.TextBox();
             this.dgdViewProject = new System.Windows.Forms.DataGridView();
-            this.PName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PM = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabSite = new System.Windows.Forms.TabPage();
+            this.lblSiteStatus = new System.Windows.Forms.Label();
+            this.btnUpdateSite = new System.Windows.Forms.Button();
+            this.btnDeleteSite = new System.Windows.Forms.Button();
             this.grpBoxSiteName = new System.Windows.Forms.GroupBox();
             this.btnShowAllSites = new System.Windows.Forms.Button();
             this.txtBoxSiteSearch = new System.Windows.Forms.TextBox();
             this.dgdVieSite = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Project = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCancelSite = new System.Windows.Forms.Button();
             this.grpBoxSiteInfo = new System.Windows.Forms.GroupBox();
             this.lblProject = new System.Windows.Forms.Label();
             this.cboProject = new System.Windows.Forms.ComboBox();
@@ -98,14 +91,7 @@
             this.txtBoxSiteAddress = new System.Windows.Forms.TextBox();
             this.txtBoxSiteName = new System.Windows.Forms.TextBox();
             this.lblSiteName = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.btnCreateSite = new System.Windows.Forms.Button();
             this.tabRegistration.SuspendLayout();
             this.tabUser.SuspendLayout();
             this.grpBoxSearchByName.SuspendLayout();
@@ -181,7 +167,7 @@
             // lblUserStatus
             // 
             this.lblUserStatus.AutoSize = true;
-            this.lblUserStatus.Location = new System.Drawing.Point(8, 317);
+            this.lblUserStatus.Location = new System.Drawing.Point(8, 323);
             this.lblUserStatus.Name = "lblUserStatus";
             this.lblUserStatus.Size = new System.Drawing.Size(0, 17);
             this.lblUserStatus.TabIndex = 33;
@@ -219,6 +205,7 @@
             this.btnShowAllID.TabIndex = 33;
             this.btnShowAllID.Text = "Show All";
             this.btnShowAllID.UseVisualStyleBackColor = true;
+            this.btnShowAllID.Click += new System.EventHandler(this.btnShowAllID_Click);
             // 
             // txtBoxSearchByID
             // 
@@ -231,67 +218,12 @@
             // dgdViewEmployee
             // 
             this.dgdViewEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgdViewEmployee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.Phone,
-            this.Address,
-            this.Role,
-            this.Login,
-            this.Password});
             this.dgdViewEmployee.Location = new System.Drawing.Point(6, 64);
             this.dgdViewEmployee.Name = "dgdViewEmployee";
             this.dgdViewEmployee.RowTemplate.Height = 24;
             this.dgdViewEmployee.Size = new System.Drawing.Size(251, 223);
             this.dgdViewEmployee.TabIndex = 30;
             this.dgdViewEmployee.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployee_CellContentClick);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Surname";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Email";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // Phone
-            // 
-            this.Phone.HeaderText = "Phone";
-            this.Phone.Name = "Phone";
-            // 
-            // Address
-            // 
-            this.Address.HeaderText = "Address";
-            this.Address.Name = "Address";
-            // 
-            // Role
-            // 
-            this.Role.HeaderText = "Role";
-            this.Role.Name = "Role";
-            // 
-            // Login
-            // 
-            this.Login.HeaderText = "Login";
-            this.Login.Name = "Login";
-            // 
-            // Password
-            // 
-            this.Password.HeaderText = "Password";
-            this.Password.Name = "Password";
             // 
             // grpBoxUserInfo
             // 
@@ -478,10 +410,11 @@
             // 
             // tabProject
             // 
-            this.tabProject.Controls.Add(this.button1);
-            this.tabProject.Controls.Add(this.button2);
-            this.tabProject.Controls.Add(this.button3);
-            this.tabProject.Controls.Add(this.button7);
+            this.tabProject.Controls.Add(this.lblPStatus);
+            this.tabProject.Controls.Add(this.btnUpdateProject);
+            this.tabProject.Controls.Add(this.btnDeleteProject);
+            this.tabProject.Controls.Add(this.btnCancelProject);
+            this.tabProject.Controls.Add(this.btnCreateProject);
             this.tabProject.Controls.Add(this.groupBoxProject);
             this.tabProject.Controls.Add(this.groupBoxSearch);
             this.tabProject.Location = new System.Drawing.Point(4, 25);
@@ -491,6 +424,56 @@
             this.tabProject.TabIndex = 1;
             this.tabProject.Text = "Project";
             this.tabProject.UseVisualStyleBackColor = true;
+            // 
+            // lblPStatus
+            // 
+            this.lblPStatus.AutoSize = true;
+            this.lblPStatus.Location = new System.Drawing.Point(11, 330);
+            this.lblPStatus.Name = "lblPStatus";
+            this.lblPStatus.Size = new System.Drawing.Size(0, 17);
+            this.lblPStatus.TabIndex = 39;
+            // 
+            // btnUpdateProject
+            // 
+            this.btnUpdateProject.Location = new System.Drawing.Point(258, 330);
+            this.btnUpdateProject.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUpdateProject.Name = "btnUpdateProject";
+            this.btnUpdateProject.Size = new System.Drawing.Size(100, 28);
+            this.btnUpdateProject.TabIndex = 38;
+            this.btnUpdateProject.Text = "Update";
+            this.btnUpdateProject.UseVisualStyleBackColor = true;
+            // 
+            // btnDeleteProject
+            // 
+            this.btnDeleteProject.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnDeleteProject.Location = new System.Drawing.Point(366, 330);
+            this.btnDeleteProject.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteProject.Name = "btnDeleteProject";
+            this.btnDeleteProject.Size = new System.Drawing.Size(100, 28);
+            this.btnDeleteProject.TabIndex = 37;
+            this.btnDeleteProject.Text = "Delete";
+            this.btnDeleteProject.UseVisualStyleBackColor = true;
+            // 
+            // btnCancelProject
+            // 
+            this.btnCancelProject.Location = new System.Drawing.Point(471, 330);
+            this.btnCancelProject.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancelProject.Name = "btnCancelProject";
+            this.btnCancelProject.Size = new System.Drawing.Size(100, 28);
+            this.btnCancelProject.TabIndex = 36;
+            this.btnCancelProject.Text = "Cancel";
+            this.btnCancelProject.UseVisualStyleBackColor = true;
+            // 
+            // btnCreateProject
+            // 
+            this.btnCreateProject.Location = new System.Drawing.Point(150, 330);
+            this.btnCreateProject.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCreateProject.Name = "btnCreateProject";
+            this.btnCreateProject.Size = new System.Drawing.Size(100, 28);
+            this.btnCreateProject.TabIndex = 35;
+            this.btnCreateProject.Text = "Create";
+            this.btnCreateProject.UseVisualStyleBackColor = true;
+            this.btnCreateProject.Click += new System.EventHandler(this.btnCreateProject_Click);
             // 
             // groupBoxProject
             // 
@@ -531,11 +514,12 @@
             // cboPM
             // 
             this.cboPM.FormattingEnabled = true;
-            this.cboPM.Location = new System.Drawing.Point(125, 63);
+            this.cboPM.Location = new System.Drawing.Point(125, 66);
             this.cboPM.Margin = new System.Windows.Forms.Padding(4);
             this.cboPM.Name = "cboPM";
             this.cboPM.Size = new System.Drawing.Size(160, 24);
             this.cboPM.TabIndex = 28;
+            this.cboPM.SelectedIndexChanged += new System.EventHandler(this.cboPM_SelectedIndexChanged);
             // 
             // txtBoxPAddress
             // 
@@ -583,6 +567,7 @@
             this.btnShowAllProjects.TabIndex = 33;
             this.btnShowAllProjects.Text = "Show All";
             this.btnShowAllProjects.UseVisualStyleBackColor = true;
+            this.btnShowAllProjects.Click += new System.EventHandler(this.btnShowAllProjects_Click);
             // 
             // txtBoxSearchP
             // 
@@ -595,10 +580,6 @@
             // dgdViewProject
             // 
             this.dgdViewProject.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgdViewProject.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.PName,
-            this.PM,
-            this.PAddress});
             this.dgdViewProject.Location = new System.Drawing.Point(7, 65);
             this.dgdViewProject.Name = "dgdViewProject";
             this.dgdViewProject.RowTemplate.Height = 24;
@@ -606,29 +587,15 @@
             this.dgdViewProject.TabIndex = 30;
             this.dgdViewProject.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProject_CellContentClick);
             // 
-            // PName
-            // 
-            this.PName.HeaderText = "Name";
-            this.PName.Name = "PName";
-            // 
-            // PM
-            // 
-            this.PM.HeaderText = "PM";
-            this.PM.Name = "PM";
-            // 
-            // PAddress
-            // 
-            this.PAddress.HeaderText = "Address";
-            this.PAddress.Name = "PAddress";
-            // 
             // tabSite
             // 
-            this.tabSite.Controls.Add(this.button4);
-            this.tabSite.Controls.Add(this.button5);
+            this.tabSite.Controls.Add(this.lblSiteStatus);
+            this.tabSite.Controls.Add(this.btnUpdateSite);
+            this.tabSite.Controls.Add(this.btnDeleteSite);
             this.tabSite.Controls.Add(this.grpBoxSiteName);
-            this.tabSite.Controls.Add(this.button6);
+            this.tabSite.Controls.Add(this.btnCancelSite);
             this.tabSite.Controls.Add(this.grpBoxSiteInfo);
-            this.tabSite.Controls.Add(this.button8);
+            this.tabSite.Controls.Add(this.btnCreateSite);
             this.tabSite.Location = new System.Drawing.Point(4, 25);
             this.tabSite.Name = "tabSite";
             this.tabSite.Padding = new System.Windows.Forms.Padding(3);
@@ -636,6 +603,35 @@
             this.tabSite.TabIndex = 2;
             this.tabSite.Text = "Site";
             this.tabSite.UseVisualStyleBackColor = true;
+            // 
+            // lblSiteStatus
+            // 
+            this.lblSiteStatus.AutoSize = true;
+            this.lblSiteStatus.Location = new System.Drawing.Point(11, 330);
+            this.lblSiteStatus.Name = "lblSiteStatus";
+            this.lblSiteStatus.Size = new System.Drawing.Size(0, 17);
+            this.lblSiteStatus.TabIndex = 39;
+            // 
+            // btnUpdateSite
+            // 
+            this.btnUpdateSite.Location = new System.Drawing.Point(259, 330);
+            this.btnUpdateSite.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUpdateSite.Name = "btnUpdateSite";
+            this.btnUpdateSite.Size = new System.Drawing.Size(100, 28);
+            this.btnUpdateSite.TabIndex = 38;
+            this.btnUpdateSite.Text = "Update";
+            this.btnUpdateSite.UseVisualStyleBackColor = true;
+            // 
+            // btnDeleteSite
+            // 
+            this.btnDeleteSite.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnDeleteSite.Location = new System.Drawing.Point(367, 330);
+            this.btnDeleteSite.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteSite.Name = "btnDeleteSite";
+            this.btnDeleteSite.Size = new System.Drawing.Size(100, 28);
+            this.btnDeleteSite.TabIndex = 37;
+            this.btnDeleteSite.Text = "Delete";
+            this.btnDeleteSite.UseVisualStyleBackColor = true;
             // 
             // grpBoxSiteName
             // 
@@ -657,6 +653,7 @@
             this.btnShowAllSites.TabIndex = 33;
             this.btnShowAllSites.Text = "Show All";
             this.btnShowAllSites.UseVisualStyleBackColor = true;
+            this.btnShowAllSites.Click += new System.EventHandler(this.btnShowAllSites_Click);
             // 
             // txtBoxSiteSearch
             // 
@@ -669,36 +666,21 @@
             // dgdVieSite
             // 
             this.dgdVieSite.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgdVieSite.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn8,
-            this.Project});
             this.dgdVieSite.Location = new System.Drawing.Point(6, 64);
             this.dgdVieSite.Name = "dgdVieSite";
             this.dgdVieSite.RowTemplate.Height = 24;
             this.dgdVieSite.Size = new System.Drawing.Size(251, 215);
             this.dgdVieSite.TabIndex = 30;
             // 
-            // dataGridViewTextBoxColumn5
+            // btnCancelSite
             // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Site Name";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Address";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.HeaderText = "Site Manager";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            // 
-            // Project
-            // 
-            this.Project.HeaderText = "Project";
-            this.Project.Name = "Project";
+            this.btnCancelSite.Location = new System.Drawing.Point(472, 330);
+            this.btnCancelSite.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancelSite.Name = "btnCancelSite";
+            this.btnCancelSite.Size = new System.Drawing.Size(100, 28);
+            this.btnCancelSite.TabIndex = 36;
+            this.btnCancelSite.Text = "Cancel";
+            this.btnCancelSite.UseVisualStyleBackColor = true;
             // 
             // grpBoxSiteInfo
             // 
@@ -793,87 +775,16 @@
             this.lblSiteName.Text = "Site Name";
             this.lblSiteName.Click += new System.EventHandler(this.lblSiteName_Click);
             // 
-            // button1
+            // btnCreateSite
             // 
-            this.button1.Location = new System.Drawing.Point(258, 330);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 28);
-            this.button1.TabIndex = 38;
-            this.button1.Text = "Update";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.button2.Location = new System.Drawing.Point(366, 330);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 28);
-            this.button2.TabIndex = 37;
-            this.button2.Text = "Delete";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(471, 330);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 28);
-            this.button3.TabIndex = 36;
-            this.button3.Text = "Cancel";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(150, 330);
-            this.button7.Margin = new System.Windows.Forms.Padding(4);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(100, 28);
-            this.button7.TabIndex = 35;
-            this.button7.Text = "Create";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(259, 330);
-            this.button4.Margin = new System.Windows.Forms.Padding(4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(100, 28);
-            this.button4.TabIndex = 38;
-            this.button4.Text = "Update";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Cursor = System.Windows.Forms.Cursors.Default;
-            this.button5.Location = new System.Drawing.Point(367, 330);
-            this.button5.Margin = new System.Windows.Forms.Padding(4);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(100, 28);
-            this.button5.TabIndex = 37;
-            this.button5.Text = "Delete";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(472, 330);
-            this.button6.Margin = new System.Windows.Forms.Padding(4);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(100, 28);
-            this.button6.TabIndex = 36;
-            this.button6.Text = "Cancel";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(151, 330);
-            this.button8.Margin = new System.Windows.Forms.Padding(4);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(100, 28);
-            this.button8.TabIndex = 35;
-            this.button8.Text = "Create";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnCreateSite.Location = new System.Drawing.Point(151, 330);
+            this.btnCreateSite.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCreateSite.Name = "btnCreateSite";
+            this.btnCreateSite.Size = new System.Drawing.Size(100, 28);
+            this.btnCreateSite.TabIndex = 35;
+            this.btnCreateSite.Text = "Create";
+            this.btnCreateSite.UseVisualStyleBackColor = true;
+            this.btnCreateSite.Click += new System.EventHandler(this.btnCreateSite_Click);
             // 
             // frmRegistration
             // 
@@ -895,12 +806,14 @@
             this.grpBoxUserInfo.ResumeLayout(false);
             this.grpBoxUserInfo.PerformLayout();
             this.tabProject.ResumeLayout(false);
+            this.tabProject.PerformLayout();
             this.groupBoxProject.ResumeLayout(false);
             this.groupBoxProject.PerformLayout();
             this.groupBoxSearch.ResumeLayout(false);
             this.groupBoxSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgdViewProject)).EndInit();
             this.tabSite.ResumeLayout(false);
+            this.tabSite.PerformLayout();
             this.grpBoxSiteName.ResumeLayout(false);
             this.grpBoxSiteName.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgdVieSite)).EndInit();
@@ -948,16 +861,6 @@
         private System.Windows.Forms.GroupBox grpBoxSearchByName;
         private System.Windows.Forms.Button btnShowAllID;
         private System.Windows.Forms.TextBox txtBoxSearchByID;
-        private System.Windows.Forms.DataGridView dgdViewEmployee;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Phone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Role;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Login;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Password;
         private System.Windows.Forms.GroupBox grpBoxSiteName;
         private System.Windows.Forms.Button btnShowAllSites;
         private System.Windows.Forms.TextBox txtBoxSiteSearch;
@@ -971,23 +874,19 @@
         private System.Windows.Forms.Label lblSiteName;
         private System.Windows.Forms.Label lblProject;
         private System.Windows.Forms.ComboBox cboProject;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PM;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PAddress;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Project;
         private System.Windows.Forms.Button btnDeleteUser;
         private System.Windows.Forms.Label lblUserStatus;
         private System.Windows.Forms.Button btnUpdateUser;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btnUpdateProject;
+        private System.Windows.Forms.Button btnDeleteProject;
+        private System.Windows.Forms.Button btnCancelProject;
+        private System.Windows.Forms.Button btnCreateProject;
+        private System.Windows.Forms.Button btnUpdateSite;
+        private System.Windows.Forms.Button btnDeleteSite;
+        private System.Windows.Forms.Button btnCancelSite;
+        private System.Windows.Forms.Button btnCreateSite;
+        private System.Windows.Forms.Label lblPStatus;
+        private System.Windows.Forms.Label lblSiteStatus;
+        private System.Windows.Forms.DataGridView dgdViewEmployee;
     }
 }
