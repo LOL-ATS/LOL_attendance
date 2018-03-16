@@ -93,10 +93,7 @@ namespace LOL_attendance
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+ 
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
@@ -220,6 +217,16 @@ namespace LOL_attendance
                 lblUserStatus.Text = "Successfuly added";
             }
             conn.Close();
+
+            //Clear fields after Creating the User
+            txtBoxLogin.Clear();
+            txtBoxPass.Clear();
+            txtBoxName.Clear();
+            txtBoxSurname.Clear();
+            txtBoxEmail.Clear();
+            txtBoxPhone.Clear();
+            txtBoxAddress.Clear();
+            cboRole.SelectedIndex = -1;
         }
 
         private void tabUser_Click(object sender, EventArgs e)
@@ -481,6 +488,11 @@ namespace LOL_attendance
                 lblUserStatus.Text = "Successfully Deleted";
             }
             conn.Close();
+        }
+
+        private void cboRole_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
