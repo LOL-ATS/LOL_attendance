@@ -15,8 +15,8 @@ namespace LOL_attendance
         {
                 none = 0,
                 Admin = 1,
-                SiteManager = 2,
-                ProjectManager = 3,
+                SiteManager = 3,
+                ProjectManager = 2,
         }
 
         public string userName { get; set; }

@@ -31,15 +31,15 @@ namespace LOL_attendance
             //Fill in Project Manager dropdown with values from db
             conn = new SqlConnection(connstr);
             //Need to add ASC list order
-            cmd = new SqlCommand("SELECT e.surname FROM employee e, role r WHERE e.role_id=r.id and r.name='Project Manager'", conn);
+            cmd = new SqlCommand("SELECT surname FROM employee e, role r WHERE e.role_id=r.id and r.name='Project Manager'", conn);
 
             conn.Open();
             rdr = cmd.ExecuteReader();
-            if (rdr.HasRows)
+            if (rdr.HasRows) 
             {
                 while (rdr.Read())
                 {
-                    cboPM.Items.Add(rdr.GetString(0));
+                     cboPM.Items.Add(rdr.GetString(0)); 
                 }
             }
             conn.Close();

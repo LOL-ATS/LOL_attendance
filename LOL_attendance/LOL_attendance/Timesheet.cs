@@ -40,9 +40,24 @@ namespace LOL_attendance
                 {
                     comboBoxSitemngr.Items.Add(rdr.GetString(0));
                 }
+                comboBoxSitemngr.SelectedIndex = 0;
             }
             conn.Close();
-            comboBoxSitemngr.SelectedIndex = 0;
+            // Worker list
+            cmd.CommandText = "SELECT id, surname  FROM employee";
+            cmd.Connection = conn;
+            conn.Open();
+            rdr = cmd.ExecuteReader();
+            DataTable dt = new DataTable();
+
+
+            if (rdr.HasRows)
+            {
+                dt.Load(rdr);
+                dataGridView1.DataSource = dt;
+            }
+            conn.Close();
+            
             
             //bind Site dropdown with values from db
             cmd = new SqlCommand("SELECT name FROM site", conn);
@@ -55,9 +70,10 @@ namespace LOL_attendance
                 {
                     comboBoxSitename.Items.Add(rdr.GetString(0));
                 }
+                comboBoxSitename.SelectedIndex = 0;
             }
             conn.Close();
-            comboBoxSitename.SelectedIndex = 0;
+            
 
         }
 
@@ -65,16 +81,14 @@ namespace LOL_attendance
         {
 
         }
-
-        private void txtBoxStatus_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         private void frmTimesheet_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'lOLDBDataSet.employee' table. You can move, or remove it, as needed.
-  //          this.employeeTableAdapter.Fill(this.lOLDBDataSet.employee);
+            //          this.employeeTableAdapter.Fill(this.lOLDBDataSet.employee);
 
+            Main frm = (Main)this.MdiParent;
+
+            if (frm.User.userRole == userClass.userRoles.ProjectManager) { MessageBox.Show("hello"); }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -302,6 +316,21 @@ namespace LOL_attendance
             {
                 lblTSStatus.Text = "Saved" + Convert.ToString(updatedRows);
             }*/
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void comboBoxSitemngr_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }
