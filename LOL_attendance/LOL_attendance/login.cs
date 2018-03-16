@@ -27,7 +27,7 @@ namespace LOL_attendance
             using (var con = new SqlConnection(connStr))
             {
                 //check username and password
-                SqlCommand cmd = new SqlCommand("select role_id from employee where [role_id]<>'' and [login]=@username and [password]=@password ", con);
+                SqlCommand cmd = new SqlCommand("select id, name, surname, role_id from employee where [role_id]<>'' and [login]=@username and [password]=@password ", con);
 
                 cmd.Parameters.AddWithValue("@username", txtUsername.Text);
                 cmd.Parameters.AddWithValue("@password", txtPassword.Text);
@@ -36,26 +36,29 @@ namespace LOL_attendance
                 SqlDataReader rdr = cmd.ExecuteReader();
                 rdr.Read();
 
-                
-               if (rdr.HasRows)
+
+                if (rdr.HasRows)
                 {
                     //user password is rigt so show controls 
                     Main frm = (Main)this.MdiParent;
                     //store username and the time of login in loginuser
-                    loginuser.userDOB =DateTime.Now ;
+                    loginuser.userDOB = DateTime.Now;
                     loginuser.userName = txtUsername.Text;
+                    loginuser.userfullname = rdr["name"].ToString() + " " + rdr["surname"].ToString();
+                    loginuser.userID = (int)rdr["id"];
                     Panel pnl = (Panel)frm.Controls["pnlMainBtn"];
                     pnl.Visible = true;
                     StatusStrip SS = (StatusStrip)frm.Controls["StatusStrip1"];
                     SS.Items["tSSLUsername"].Text = txtUsername.Text;
                     SS.Enabled = true;
                     //findout the role of  user and store in loginuser obj and enable right buttons
+
                     switch ((int)rdr["role_id"])
                         {
                             case 1:
                                 loginuser.userRole = userClass.userRoles.Admin;
-                            pnl.Controls["btnReg"].Enabled = Enabled;
-                            pnl.Controls["btnTimesheet"].Enabled = Enabled;
+                                pnl.Controls["btnReg"].Enabled = Enabled;
+                                pnl.Controls["btnTimesheet"].Enabled = Enabled;
 
                             break;
                             case 3:
@@ -71,7 +74,7 @@ namespace LOL_attendance
 
                             break;
                             default:
-                                loginuser.userRole = userClass.userRoles.none;
+                                loginuser.userRole = userClass.userRoles.Worker;
                                 pnl.Controls["btnTimesheet"].Enabled = false;
                                 pnl.Controls["btnReg"].Enabled = false;
                             break;

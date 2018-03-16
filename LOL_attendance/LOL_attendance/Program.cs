@@ -17,7 +17,7 @@ namespace LOL_attendance
         [STAThread]
         static void Main()
         {
-            usr.userRole = userClass.userRoles.none;
+            usr.userRole = userClass.userRoles.Worker;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Main(usr));

@@ -36,9 +36,12 @@
             this.lblSitename = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.dataGridViewTS = new System.Windows.Forms.DataGridView();
-            this.clmnEmployeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TsSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmnEmployeeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmnEmployeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmnEmployeeSurname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmnWorkingHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmnEmployeeStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnApprove = new System.Windows.Forms.Button();
@@ -46,12 +49,13 @@
             this.btnReject = new System.Windows.Forms.Button();
             this.lblTSStatus = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewEmploye = new System.Windows.Forms.DataGridView();
             this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.btnAdd2Ts = new System.Windows.Forms.Button();
+            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnAddEmployee = new System.Windows.Forms.Button();
+            this.btnDelEmployee = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmploye)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,6 +66,7 @@
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(396, 31);
             this.dateTimePicker.TabIndex = 0;
+            this.dateTimePicker.ValueChanged += new System.EventHandler(this.Updatedata);
             // 
             // comboBoxSitemngr
             // 
@@ -73,7 +78,7 @@
             this.comboBoxSitemngr.Size = new System.Drawing.Size(238, 33);
             this.comboBoxSitemngr.TabIndex = 1;
             this.comboBoxSitemngr.ValueMember = "name";
-            this.comboBoxSitemngr.SelectedIndexChanged += new System.EventHandler(this.comboBoxSitemngr_SelectedIndexChanged);
+            this.comboBoxSitemngr.SelectedIndexChanged += new System.EventHandler(this.Updatedata);
             // 
             // comboBoxSitename
             // 
@@ -83,6 +88,7 @@
             this.comboBoxSitename.Name = "comboBoxSitename";
             this.comboBoxSitename.Size = new System.Drawing.Size(238, 33);
             this.comboBoxSitename.TabIndex = 2;
+            this.comboBoxSitename.SelectedIndexChanged += new System.EventHandler(this.Updatedata);
             // 
             // lblSitemngr
             // 
@@ -117,33 +123,57 @@
             // 
             // dataGridViewTS
             // 
+            this.dataGridViewTS.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewTS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewTS.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmnEmployeeName,
+            this.TsSelected,
             this.clmnEmployeeId,
-            this.clmnWorkingHours});
+            this.clmnEmployeeName,
+            this.clmnEmployeeSurname,
+            this.clmnWorkingHours,
+            this.clmnEmployeeStatus});
             this.dataGridViewTS.Location = new System.Drawing.Point(539, 196);
             this.dataGridViewTS.Margin = new System.Windows.Forms.Padding(6);
             this.dataGridViewTS.Name = "dataGridViewTS";
-            this.dataGridViewTS.Size = new System.Drawing.Size(624, 410);
+            this.dataGridViewTS.RowHeadersVisible = false;
+            this.dataGridViewTS.Size = new System.Drawing.Size(860, 410);
             this.dataGridViewTS.TabIndex = 6;
             // 
-            // clmnEmployeeName
+            // TsSelected
             // 
-            this.clmnEmployeeName.HeaderText = "Employee Name";
-            this.clmnEmployeeName.Name = "clmnEmployeeName";
-            this.clmnEmployeeName.Width = 150;
+            this.TsSelected.HeaderText = "";
+            this.TsSelected.Name = "TsSelected";
+            this.TsSelected.Width = 33;
             // 
             // clmnEmployeeId
             // 
-            this.clmnEmployeeId.HeaderText = "Employee Id";
+            this.clmnEmployeeId.HeaderText = "Id";
             this.clmnEmployeeId.Name = "clmnEmployeeId";
+            this.clmnEmployeeId.Width = 74;
+            // 
+            // clmnEmployeeName
+            // 
+            this.clmnEmployeeName.HeaderText = "Name";
+            this.clmnEmployeeName.Name = "clmnEmployeeName";
+            this.clmnEmployeeName.Width = 113;
+            // 
+            // clmnEmployeeSurname
+            // 
+            this.clmnEmployeeSurname.HeaderText = "Surname";
+            this.clmnEmployeeSurname.Name = "clmnEmployeeSurname";
+            this.clmnEmployeeSurname.Width = 143;
             // 
             // clmnWorkingHours
             // 
             this.clmnWorkingHours.HeaderText = "Working Hours";
             this.clmnWorkingHours.Name = "clmnWorkingHours";
-            this.clmnWorkingHours.Width = 150;
+            this.clmnWorkingHours.Width = 183;
+            // 
+            // clmnEmployeeStatus
+            // 
+            this.clmnEmployeeStatus.HeaderText = "Status";
+            this.clmnEmployeeStatus.Name = "clmnEmployeeStatus";
+            this.clmnEmployeeStatus.Width = 118;
             // 
             // btnSave
             // 
@@ -218,26 +248,20 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // dataGridView1
+            // dataGridViewEmploye
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewEmploye.AllowUserToAddRows = false;
+            this.dataGridViewEmploye.AllowUserToDeleteRows = false;
+            this.dataGridViewEmploye.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+            this.dataGridViewEmploye.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewEmploye.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Selected});
-            this.dataGridView1.Location = new System.Drawing.Point(29, 196);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(412, 423);
-            this.dataGridView1.TabIndex = 15;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // employeeBindingSource
-            // 
-            this.employeeBindingSource.DataMember = "employee";
+            this.dataGridViewEmploye.Location = new System.Drawing.Point(29, 196);
+            this.dataGridViewEmploye.Name = "dataGridViewEmploye";
+            this.dataGridViewEmploye.RowHeadersVisible = false;
+            this.dataGridViewEmploye.RowTemplate.Height = 33;
+            this.dataGridViewEmploye.Size = new System.Drawing.Size(412, 423);
+            this.dataGridViewEmploye.TabIndex = 15;
             // 
             // Selected
             // 
@@ -245,22 +269,37 @@
             this.Selected.Name = "Selected";
             this.Selected.Width = 5;
             // 
-            // btnAdd2Ts
+            // employeeBindingSource
             // 
-            this.btnAdd2Ts.Location = new System.Drawing.Point(455, 376);
-            this.btnAdd2Ts.Name = "btnAdd2Ts";
-            this.btnAdd2Ts.Size = new System.Drawing.Size(75, 62);
-            this.btnAdd2Ts.TabIndex = 16;
-            this.btnAdd2Ts.Text = ">>";
-            this.btnAdd2Ts.UseVisualStyleBackColor = true;
+            this.employeeBindingSource.DataMember = "employee";
+            // 
+            // btnAddEmployee
+            // 
+            this.btnAddEmployee.Location = new System.Drawing.Point(455, 376);
+            this.btnAddEmployee.Name = "btnAddEmployee";
+            this.btnAddEmployee.Size = new System.Drawing.Size(75, 62);
+            this.btnAddEmployee.TabIndex = 16;
+            this.btnAddEmployee.Text = ">>";
+            this.btnAddEmployee.UseVisualStyleBackColor = true;
+            this.btnAddEmployee.Click += new System.EventHandler(this.btnAddEmployee_Click);
+            // 
+            // btnDelEmployee
+            // 
+            this.btnDelEmployee.Location = new System.Drawing.Point(455, 308);
+            this.btnDelEmployee.Name = "btnDelEmployee";
+            this.btnDelEmployee.Size = new System.Drawing.Size(75, 62);
+            this.btnDelEmployee.TabIndex = 17;
+            this.btnDelEmployee.Text = "<<";
+            this.btnDelEmployee.UseVisualStyleBackColor = true;
             // 
             // frmTimesheet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1204, 677);
-            this.Controls.Add(this.btnAdd2Ts);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(1431, 677);
+            this.Controls.Add(this.btnDelEmployee);
+            this.Controls.Add(this.btnAddEmployee);
+            this.Controls.Add(this.dataGridViewEmploye);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.lblTSStatus);
             this.Controls.Add(this.btnReject);
@@ -280,7 +319,7 @@
             this.Text = "Site Timesheet";
             this.Load += new System.EventHandler(this.frmTimesheet_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmploye)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -300,16 +339,20 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnApprove;
         private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnEmployeeName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnEmployeeId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnWorkingHours;
         private System.Windows.Forms.Button btnReject;
 
         private System.Windows.Forms.BindingSource employeeBindingSource;
         private System.Windows.Forms.Label lblTSStatus;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewEmploye;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
-        private System.Windows.Forms.Button btnAdd2Ts;
+        private System.Windows.Forms.Button btnAddEmployee;
+        private System.Windows.Forms.Button btnDelEmployee;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn TsSelected;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmnEmployeeId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmnEmployeeName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmnEmployeeSurname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmnWorkingHours;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmnEmployeeStatus;
     }
 }
