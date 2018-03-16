@@ -37,11 +37,6 @@
             this.lblDate = new System.Windows.Forms.Label();
             this.dataGridViewTS = new System.Windows.Forms.DataGridView();
             this.TsSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.clmnEmployeeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnEmployeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnEmployeeSurname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnWorkingHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmnEmployeeStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnApprove = new System.Windows.Forms.Button();
@@ -66,7 +61,7 @@
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(396, 31);
             this.dateTimePicker.TabIndex = 0;
-            this.dateTimePicker.ValueChanged += new System.EventHandler(this.Updatedata);
+            this.dateTimePicker.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
             // 
             // comboBoxSitemngr
             // 
@@ -78,7 +73,7 @@
             this.comboBoxSitemngr.Size = new System.Drawing.Size(238, 33);
             this.comboBoxSitemngr.TabIndex = 1;
             this.comboBoxSitemngr.ValueMember = "name";
-            this.comboBoxSitemngr.SelectedIndexChanged += new System.EventHandler(this.Updatedata);
+            this.comboBoxSitemngr.SelectedValueChanged += new System.EventHandler(this.comboBoxSitemngr_SelectedValueChanged);
             // 
             // comboBoxSitename
             // 
@@ -88,7 +83,7 @@
             this.comboBoxSitename.Name = "comboBoxSitename";
             this.comboBoxSitename.Size = new System.Drawing.Size(238, 33);
             this.comboBoxSitename.TabIndex = 2;
-            this.comboBoxSitename.SelectedIndexChanged += new System.EventHandler(this.Updatedata);
+            this.comboBoxSitename.SelectedValueChanged += new System.EventHandler(this.comboBoxSitename_SelectedValueChanged);
             // 
             // lblSitemngr
             // 
@@ -123,15 +118,11 @@
             // 
             // dataGridViewTS
             // 
+            this.dataGridViewTS.AllowUserToAddRows = false;
             this.dataGridViewTS.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewTS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewTS.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TsSelected,
-            this.clmnEmployeeId,
-            this.clmnEmployeeName,
-            this.clmnEmployeeSurname,
-            this.clmnWorkingHours,
-            this.clmnEmployeeStatus});
+            this.TsSelected});
             this.dataGridViewTS.Location = new System.Drawing.Point(539, 196);
             this.dataGridViewTS.Margin = new System.Windows.Forms.Padding(6);
             this.dataGridViewTS.Name = "dataGridViewTS";
@@ -143,37 +134,7 @@
             // 
             this.TsSelected.HeaderText = "";
             this.TsSelected.Name = "TsSelected";
-            this.TsSelected.Width = 33;
-            // 
-            // clmnEmployeeId
-            // 
-            this.clmnEmployeeId.HeaderText = "Id";
-            this.clmnEmployeeId.Name = "clmnEmployeeId";
-            this.clmnEmployeeId.Width = 74;
-            // 
-            // clmnEmployeeName
-            // 
-            this.clmnEmployeeName.HeaderText = "Name";
-            this.clmnEmployeeName.Name = "clmnEmployeeName";
-            this.clmnEmployeeName.Width = 113;
-            // 
-            // clmnEmployeeSurname
-            // 
-            this.clmnEmployeeSurname.HeaderText = "Surname";
-            this.clmnEmployeeSurname.Name = "clmnEmployeeSurname";
-            this.clmnEmployeeSurname.Width = 143;
-            // 
-            // clmnWorkingHours
-            // 
-            this.clmnWorkingHours.HeaderText = "Working Hours";
-            this.clmnWorkingHours.Name = "clmnWorkingHours";
-            this.clmnWorkingHours.Width = 183;
-            // 
-            // clmnEmployeeStatus
-            // 
-            this.clmnEmployeeStatus.HeaderText = "Status";
-            this.clmnEmployeeStatus.Name = "clmnEmployeeStatus";
-            this.clmnEmployeeStatus.Width = 118;
+            this.TsSelected.Width = 5;
             // 
             // btnSave
             // 
@@ -251,7 +212,6 @@
             // dataGridViewEmploye
             // 
             this.dataGridViewEmploye.AllowUserToAddRows = false;
-            this.dataGridViewEmploye.AllowUserToDeleteRows = false;
             this.dataGridViewEmploye.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
             this.dataGridViewEmploye.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEmploye.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -291,6 +251,7 @@
             this.btnDelEmployee.TabIndex = 17;
             this.btnDelEmployee.Text = "<<";
             this.btnDelEmployee.UseVisualStyleBackColor = true;
+            this.btnDelEmployee.Click += new System.EventHandler(this.btnDelEmployee_Click);
             // 
             // frmTimesheet
             // 
@@ -349,10 +310,5 @@
         private System.Windows.Forms.Button btnAddEmployee;
         private System.Windows.Forms.Button btnDelEmployee;
         private System.Windows.Forms.DataGridViewCheckBoxColumn TsSelected;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnEmployeeId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnEmployeeName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnEmployeeSurname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnWorkingHours;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmnEmployeeStatus;
     }
 }
