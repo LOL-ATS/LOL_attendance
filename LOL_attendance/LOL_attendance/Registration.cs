@@ -104,7 +104,7 @@ namespace LOL_attendance
         }
       
         public int ID;
-        private void dataGridViewEmployee_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridViewEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = dgdViewEmployee.Rows[e.RowIndex];
 

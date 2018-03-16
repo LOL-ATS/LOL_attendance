@@ -213,7 +213,7 @@
             this.dgdViewEmployee.RowTemplate.Height = 24;
             this.dgdViewEmployee.Size = new System.Drawing.Size(188, 181);
             this.dgdViewEmployee.TabIndex = 30;
-            this.dgdViewEmployee.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployee_CellContentClick);
+            this.dgdViewEmployee.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployee_CellClick);
             // 
             // grpBoxUserInfo
             // 
