@@ -172,11 +172,6 @@ namespace LOL_attendance
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
 
@@ -467,6 +462,23 @@ namespace LOL_attendance
                 ShowAll();
                 lblUserStatus.ForeColor = System.Drawing.Color.Green;
                 lblUserStatus.Text = "Successfully Updated";
+            }
+            conn.Close();
+        }
+
+        private void btnDeleteUser_Click(object sender, EventArgs e)
+        {
+            conn = new SqlConnection(connstr);
+            cmd = new SqlCommand("Update employee Set isActive='FALSE' where login=@login", conn);
+
+            cmd.Parameters.AddWithValue("@login", txtBoxLogin.Text);
+
+            conn.Open();
+            if (cmd.ExecuteNonQuery() == 1)
+            {
+                ShowAll();
+                lblUserStatus.ForeColor = System.Drawing.Color.Green;
+                lblUserStatus.Text = "Successfully Deleted";
             }
             conn.Close();
         }
