@@ -108,6 +108,23 @@ namespace LOL_attendance
         {
             DataGridViewRow row = dgdViewEmployee.Rows[e.RowIndex];
 
+            
+            //DataTable dt = new DataTable();
+
+            conn = new SqlConnection(connstr);
+            cmd = new SqlCommand("SELECT name FROM role WHERE id =" + Convert.ToInt32(row.Cells["role_id"].Value.ToString()), conn);
+
+            conn.Open();
+            rdr = cmd.ExecuteReader();
+            string role_name="";
+            if (rdr.HasRows)
+            {
+                rdr.Read();
+                role_name = rdr.GetString(0);
+             }
+
+            conn.Close();
+
             ID = Convert.ToInt32(row.Cells["id"].Value);
             //need to add role
             //need to add search by clicking on line but not on cell
@@ -118,9 +135,10 @@ namespace LOL_attendance
             txtBoxEmail.Text = row.Cells["email"].Value.ToString();
             txtBoxPhone.Text = row.Cells["phone"].Value.ToString();
             txtBoxAddress.Text = row.Cells["address"].Value.ToString();
-            cboRole.Text = row.Cells["role_id"].Value.ToString();
-        }
-        
+            cboRole.Text = role_name.ToString();
+
+         }
+
         private void dataGridViewProject_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = dgdViewProject.Rows[e.RowIndex];

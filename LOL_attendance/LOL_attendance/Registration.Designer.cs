@@ -761,7 +761,7 @@
             this.Controls.Add(this.tabRegistration);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmRegistration";
-            this.Text = "Regisration";
+            this.Text = "Registration";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Registration_Load);
             this.tabRegistration.ResumeLayout(false);
