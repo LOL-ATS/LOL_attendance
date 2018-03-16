@@ -78,7 +78,7 @@ namespace LOL_attendance
                 }
             }
             conn.Close();
-            
+
         }
 
         private void Registration_Load(object sender, EventArgs e)
@@ -102,15 +102,46 @@ namespace LOL_attendance
         {
 
         }
-
+      
+        public int ID;
         private void dataGridViewEmployee_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            DataGridViewRow row = dgdViewEmployee.Rows[e.RowIndex];
 
+            ID = Convert.ToInt32(row.Cells["id"].Value);
+            //need to add role
+            //need to add search by clicking on line but not on cell
+            txtBoxLogin.Text = row.Cells["login"].Value.ToString();
+            txtBoxPass.Text = row.Cells["password"].Value.ToString();
+            txtBoxName.Text = row.Cells["name"].Value.ToString();
+            txtBoxSurname.Text = row.Cells["surname"].Value.ToString();
+            txtBoxEmail.Text = row.Cells["email"].Value.ToString();
+            txtBoxPhone.Text = row.Cells["phone"].Value.ToString();
+            txtBoxAddress.Text = row.Cells["address"].Value.ToString();
+            cboRole.Text = row.Cells["role_id"].Value.ToString();
         }
-
+        
         private void dataGridViewProject_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            DataGridViewRow row = dgdViewProject.Rows[e.RowIndex];
 
+            ID = Convert.ToInt32(row.Cells["id"].Value);
+            //need to add pm id
+            //need to add search by clicking on line but not on cell
+            txtBoxPMName.Text = row.Cells["name"].Value.ToString();
+            txtBoxPAddress.Text = row.Cells["address"].Value.ToString();
+            
+        }
+
+        private void dgdVieSite_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = dgdVieSite.Rows[e.RowIndex];
+
+            ID = Convert.ToInt32(row.Cells["id"].Value);
+            //need to add pm id and mngr id
+            //need to add search by clicking on line but not on cell
+            txtBoxSiteName.Text = row.Cells["name"].Value.ToString();
+            txtBoxSiteAddress.Text = row.Cells["address"].Value.ToString();
         }
 
         private void lblSiteName_Click(object sender, EventArgs e)
@@ -162,6 +193,7 @@ namespace LOL_attendance
             cmd = new SqlCommand("INSERT INTO employee (login, password, name, surname, email, phone, address, role_id) VALUES (@login,@password,@name,@surname,@email,@phone,@address,@role_id)", conn);
             cmd.Parameters.AddWithValue("@login", txtBoxLogin.Text);
             cmd.Parameters.AddWithValue("@password", txtBoxPass.Text);
+            //need to add role
             cmd.Parameters.AddWithValue("@name", txtBoxName.Text);
             cmd.Parameters.AddWithValue("@surname", txtBoxSurname.Text);
             cmd.Parameters.AddWithValue("@email", txtBoxEmail.Text);
@@ -355,6 +387,71 @@ namespace LOL_attendance
                 }
                 conn.Close();
             }
+
+        private void btnUpdateProject_Click(object sender, EventArgs e)
+        {
+            conn = new SqlConnection(connstr);
+            cmd = new SqlCommand("Update project Set name=@name,address=@address WHERE ID=@id", conn);
+
+            //need to add manager id
+            cmd.Parameters.AddWithValue("@id", ID);
+            cmd.Parameters.AddWithValue("@name", txtBoxPMName.Text);
+            cmd.Parameters.AddWithValue("@address", txtBoxPAddress.Text);
+
+            conn.Open();
+            if (cmd.ExecuteNonQuery() == 1)
+            {
+                ShowAll();
+                lblUserStatus.ForeColor = System.Drawing.Color.Green;
+                lblUserStatus.Text = "Successfully Updated";
+            }
+            conn.Close();
+        }
+
+        private void btnUpdateUser_Click(object sender, EventArgs e)
+        {
+            conn = new SqlConnection(connstr);
+            cmd = new SqlCommand("Update employee Set login=@login, password=@password,name=@name,surname=@surname,email=@email,phone=@phone,address=@address WHERE ID=@id", conn);
+
+            cmd.Parameters.AddWithValue("@id", ID);
+            cmd.Parameters.AddWithValue("@login", txtBoxLogin.Text);
+            cmd.Parameters.AddWithValue("@password", txtBoxPass.Text);
+            cmd.Parameters.AddWithValue("@name", txtBoxName.Text);
+            cmd.Parameters.AddWithValue("@surname", txtBoxSurname.Text);
+            cmd.Parameters.AddWithValue("@email", txtBoxEmail.Text);
+            cmd.Parameters.AddWithValue("@phone", txtBoxPhone.Text);
+            cmd.Parameters.AddWithValue("@address", txtBoxAddress.Text);
+
+            conn.Open();
+            if (cmd.ExecuteNonQuery() == 1)
+            {
+                ShowAll();
+                lblUserStatus.ForeColor = System.Drawing.Color.Green;
+                lblUserStatus.Text = "Successfully Updated";
+            }
+            conn.Close();
+
+        }
+
+        private void btnUpdateSite_Click(object sender, EventArgs e)
+        {
+            conn = new SqlConnection(connstr);
+            cmd = new SqlCommand("Update site Set name=@name,address=@address WHERE ID=@id", conn);
+
+            //need to add manager id and project id
+            cmd.Parameters.AddWithValue("@id", ID);
+            cmd.Parameters.AddWithValue("@name", txtBoxSiteName.Text);
+            cmd.Parameters.AddWithValue("@address", txtBoxSiteAddress.Text);
+
+            conn.Open();
+            if (cmd.ExecuteNonQuery() == 1)
+            {
+                ShowAll();
+                lblUserStatus.ForeColor = System.Drawing.Color.Green;
+                lblUserStatus.Text = "Successfully Updated";
+            }
+            conn.Close();
+        }
     }
 }
 
