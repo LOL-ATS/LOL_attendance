@@ -21,7 +21,6 @@ namespace LOL_attendance
         SqlConnection conn;
         SqlCommand cmd;
         string connstr = ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString;
-
         SqlDataReader rdr;
 
         public frmRegistration()
@@ -30,7 +29,7 @@ namespace LOL_attendance
             //Lana:
             //Fill in Project Manager dropdown with values from db
             conn = new SqlConnection(connstr);
-            cmd = new SqlCommand("SELECT surname FROM employee e, role r WHERE e.role_id=r.id and r.name='Project Manager' ORDER BY surname ASC", conn);
+            cmd = new SqlCommand("SELECT surname FROM employee e, role r WHERE e.role_id=r.id and r.name='Project Manager' and e.isActive='True' ORDER BY surname ASC", conn);
 
             conn.Open();
             rdr = cmd.ExecuteReader();
@@ -47,7 +46,7 @@ namespace LOL_attendance
             //Lana:
             //Fill in Site Manager dropdown with values from db
             conn = new SqlConnection(connstr);
-            cmd = new SqlCommand("SELECT e.surname FROM employee e, role r WHERE e.role_id=r.id and r.name='Site Manager' ORDER BY surname ASC", conn);
+            cmd = new SqlCommand("SELECT e.surname FROM employee e, role r WHERE e.role_id=r.id and r.name='Site Manager' and e.isActive ='True' ORDER BY surname ASC", conn);
 
             conn.Open();
             rdr = cmd.ExecuteReader();
@@ -64,7 +63,7 @@ namespace LOL_attendance
             //Lana:
             //Fill in Project dropdown with values from db
             conn = new SqlConnection(connstr);
-            cmd = new SqlCommand("SELECT name FROM project ORDER BY name ASC", conn);
+            cmd = new SqlCommand("SELECT name FROM project where isActive='True' ORDER BY name ASC", conn);
 
             conn.Open();
             rdr = cmd.ExecuteReader();
@@ -78,19 +77,7 @@ namespace LOL_attendance
             conn.Close();
 
         }
-
-        private void Registration_Load(object sender, EventArgs e)
-        {
-            Main frm = (Main)this.MdiParent;
-
-            MessageBox.Show(frm.User.userRole.ToString());
-        }
-
-        private void lblSitemngr_Click(object sender, EventArgs e)
-        {
-
-        }
-      
+     
         public int ID;
         private void dataGridViewEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -144,7 +131,8 @@ namespace LOL_attendance
 
             conn.Close();
 
-            ID = Convert.ToInt32(row.Cells["id"].Value);
+            lblProjectIDValue.Text = row.Cells["id"].Value.ToString();
+            lblPMngrIDValue.Text = row.Cells["mngr_id"].Value.ToString();
             txtBoxPMName.Text = row.Cells["name"].Value.ToString();
             txtBoxPAddress.Text = row.Cells["address"].Value.ToString();
             cboPM.Text = mngr_name.ToString();
@@ -193,25 +181,14 @@ namespace LOL_attendance
 
         }
 
-        private void lblSiteName_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtBoxSiteName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
+        //Author: Lana
         //Add fields clearness after clicking on the button Create 
         private void btnCreateUser_Click(object sender, EventArgs e)
-        {
-            //int role_id=0;
+        {           
             int role_id = 0;
             DataTable dt = new DataTable();
 
-            //mySqlCommand = "SELECT id FROM role WHERE name = " + cboRole.Text;
+            //define role_id by role_name from db
             conn = new SqlConnection(connstr);
             cmd = new SqlCommand("SELECT id FROM role WHERE name='" + cboRole.Text+ "'", conn);
             conn.Open();
@@ -220,12 +197,10 @@ namespace LOL_attendance
             {
                 rdr.Read();                
                 role_id = rdr.GetInt32(0);
-                //MessageBox.Show("id: " + role_id);
-            }
-            
+            }            
             conn.Close();
-
-            cmd = new SqlCommand("INSERT INTO employee (login, password, name, surname, email, phone, address, role_id) VALUES (@login,@password,@name,@surname,@email,@phone,@address,@role_id)", conn);
+            //create new user
+            cmd = new SqlCommand("INSERT INTO employee (login, password, name, surname, email, phone, address, role_id, isActive) VALUES (@login,@password,@name,@surname,@email,@phone,@address,@role_id,'True')", conn);
             cmd.Parameters.AddWithValue("@login", txtBoxLogin.Text);
             cmd.Parameters.AddWithValue("@password", txtBoxPass.Text);
             //need to add role
@@ -243,69 +218,81 @@ namespace LOL_attendance
             }
             conn.Close();
 
+            //ClearAll();
             //Clear fields after Creating the User
-            txtBoxLogin.Clear();
+            /*txtBoxLogin.Clear();
             txtBoxPass.Clear();
             txtBoxName.Clear();
             txtBoxSurname.Clear();
             txtBoxEmail.Clear();
             txtBoxPhone.Clear();
             txtBoxAddress.Clear();
-            cboRole.SelectedIndex = -1;
+            cboRole.SelectedIndex = -1;*/
         }
 
-        private void tabUser_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void grpBoxSearchByID_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cboPM_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        //Add fields clearness after clicking on the button Create 
+        //Create new project
         private void btnCreateProject_Click(object sender, EventArgs e)
         {
-            //Lana:
-            //Define selected ProjectManager ID
-            int currentProjectManagerID = 0;
-            
-            conn = new SqlConnection(connstr);
-            cmd = new SqlCommand("SELECT id FROM employee WHERE surname='" + cboPM.SelectedItem + "'", conn);
-
-            conn.Open();
-            rdr = cmd.ExecuteReader();
-            if (rdr.HasRows)
+            //Author: Lana
+            if (lblProjectIDValue.Text == "")
             {
-                rdr.Read();
-                currentProjectManagerID = rdr.GetInt32(0);
+                if (txtBoxPMName.Text == "" || txtBoxPMName.Text =="Input name")
+                {
+                    lblPStatus.ForeColor = System.Drawing.Color.Red;
+                    lblPStatus.Text = "Please input Project name";
+                }
+                else
+                {
+                    //Define selected ProjectManager ID
+                    int CurrentProjectManagerID = 0;
+                    CurrentProjectManagerID = EmployeeIDByRoleAndSurname("Project Manager", cboPM.SelectedItem.ToString());
+
+                    cmd = new SqlCommand("INSERT INTO project (name, mngr_id, address, isActive) VALUES (@name,@mngr_id,@address, 'True')", conn);
+
+                    cmd.Parameters.AddWithValue("@name", txtBoxPMName.Text);
+                    cmd.Parameters.AddWithValue("@address", txtBoxPAddress.Text);
+                    cmd.Parameters.AddWithValue("@mngr_id", CurrentProjectManagerID);
+
+                    conn.Open();
+                    if (cmd.ExecuteNonQuery() == 1)
+                    {
+                        lblPStatus.ForeColor = System.Drawing.Color.Green;
+                        lblPStatus.Text = "Successfully Added";
+                    }
+                    conn.Close();
+
+                    ClearProjectInputFields();
+                    ShowAllProjects();
+                }
             }
-            conn.Close();
-
-            cmd = new SqlCommand("INSERT INTO project (name, mngr_id, address) VALUES (@name,@mngr_id,@address)", conn);
-
-            cmd.Parameters.AddWithValue("@name", txtBoxPMName.Text);
-            cmd.Parameters.AddWithValue("@address", txtBoxPAddress.Text);
-            cmd.Parameters.AddWithValue("@mngr_id", currentProjectManagerID);
-
-            conn.Open();
-            if (cmd.ExecuteNonQuery() == 1)
+            else
             {
-                lblPStatus.ForeColor = System.Drawing.Color.Green;
-                lblPStatus.Text = "Successfully Added";
+                lblPStatus.ForeColor = System.Drawing.Color.Red;
+                lblPStatus.Text = "Project already exists";
             }
-            conn.Close();
+        }
 
-            //Clear fields after Creating the Project
-            txtBoxPMName.Clear();
-            txtBoxPAddress.Clear();
-            cboPM.SelectedIndex = -1;
+        private int EmployeeIDByRoleAndSurname(string employee_role, string employee_surname)
+        {
+            int employee_id = 0;
+            if (employee_role != "" & employee_surname != "")
+            {
+                conn = new SqlConnection(connstr);
+                cmd = new SqlCommand("SELECT e.id FROM employee e, role r WHERE e.role_id = r.id and r.name = '" + employee_role + "' and surname ='" + employee_surname + "'", conn);
+
+                conn.Open();
+                rdr = cmd.ExecuteReader();
+                if (rdr.HasRows)
+                {
+                    rdr.Read();
+                    employee_id = rdr.GetInt32(0);
+                }
+                conn.Close();
+                return employee_id;
+            }
+            else
+                return -1;
         }
         //Add fields clearness after clicking on the button Create 
         private void btnCreateSite_Click(object sender, EventArgs e)
@@ -342,7 +329,7 @@ namespace LOL_attendance
             conn.Close();
 
 
-            cmd = new SqlCommand("INSERT INTO site (name, mngr_id, address, proj_id) VALUES (@name,@mngr_id,@address,@proj_id)", conn);
+            cmd = new SqlCommand("INSERT INTO site (name, mngr_id, address, proj_id, isActive) VALUES (@name,@mngr_id,@address,@proj_id, 'True')", conn);
 
             cmd.Parameters.AddWithValue("@name", txtBoxSiteName.Text);
             cmd.Parameters.AddWithValue("@address", txtBoxSiteAddress.Text);
@@ -366,12 +353,34 @@ namespace LOL_attendance
 
         private void btnShowAllSites_Click(object sender, EventArgs e)
         {
-            ShowAll();
+            ShowAllSites();
         }
-        private void ShowAll()
+
+        private void ShowAllUsers()
         {
             conn = new SqlConnection(connstr);
-            cmd = new SqlCommand("SELECT * FROM site", conn);
+            cmd = new SqlCommand("SELECT * FROM employee where isActive='True'", conn);
+            DataTable dt = new DataTable();
+
+            conn.Open();
+            rdr = cmd.ExecuteReader();
+
+            if (rdr.HasRows)
+            {
+                dt.Load(rdr);
+                dgdVieSite.DataSource = dt;
+            }
+            else
+            {
+                MessageBox.Show("No Data to show");
+            }
+            conn.Close();
+        }
+
+        private void ShowAllSites()
+        {
+            conn = new SqlConnection(connstr);
+            cmd = new SqlCommand("SELECT * FROM site where isActive='True'", conn);
             DataTable dt = new DataTable();
 
             conn.Open();
@@ -393,10 +402,11 @@ namespace LOL_attendance
             {
                 ShowAllProjects();
             }
-            private void ShowAllProjects()
+
+        private void ShowAllProjects()
             {
                 conn = new SqlConnection(connstr);
-                cmd = new SqlCommand("SELECT * FROM project", conn);
+                cmd = new SqlCommand("SELECT * FROM project where isActive='True'", conn);
                 DataTable dt = new DataTable();
 
                 conn.Open();
@@ -439,24 +449,36 @@ namespace LOL_attendance
                 conn.Close();
             }
 
+        //Author: Lana
+        //Make changes in Project and save 
         private void btnUpdateProject_Click(object sender, EventArgs e)
         {
-            conn = new SqlConnection(connstr);
-            cmd = new SqlCommand("Update project Set name=@name,address=@address WHERE ID=@id", conn);
-
-            //need to add manager id
-            cmd.Parameters.AddWithValue("@id", ID);
-            cmd.Parameters.AddWithValue("@name", txtBoxPMName.Text);
-            cmd.Parameters.AddWithValue("@address", txtBoxPAddress.Text);
-
-            conn.Open();
-            if (cmd.ExecuteNonQuery() == 1)
+            if (lblPMngrIDValue.Text != "")
             {
-                ShowAll();
-                lblUserStatus.ForeColor = System.Drawing.Color.Green;
-                lblUserStatus.Text = "Successfully Updated";
+                conn = new SqlConnection(connstr);
+                //create SQL request for updating project
+                cmd = new SqlCommand("Update project Set name=@name,address=@address, mngr_id=@mngr_id WHERE ID=@id", conn);
+
+                cmd.Parameters.AddWithValue("@id", lblProjectIDValue.Text);
+                cmd.Parameters.AddWithValue("@mngr_id", lblPMngrIDValue.Text);
+                cmd.Parameters.AddWithValue("@name", txtBoxPMName.Text);
+                cmd.Parameters.AddWithValue("@address", txtBoxPAddress.Text);
+                conn.Open();
+                //if request was succesful, clear all data in input fields and show all projects
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    ShowAllProjects();
+                    ClearProjectInputFields();
+                    lblPStatus.ForeColor = System.Drawing.Color.Green;
+                    lblPStatus.Text = "Project succesfully updated";
+                }
+                conn.Close();
             }
-            conn.Close();
+            else
+            {
+                lblPStatus.ForeColor = System.Drawing.Color.Red;
+                lblPStatus.Text = "Please select Project for updating";
+            }
         }
 
         private void btnUpdateUser_Click(object sender, EventArgs e)
@@ -476,7 +498,7 @@ namespace LOL_attendance
             conn.Open();
             if (cmd.ExecuteNonQuery() == 1)
             {
-                ShowAll();
+             //   ShowAll();
                 lblUserStatus.ForeColor = System.Drawing.Color.Green;
                 lblUserStatus.Text = "Successfully Updated";
             }
@@ -497,7 +519,7 @@ namespace LOL_attendance
             conn.Open();
             if (cmd.ExecuteNonQuery() == 1)
             {
-                ShowAll();
+                ShowAllSites();
                 lblUserStatus.ForeColor = System.Drawing.Color.Green;
                 lblUserStatus.Text = "Successfully Updated";
             }
@@ -514,16 +536,11 @@ namespace LOL_attendance
             conn.Open();
             if (cmd.ExecuteNonQuery() == 1)
             {
-                ShowAll();
+                ShowAllUsers();
                 lblUserStatus.ForeColor = System.Drawing.Color.Green;
                 lblUserStatus.Text = "Successfully Deleted";
             }
             conn.Close();
-        }
-
-        private void cboRole_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void txtBoxSearchByID_TextChanged(object sender, EventArgs e)
@@ -547,10 +564,6 @@ namespace LOL_attendance
 
         }
 
-        private void cboProject_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void txtBoxSearchP_TextChanged(object sender, EventArgs e)
         {
@@ -572,10 +585,6 @@ namespace LOL_attendance
             }
         }
 
-        private void txtBoxPMName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void txtBoxSiteSearch_TextChanged(object sender, EventArgs e)
         {
@@ -597,10 +606,83 @@ namespace LOL_attendance
             }
         }
 
-        private void dgdViewProject_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        //Author: Liana
+        //Delete project by setting isActive field to False
+        private void btnDeleteProject_Click(object sender, EventArgs e)
         {
+            if (lblPMngrIDValue.Text != "")
+            {
+                //make SQL query for updating Project
+                conn = new SqlConnection(connstr);
+                cmd = new SqlCommand("Update project Set isActive='FALSE' where id=@project_id", conn);
+
+                cmd.Parameters.AddWithValue("@project_id", Convert.ToInt16(lblProjectIDValue.Text));
+
+                conn.Open();
+                // if query was succesful clear input fields, show all projects and show message 
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    ShowAllProjects();
+                    ClearProjectInputFields();
+                    lblPStatus.ForeColor = System.Drawing.Color.Green;
+                    lblPStatus.Text = "Project deleted";
+                }
+                conn.Close();
+            }
+            else
+            {
+                lblPStatus.ForeColor = System.Drawing.Color.Red;
+                lblPStatus.Text = "Please select Project for deleting";
+            }
+        }
+
+        //Author: Liana
+        //Set Project Manager ID if value in Project Manager's drop-down changed
+
+        private void cboPM_DropDownClosed(object sender, EventArgs e)
+        {
+            if (cboPM.SelectedItem  != null)
+            {
+                lblPMngrIDValue.Text = Convert.ToString(EmployeeIDByRoleAndSurname("Project Manager", cboPM.SelectedItem.ToString()));
+                /*
+                conn = new SqlConnection(connstr);
+                cmd = new SqlCommand("SELECT e.id FROM employee e, role r WHERE e.role_id = r.id and r.name = 'Project Manager' and isActive = 'True' and surname LIKE'" + cboPM.SelectedItem + "%'", conn);
+                DataTable dt = new DataTable();
+
+                conn.Open();
+                rdr = cmd.ExecuteReader();
+
+                if (rdr.HasRows)
+                {
+                    rdr.Read();
+                    lblPMngrIDValue.Text = rdr[0].ToString();
+                }
+                else
+                {
+                    MessageBox.Show("No data to show");
+                }*/
+            }
 
         }
+        //Author: Liana
+        // Handle ClearAll button click
+        private void btnClearAllProjects_Click(object sender, EventArgs e)
+        {
+            ClearProjectInputFields();
+        }
+
+        //Author: Liana
+        // Clear all data in text fields for creating new project
+        private void ClearProjectInputFields()
+        {
+            lblProjectIDValue.Text = "";
+            lblPMngrIDValue.Text = "";
+            cboPM.SelectedIndex = 0;
+            txtBoxPMName.Text = "Input name";
+            txtBoxPAddress.Text = "Input Address";
+        }
+
     }
 }
 

@@ -56,11 +56,16 @@
             this.lblRole = new System.Windows.Forms.Label();
             this.cboRole = new System.Windows.Forms.ComboBox();
             this.tabProject = new System.Windows.Forms.TabPage();
+            this.btnClearAllProjects = new System.Windows.Forms.Button();
             this.lblPStatus = new System.Windows.Forms.Label();
             this.btnUpdateProject = new System.Windows.Forms.Button();
             this.btnDeleteProject = new System.Windows.Forms.Button();
             this.btnCreateProject = new System.Windows.Forms.Button();
             this.groupBoxProject = new System.Windows.Forms.GroupBox();
+            this.lblMngrID = new System.Windows.Forms.Label();
+            this.lblPMngrIDValue = new System.Windows.Forms.Label();
+            this.lblID = new System.Windows.Forms.Label();
+            this.lblProjectIDValue = new System.Windows.Forms.Label();
             this.lblPMName = new System.Windows.Forms.Label();
             this.lblProjectAAddress = new System.Windows.Forms.Label();
             this.cboPM = new System.Windows.Forms.ComboBox();
@@ -110,11 +115,11 @@
             this.tabRegistration.Controls.Add(this.tabUser);
             this.tabRegistration.Controls.Add(this.tabProject);
             this.tabRegistration.Controls.Add(this.tabSite);
-            this.tabRegistration.Location = new System.Drawing.Point(16, 20);
-            this.tabRegistration.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabRegistration.Location = new System.Drawing.Point(12, 16);
+            this.tabRegistration.Margin = new System.Windows.Forms.Padding(2);
             this.tabRegistration.Name = "tabRegistration";
             this.tabRegistration.SelectedIndex = 0;
-            this.tabRegistration.Size = new System.Drawing.Size(660, 446);
+            this.tabRegistration.Size = new System.Drawing.Size(625, 362);
             this.tabRegistration.TabIndex = 13;
             // 
             // tabUser
@@ -131,22 +136,20 @@
             this.tabUser.Controls.Add(this.lblLogin);
             this.tabUser.Controls.Add(this.lblRole);
             this.tabUser.Controls.Add(this.cboRole);
-            this.tabUser.Location = new System.Drawing.Point(4, 25);
-            this.tabUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabUser.Location = new System.Drawing.Point(4, 22);
+            this.tabUser.Margin = new System.Windows.Forms.Padding(2);
             this.tabUser.Name = "tabUser";
-            this.tabUser.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabUser.Size = new System.Drawing.Size(652, 417);
+            this.tabUser.Padding = new System.Windows.Forms.Padding(2);
+            this.tabUser.Size = new System.Drawing.Size(617, 336);
             this.tabUser.TabIndex = 0;
             this.tabUser.Text = "User";
             this.tabUser.UseVisualStyleBackColor = true;
-            this.tabUser.Click += new System.EventHandler(this.tabUser_Click);
             // 
             // btnUpdateUser
             // 
-            this.btnUpdateUser.Location = new System.Drawing.Point(356, 332);
-            this.btnUpdateUser.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUpdateUser.Location = new System.Drawing.Point(267, 270);
             this.btnUpdateUser.Name = "btnUpdateUser";
-            this.btnUpdateUser.Size = new System.Drawing.Size(100, 28);
+            this.btnUpdateUser.Size = new System.Drawing.Size(75, 23);
             this.btnUpdateUser.TabIndex = 34;
             this.btnUpdateUser.Text = "Update";
             this.btnUpdateUser.UseVisualStyleBackColor = true;
@@ -155,18 +158,18 @@
             // lblUserStatus
             // 
             this.lblUserStatus.AutoSize = true;
-            this.lblUserStatus.Location = new System.Drawing.Point(8, 322);
+            this.lblUserStatus.Location = new System.Drawing.Point(6, 262);
+            this.lblUserStatus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUserStatus.Name = "lblUserStatus";
-            this.lblUserStatus.Size = new System.Drawing.Size(0, 17);
+            this.lblUserStatus.Size = new System.Drawing.Size(0, 13);
             this.lblUserStatus.TabIndex = 33;
             // 
             // btnDeleteUser
             // 
             this.btnDeleteUser.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnDeleteUser.Location = new System.Drawing.Point(464, 332);
-            this.btnDeleteUser.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteUser.Location = new System.Drawing.Point(348, 270);
             this.btnDeleteUser.Name = "btnDeleteUser";
-            this.btnDeleteUser.Size = new System.Drawing.Size(100, 28);
+            this.btnDeleteUser.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteUser.TabIndex = 14;
             this.btnDeleteUser.Text = "Delete";
             this.btnDeleteUser.UseVisualStyleBackColor = true;
@@ -177,22 +180,21 @@
             this.grpBoxSearchByName.Controls.Add(this.btnShowAllID);
             this.grpBoxSearchByName.Controls.Add(this.txtBoxSearchByID);
             this.grpBoxSearchByName.Controls.Add(this.dgdViewEmployee);
-            this.grpBoxSearchByName.Location = new System.Drawing.Point(301, 11);
-            this.grpBoxSearchByName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.grpBoxSearchByName.Location = new System.Drawing.Point(226, 9);
+            this.grpBoxSearchByName.Margin = new System.Windows.Forms.Padding(2);
             this.grpBoxSearchByName.Name = "grpBoxSearchByName";
-            this.grpBoxSearchByName.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.grpBoxSearchByName.Size = new System.Drawing.Size(260, 299);
+            this.grpBoxSearchByName.Padding = new System.Windows.Forms.Padding(2);
+            this.grpBoxSearchByName.Size = new System.Drawing.Size(195, 243);
             this.grpBoxSearchByName.TabIndex = 32;
             this.grpBoxSearchByName.TabStop = false;
             this.grpBoxSearchByName.Text = "Search by Name";
-            this.grpBoxSearchByName.Enter += new System.EventHandler(this.grpBoxSearchByID_Enter);
             // 
             // btnShowAllID
             // 
-            this.btnShowAllID.Location = new System.Drawing.Point(181, 30);
-            this.btnShowAllID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnShowAllID.Location = new System.Drawing.Point(136, 24);
+            this.btnShowAllID.Margin = new System.Windows.Forms.Padding(2);
             this.btnShowAllID.Name = "btnShowAllID";
-            this.btnShowAllID.Size = new System.Drawing.Size(75, 23);
+            this.btnShowAllID.Size = new System.Drawing.Size(56, 19);
             this.btnShowAllID.TabIndex = 33;
             this.btnShowAllID.Text = "Show All";
             this.btnShowAllID.UseVisualStyleBackColor = true;
@@ -200,21 +202,20 @@
             // 
             // txtBoxSearchByID
             // 
-            this.txtBoxSearchByID.Location = new System.Drawing.Point(7, 32);
-            this.txtBoxSearchByID.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxSearchByID.Location = new System.Drawing.Point(5, 26);
             this.txtBoxSearchByID.Name = "txtBoxSearchByID";
-            this.txtBoxSearchByID.Size = new System.Drawing.Size(167, 22);
+            this.txtBoxSearchByID.Size = new System.Drawing.Size(126, 20);
             this.txtBoxSearchByID.TabIndex = 32;
             this.txtBoxSearchByID.TextChanged += new System.EventHandler(this.txtBoxSearchByID_TextChanged);
             // 
             // dgdViewEmployee
             // 
             this.dgdViewEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgdViewEmployee.Location = new System.Drawing.Point(5, 64);
-            this.dgdViewEmployee.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgdViewEmployee.Location = new System.Drawing.Point(4, 52);
+            this.dgdViewEmployee.Margin = new System.Windows.Forms.Padding(2);
             this.dgdViewEmployee.Name = "dgdViewEmployee";
             this.dgdViewEmployee.RowTemplate.Height = 24;
-            this.dgdViewEmployee.Size = new System.Drawing.Size(251, 223);
+            this.dgdViewEmployee.Size = new System.Drawing.Size(188, 181);
             this.dgdViewEmployee.TabIndex = 30;
             this.dgdViewEmployee.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployee_CellClick);
             // 
@@ -230,11 +231,11 @@
             this.grpBoxUserInfo.Controls.Add(this.txtBoxEmail);
             this.grpBoxUserInfo.Controls.Add(this.txtBoxName);
             this.grpBoxUserInfo.Controls.Add(this.lblEmail);
-            this.grpBoxUserInfo.Location = new System.Drawing.Point(0, 98);
-            this.grpBoxUserInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.grpBoxUserInfo.Location = new System.Drawing.Point(0, 80);
+            this.grpBoxUserInfo.Margin = new System.Windows.Forms.Padding(2);
             this.grpBoxUserInfo.Name = "grpBoxUserInfo";
-            this.grpBoxUserInfo.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.grpBoxUserInfo.Size = new System.Drawing.Size(296, 210);
+            this.grpBoxUserInfo.Padding = new System.Windows.Forms.Padding(2);
+            this.grpBoxUserInfo.Size = new System.Drawing.Size(222, 171);
             this.grpBoxUserInfo.TabIndex = 28;
             this.grpBoxUserInfo.TabStop = false;
             this.grpBoxUserInfo.Text = "User Information";
@@ -242,100 +243,89 @@
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(7, 32);
-            this.lblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblName.Location = new System.Drawing.Point(5, 26);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(45, 17);
+            this.lblName.Size = new System.Drawing.Size(35, 13);
             this.lblName.TabIndex = 20;
             this.lblName.Text = "Name";
             // 
             // txtBoxAddress
             // 
             this.txtBoxAddress.AcceptsReturn = true;
-            this.txtBoxAddress.Location = new System.Drawing.Point(108, 154);
-            this.txtBoxAddress.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxAddress.Location = new System.Drawing.Point(81, 125);
             this.txtBoxAddress.Name = "txtBoxAddress";
-            this.txtBoxAddress.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxAddress.Size = new System.Drawing.Size(120, 20);
             this.txtBoxAddress.TabIndex = 27;
             // 
             // lblAddress
             // 
             this.lblAddress.AutoSize = true;
-            this.lblAddress.Location = new System.Drawing.Point(7, 158);
-            this.lblAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAddress.Location = new System.Drawing.Point(5, 128);
             this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(60, 17);
+            this.lblAddress.Size = new System.Drawing.Size(45, 13);
             this.lblAddress.TabIndex = 26;
             this.lblAddress.Text = "Address";
             // 
             // txtBoxPhone
             // 
-            this.txtBoxPhone.Location = new System.Drawing.Point(108, 124);
-            this.txtBoxPhone.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxPhone.Location = new System.Drawing.Point(81, 101);
             this.txtBoxPhone.Name = "txtBoxPhone";
-            this.txtBoxPhone.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxPhone.Size = new System.Drawing.Size(120, 20);
             this.txtBoxPhone.TabIndex = 25;
             // 
             // lblSurname
             // 
             this.lblSurname.AutoSize = true;
-            this.lblSurname.Location = new System.Drawing.Point(8, 64);
-            this.lblSurname.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSurname.Location = new System.Drawing.Point(6, 52);
             this.lblSurname.Name = "lblSurname";
-            this.lblSurname.Size = new System.Drawing.Size(65, 17);
+            this.lblSurname.Size = new System.Drawing.Size(49, 13);
             this.lblSurname.TabIndex = 18;
             this.lblSurname.Text = "Surname";
             // 
             // lblPhone
             // 
             this.lblPhone.AutoSize = true;
-            this.lblPhone.Location = new System.Drawing.Point(5, 127);
-            this.lblPhone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPhone.Location = new System.Drawing.Point(4, 103);
             this.lblPhone.Name = "lblPhone";
-            this.lblPhone.Size = new System.Drawing.Size(49, 17);
+            this.lblPhone.Size = new System.Drawing.Size(38, 13);
             this.lblPhone.TabIndex = 24;
             this.lblPhone.Text = "Phone";
             // 
             // txtBoxSurname
             // 
-            this.txtBoxSurname.Location = new System.Drawing.Point(109, 59);
-            this.txtBoxSurname.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxSurname.Location = new System.Drawing.Point(82, 48);
             this.txtBoxSurname.Name = "txtBoxSurname";
-            this.txtBoxSurname.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxSurname.Size = new System.Drawing.Size(120, 20);
             this.txtBoxSurname.TabIndex = 19;
             // 
             // txtBoxEmail
             // 
-            this.txtBoxEmail.Location = new System.Drawing.Point(108, 94);
-            this.txtBoxEmail.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxEmail.Location = new System.Drawing.Point(81, 76);
             this.txtBoxEmail.Name = "txtBoxEmail";
-            this.txtBoxEmail.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxEmail.Size = new System.Drawing.Size(120, 20);
             this.txtBoxEmail.TabIndex = 23;
             // 
             // txtBoxName
             // 
-            this.txtBoxName.Location = new System.Drawing.Point(109, 30);
-            this.txtBoxName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxName.Location = new System.Drawing.Point(82, 24);
             this.txtBoxName.Name = "txtBoxName";
-            this.txtBoxName.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxName.Size = new System.Drawing.Size(120, 20);
             this.txtBoxName.TabIndex = 21;
             // 
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(5, 97);
-            this.lblEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblEmail.Location = new System.Drawing.Point(4, 79);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(42, 17);
+            this.lblEmail.Size = new System.Drawing.Size(32, 13);
             this.lblEmail.TabIndex = 22;
             this.lblEmail.Text = "Email";
             // 
             // btnCreateUser
             // 
-            this.btnCreateUser.Location = new System.Drawing.Point(248, 332);
-            this.btnCreateUser.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCreateUser.Location = new System.Drawing.Point(186, 270);
             this.btnCreateUser.Name = "btnCreateUser";
-            this.btnCreateUser.Size = new System.Drawing.Size(100, 28);
+            this.btnCreateUser.Size = new System.Drawing.Size(75, 23);
             this.btnCreateUser.TabIndex = 10;
             this.btnCreateUser.Text = "Create";
             this.btnCreateUser.UseVisualStyleBackColor = true;
@@ -343,50 +333,44 @@
             // 
             // txtBoxPass
             // 
-            this.txtBoxPass.Location = new System.Drawing.Point(108, 70);
-            this.txtBoxPass.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxPass.Location = new System.Drawing.Point(81, 57);
             this.txtBoxPass.Name = "txtBoxPass";
-            this.txtBoxPass.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxPass.Size = new System.Drawing.Size(120, 20);
             this.txtBoxPass.TabIndex = 15;
             // 
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(5, 73);
-            this.lblPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPassword.Location = new System.Drawing.Point(4, 59);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(69, 17);
+            this.lblPassword.Size = new System.Drawing.Size(53, 13);
             this.lblPassword.TabIndex = 14;
             this.lblPassword.Text = "Password";
             // 
             // txtBoxLogin
             // 
-            this.txtBoxLogin.Location = new System.Drawing.Point(109, 43);
-            this.txtBoxLogin.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxLogin.Location = new System.Drawing.Point(82, 35);
             this.txtBoxLogin.Name = "txtBoxLogin";
-            this.txtBoxLogin.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxLogin.Size = new System.Drawing.Size(120, 20);
             this.txtBoxLogin.TabIndex = 13;
             // 
             // lblLogin
             // 
             this.lblLogin.AutoSize = true;
-            this.lblLogin.Location = new System.Drawing.Point(7, 46);
-            this.lblLogin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblLogin.Location = new System.Drawing.Point(5, 37);
             this.lblLogin.Name = "lblLogin";
-            this.lblLogin.Size = new System.Drawing.Size(43, 17);
+            this.lblLogin.Size = new System.Drawing.Size(33, 13);
             this.lblLogin.TabIndex = 12;
             this.lblLogin.Text = "Login";
             // 
             // lblRole
             // 
             this.lblRole.AutoSize = true;
-            this.lblRole.Location = new System.Drawing.Point(7, 16);
-            this.lblRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRole.Location = new System.Drawing.Point(5, 13);
             this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(37, 17);
+            this.lblRole.Size = new System.Drawing.Size(29, 13);
             this.lblRole.TabIndex = 5;
             this.lblRole.Text = "Role";
-            this.lblRole.Click += new System.EventHandler(this.lblSitemngr_Click);
             // 
             // cboRole
             // 
@@ -396,44 +380,53 @@
             "Project Manager",
             "Site Manager",
             "Worker"});
-            this.cboRole.Location = new System.Drawing.Point(108, 11);
-            this.cboRole.Margin = new System.Windows.Forms.Padding(4);
+            this.cboRole.Location = new System.Drawing.Point(81, 9);
             this.cboRole.Name = "cboRole";
-            this.cboRole.Size = new System.Drawing.Size(160, 24);
+            this.cboRole.Size = new System.Drawing.Size(121, 21);
             this.cboRole.TabIndex = 4;
-            this.cboRole.SelectedIndexChanged += new System.EventHandler(this.cboRole_SelectedIndexChanged);
             // 
             // tabProject
             // 
+            this.tabProject.Controls.Add(this.btnClearAllProjects);
             this.tabProject.Controls.Add(this.lblPStatus);
             this.tabProject.Controls.Add(this.btnUpdateProject);
             this.tabProject.Controls.Add(this.btnDeleteProject);
             this.tabProject.Controls.Add(this.btnCreateProject);
             this.tabProject.Controls.Add(this.groupBoxProject);
             this.tabProject.Controls.Add(this.groupBoxSearch);
-            this.tabProject.Location = new System.Drawing.Point(4, 25);
-            this.tabProject.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabProject.Location = new System.Drawing.Point(4, 22);
+            this.tabProject.Margin = new System.Windows.Forms.Padding(2);
             this.tabProject.Name = "tabProject";
-            this.tabProject.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabProject.Size = new System.Drawing.Size(652, 417);
+            this.tabProject.Padding = new System.Windows.Forms.Padding(2);
+            this.tabProject.Size = new System.Drawing.Size(617, 336);
             this.tabProject.TabIndex = 1;
             this.tabProject.Text = "Project";
             this.tabProject.UseVisualStyleBackColor = true;
             // 
+            // btnClearAllProjects
+            // 
+            this.btnClearAllProjects.Location = new System.Drawing.Point(112, 275);
+            this.btnClearAllProjects.Name = "btnClearAllProjects";
+            this.btnClearAllProjects.Size = new System.Drawing.Size(75, 23);
+            this.btnClearAllProjects.TabIndex = 40;
+            this.btnClearAllProjects.Text = "Clear All";
+            this.btnClearAllProjects.UseVisualStyleBackColor = true;
+            this.btnClearAllProjects.Click += new System.EventHandler(this.btnClearAllProjects_Click);
+            // 
             // lblPStatus
             // 
             this.lblPStatus.AutoSize = true;
-            this.lblPStatus.Location = new System.Drawing.Point(11, 330);
+            this.lblPStatus.Location = new System.Drawing.Point(8, 268);
+            this.lblPStatus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPStatus.Name = "lblPStatus";
-            this.lblPStatus.Size = new System.Drawing.Size(0, 17);
+            this.lblPStatus.Size = new System.Drawing.Size(0, 13);
             this.lblPStatus.TabIndex = 39;
             // 
             // btnUpdateProject
             // 
-            this.btnUpdateProject.Location = new System.Drawing.Point(365, 338);
-            this.btnUpdateProject.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUpdateProject.Location = new System.Drawing.Point(274, 276);
             this.btnUpdateProject.Name = "btnUpdateProject";
-            this.btnUpdateProject.Size = new System.Drawing.Size(100, 28);
+            this.btnUpdateProject.Size = new System.Drawing.Size(75, 23);
             this.btnUpdateProject.TabIndex = 38;
             this.btnUpdateProject.Text = "Update";
             this.btnUpdateProject.UseVisualStyleBackColor = true;
@@ -442,20 +435,19 @@
             // btnDeleteProject
             // 
             this.btnDeleteProject.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnDeleteProject.Location = new System.Drawing.Point(473, 338);
-            this.btnDeleteProject.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteProject.Location = new System.Drawing.Point(355, 275);
             this.btnDeleteProject.Name = "btnDeleteProject";
-            this.btnDeleteProject.Size = new System.Drawing.Size(100, 28);
+            this.btnDeleteProject.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteProject.TabIndex = 37;
             this.btnDeleteProject.Text = "Delete";
             this.btnDeleteProject.UseVisualStyleBackColor = true;
+            this.btnDeleteProject.Click += new System.EventHandler(this.btnDeleteProject_Click);
             // 
             // btnCreateProject
             // 
-            this.btnCreateProject.Location = new System.Drawing.Point(257, 338);
-            this.btnCreateProject.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCreateProject.Location = new System.Drawing.Point(193, 275);
             this.btnCreateProject.Name = "btnCreateProject";
-            this.btnCreateProject.Size = new System.Drawing.Size(100, 28);
+            this.btnCreateProject.Size = new System.Drawing.Size(75, 23);
             this.btnCreateProject.TabIndex = 35;
             this.btnCreateProject.Text = "Create";
             this.btnCreateProject.UseVisualStyleBackColor = true;
@@ -463,75 +455,106 @@
             // 
             // groupBoxProject
             // 
+            this.groupBoxProject.Controls.Add(this.lblMngrID);
+            this.groupBoxProject.Controls.Add(this.lblPMngrIDValue);
+            this.groupBoxProject.Controls.Add(this.lblID);
+            this.groupBoxProject.Controls.Add(this.lblProjectIDValue);
             this.groupBoxProject.Controls.Add(this.lblPMName);
             this.groupBoxProject.Controls.Add(this.lblProjectAAddress);
             this.groupBoxProject.Controls.Add(this.cboPM);
             this.groupBoxProject.Controls.Add(this.txtBoxPAddress);
             this.groupBoxProject.Controls.Add(this.txtBoxPMName);
             this.groupBoxProject.Controls.Add(this.lblProjectName);
-            this.groupBoxProject.Location = new System.Drawing.Point(11, 22);
-            this.groupBoxProject.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBoxProject.Location = new System.Drawing.Point(8, 18);
+            this.groupBoxProject.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxProject.Name = "groupBoxProject";
-            this.groupBoxProject.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxProject.Size = new System.Drawing.Size(291, 290);
+            this.groupBoxProject.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBoxProject.Size = new System.Drawing.Size(218, 236);
             this.groupBoxProject.TabIndex = 32;
             this.groupBoxProject.TabStop = false;
             this.groupBoxProject.Text = "Project Information";
             // 
+            // lblMngrID
+            // 
+            this.lblMngrID.AutoSize = true;
+            this.lblMngrID.Location = new System.Drawing.Point(0, 69);
+            this.lblMngrID.Name = "lblMngrID";
+            this.lblMngrID.Size = new System.Drawing.Size(99, 13);
+            this.lblMngrID.TabIndex = 33;
+            this.lblMngrID.Text = "Project Manager ID";
+            // 
+            // lblPMngrIDValue
+            // 
+            this.lblPMngrIDValue.AutoSize = true;
+            this.lblPMngrIDValue.Location = new System.Drawing.Point(122, 70);
+            this.lblPMngrIDValue.Name = "lblPMngrIDValue";
+            this.lblPMngrIDValue.Size = new System.Drawing.Size(0, 13);
+            this.lblPMngrIDValue.TabIndex = 32;
+            // 
+            // lblID
+            // 
+            this.lblID.AutoSize = true;
+            this.lblID.Location = new System.Drawing.Point(6, 19);
+            this.lblID.Name = "lblID";
+            this.lblID.Size = new System.Drawing.Size(18, 13);
+            this.lblID.TabIndex = 31;
+            this.lblID.Text = "ID";
+            // 
+            // lblProjectIDValue
+            // 
+            this.lblProjectIDValue.AutoSize = true;
+            this.lblProjectIDValue.Location = new System.Drawing.Point(119, 19);
+            this.lblProjectIDValue.Name = "lblProjectIDValue";
+            this.lblProjectIDValue.Size = new System.Drawing.Size(0, 13);
+            this.lblProjectIDValue.TabIndex = 30;
+            // 
             // lblPMName
             // 
             this.lblPMName.AutoSize = true;
-            this.lblPMName.Location = new System.Drawing.Point(1, 65);
-            this.lblPMName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPMName.Location = new System.Drawing.Point(1, 88);
             this.lblPMName.Name = "lblPMName";
-            this.lblPMName.Size = new System.Drawing.Size(113, 17);
+            this.lblPMName.Size = new System.Drawing.Size(86, 13);
             this.lblPMName.TabIndex = 29;
             this.lblPMName.Text = "Rroject Manager";
             // 
             // lblProjectAAddress
             // 
             this.lblProjectAAddress.AutoSize = true;
-            this.lblProjectAAddress.Location = new System.Drawing.Point(1, 97);
-            this.lblProjectAAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblProjectAAddress.Location = new System.Drawing.Point(1, 114);
             this.lblProjectAAddress.Name = "lblProjectAAddress";
-            this.lblProjectAAddress.Size = new System.Drawing.Size(108, 17);
+            this.lblProjectAAddress.Size = new System.Drawing.Size(81, 13);
             this.lblProjectAAddress.TabIndex = 24;
             this.lblProjectAAddress.Text = "Project Address";
             // 
             // cboPM
             // 
             this.cboPM.FormattingEnabled = true;
-            this.cboPM.Location = new System.Drawing.Point(125, 66);
-            this.cboPM.Margin = new System.Windows.Forms.Padding(4);
+            this.cboPM.Location = new System.Drawing.Point(94, 89);
             this.cboPM.Name = "cboPM";
-            this.cboPM.Size = new System.Drawing.Size(160, 24);
+            this.cboPM.Size = new System.Drawing.Size(121, 21);
             this.cboPM.TabIndex = 28;
-            this.cboPM.SelectedIndexChanged += new System.EventHandler(this.cboPM_SelectedIndexChanged);
+            this.cboPM.DropDownClosed += new System.EventHandler(this.cboPM_DropDownClosed);
             // 
             // txtBoxPAddress
             // 
-            this.txtBoxPAddress.Location = new System.Drawing.Point(125, 95);
-            this.txtBoxPAddress.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxPAddress.Location = new System.Drawing.Point(94, 112);
             this.txtBoxPAddress.Name = "txtBoxPAddress";
-            this.txtBoxPAddress.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxPAddress.Size = new System.Drawing.Size(120, 20);
             this.txtBoxPAddress.TabIndex = 25;
             // 
             // txtBoxPMName
             // 
-            this.txtBoxPMName.Location = new System.Drawing.Point(125, 33);
-            this.txtBoxPMName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxPMName.Location = new System.Drawing.Point(94, 43);
             this.txtBoxPMName.Name = "txtBoxPMName";
-            this.txtBoxPMName.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxPMName.Size = new System.Drawing.Size(120, 20);
             this.txtBoxPMName.TabIndex = 27;
-            this.txtBoxPMName.TextChanged += new System.EventHandler(this.txtBoxPMName_TextChanged);
             // 
             // lblProjectName
             // 
             this.lblProjectName.AutoSize = true;
-            this.lblProjectName.Location = new System.Drawing.Point(0, 33);
-            this.lblProjectName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblProjectName.Location = new System.Drawing.Point(0, 43);
             this.lblProjectName.Name = "lblProjectName";
-            this.lblProjectName.Size = new System.Drawing.Size(93, 17);
+            this.lblProjectName.Size = new System.Drawing.Size(71, 13);
             this.lblProjectName.TabIndex = 26;
             this.lblProjectName.Text = "Project Name";
             // 
@@ -540,21 +563,21 @@
             this.groupBoxSearch.Controls.Add(this.btnShowAllProjects);
             this.groupBoxSearch.Controls.Add(this.txtBoxSearchP);
             this.groupBoxSearch.Controls.Add(this.dgdViewProject);
-            this.groupBoxSearch.Location = new System.Drawing.Point(308, 22);
-            this.groupBoxSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBoxSearch.Location = new System.Drawing.Point(231, 18);
+            this.groupBoxSearch.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxSearch.Name = "groupBoxSearch";
-            this.groupBoxSearch.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxSearch.Size = new System.Drawing.Size(263, 290);
+            this.groupBoxSearch.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBoxSearch.Size = new System.Drawing.Size(357, 236);
             this.groupBoxSearch.TabIndex = 31;
             this.groupBoxSearch.TabStop = false;
             this.groupBoxSearch.Text = "Search by Project Name";
             // 
             // btnShowAllProjects
             // 
-            this.btnShowAllProjects.Location = new System.Drawing.Point(181, 30);
-            this.btnShowAllProjects.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnShowAllProjects.Location = new System.Drawing.Point(136, 24);
+            this.btnShowAllProjects.Margin = new System.Windows.Forms.Padding(2);
             this.btnShowAllProjects.Name = "btnShowAllProjects";
-            this.btnShowAllProjects.Size = new System.Drawing.Size(75, 23);
+            this.btnShowAllProjects.Size = new System.Drawing.Size(56, 19);
             this.btnShowAllProjects.TabIndex = 33;
             this.btnShowAllProjects.Text = "Show All";
             this.btnShowAllProjects.UseVisualStyleBackColor = true;
@@ -562,24 +585,22 @@
             // 
             // txtBoxSearchP
             // 
-            this.txtBoxSearchP.Location = new System.Drawing.Point(7, 32);
-            this.txtBoxSearchP.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxSearchP.Location = new System.Drawing.Point(5, 26);
             this.txtBoxSearchP.Name = "txtBoxSearchP";
-            this.txtBoxSearchP.Size = new System.Drawing.Size(167, 22);
+            this.txtBoxSearchP.Size = new System.Drawing.Size(126, 20);
             this.txtBoxSearchP.TabIndex = 32;
             this.txtBoxSearchP.TextChanged += new System.EventHandler(this.txtBoxSearchP_TextChanged);
             // 
             // dgdViewProject
             // 
             this.dgdViewProject.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgdViewProject.Location = new System.Drawing.Point(7, 65);
-            this.dgdViewProject.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgdViewProject.Location = new System.Drawing.Point(5, 53);
+            this.dgdViewProject.Margin = new System.Windows.Forms.Padding(2);
             this.dgdViewProject.Name = "dgdViewProject";
             this.dgdViewProject.RowTemplate.Height = 24;
-            this.dgdViewProject.Size = new System.Drawing.Size(251, 220);
+            this.dgdViewProject.Size = new System.Drawing.Size(348, 179);
             this.dgdViewProject.TabIndex = 30;
             this.dgdViewProject.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProject_CellClick);
-            this.dgdViewProject.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgdViewProject_CellContentClick);
             // 
             // tabSite
             // 
@@ -589,11 +610,11 @@
             this.tabSite.Controls.Add(this.grpBoxSiteName);
             this.tabSite.Controls.Add(this.grpBoxSiteInfo);
             this.tabSite.Controls.Add(this.btnCreateSite);
-            this.tabSite.Location = new System.Drawing.Point(4, 25);
-            this.tabSite.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabSite.Location = new System.Drawing.Point(4, 22);
+            this.tabSite.Margin = new System.Windows.Forms.Padding(2);
             this.tabSite.Name = "tabSite";
-            this.tabSite.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabSite.Size = new System.Drawing.Size(652, 417);
+            this.tabSite.Padding = new System.Windows.Forms.Padding(2);
+            this.tabSite.Size = new System.Drawing.Size(617, 336);
             this.tabSite.TabIndex = 2;
             this.tabSite.Text = "Site";
             this.tabSite.UseVisualStyleBackColor = true;
@@ -601,17 +622,17 @@
             // lblSiteStatus
             // 
             this.lblSiteStatus.AutoSize = true;
-            this.lblSiteStatus.Location = new System.Drawing.Point(11, 330);
+            this.lblSiteStatus.Location = new System.Drawing.Point(8, 268);
+            this.lblSiteStatus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSiteStatus.Name = "lblSiteStatus";
-            this.lblSiteStatus.Size = new System.Drawing.Size(0, 17);
+            this.lblSiteStatus.Size = new System.Drawing.Size(0, 13);
             this.lblSiteStatus.TabIndex = 39;
             // 
             // btnUpdateSite
             // 
-            this.btnUpdateSite.Location = new System.Drawing.Point(363, 345);
-            this.btnUpdateSite.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUpdateSite.Location = new System.Drawing.Point(272, 280);
             this.btnUpdateSite.Name = "btnUpdateSite";
-            this.btnUpdateSite.Size = new System.Drawing.Size(100, 28);
+            this.btnUpdateSite.Size = new System.Drawing.Size(75, 23);
             this.btnUpdateSite.TabIndex = 38;
             this.btnUpdateSite.Text = "Update";
             this.btnUpdateSite.UseVisualStyleBackColor = true;
@@ -620,10 +641,9 @@
             // btnDeleteSite
             // 
             this.btnDeleteSite.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnDeleteSite.Location = new System.Drawing.Point(469, 345);
-            this.btnDeleteSite.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteSite.Location = new System.Drawing.Point(352, 280);
             this.btnDeleteSite.Name = "btnDeleteSite";
-            this.btnDeleteSite.Size = new System.Drawing.Size(100, 28);
+            this.btnDeleteSite.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteSite.TabIndex = 37;
             this.btnDeleteSite.Text = "Delete";
             this.btnDeleteSite.UseVisualStyleBackColor = true;
@@ -633,21 +653,21 @@
             this.grpBoxSiteName.Controls.Add(this.btnShowAllSites);
             this.grpBoxSiteName.Controls.Add(this.txtBoxSiteSearch);
             this.grpBoxSiteName.Controls.Add(this.dgdVieSite);
-            this.grpBoxSiteName.Location = new System.Drawing.Point(305, 28);
-            this.grpBoxSiteName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.grpBoxSiteName.Location = new System.Drawing.Point(229, 23);
+            this.grpBoxSiteName.Margin = new System.Windows.Forms.Padding(2);
             this.grpBoxSiteName.Name = "grpBoxSiteName";
-            this.grpBoxSiteName.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.grpBoxSiteName.Size = new System.Drawing.Size(263, 286);
+            this.grpBoxSiteName.Padding = new System.Windows.Forms.Padding(2);
+            this.grpBoxSiteName.Size = new System.Drawing.Size(384, 232);
             this.grpBoxSiteName.TabIndex = 33;
             this.grpBoxSiteName.TabStop = false;
             this.grpBoxSiteName.Text = "Search by Site Name";
             // 
             // btnShowAllSites
             // 
-            this.btnShowAllSites.Location = new System.Drawing.Point(181, 30);
-            this.btnShowAllSites.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnShowAllSites.Location = new System.Drawing.Point(136, 24);
+            this.btnShowAllSites.Margin = new System.Windows.Forms.Padding(2);
             this.btnShowAllSites.Name = "btnShowAllSites";
-            this.btnShowAllSites.Size = new System.Drawing.Size(75, 23);
+            this.btnShowAllSites.Size = new System.Drawing.Size(56, 19);
             this.btnShowAllSites.TabIndex = 33;
             this.btnShowAllSites.Text = "Show All";
             this.btnShowAllSites.UseVisualStyleBackColor = true;
@@ -655,21 +675,20 @@
             // 
             // txtBoxSiteSearch
             // 
-            this.txtBoxSiteSearch.Location = new System.Drawing.Point(7, 32);
-            this.txtBoxSiteSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxSiteSearch.Location = new System.Drawing.Point(5, 26);
             this.txtBoxSiteSearch.Name = "txtBoxSiteSearch";
-            this.txtBoxSiteSearch.Size = new System.Drawing.Size(167, 22);
+            this.txtBoxSiteSearch.Size = new System.Drawing.Size(126, 20);
             this.txtBoxSiteSearch.TabIndex = 32;
             this.txtBoxSiteSearch.TextChanged += new System.EventHandler(this.txtBoxSiteSearch_TextChanged);
             // 
             // dgdVieSite
             // 
             this.dgdVieSite.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgdVieSite.Location = new System.Drawing.Point(5, 64);
-            this.dgdVieSite.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgdVieSite.Location = new System.Drawing.Point(4, 52);
+            this.dgdVieSite.Margin = new System.Windows.Forms.Padding(2);
             this.dgdVieSite.Name = "dgdVieSite";
             this.dgdVieSite.RowTemplate.Height = 24;
-            this.dgdVieSite.Size = new System.Drawing.Size(251, 215);
+            this.dgdVieSite.Size = new System.Drawing.Size(376, 175);
             this.dgdVieSite.TabIndex = 30;
             this.dgdVieSite.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgdVieSite_CellClick);
             // 
@@ -683,11 +702,11 @@
             this.grpBoxSiteInfo.Controls.Add(this.txtBoxSiteAddress);
             this.grpBoxSiteInfo.Controls.Add(this.txtBoxSiteName);
             this.grpBoxSiteInfo.Controls.Add(this.lblSiteName);
-            this.grpBoxSiteInfo.Location = new System.Drawing.Point(8, 28);
-            this.grpBoxSiteInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.grpBoxSiteInfo.Location = new System.Drawing.Point(6, 23);
+            this.grpBoxSiteInfo.Margin = new System.Windows.Forms.Padding(2);
             this.grpBoxSiteInfo.Name = "grpBoxSiteInfo";
-            this.grpBoxSiteInfo.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.grpBoxSiteInfo.Size = new System.Drawing.Size(291, 286);
+            this.grpBoxSiteInfo.Padding = new System.Windows.Forms.Padding(2);
+            this.grpBoxSiteInfo.Size = new System.Drawing.Size(218, 232);
             this.grpBoxSiteInfo.TabIndex = 34;
             this.grpBoxSiteInfo.TabStop = false;
             this.grpBoxSiteInfo.Text = "Site Information";
@@ -695,86 +714,74 @@
             // lblProject
             // 
             this.lblProject.AutoSize = true;
-            this.lblProject.Location = new System.Drawing.Point(0, 33);
-            this.lblProject.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblProject.Location = new System.Drawing.Point(0, 27);
             this.lblProject.Name = "lblProject";
-            this.lblProject.Size = new System.Drawing.Size(52, 17);
+            this.lblProject.Size = new System.Drawing.Size(40, 13);
             this.lblProject.TabIndex = 31;
             this.lblProject.Text = "Project";
             // 
             // cboProject
             // 
             this.cboProject.FormattingEnabled = true;
-            this.cboProject.Location = new System.Drawing.Point(123, 30);
-            this.cboProject.Margin = new System.Windows.Forms.Padding(4);
+            this.cboProject.Location = new System.Drawing.Point(92, 24);
             this.cboProject.Name = "cboProject";
-            this.cboProject.Size = new System.Drawing.Size(160, 24);
+            this.cboProject.Size = new System.Drawing.Size(121, 21);
             this.cboProject.TabIndex = 30;
-            this.cboProject.SelectedIndexChanged += new System.EventHandler(this.cboProject_SelectedIndexChanged);
             // 
             // lblSiteManager
             // 
             this.lblSiteManager.AutoSize = true;
-            this.lblSiteManager.Location = new System.Drawing.Point(-1, 66);
-            this.lblSiteManager.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSiteManager.Location = new System.Drawing.Point(-1, 54);
             this.lblSiteManager.Name = "lblSiteManager";
-            this.lblSiteManager.Size = new System.Drawing.Size(92, 17);
+            this.lblSiteManager.Size = new System.Drawing.Size(70, 13);
             this.lblSiteManager.TabIndex = 29;
             this.lblSiteManager.Text = "Site Manager";
             // 
             // lblSiteAddress
             // 
             this.lblSiteAddress.AutoSize = true;
-            this.lblSiteAddress.Location = new System.Drawing.Point(-1, 128);
-            this.lblSiteAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSiteAddress.Location = new System.Drawing.Point(-1, 104);
             this.lblSiteAddress.Name = "lblSiteAddress";
-            this.lblSiteAddress.Size = new System.Drawing.Size(88, 17);
+            this.lblSiteAddress.Size = new System.Drawing.Size(66, 13);
             this.lblSiteAddress.TabIndex = 24;
             this.lblSiteAddress.Text = "Site Address";
             // 
             // cboSiteManager
             // 
             this.cboSiteManager.FormattingEnabled = true;
-            this.cboSiteManager.Location = new System.Drawing.Point(123, 64);
-            this.cboSiteManager.Margin = new System.Windows.Forms.Padding(4);
+            this.cboSiteManager.Location = new System.Drawing.Point(92, 52);
             this.cboSiteManager.Name = "cboSiteManager";
-            this.cboSiteManager.Size = new System.Drawing.Size(160, 24);
+            this.cboSiteManager.Size = new System.Drawing.Size(121, 21);
             this.cboSiteManager.TabIndex = 28;
             // 
             // txtBoxSiteAddress
             // 
-            this.txtBoxSiteAddress.Location = new System.Drawing.Point(123, 126);
-            this.txtBoxSiteAddress.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxSiteAddress.Location = new System.Drawing.Point(92, 102);
             this.txtBoxSiteAddress.Name = "txtBoxSiteAddress";
-            this.txtBoxSiteAddress.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxSiteAddress.Size = new System.Drawing.Size(120, 20);
             this.txtBoxSiteAddress.TabIndex = 25;
             // 
             // txtBoxSiteName
             // 
-            this.txtBoxSiteName.Location = new System.Drawing.Point(123, 96);
-            this.txtBoxSiteName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxSiteName.Location = new System.Drawing.Point(92, 78);
             this.txtBoxSiteName.Name = "txtBoxSiteName";
-            this.txtBoxSiteName.Size = new System.Drawing.Size(159, 22);
+            this.txtBoxSiteName.Size = new System.Drawing.Size(120, 20);
             this.txtBoxSiteName.TabIndex = 27;
-            this.txtBoxSiteName.TextChanged += new System.EventHandler(this.txtBoxSiteName_TextChanged);
             // 
             // lblSiteName
             // 
             this.lblSiteName.AutoSize = true;
-            this.lblSiteName.Location = new System.Drawing.Point(-1, 96);
-            this.lblSiteName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSiteName.Location = new System.Drawing.Point(-1, 78);
             this.lblSiteName.Name = "lblSiteName";
-            this.lblSiteName.Size = new System.Drawing.Size(73, 17);
+            this.lblSiteName.Size = new System.Drawing.Size(56, 13);
             this.lblSiteName.TabIndex = 26;
             this.lblSiteName.Text = "Site Name";
-            this.lblSiteName.Click += new System.EventHandler(this.lblSiteName_Click);
             // 
             // btnCreateSite
             // 
-            this.btnCreateSite.Location = new System.Drawing.Point(253, 345);
-            this.btnCreateSite.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCreateSite.Location = new System.Drawing.Point(190, 280);
             this.btnCreateSite.Name = "btnCreateSite";
-            this.btnCreateSite.Size = new System.Drawing.Size(100, 28);
+            this.btnCreateSite.Size = new System.Drawing.Size(75, 23);
             this.btnCreateSite.TabIndex = 35;
             this.btnCreateSite.Text = "Create";
             this.btnCreateSite.UseVisualStyleBackColor = true;
@@ -782,15 +789,13 @@
             // 
             // frmRegistration
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 523);
+            this.ClientSize = new System.Drawing.Size(775, 425);
             this.Controls.Add(this.tabRegistration);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmRegistration";
             this.Text = "Registration";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Registration_Load);
             this.tabRegistration.ResumeLayout(false);
             this.tabUser.ResumeLayout(false);
             this.tabUser.PerformLayout();
@@ -879,5 +884,10 @@
         private System.Windows.Forms.Label lblSiteStatus;
         private System.Windows.Forms.DataGridView dgdViewEmployee;
         private System.Windows.Forms.Button btnUpdateUser;
+        private System.Windows.Forms.Label lblID;
+        private System.Windows.Forms.Label lblProjectIDValue;
+        private System.Windows.Forms.Label lblMngrID;
+        private System.Windows.Forms.Label lblPMngrIDValue;
+        private System.Windows.Forms.Button btnClearAllProjects;
     }
 }
