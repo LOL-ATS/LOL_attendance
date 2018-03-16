@@ -58,13 +58,13 @@ namespace LOL_attendance
                             pnl.Controls["btnTimesheet"].Enabled = Enabled;
 
                             break;
-                            case 2:
+                            case 3:
                                 loginuser.userRole = userClass.userRoles.SiteManager;
                                 pnl.Controls["btnReg"].Enabled = false;
                                 pnl.Controls["btnTimesheet"].Enabled = Enabled;
 
                             break;
-                            case 3:
+                            case 2:
                                 loginuser.userRole = userClass.userRoles.ProjectManager;
                                 pnl.Controls["btnTimesheet"].Enabled = Enabled;
                                 pnl.Controls["btnReg"].Enabled = false;
