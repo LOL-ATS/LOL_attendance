@@ -93,10 +93,7 @@ namespace LOL_attendance
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+ 
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
@@ -104,9 +101,26 @@ namespace LOL_attendance
         }
       
         public int ID;
-        private void dataGridViewEmployee_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridViewEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = dgdViewEmployee.Rows[e.RowIndex];
+
+            
+            //DataTable dt = new DataTable();
+
+            conn = new SqlConnection(connstr);
+            cmd = new SqlCommand("SELECT name FROM role WHERE id =" + Convert.ToInt32(row.Cells["role_id"].Value.ToString()), conn);
+
+            conn.Open();
+            rdr = cmd.ExecuteReader();
+            string role_name="";
+            if (rdr.HasRows)
+            {
+                rdr.Read();
+                role_name = rdr.GetString(0);
+             }
+
+            conn.Close();
 
             ID = Convert.ToInt32(row.Cells["id"].Value);
             //need to add role
@@ -118,9 +132,10 @@ namespace LOL_attendance
             txtBoxEmail.Text = row.Cells["email"].Value.ToString();
             txtBoxPhone.Text = row.Cells["phone"].Value.ToString();
             txtBoxAddress.Text = row.Cells["address"].Value.ToString();
-            cboRole.Text = row.Cells["role_id"].Value.ToString();
-        }
-        
+            cboRole.Text = role_name.ToString();
+
+         }
+
         private void dataGridViewProject_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = dgdViewProject.Rows[e.RowIndex];
@@ -150,11 +165,6 @@ namespace LOL_attendance
         }
 
         private void txtBoxSiteName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
         {
 
         }
@@ -207,6 +217,16 @@ namespace LOL_attendance
                 lblUserStatus.Text = "Successfuly added";
             }
             conn.Close();
+
+            //Clear fields after Creating the User
+            txtBoxLogin.Clear();
+            txtBoxPass.Clear();
+            txtBoxName.Clear();
+            txtBoxSurname.Clear();
+            txtBoxEmail.Clear();
+            txtBoxPhone.Clear();
+            txtBoxAddress.Clear();
+            cboRole.SelectedIndex = -1;
         }
 
         private void tabUser_Click(object sender, EventArgs e)
@@ -451,6 +471,28 @@ namespace LOL_attendance
                 lblUserStatus.Text = "Successfully Updated";
             }
             conn.Close();
+        }
+
+        private void btnDeleteUser_Click(object sender, EventArgs e)
+        {
+            conn = new SqlConnection(connstr);
+            cmd = new SqlCommand("Update employee Set isActive='FALSE' where login=@login", conn);
+
+            cmd.Parameters.AddWithValue("@login", txtBoxLogin.Text);
+
+            conn.Open();
+            if (cmd.ExecuteNonQuery() == 1)
+            {
+                ShowAll();
+                lblUserStatus.ForeColor = System.Drawing.Color.Green;
+                lblUserStatus.Text = "Successfully Deleted";
+            }
+            conn.Close();
+        }
+
+        private void cboRole_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
