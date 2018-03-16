@@ -32,9 +32,11 @@ namespace LOL_attendance
                 cmd.Parameters.AddWithValue("@username", txtUsername.Text);
                 cmd.Parameters.AddWithValue("@password", txtPassword.Text);
                 cmd.Connection.Open();
+            
                 SqlDataReader rdr = cmd.ExecuteReader();
                 rdr.Read();
 
+                
                if (rdr.HasRows)
                 {
                     //user password is rigt so show controls 
@@ -87,7 +89,8 @@ namespace LOL_attendance
                     //Do to deal with failure……
                     MessageBox.Show("Username or password is wrong!");
                 }
-            
+                cmd.Connection.Close();
+
             }
         }
         private void login_Load(object sender, EventArgs e)
