@@ -144,7 +144,7 @@
             // btnUpdateUser
             // 
             this.btnUpdateUser.Location = new System.Drawing.Point(356, 332);
-            this.btnUpdateUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpdateUser.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateUser.Name = "btnUpdateUser";
             this.btnUpdateUser.Size = new System.Drawing.Size(100, 28);
             this.btnUpdateUser.TabIndex = 34;
@@ -164,7 +164,7 @@
             // 
             this.btnDeleteUser.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnDeleteUser.Location = new System.Drawing.Point(464, 332);
-            this.btnDeleteUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDeleteUser.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteUser.Name = "btnDeleteUser";
             this.btnDeleteUser.Size = new System.Drawing.Size(100, 28);
             this.btnDeleteUser.TabIndex = 14;
@@ -201,10 +201,11 @@
             // txtBoxSearchByID
             // 
             this.txtBoxSearchByID.Location = new System.Drawing.Point(7, 32);
-            this.txtBoxSearchByID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxSearchByID.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxSearchByID.Name = "txtBoxSearchByID";
             this.txtBoxSearchByID.Size = new System.Drawing.Size(167, 22);
             this.txtBoxSearchByID.TabIndex = 32;
+            this.txtBoxSearchByID.TextChanged += new System.EventHandler(this.txtBoxSearchByID_TextChanged);
             // 
             // dgdViewEmployee
             // 
@@ -252,7 +253,7 @@
             // 
             this.txtBoxAddress.AcceptsReturn = true;
             this.txtBoxAddress.Location = new System.Drawing.Point(108, 154);
-            this.txtBoxAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxAddress.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxAddress.Name = "txtBoxAddress";
             this.txtBoxAddress.Size = new System.Drawing.Size(159, 22);
             this.txtBoxAddress.TabIndex = 27;
@@ -270,7 +271,7 @@
             // txtBoxPhone
             // 
             this.txtBoxPhone.Location = new System.Drawing.Point(108, 124);
-            this.txtBoxPhone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxPhone.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxPhone.Name = "txtBoxPhone";
             this.txtBoxPhone.Size = new System.Drawing.Size(159, 22);
             this.txtBoxPhone.TabIndex = 25;
@@ -298,7 +299,7 @@
             // txtBoxSurname
             // 
             this.txtBoxSurname.Location = new System.Drawing.Point(109, 59);
-            this.txtBoxSurname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxSurname.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxSurname.Name = "txtBoxSurname";
             this.txtBoxSurname.Size = new System.Drawing.Size(159, 22);
             this.txtBoxSurname.TabIndex = 19;
@@ -306,7 +307,7 @@
             // txtBoxEmail
             // 
             this.txtBoxEmail.Location = new System.Drawing.Point(108, 94);
-            this.txtBoxEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxEmail.Name = "txtBoxEmail";
             this.txtBoxEmail.Size = new System.Drawing.Size(159, 22);
             this.txtBoxEmail.TabIndex = 23;
@@ -314,7 +315,7 @@
             // txtBoxName
             // 
             this.txtBoxName.Location = new System.Drawing.Point(109, 30);
-            this.txtBoxName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxName.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxName.Name = "txtBoxName";
             this.txtBoxName.Size = new System.Drawing.Size(159, 22);
             this.txtBoxName.TabIndex = 21;
@@ -332,7 +333,7 @@
             // btnCreateUser
             // 
             this.btnCreateUser.Location = new System.Drawing.Point(248, 332);
-            this.btnCreateUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCreateUser.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreateUser.Name = "btnCreateUser";
             this.btnCreateUser.Size = new System.Drawing.Size(100, 28);
             this.btnCreateUser.TabIndex = 10;
@@ -343,7 +344,7 @@
             // txtBoxPass
             // 
             this.txtBoxPass.Location = new System.Drawing.Point(108, 70);
-            this.txtBoxPass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxPass.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxPass.Name = "txtBoxPass";
             this.txtBoxPass.Size = new System.Drawing.Size(159, 22);
             this.txtBoxPass.TabIndex = 15;
@@ -361,7 +362,7 @@
             // txtBoxLogin
             // 
             this.txtBoxLogin.Location = new System.Drawing.Point(109, 43);
-            this.txtBoxLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxLogin.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxLogin.Name = "txtBoxLogin";
             this.txtBoxLogin.Size = new System.Drawing.Size(159, 22);
             this.txtBoxLogin.TabIndex = 13;
@@ -396,7 +397,7 @@
             "Site Manager",
             "Worker"});
             this.cboRole.Location = new System.Drawing.Point(108, 11);
-            this.cboRole.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboRole.Margin = new System.Windows.Forms.Padding(4);
             this.cboRole.Name = "cboRole";
             this.cboRole.Size = new System.Drawing.Size(160, 24);
             this.cboRole.TabIndex = 4;
@@ -430,7 +431,7 @@
             // btnUpdateProject
             // 
             this.btnUpdateProject.Location = new System.Drawing.Point(365, 338);
-            this.btnUpdateProject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpdateProject.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateProject.Name = "btnUpdateProject";
             this.btnUpdateProject.Size = new System.Drawing.Size(100, 28);
             this.btnUpdateProject.TabIndex = 38;
@@ -442,7 +443,7 @@
             // 
             this.btnDeleteProject.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnDeleteProject.Location = new System.Drawing.Point(473, 338);
-            this.btnDeleteProject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDeleteProject.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteProject.Name = "btnDeleteProject";
             this.btnDeleteProject.Size = new System.Drawing.Size(100, 28);
             this.btnDeleteProject.TabIndex = 37;
@@ -452,7 +453,7 @@
             // btnCreateProject
             // 
             this.btnCreateProject.Location = new System.Drawing.Point(257, 338);
-            this.btnCreateProject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCreateProject.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreateProject.Name = "btnCreateProject";
             this.btnCreateProject.Size = new System.Drawing.Size(100, 28);
             this.btnCreateProject.TabIndex = 35;
@@ -476,7 +477,6 @@
             this.groupBoxProject.TabIndex = 32;
             this.groupBoxProject.TabStop = false;
             this.groupBoxProject.Text = "Project Information";
-            this.groupBoxProject.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // lblPMName
             // 
@@ -502,7 +502,7 @@
             // 
             this.cboPM.FormattingEnabled = true;
             this.cboPM.Location = new System.Drawing.Point(125, 66);
-            this.cboPM.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboPM.Margin = new System.Windows.Forms.Padding(4);
             this.cboPM.Name = "cboPM";
             this.cboPM.Size = new System.Drawing.Size(160, 24);
             this.cboPM.TabIndex = 28;
@@ -511,7 +511,7 @@
             // txtBoxPAddress
             // 
             this.txtBoxPAddress.Location = new System.Drawing.Point(125, 95);
-            this.txtBoxPAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxPAddress.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxPAddress.Name = "txtBoxPAddress";
             this.txtBoxPAddress.Size = new System.Drawing.Size(159, 22);
             this.txtBoxPAddress.TabIndex = 25;
@@ -519,10 +519,11 @@
             // txtBoxPMName
             // 
             this.txtBoxPMName.Location = new System.Drawing.Point(125, 33);
-            this.txtBoxPMName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxPMName.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxPMName.Name = "txtBoxPMName";
             this.txtBoxPMName.Size = new System.Drawing.Size(159, 22);
             this.txtBoxPMName.TabIndex = 27;
+            this.txtBoxPMName.TextChanged += new System.EventHandler(this.txtBoxPMName_TextChanged);
             // 
             // lblProjectName
             // 
@@ -562,10 +563,11 @@
             // txtBoxSearchP
             // 
             this.txtBoxSearchP.Location = new System.Drawing.Point(7, 32);
-            this.txtBoxSearchP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxSearchP.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxSearchP.Name = "txtBoxSearchP";
             this.txtBoxSearchP.Size = new System.Drawing.Size(167, 22);
             this.txtBoxSearchP.TabIndex = 32;
+            this.txtBoxSearchP.TextChanged += new System.EventHandler(this.txtBoxSearchP_TextChanged);
             // 
             // dgdViewProject
             // 
@@ -576,7 +578,8 @@
             this.dgdViewProject.RowTemplate.Height = 24;
             this.dgdViewProject.Size = new System.Drawing.Size(251, 220);
             this.dgdViewProject.TabIndex = 30;
-            this.dgdViewProject.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProject_CellContentClick);
+            this.dgdViewProject.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProject_CellClick);
+            this.dgdViewProject.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgdViewProject_CellContentClick);
             // 
             // tabSite
             // 
@@ -606,7 +609,7 @@
             // btnUpdateSite
             // 
             this.btnUpdateSite.Location = new System.Drawing.Point(363, 345);
-            this.btnUpdateSite.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpdateSite.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateSite.Name = "btnUpdateSite";
             this.btnUpdateSite.Size = new System.Drawing.Size(100, 28);
             this.btnUpdateSite.TabIndex = 38;
@@ -618,7 +621,7 @@
             // 
             this.btnDeleteSite.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnDeleteSite.Location = new System.Drawing.Point(469, 345);
-            this.btnDeleteSite.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDeleteSite.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteSite.Name = "btnDeleteSite";
             this.btnDeleteSite.Size = new System.Drawing.Size(100, 28);
             this.btnDeleteSite.TabIndex = 37;
@@ -653,10 +656,11 @@
             // txtBoxSiteSearch
             // 
             this.txtBoxSiteSearch.Location = new System.Drawing.Point(7, 32);
-            this.txtBoxSiteSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxSiteSearch.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxSiteSearch.Name = "txtBoxSiteSearch";
             this.txtBoxSiteSearch.Size = new System.Drawing.Size(167, 22);
             this.txtBoxSiteSearch.TabIndex = 32;
+            this.txtBoxSiteSearch.TextChanged += new System.EventHandler(this.txtBoxSiteSearch_TextChanged);
             // 
             // dgdVieSite
             // 
@@ -667,7 +671,7 @@
             this.dgdVieSite.RowTemplate.Height = 24;
             this.dgdVieSite.Size = new System.Drawing.Size(251, 215);
             this.dgdVieSite.TabIndex = 30;
-            this.dgdVieSite.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgdVieSite_CellContentClick);
+            this.dgdVieSite.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgdVieSite_CellClick);
             // 
             // grpBoxSiteInfo
             // 
@@ -702,10 +706,11 @@
             // 
             this.cboProject.FormattingEnabled = true;
             this.cboProject.Location = new System.Drawing.Point(123, 30);
-            this.cboProject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboProject.Margin = new System.Windows.Forms.Padding(4);
             this.cboProject.Name = "cboProject";
             this.cboProject.Size = new System.Drawing.Size(160, 24);
             this.cboProject.TabIndex = 30;
+            this.cboProject.SelectedIndexChanged += new System.EventHandler(this.cboProject_SelectedIndexChanged);
             // 
             // lblSiteManager
             // 
@@ -731,7 +736,7 @@
             // 
             this.cboSiteManager.FormattingEnabled = true;
             this.cboSiteManager.Location = new System.Drawing.Point(123, 64);
-            this.cboSiteManager.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboSiteManager.Margin = new System.Windows.Forms.Padding(4);
             this.cboSiteManager.Name = "cboSiteManager";
             this.cboSiteManager.Size = new System.Drawing.Size(160, 24);
             this.cboSiteManager.TabIndex = 28;
@@ -739,7 +744,7 @@
             // txtBoxSiteAddress
             // 
             this.txtBoxSiteAddress.Location = new System.Drawing.Point(123, 126);
-            this.txtBoxSiteAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxSiteAddress.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxSiteAddress.Name = "txtBoxSiteAddress";
             this.txtBoxSiteAddress.Size = new System.Drawing.Size(159, 22);
             this.txtBoxSiteAddress.TabIndex = 25;
@@ -747,7 +752,7 @@
             // txtBoxSiteName
             // 
             this.txtBoxSiteName.Location = new System.Drawing.Point(123, 96);
-            this.txtBoxSiteName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBoxSiteName.Margin = new System.Windows.Forms.Padding(4);
             this.txtBoxSiteName.Name = "txtBoxSiteName";
             this.txtBoxSiteName.Size = new System.Drawing.Size(159, 22);
             this.txtBoxSiteName.TabIndex = 27;
@@ -767,7 +772,7 @@
             // btnCreateSite
             // 
             this.btnCreateSite.Location = new System.Drawing.Point(253, 345);
-            this.btnCreateSite.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCreateSite.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreateSite.Name = "btnCreateSite";
             this.btnCreateSite.Size = new System.Drawing.Size(100, 28);
             this.btnCreateSite.TabIndex = 35;
@@ -781,7 +786,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 523);
             this.Controls.Add(this.tabRegistration);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmRegistration";
             this.Text = "Registration";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

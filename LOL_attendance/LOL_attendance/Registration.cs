@@ -30,8 +30,7 @@ namespace LOL_attendance
             //Lana:
             //Fill in Project Manager dropdown with values from db
             conn = new SqlConnection(connstr);
-            //Need to add ASC list order
-            cmd = new SqlCommand("SELECT surname FROM employee e, role r WHERE e.role_id=r.id and r.name='Project Manager'", conn);
+            cmd = new SqlCommand("SELECT surname FROM employee e, role r WHERE e.role_id=r.id and r.name='Project Manager' ORDER BY surname ASC", conn);
 
             conn.Open();
             rdr = cmd.ExecuteReader();
@@ -48,8 +47,7 @@ namespace LOL_attendance
             //Lana:
             //Fill in Site Manager dropdown with values from db
             conn = new SqlConnection(connstr);
-            //Need to add ASC list order
-            cmd = new SqlCommand("SELECT e.surname FROM employee e, role r WHERE e.role_id=r.id and r.name='Site Manager'", conn);
+            cmd = new SqlCommand("SELECT e.surname FROM employee e, role r WHERE e.role_id=r.id and r.name='Site Manager' ORDER BY surname ASC", conn);
 
             conn.Open();
             rdr = cmd.ExecuteReader();
@@ -92,13 +90,6 @@ namespace LOL_attendance
         {
 
         }
-
- 
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
       
         public int ID;
         private void dataGridViewEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -107,7 +98,6 @@ namespace LOL_attendance
 
             
             //DataTable dt = new DataTable();
-
             conn = new SqlConnection(connstr);
             cmd = new SqlCommand("SELECT name FROM role WHERE id =" + Convert.ToInt32(row.Cells["role_id"].Value.ToString()), conn);
 
@@ -136,27 +126,71 @@ namespace LOL_attendance
 
          }
 
-        private void dataGridViewProject_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridViewProject_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = dgdViewProject.Rows[e.RowIndex];
 
+            conn = new SqlConnection(connstr);
+            cmd = new SqlCommand("SELECT surname FROM employee WHERE id =" + Convert.ToInt32(row.Cells["mngr_id"].Value.ToString()), conn);
+
+            conn.Open();
+            rdr = cmd.ExecuteReader();
+            string mngr_name = "";
+            if (rdr.HasRows)
+            {
+                rdr.Read();
+                mngr_name = rdr.GetString(0);
+            }
+
+            conn.Close();
+
             ID = Convert.ToInt32(row.Cells["id"].Value);
-            //need to add pm id
-            //need to add search by clicking on line but not on cell
             txtBoxPMName.Text = row.Cells["name"].Value.ToString();
             txtBoxPAddress.Text = row.Cells["address"].Value.ToString();
-            
+            cboPM.Text = mngr_name.ToString();
+
         }
 
-        private void dgdVieSite_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgdVieSite_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = dgdVieSite.Rows[e.RowIndex];
 
+            conn = new SqlConnection(connstr);
+            cmd = new SqlCommand("SELECT name FROM project WHERE id =" + Convert.ToInt32(row.Cells["proj_id"].Value.ToString()), conn);
+
+            conn.Open();
+            rdr = cmd.ExecuteReader();
+            string project_name = "";
+            if (rdr.HasRows)
+            {
+                rdr.Read();
+                project_name = rdr.GetString(0);
+            }
+
+            conn.Close();
+
+            conn = new SqlConnection(connstr);
+            cmd = new SqlCommand("SELECT surname FROM employee WHERE id =" + Convert.ToInt32(row.Cells["mngr_id"].Value.ToString()), conn);
+
+            conn.Open();
+            rdr = cmd.ExecuteReader();
+            string sitemng_name = "";
+            if (rdr.HasRows)
+            {
+                rdr.Read();
+                sitemng_name = rdr.GetString(0);
+            }
+
+            conn.Close();
+
             ID = Convert.ToInt32(row.Cells["id"].Value);
             //need to add pm id and mngr id
-            //need to add search by clicking on line but not on cell
             txtBoxSiteName.Text = row.Cells["name"].Value.ToString();
             txtBoxSiteAddress.Text = row.Cells["address"].Value.ToString();
+            cboProject.Text = project_name.ToString();
+            cboSiteManager.Text = sitemng_name.ToString();
+
+
         }
 
         private void lblSiteName_Click(object sender, EventArgs e)
@@ -169,15 +203,6 @@ namespace LOL_attendance
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-
-        }
 
         //Add fields clearness after clicking on the button Create 
         private void btnCreateUser_Click(object sender, EventArgs e)
@@ -214,7 +239,7 @@ namespace LOL_attendance
             if (cmd.ExecuteNonQuery() == 1)
             {
                 lblUserStatus.ForeColor = System.Drawing.Color.Green;
-                lblUserStatus.Text = "Successfuly added";
+                lblUserStatus.Text = "Successfuly Added";
             }
             conn.Close();
 
@@ -235,11 +260,6 @@ namespace LOL_attendance
         }
 
         private void grpBoxSearchByID_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button7_Click(object sender, EventArgs e)
         {
 
         }
@@ -278,9 +298,14 @@ namespace LOL_attendance
             if (cmd.ExecuteNonQuery() == 1)
             {
                 lblPStatus.ForeColor = System.Drawing.Color.Green;
-                lblPStatus.Text = "Successfully added!";
+                lblPStatus.Text = "Successfully Added";
             }
             conn.Close();
+
+            //Clear fields after Creating the Project
+            txtBoxPMName.Clear();
+            txtBoxPAddress.Clear();
+            cboPM.SelectedIndex = -1;
         }
         //Add fields clearness after clicking on the button Create 
         private void btnCreateSite_Click(object sender, EventArgs e)
@@ -328,9 +353,15 @@ namespace LOL_attendance
             if (cmd.ExecuteNonQuery() == 1)
             {
                 lblSiteStatus.ForeColor = System.Drawing.Color.Green;
-                lblSiteStatus.Text = "Successfully added!";
+                lblSiteStatus.Text = "Successfully Added";
             }
             conn.Close();
+
+            //Clear fields after Creating the Site
+            txtBoxSiteName.Clear();
+            txtBoxSiteAddress.Clear();
+            cboProject.SelectedIndex = -1;
+            cboSiteManager.SelectedIndex = -1;
         }
 
         private void btnShowAllSites_Click(object sender, EventArgs e)
@@ -491,6 +522,82 @@ namespace LOL_attendance
         }
 
         private void cboRole_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBoxSearchByID_TextChanged(object sender, EventArgs e)
+        {
+            conn = new SqlConnection(connstr);
+            cmd = new SqlCommand("SELECT * FROM employee WHERE surname LIKE'" + txtBoxSearchByID.Text + "%'", conn);
+            DataTable dt = new DataTable();
+
+            conn.Open();
+            rdr = cmd.ExecuteReader();
+
+            if (rdr.HasRows)
+            {
+                dt.Load(rdr);
+                dgdViewEmployee.DataSource = dt;
+            }
+            else
+            {
+                MessageBox.Show("No data to show");
+            }
+
+        }
+
+        private void cboProject_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBoxSearchP_TextChanged(object sender, EventArgs e)
+        {
+            conn = new SqlConnection(connstr);
+            cmd = new SqlCommand("SELECT * FROM project WHERE name LIKE'" + txtBoxSearchP.Text + "%'", conn);
+            DataTable dt = new DataTable();
+
+            conn.Open();
+            rdr = cmd.ExecuteReader();
+
+            if (rdr.HasRows)
+            {
+                dt.Load(rdr);
+                dgdViewProject.DataSource = dt;
+            }
+            else
+            {
+                MessageBox.Show("No data to show");
+            }
+        }
+
+        private void txtBoxPMName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBoxSiteSearch_TextChanged(object sender, EventArgs e)
+        {
+            conn = new SqlConnection(connstr);
+            cmd = new SqlCommand("SELECT * FROM site WHERE surname LIKE'" + txtBoxSiteSearch.Text + "%'", conn);
+            DataTable dt = new DataTable();
+
+            conn.Open();
+            rdr = cmd.ExecuteReader();
+
+            if (rdr.HasRows)
+            {
+                dt.Load(rdr);
+                dgdVieSite.DataSource = dt;
+            }
+            else
+            {
+                MessageBox.Show("No data to show");
+            }
+        }
+
+        private void dgdViewProject_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
