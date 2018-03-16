@@ -13,7 +13,7 @@ namespace LOL_attendance
     {
         public enum userRoles
         {
-                none = 0,
+                Worker = 4,
                 Admin = 1,
                 SiteManager = 3,
                 ProjectManager = 2,
@@ -23,7 +23,9 @@ namespace LOL_attendance
         //the time of login
          public DateTime userDOB{ get; set; }
          public userRoles userRole { get; set; }
-            
+         public string userfullname { get; set; }
+        public int userID { get; set; }
+
 
     }
 }
