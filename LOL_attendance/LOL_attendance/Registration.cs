@@ -212,8 +212,7 @@ namespace LOL_attendance
             conn.Open();
             if (cmd.ExecuteNonQuery() == 1)
             {
-                lblUserStatus.ForeColor = System.Drawing.Color.Green;
-                lblUserStatus.Text = "Successfuly Added";
+                MessageBox.Show("Successfully added");
                 ShowAllUsers();
                 ClearUserInputFields();
             }
@@ -255,8 +254,7 @@ namespace LOL_attendance
             {
                 if (txtBoxPMName.Text == "" || txtBoxPMName.Text =="Input name")
                 {
-                    lblPStatus.ForeColor = System.Drawing.Color.Red;
-                    lblPStatus.Text = "Please input Project name";
+                        MessageBox.Show("Please input Project name");
                 }
                 else
                 {
@@ -273,8 +271,7 @@ namespace LOL_attendance
                     conn.Open();
                     if (cmd.ExecuteNonQuery() == 1)
                     {
-                        lblPStatus.ForeColor = System.Drawing.Color.Green;
-                        lblPStatus.Text = "Successfully Added";
+                        MessageBox.Show("Successfully Added");
                     }
                     conn.Close();
 
@@ -284,8 +281,7 @@ namespace LOL_attendance
             }
             else
             {
-                lblPStatus.ForeColor = System.Drawing.Color.Red;
-                lblPStatus.Text = "Project already exists";
+                MessageBox.Show("Project already exists");
             }
         }
 
@@ -355,8 +351,7 @@ namespace LOL_attendance
             conn.Open();
             if (cmd.ExecuteNonQuery() == 1)
             {
-                lblSiteStatus.ForeColor = System.Drawing.Color.Green;
-                lblSiteStatus.Text = "Successfully Added";
+                MessageBox.Show("Successfully Added");
             }
             conn.Close();
 
@@ -485,15 +480,13 @@ namespace LOL_attendance
                 {
                     ShowAllProjects();
                     ClearProjectInputFields();
-                    lblPStatus.ForeColor = System.Drawing.Color.Green;
-                    lblPStatus.Text = "Project succesfully updated";
+                    MessageBox.Show("Project succesfully updated");
                 }
                 conn.Close();
             }
             else
             {
-                lblPStatus.ForeColor = System.Drawing.Color.Red;
-                lblPStatus.Text = "Please select Project for updating";
+                MessageBox.Show("Please select Project for updating");
             }
         }
 
@@ -514,9 +507,8 @@ namespace LOL_attendance
             conn.Open();
             if (cmd.ExecuteNonQuery() == 1)
             {
-             //   ShowAll();
-                lblUserStatus.ForeColor = System.Drawing.Color.Green;
-                lblUserStatus.Text = "Successfully Updated";
+                //   ShowAll();
+                MessageBox.Show("Successfully Updated");
             }
             conn.Close();
 
@@ -536,8 +528,7 @@ namespace LOL_attendance
             if (cmd.ExecuteNonQuery() == 1)
             {
                 ShowAllSites();
-                lblUserStatus.ForeColor = System.Drawing.Color.Green;
-                lblUserStatus.Text = "Successfully Updated";
+                MessageBox.Show("Successfully Updated");
             }
             conn.Close();
         }
@@ -553,8 +544,7 @@ namespace LOL_attendance
             if (cmd.ExecuteNonQuery() == 1)
             {
                 ShowAllUsers();
-                lblUserStatus.ForeColor = System.Drawing.Color.Green;
-                lblUserStatus.Text = "Successfully Deleted";
+                MessageBox.Show("Successfully Deleted");
             }
             conn.Close();
         }
@@ -641,15 +631,13 @@ namespace LOL_attendance
                 {
                     ShowAllProjects();
                     ClearProjectInputFields();
-                    lblPStatus.ForeColor = System.Drawing.Color.Green;
-                    lblPStatus.Text = "Project deleted";
+                    MessageBox.Show("Project deleted");
                 }
                 conn.Close();
             }
             else
             {
-                lblPStatus.ForeColor = System.Drawing.Color.Red;
-                lblPStatus.Text = "Please select Project for deleting";
+                MessageBox.Show("Please select Project for deleting");
             }
         }
 
