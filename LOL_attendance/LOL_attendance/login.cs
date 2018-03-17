@@ -23,77 +23,98 @@ namespace LOL_attendance
         private void btnLogin_Click(object sender, EventArgs e)
         {
             userClass loginuser=new userClass();
-            string connStr = ConfigurationManager.ConnectionStrings["myConnection"].ConnectionString;
-            using (var con = new SqlConnection(connStr))
+            //Added by Liana: Following code provide login for default user: Admin/password in case Author: Liana
+            //Registration and Exit buttons are available for Admin 
+            if (txtUsername.Text == "admin" & txtPassword.Text == "password")
             {
-                //check username and password
-                SqlCommand cmd = new SqlCommand("select id, name, surname, role_id from employee where [role_id]<>'' and [login]=@username and [password]=@password ", con);
+                Main frm = (Main)this.MdiParent;
+                //store username and the time of login in loginuser
+                loginuser.userDOB = DateTime.Now;
+                loginuser.userName = txtUsername.Text;
+                Panel pnl = (Panel)frm.Controls["pnlMainBtn"];
+                pnl.Visible = true;
+                StatusStrip SS = (StatusStrip)frm.Controls["StatusStrip1"];
+                SS.Items["tSSLUsername"].Text = txtUsername.Text;
+                SS.Enabled = true;
+                loginuser.userRole = userClass.userRoles.Admin;
+                pnl.Controls["btnReg"].Enabled = Enabled;
+                pnl.Controls["btnTimesheet"].Enabled = false;
+                frm.setlogin(loginuser);
 
-                cmd.Parameters.AddWithValue("@username", txtUsername.Text);
-                cmd.Parameters.AddWithValue("@password", txtPassword.Text);
-                cmd.Connection.Open();
-            
-                SqlDataReader rdr = cmd.ExecuteReader();
-                rdr.Read();
-
-
-                if (rdr.HasRows)
+                this.Hide();
+            }
+            // If user is not Admin then login and password are verified with db
+            else
+            { 
+                string connStr = ConfigurationManager.ConnectionStrings["myConnection"].ConnectionString;
+                using (var con = new SqlConnection(connStr))
                 {
-                    //user password is rigt so show controls 
-                    Main frm = (Main)this.MdiParent;
-                    //store username and the time of login in loginuser
-                    loginuser.userDOB = DateTime.Now;
-                    loginuser.userName = txtUsername.Text;
-                    loginuser.userfullname = rdr["name"].ToString() + " " + rdr["surname"].ToString();
-                    loginuser.userID = (int)rdr["id"];
-                    Panel pnl = (Panel)frm.Controls["pnlMainBtn"];
-                    pnl.Visible = true;
-                    StatusStrip SS = (StatusStrip)frm.Controls["StatusStrip1"];
-                    SS.Items["tSSLUsername"].Text = txtUsername.Text;
-                    SS.Enabled = true;
-                    //findout the role of  user and store in loginuser obj and enable right buttons
+                    //check username and password
+                    SqlCommand cmd = new SqlCommand("select id, name, surname, role_id from employee where [role_id]<>'' and [login]=@username and [password]=@password and isActive ='True' ", con);
 
-                    switch ((int)rdr["role_id"])
+                    cmd.Parameters.AddWithValue("@username", txtUsername.Text);
+                    cmd.Parameters.AddWithValue("@password", txtPassword.Text);
+                    cmd.Connection.Open();
+
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    rdr.Read();
+
+                    if (rdr.HasRows)
+                    {
+                        //user password is right so show controls 
+                        Main frm = (Main)this.MdiParent;
+                        //store username and the time of login in loginuser
+                        loginuser.userDOB = DateTime.Now;
+                        loginuser.userName = txtUsername.Text;
+                        loginuser.userfullname = rdr["name"].ToString() + " " + rdr["surname"].ToString();
+                        loginuser.userID = (int)rdr["id"];
+                        Panel pnl = (Panel)frm.Controls["pnlMainBtn"];
+                        pnl.Visible = true;
+                        StatusStrip SS = (StatusStrip)frm.Controls["StatusStrip1"];
+                        SS.Items["tSSLUsername"].Text = txtUsername.Text;
+                        SS.Enabled = true;
+                        //findout the role of  user and store in loginuser obj and enable right buttons
+
+                        switch ((int)rdr["role_id"])
                         {
                             case 1:
                                 loginuser.userRole = userClass.userRoles.Admin;
                                 pnl.Controls["btnReg"].Enabled = Enabled;
-                                pnl.Controls["btnTimesheet"].Enabled = Enabled;
+                                pnl.Controls["btnTimesheet"].Enabled = false;
 
-                            break;
+                                break;
                             case 3:
                                 loginuser.userRole = userClass.userRoles.SiteManager;
                                 pnl.Controls["btnReg"].Enabled = false;
                                 pnl.Controls["btnTimesheet"].Enabled = Enabled;
 
-                            break;
+                                break;
                             case 2:
                                 loginuser.userRole = userClass.userRoles.ProjectManager;
                                 pnl.Controls["btnTimesheet"].Enabled = Enabled;
                                 pnl.Controls["btnReg"].Enabled = false;
 
-                            break;
+                                break;
                             default:
                                 loginuser.userRole = userClass.userRoles.Worker;
                                 pnl.Controls["btnTimesheet"].Enabled = false;
                                 pnl.Controls["btnReg"].Enabled = false;
-                            break;
+                                break;
 
                         }
-                       
-                        frm.setlogin(loginuser);                  
+
+                        frm.setlogin(loginuser);
                         
-                       
                         this.Hide();
                     }
-                
-                else                
-                {
-                    //Do to deal with failure……
-                    MessageBox.Show("Username or password is wrong!");
-                }
-                cmd.Connection.Close();
 
+                    else
+                    {
+                        //Do to deal with failure……
+                        MessageBox.Show("Username or password is wrong!");
+                    }
+                    cmd.Connection.Close();
+                }
             }
         }
         private void login_Load(object sender, EventArgs e)
