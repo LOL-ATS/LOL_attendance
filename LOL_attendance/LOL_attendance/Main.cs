@@ -107,5 +107,10 @@ namespace LOL_attendance
         {
 
         }
+
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

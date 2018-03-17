@@ -56,11 +56,16 @@
             this.lblRole = new System.Windows.Forms.Label();
             this.cboRole = new System.Windows.Forms.ComboBox();
             this.tabProject = new System.Windows.Forms.TabPage();
+            this.btnClearAllProjects = new System.Windows.Forms.Button();
             this.lblPStatus = new System.Windows.Forms.Label();
             this.btnUpdateProject = new System.Windows.Forms.Button();
             this.btnDeleteProject = new System.Windows.Forms.Button();
             this.btnCreateProject = new System.Windows.Forms.Button();
             this.groupBoxProject = new System.Windows.Forms.GroupBox();
+            this.lblMngrID = new System.Windows.Forms.Label();
+            this.lblPMngrIDValue = new System.Windows.Forms.Label();
+            this.lblID = new System.Windows.Forms.Label();
+            this.lblProjectIDValue = new System.Windows.Forms.Label();
             this.lblPMName = new System.Windows.Forms.Label();
             this.lblProjectAAddress = new System.Windows.Forms.Label();
             this.cboPM = new System.Windows.Forms.ComboBox();
@@ -114,7 +119,7 @@
             this.tabRegistration.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabRegistration.Name = "tabRegistration";
             this.tabRegistration.SelectedIndex = 0;
-            this.tabRegistration.Size = new System.Drawing.Size(660, 446);
+            this.tabRegistration.Size = new System.Drawing.Size(833, 446);
             this.tabRegistration.TabIndex = 13;
             // 
             // tabUser
@@ -135,16 +140,15 @@
             this.tabUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabUser.Name = "tabUser";
             this.tabUser.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabUser.Size = new System.Drawing.Size(652, 417);
+            this.tabUser.Size = new System.Drawing.Size(825, 417);
             this.tabUser.TabIndex = 0;
             this.tabUser.Text = "User";
             this.tabUser.UseVisualStyleBackColor = true;
-            this.tabUser.Click += new System.EventHandler(this.tabUser_Click);
             // 
             // btnUpdateUser
             // 
             this.btnUpdateUser.Location = new System.Drawing.Point(356, 332);
-            this.btnUpdateUser.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUpdateUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUpdateUser.Name = "btnUpdateUser";
             this.btnUpdateUser.Size = new System.Drawing.Size(100, 28);
             this.btnUpdateUser.TabIndex = 34;
@@ -164,7 +168,7 @@
             // 
             this.btnDeleteUser.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnDeleteUser.Location = new System.Drawing.Point(464, 332);
-            this.btnDeleteUser.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDeleteUser.Name = "btnDeleteUser";
             this.btnDeleteUser.Size = new System.Drawing.Size(100, 28);
             this.btnDeleteUser.TabIndex = 14;
@@ -185,7 +189,6 @@
             this.grpBoxSearchByName.TabIndex = 32;
             this.grpBoxSearchByName.TabStop = false;
             this.grpBoxSearchByName.Text = "Search by Name";
-            this.grpBoxSearchByName.Enter += new System.EventHandler(this.grpBoxSearchByID_Enter);
             // 
             // btnShowAllID
             // 
@@ -201,7 +204,7 @@
             // txtBoxSearchByID
             // 
             this.txtBoxSearchByID.Location = new System.Drawing.Point(7, 32);
-            this.txtBoxSearchByID.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxSearchByID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBoxSearchByID.Name = "txtBoxSearchByID";
             this.txtBoxSearchByID.Size = new System.Drawing.Size(167, 22);
             this.txtBoxSearchByID.TabIndex = 32;
@@ -209,10 +212,13 @@
             // 
             // dgdViewEmployee
             // 
+            this.dgdViewEmployee.AllowUserToAddRows = false;
+            this.dgdViewEmployee.AllowUserToDeleteRows = false;
             this.dgdViewEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgdViewEmployee.Location = new System.Drawing.Point(5, 64);
             this.dgdViewEmployee.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgdViewEmployee.Name = "dgdViewEmployee";
+            this.dgdViewEmployee.ReadOnly = true;
             this.dgdViewEmployee.RowTemplate.Height = 24;
             this.dgdViewEmployee.Size = new System.Drawing.Size(251, 223);
             this.dgdViewEmployee.TabIndex = 30;
@@ -253,7 +259,7 @@
             // 
             this.txtBoxAddress.AcceptsReturn = true;
             this.txtBoxAddress.Location = new System.Drawing.Point(108, 154);
-            this.txtBoxAddress.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBoxAddress.Name = "txtBoxAddress";
             this.txtBoxAddress.Size = new System.Drawing.Size(159, 22);
             this.txtBoxAddress.TabIndex = 27;
@@ -271,7 +277,7 @@
             // txtBoxPhone
             // 
             this.txtBoxPhone.Location = new System.Drawing.Point(108, 124);
-            this.txtBoxPhone.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxPhone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBoxPhone.Name = "txtBoxPhone";
             this.txtBoxPhone.Size = new System.Drawing.Size(159, 22);
             this.txtBoxPhone.TabIndex = 25;
@@ -299,7 +305,7 @@
             // txtBoxSurname
             // 
             this.txtBoxSurname.Location = new System.Drawing.Point(109, 59);
-            this.txtBoxSurname.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxSurname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBoxSurname.Name = "txtBoxSurname";
             this.txtBoxSurname.Size = new System.Drawing.Size(159, 22);
             this.txtBoxSurname.TabIndex = 19;
@@ -307,7 +313,7 @@
             // txtBoxEmail
             // 
             this.txtBoxEmail.Location = new System.Drawing.Point(108, 94);
-            this.txtBoxEmail.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBoxEmail.Name = "txtBoxEmail";
             this.txtBoxEmail.Size = new System.Drawing.Size(159, 22);
             this.txtBoxEmail.TabIndex = 23;
@@ -315,7 +321,7 @@
             // txtBoxName
             // 
             this.txtBoxName.Location = new System.Drawing.Point(109, 30);
-            this.txtBoxName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBoxName.Name = "txtBoxName";
             this.txtBoxName.Size = new System.Drawing.Size(159, 22);
             this.txtBoxName.TabIndex = 21;
@@ -333,7 +339,7 @@
             // btnCreateUser
             // 
             this.btnCreateUser.Location = new System.Drawing.Point(248, 332);
-            this.btnCreateUser.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCreateUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCreateUser.Name = "btnCreateUser";
             this.btnCreateUser.Size = new System.Drawing.Size(100, 28);
             this.btnCreateUser.TabIndex = 10;
@@ -344,7 +350,7 @@
             // txtBoxPass
             // 
             this.txtBoxPass.Location = new System.Drawing.Point(108, 70);
-            this.txtBoxPass.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxPass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBoxPass.Name = "txtBoxPass";
             this.txtBoxPass.Size = new System.Drawing.Size(159, 22);
             this.txtBoxPass.TabIndex = 15;
@@ -362,7 +368,7 @@
             // txtBoxLogin
             // 
             this.txtBoxLogin.Location = new System.Drawing.Point(109, 43);
-            this.txtBoxLogin.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBoxLogin.Name = "txtBoxLogin";
             this.txtBoxLogin.Size = new System.Drawing.Size(159, 22);
             this.txtBoxLogin.TabIndex = 13;
@@ -386,7 +392,6 @@
             this.lblRole.Size = new System.Drawing.Size(37, 17);
             this.lblRole.TabIndex = 5;
             this.lblRole.Text = "Role";
-            this.lblRole.Click += new System.EventHandler(this.lblSitemngr_Click);
             // 
             // cboRole
             // 
@@ -397,14 +402,14 @@
             "Site Manager",
             "Worker"});
             this.cboRole.Location = new System.Drawing.Point(108, 11);
-            this.cboRole.Margin = new System.Windows.Forms.Padding(4);
+            this.cboRole.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboRole.Name = "cboRole";
             this.cboRole.Size = new System.Drawing.Size(160, 24);
             this.cboRole.TabIndex = 4;
-            this.cboRole.SelectedIndexChanged += new System.EventHandler(this.cboRole_SelectedIndexChanged);
             // 
             // tabProject
             // 
+            this.tabProject.Controls.Add(this.btnClearAllProjects);
             this.tabProject.Controls.Add(this.lblPStatus);
             this.tabProject.Controls.Add(this.btnUpdateProject);
             this.tabProject.Controls.Add(this.btnDeleteProject);
@@ -415,10 +420,21 @@
             this.tabProject.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabProject.Name = "tabProject";
             this.tabProject.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabProject.Size = new System.Drawing.Size(652, 417);
+            this.tabProject.Size = new System.Drawing.Size(825, 417);
             this.tabProject.TabIndex = 1;
             this.tabProject.Text = "Project";
             this.tabProject.UseVisualStyleBackColor = true;
+            // 
+            // btnClearAllProjects
+            // 
+            this.btnClearAllProjects.Location = new System.Drawing.Point(149, 338);
+            this.btnClearAllProjects.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClearAllProjects.Name = "btnClearAllProjects";
+            this.btnClearAllProjects.Size = new System.Drawing.Size(100, 28);
+            this.btnClearAllProjects.TabIndex = 40;
+            this.btnClearAllProjects.Text = "Clear All";
+            this.btnClearAllProjects.UseVisualStyleBackColor = true;
+            this.btnClearAllProjects.Click += new System.EventHandler(this.btnClearAllProjects_Click);
             // 
             // lblPStatus
             // 
@@ -430,8 +446,8 @@
             // 
             // btnUpdateProject
             // 
-            this.btnUpdateProject.Location = new System.Drawing.Point(365, 338);
-            this.btnUpdateProject.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUpdateProject.Location = new System.Drawing.Point(365, 340);
+            this.btnUpdateProject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUpdateProject.Name = "btnUpdateProject";
             this.btnUpdateProject.Size = new System.Drawing.Size(100, 28);
             this.btnUpdateProject.TabIndex = 38;
@@ -443,17 +459,18 @@
             // 
             this.btnDeleteProject.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnDeleteProject.Location = new System.Drawing.Point(473, 338);
-            this.btnDeleteProject.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteProject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDeleteProject.Name = "btnDeleteProject";
             this.btnDeleteProject.Size = new System.Drawing.Size(100, 28);
             this.btnDeleteProject.TabIndex = 37;
             this.btnDeleteProject.Text = "Delete";
             this.btnDeleteProject.UseVisualStyleBackColor = true;
+            this.btnDeleteProject.Click += new System.EventHandler(this.btnDeleteProject_Click);
             // 
             // btnCreateProject
             // 
             this.btnCreateProject.Location = new System.Drawing.Point(257, 338);
-            this.btnCreateProject.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCreateProject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCreateProject.Name = "btnCreateProject";
             this.btnCreateProject.Size = new System.Drawing.Size(100, 28);
             this.btnCreateProject.TabIndex = 35;
@@ -463,6 +480,10 @@
             // 
             // groupBoxProject
             // 
+            this.groupBoxProject.Controls.Add(this.lblMngrID);
+            this.groupBoxProject.Controls.Add(this.lblPMngrIDValue);
+            this.groupBoxProject.Controls.Add(this.lblID);
+            this.groupBoxProject.Controls.Add(this.lblProjectIDValue);
             this.groupBoxProject.Controls.Add(this.lblPMName);
             this.groupBoxProject.Controls.Add(this.lblProjectAAddress);
             this.groupBoxProject.Controls.Add(this.cboPM);
@@ -478,10 +499,48 @@
             this.groupBoxProject.TabStop = false;
             this.groupBoxProject.Text = "Project Information";
             // 
+            // lblMngrID
+            // 
+            this.lblMngrID.AutoSize = true;
+            this.lblMngrID.Location = new System.Drawing.Point(0, 85);
+            this.lblMngrID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMngrID.Name = "lblMngrID";
+            this.lblMngrID.Size = new System.Drawing.Size(129, 17);
+            this.lblMngrID.TabIndex = 33;
+            this.lblMngrID.Text = "Project Manager ID";
+            // 
+            // lblPMngrIDValue
+            // 
+            this.lblPMngrIDValue.AutoSize = true;
+            this.lblPMngrIDValue.Location = new System.Drawing.Point(163, 86);
+            this.lblPMngrIDValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPMngrIDValue.Name = "lblPMngrIDValue";
+            this.lblPMngrIDValue.Size = new System.Drawing.Size(0, 17);
+            this.lblPMngrIDValue.TabIndex = 32;
+            // 
+            // lblID
+            // 
+            this.lblID.AutoSize = true;
+            this.lblID.Location = new System.Drawing.Point(8, 23);
+            this.lblID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblID.Name = "lblID";
+            this.lblID.Size = new System.Drawing.Size(21, 17);
+            this.lblID.TabIndex = 31;
+            this.lblID.Text = "ID";
+            // 
+            // lblProjectIDValue
+            // 
+            this.lblProjectIDValue.AutoSize = true;
+            this.lblProjectIDValue.Location = new System.Drawing.Point(159, 23);
+            this.lblProjectIDValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblProjectIDValue.Name = "lblProjectIDValue";
+            this.lblProjectIDValue.Size = new System.Drawing.Size(0, 17);
+            this.lblProjectIDValue.TabIndex = 30;
+            // 
             // lblPMName
             // 
             this.lblPMName.AutoSize = true;
-            this.lblPMName.Location = new System.Drawing.Point(1, 65);
+            this.lblPMName.Location = new System.Drawing.Point(1, 108);
             this.lblPMName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPMName.Name = "lblPMName";
             this.lblPMName.Size = new System.Drawing.Size(113, 17);
@@ -491,7 +550,7 @@
             // lblProjectAAddress
             // 
             this.lblProjectAAddress.AutoSize = true;
-            this.lblProjectAAddress.Location = new System.Drawing.Point(1, 97);
+            this.lblProjectAAddress.Location = new System.Drawing.Point(1, 140);
             this.lblProjectAAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProjectAAddress.Name = "lblProjectAAddress";
             this.lblProjectAAddress.Size = new System.Drawing.Size(108, 17);
@@ -501,34 +560,33 @@
             // cboPM
             // 
             this.cboPM.FormattingEnabled = true;
-            this.cboPM.Location = new System.Drawing.Point(125, 66);
-            this.cboPM.Margin = new System.Windows.Forms.Padding(4);
+            this.cboPM.Location = new System.Drawing.Point(125, 110);
+            this.cboPM.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboPM.Name = "cboPM";
             this.cboPM.Size = new System.Drawing.Size(160, 24);
             this.cboPM.TabIndex = 28;
-            this.cboPM.SelectedIndexChanged += new System.EventHandler(this.cboPM_SelectedIndexChanged);
+            this.cboPM.DropDownClosed += new System.EventHandler(this.cboPM_DropDownClosed);
             // 
             // txtBoxPAddress
             // 
-            this.txtBoxPAddress.Location = new System.Drawing.Point(125, 95);
-            this.txtBoxPAddress.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxPAddress.Location = new System.Drawing.Point(125, 138);
+            this.txtBoxPAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBoxPAddress.Name = "txtBoxPAddress";
             this.txtBoxPAddress.Size = new System.Drawing.Size(159, 22);
             this.txtBoxPAddress.TabIndex = 25;
             // 
             // txtBoxPMName
             // 
-            this.txtBoxPMName.Location = new System.Drawing.Point(125, 33);
-            this.txtBoxPMName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxPMName.Location = new System.Drawing.Point(125, 53);
+            this.txtBoxPMName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBoxPMName.Name = "txtBoxPMName";
             this.txtBoxPMName.Size = new System.Drawing.Size(159, 22);
             this.txtBoxPMName.TabIndex = 27;
-            this.txtBoxPMName.TextChanged += new System.EventHandler(this.txtBoxPMName_TextChanged);
             // 
             // lblProjectName
             // 
             this.lblProjectName.AutoSize = true;
-            this.lblProjectName.Location = new System.Drawing.Point(0, 33);
+            this.lblProjectName.Location = new System.Drawing.Point(0, 53);
             this.lblProjectName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProjectName.Name = "lblProjectName";
             this.lblProjectName.Size = new System.Drawing.Size(93, 17);
@@ -544,7 +602,7 @@
             this.groupBoxSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxSearch.Name = "groupBoxSearch";
             this.groupBoxSearch.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxSearch.Size = new System.Drawing.Size(263, 290);
+            this.groupBoxSearch.Size = new System.Drawing.Size(476, 290);
             this.groupBoxSearch.TabIndex = 31;
             this.groupBoxSearch.TabStop = false;
             this.groupBoxSearch.Text = "Search by Project Name";
@@ -563,7 +621,7 @@
             // txtBoxSearchP
             // 
             this.txtBoxSearchP.Location = new System.Drawing.Point(7, 32);
-            this.txtBoxSearchP.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxSearchP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBoxSearchP.Name = "txtBoxSearchP";
             this.txtBoxSearchP.Size = new System.Drawing.Size(167, 22);
             this.txtBoxSearchP.TabIndex = 32;
@@ -571,15 +629,17 @@
             // 
             // dgdViewProject
             // 
+            this.dgdViewProject.AllowUserToAddRows = false;
+            this.dgdViewProject.AllowUserToDeleteRows = false;
             this.dgdViewProject.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgdViewProject.Location = new System.Drawing.Point(7, 65);
             this.dgdViewProject.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgdViewProject.Name = "dgdViewProject";
+            this.dgdViewProject.ReadOnly = true;
             this.dgdViewProject.RowTemplate.Height = 24;
-            this.dgdViewProject.Size = new System.Drawing.Size(251, 220);
+            this.dgdViewProject.Size = new System.Drawing.Size(464, 220);
             this.dgdViewProject.TabIndex = 30;
             this.dgdViewProject.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProject_CellClick);
-            this.dgdViewProject.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgdViewProject_CellContentClick);
             // 
             // tabSite
             // 
@@ -593,7 +653,7 @@
             this.tabSite.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabSite.Name = "tabSite";
             this.tabSite.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabSite.Size = new System.Drawing.Size(652, 417);
+            this.tabSite.Size = new System.Drawing.Size(825, 417);
             this.tabSite.TabIndex = 2;
             this.tabSite.Text = "Site";
             this.tabSite.UseVisualStyleBackColor = true;
@@ -609,7 +669,7 @@
             // btnUpdateSite
             // 
             this.btnUpdateSite.Location = new System.Drawing.Point(363, 345);
-            this.btnUpdateSite.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUpdateSite.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUpdateSite.Name = "btnUpdateSite";
             this.btnUpdateSite.Size = new System.Drawing.Size(100, 28);
             this.btnUpdateSite.TabIndex = 38;
@@ -621,7 +681,7 @@
             // 
             this.btnDeleteSite.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnDeleteSite.Location = new System.Drawing.Point(469, 345);
-            this.btnDeleteSite.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteSite.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDeleteSite.Name = "btnDeleteSite";
             this.btnDeleteSite.Size = new System.Drawing.Size(100, 28);
             this.btnDeleteSite.TabIndex = 37;
@@ -637,7 +697,7 @@
             this.grpBoxSiteName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.grpBoxSiteName.Name = "grpBoxSiteName";
             this.grpBoxSiteName.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.grpBoxSiteName.Size = new System.Drawing.Size(263, 286);
+            this.grpBoxSiteName.Size = new System.Drawing.Size(512, 286);
             this.grpBoxSiteName.TabIndex = 33;
             this.grpBoxSiteName.TabStop = false;
             this.grpBoxSiteName.Text = "Search by Site Name";
@@ -656,7 +716,7 @@
             // txtBoxSiteSearch
             // 
             this.txtBoxSiteSearch.Location = new System.Drawing.Point(7, 32);
-            this.txtBoxSiteSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxSiteSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBoxSiteSearch.Name = "txtBoxSiteSearch";
             this.txtBoxSiteSearch.Size = new System.Drawing.Size(167, 22);
             this.txtBoxSiteSearch.TabIndex = 32;
@@ -664,12 +724,15 @@
             // 
             // dgdVieSite
             // 
+            this.dgdVieSite.AllowUserToAddRows = false;
+            this.dgdVieSite.AllowUserToDeleteRows = false;
             this.dgdVieSite.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgdVieSite.Location = new System.Drawing.Point(5, 64);
             this.dgdVieSite.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgdVieSite.Name = "dgdVieSite";
+            this.dgdVieSite.ReadOnly = true;
             this.dgdVieSite.RowTemplate.Height = 24;
-            this.dgdVieSite.Size = new System.Drawing.Size(251, 215);
+            this.dgdVieSite.Size = new System.Drawing.Size(501, 215);
             this.dgdVieSite.TabIndex = 30;
             this.dgdVieSite.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgdVieSite_CellClick);
             // 
@@ -706,11 +769,10 @@
             // 
             this.cboProject.FormattingEnabled = true;
             this.cboProject.Location = new System.Drawing.Point(123, 30);
-            this.cboProject.Margin = new System.Windows.Forms.Padding(4);
+            this.cboProject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboProject.Name = "cboProject";
             this.cboProject.Size = new System.Drawing.Size(160, 24);
             this.cboProject.TabIndex = 30;
-            this.cboProject.SelectedIndexChanged += new System.EventHandler(this.cboProject_SelectedIndexChanged);
             // 
             // lblSiteManager
             // 
@@ -736,7 +798,7 @@
             // 
             this.cboSiteManager.FormattingEnabled = true;
             this.cboSiteManager.Location = new System.Drawing.Point(123, 64);
-            this.cboSiteManager.Margin = new System.Windows.Forms.Padding(4);
+            this.cboSiteManager.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboSiteManager.Name = "cboSiteManager";
             this.cboSiteManager.Size = new System.Drawing.Size(160, 24);
             this.cboSiteManager.TabIndex = 28;
@@ -744,7 +806,7 @@
             // txtBoxSiteAddress
             // 
             this.txtBoxSiteAddress.Location = new System.Drawing.Point(123, 126);
-            this.txtBoxSiteAddress.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxSiteAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBoxSiteAddress.Name = "txtBoxSiteAddress";
             this.txtBoxSiteAddress.Size = new System.Drawing.Size(159, 22);
             this.txtBoxSiteAddress.TabIndex = 25;
@@ -752,11 +814,10 @@
             // txtBoxSiteName
             // 
             this.txtBoxSiteName.Location = new System.Drawing.Point(123, 96);
-            this.txtBoxSiteName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBoxSiteName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBoxSiteName.Name = "txtBoxSiteName";
             this.txtBoxSiteName.Size = new System.Drawing.Size(159, 22);
             this.txtBoxSiteName.TabIndex = 27;
-            this.txtBoxSiteName.TextChanged += new System.EventHandler(this.txtBoxSiteName_TextChanged);
             // 
             // lblSiteName
             // 
@@ -767,12 +828,11 @@
             this.lblSiteName.Size = new System.Drawing.Size(73, 17);
             this.lblSiteName.TabIndex = 26;
             this.lblSiteName.Text = "Site Name";
-            this.lblSiteName.Click += new System.EventHandler(this.lblSiteName_Click);
             // 
             // btnCreateSite
             // 
             this.btnCreateSite.Location = new System.Drawing.Point(253, 345);
-            this.btnCreateSite.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCreateSite.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCreateSite.Name = "btnCreateSite";
             this.btnCreateSite.Size = new System.Drawing.Size(100, 28);
             this.btnCreateSite.TabIndex = 35;
@@ -784,13 +844,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 523);
+            this.ClientSize = new System.Drawing.Size(1033, 523);
             this.Controls.Add(this.tabRegistration);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmRegistration";
             this.Text = "Registration";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Registration_Load);
             this.tabRegistration.ResumeLayout(false);
             this.tabUser.ResumeLayout(false);
             this.tabUser.PerformLayout();
@@ -879,5 +938,10 @@
         private System.Windows.Forms.Label lblSiteStatus;
         private System.Windows.Forms.DataGridView dgdViewEmployee;
         private System.Windows.Forms.Button btnUpdateUser;
+        private System.Windows.Forms.Label lblID;
+        private System.Windows.Forms.Label lblProjectIDValue;
+        private System.Windows.Forms.Label lblMngrID;
+        private System.Windows.Forms.Label lblPMngrIDValue;
+        private System.Windows.Forms.Button btnClearAllProjects;
     }
 }
