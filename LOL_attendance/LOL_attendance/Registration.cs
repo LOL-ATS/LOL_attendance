@@ -182,7 +182,6 @@ namespace LOL_attendance
         }
 
         //Author: Lana
-        //Add fields clearness after clicking on the button Create 
         private void btnCreateUser_Click(object sender, EventArgs e)
         {           
             int role_id = 0;
@@ -215,6 +214,8 @@ namespace LOL_attendance
             {
                 lblUserStatus.ForeColor = System.Drawing.Color.Green;
                 lblUserStatus.Text = "Successfuly Added";
+                ShowAllUsers();
+                ClearUserInputFields();
             }
             conn.Close();
 
@@ -228,6 +229,21 @@ namespace LOL_attendance
             txtBoxPhone.Clear();
             txtBoxAddress.Clear();
             cboRole.SelectedIndex = -1;*/
+        }
+
+        //Author: Liana
+        //Clear all input fields
+        private void ClearUserInputFields()
+        {
+            //Clear fields after Creating the User
+            txtBoxLogin.Clear();
+            txtBoxPass.Clear();
+            txtBoxName.Clear();
+            txtBoxSurname.Clear();
+            txtBoxEmail.Clear();
+            txtBoxPhone.Clear();
+            txtBoxAddress.Clear();
+            cboRole.SelectedIndex = -1;
         }
 
 
