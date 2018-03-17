@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.comboBoxSitemngr = new System.Windows.Forms.ComboBox();
+            this.comboProjects = new System.Windows.Forms.ComboBox();
             this.comboBoxSitename = new System.Windows.Forms.ComboBox();
             this.lblSitemngr = new System.Windows.Forms.Label();
             this.lblSitename = new System.Windows.Forms.Label();
@@ -63,26 +63,28 @@
             this.dateTimePicker.TabIndex = 0;
             this.dateTimePicker.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
             // 
-            // comboBoxSitemngr
+            // comboProjects
             // 
-            this.comboBoxSitemngr.DisplayMember = "name";
-            this.comboBoxSitemngr.FormattingEnabled = true;
-            this.comboBoxSitemngr.Location = new System.Drawing.Point(176, 23);
-            this.comboBoxSitemngr.Margin = new System.Windows.Forms.Padding(6);
-            this.comboBoxSitemngr.Name = "comboBoxSitemngr";
-            this.comboBoxSitemngr.Size = new System.Drawing.Size(238, 33);
-            this.comboBoxSitemngr.TabIndex = 1;
-            this.comboBoxSitemngr.ValueMember = "name";
-            this.comboBoxSitemngr.SelectedValueChanged += new System.EventHandler(this.comboBoxSitemngr_SelectedValueChanged);
+            this.comboProjects.DisplayMember = "name";
+            this.comboProjects.FormattingEnabled = true;
+            this.comboProjects.Location = new System.Drawing.Point(176, 23);
+            this.comboProjects.Margin = new System.Windows.Forms.Padding(6);
+            this.comboProjects.Name = "comboProjects";
+            this.comboProjects.Size = new System.Drawing.Size(238, 33);
+            this.comboProjects.TabIndex = 1;
+            this.comboProjects.ValueMember = "name";
+            this.comboProjects.SelectedIndexChanged += new System.EventHandler(this.comboProjects_SelectedIndexChanged);
             // 
             // comboBoxSitename
             // 
+            this.comboBoxSitename.Enabled = false;
             this.comboBoxSitename.FormattingEnabled = true;
             this.comboBoxSitename.Location = new System.Drawing.Point(176, 71);
             this.comboBoxSitename.Margin = new System.Windows.Forms.Padding(6);
             this.comboBoxSitename.Name = "comboBoxSitename";
             this.comboBoxSitename.Size = new System.Drawing.Size(238, 33);
             this.comboBoxSitename.TabIndex = 2;
+            this.comboBoxSitename.SelectedIndexChanged += new System.EventHandler(this.comboBoxSitename_SelectedIndexChanged);
             this.comboBoxSitename.SelectedValueChanged += new System.EventHandler(this.comboBoxSitename_SelectedValueChanged);
             // 
             // lblSitemngr
@@ -91,9 +93,9 @@
             this.lblSitemngr.Location = new System.Drawing.Point(24, 31);
             this.lblSitemngr.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblSitemngr.Name = "lblSitemngr";
-            this.lblSitemngr.Size = new System.Drawing.Size(140, 25);
+            this.lblSitemngr.Size = new System.Drawing.Size(90, 25);
             this.lblSitemngr.TabIndex = 3;
-            this.lblSitemngr.Text = "Site Manager";
+            this.lblSitemngr.Text = "Projects";
             // 
             // lblSitename
             // 
@@ -273,7 +275,7 @@
             this.Controls.Add(this.lblSitename);
             this.Controls.Add(this.lblSitemngr);
             this.Controls.Add(this.comboBoxSitename);
-            this.Controls.Add(this.comboBoxSitemngr);
+            this.Controls.Add(this.comboProjects);
             this.Controls.Add(this.dateTimePicker);
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "frmTimesheet";
@@ -290,7 +292,7 @@
         #endregion
 
         private System.Windows.Forms.DateTimePicker dateTimePicker;
-        private System.Windows.Forms.ComboBox comboBoxSitemngr;
+        private System.Windows.Forms.ComboBox comboProjects;
         private System.Windows.Forms.ComboBox comboBoxSitename;
         private System.Windows.Forms.Label lblSitemngr;
         private System.Windows.Forms.Label lblSitename;

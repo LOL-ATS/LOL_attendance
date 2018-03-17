@@ -18,41 +18,22 @@ namespace LOL_attendance
     //Created by Liana 
     public partial class frmTimesheet : Form
     {
-        //connect to DB
         DataTable dtTimesheet= new DataTable();
         DataTable dtWorkers = new DataTable();
-
+ 
+        string connStr = ConfigurationManager.ConnectionStrings["myConnection"].ConnectionString;
         int currentSiteID = 0;
         int currentSiteManagerID = 0;
+        int currentProjectID = 0;
+        int currentProjectManagerID = 0;
 
-        SqlConnection conn;
-        SqlCommand cmd;
-        string connStr = ConfigurationManager.ConnectionStrings["myConnection"].ConnectionString;
 
-        SqlDataReader rdr;
+
+
 
         public frmTimesheet()
         {
             InitializeComponent();
-            conn = new SqlConnection(connStr);
-
-            // Worker list
-            cmd = new SqlCommand("SELECT e.id, name, surname FROM employee e WHERE e.role_id=4", conn);
-
-            conn.Open();
-            rdr = cmd.ExecuteReader();
-            DataTable dt = new DataTable();
-
-
-            if (rdr.HasRows)
-            {
-                dt.Load(rdr);
-                dataGridViewEmploye.DataSource = dt;
-            }
-            conn.Close();
-
-            //*/
-
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -61,68 +42,91 @@ namespace LOL_attendance
         }
         private void frmTimesheet_Load(object sender, EventArgs e)
         {
+            SqlConnection conn;
+            SqlCommand cmd;
+            SqlDataReader rdr;
             conn = new SqlConnection(connStr);
-           // dataGridViewTS.Columns[3].DefaultCellStyle.Format = "hh:mm";
             Main frm = (Main)this.MdiParent;
+            this.Text = "Timesheet: " + frm.User.userfullname.ToString() + " ("+frm.User.userRole.ToString()+")";
+
+
+            //Check Role of User
             if (frm.User.userRole == userClass.userRoles.SiteManager)
             {
-                //bind Site dropdown with values from db
-                comboBoxSitemngr.Items.Add(frm.User.userfullname);
-                comboBoxSitemngr.SelectedIndex = 0;
-                cmd = new SqlCommand("SELECT name FROM site where mngr_id=@mngr_id", conn);
-                cmd.Parameters.AddWithValue("@mngr_id", frm.User.userID);
+                //-----------------Site Manager -------------------
+                currentSiteManagerID = frm.User.userID;
+
+                //*****bind Project dropdown with values from db*****
+                cmd = new SqlCommand("SELECT p.id, p.name FROM project p, site s WHERE s.mngr_id="+currentSiteManagerID.ToString()+ " and p.id=s.proj_id", conn);
+                DataTable dtproject = new DataTable();
+                dtproject.Columns.Add("ID", typeof(Int32));
+                dtproject.Columns.Add("Name", typeof(String));
+                comboProjects.ValueMember = "id";
+                comboProjects.DisplayMember = "name";
 
                 conn.Open();
                 rdr = cmd.ExecuteReader();
+
                 if (rdr.HasRows)
                 {
-                    while (rdr.Read())
-                    {
-                        comboBoxSitename.Items.Add(rdr.GetString(0));
-                    }
-                    comboBoxSitename.SelectedIndex = 0;
+                    dtproject.Load(rdr);
+                    comboProjects.DataSource = dtproject;
+                    comboProjects.SelectedIndex = 0;
+                    currentProjectID = (Int32)comboProjects.SelectedValue;
                 }
+
                 conn.Close();
-
-
             }
             else if (frm.User.userRole == userClass.userRoles.ProjectManager)
             {
-                //bind Site Manager dropdown with values from db
+                //-----------------Project Manager -------------------
+                currentProjectManagerID = frm.User.userID;
 
-                cmd = new SqlCommand("SELECT e.name FROM employee e, role r WHERE e.role_id=r.id and r.name='Site Manager'", conn);
-
-                conn.Open();
-                rdr = cmd.ExecuteReader();
-                if (rdr.HasRows)
-                {
-                    while (rdr.Read())
-                    {
-                        comboBoxSitemngr.Items.Add(rdr.GetString(0));
-                    }
-                    comboBoxSitemngr.SelectedIndex = 0;
-                }
-                conn.Close();
-                //bind Site dropdown with values from db
-                cmd = new SqlCommand("SELECT name FROM site", conn);
+                //*******bind Project dropdown with values from db******
+                cmd = new SqlCommand("SELECT id, name FROM project WHERE mngr_id=" +currentProjectManagerID.ToString() , conn);
+                DataTable dtproject = new DataTable();
+                dtproject.Columns.Add("ID", typeof(Int32));
+                dtproject.Columns.Add("Name", typeof(String));
+                comboProjects.ValueMember = "id";
+                comboProjects.DisplayMember = "name";
 
                 conn.Open();
                 rdr = cmd.ExecuteReader();
+
                 if (rdr.HasRows)
                 {
-                    while (rdr.Read())
-                    {
-                        comboBoxSitename.Items.Add(rdr.GetString(0));
-                    }
-                    comboBoxSitename.SelectedIndex = 0;
+                    dtproject.Load(rdr);
+                    comboProjects.DataSource = dtproject;
+                    comboProjects.SelectedIndex = 0;
+                    currentProjectID = (Int32)comboProjects.SelectedValue;
                 }
                 conn.Close();
 
-
-
-            }
+               }
             else if (frm.User.userRole == userClass.userRoles.Admin)
             {
+                //-----------------  Admin  -------------------
+                
+                //*******bind Project dropdown with values from db******
+                cmd = new SqlCommand("SELECT id, name FROM project", conn);
+                DataTable dtproject = new DataTable();
+                dtproject.Columns.Add("ID", typeof(Int32));
+                dtproject.Columns.Add("Name", typeof(String));
+                comboProjects.ValueMember = "id";
+                comboProjects.DisplayMember = "name";
+
+                conn.Open();
+                rdr = cmd.ExecuteReader();
+
+                if (rdr.HasRows)
+                {
+                    dtproject.Load(rdr);
+                    comboProjects.DataSource = dtproject;
+                    comboProjects.SelectedIndex = 0;
+                    currentProjectID = (Int32)comboProjects.SelectedValue;
+                }
+                conn.Close();
+
 
             }
 
@@ -130,6 +134,9 @@ namespace LOL_attendance
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            SqlConnection conn;
+            SqlCommand cmd;
+            SqlDataReader rdr;
             int rows = 0;
             rows = dataGridViewTS.RowCount;
 
@@ -146,7 +153,7 @@ namespace LOL_attendance
             conn.Close();
             //define selected Site Manager ID
             conn = new SqlConnection(connStr);
-            cmd = new SqlCommand("SELECT id from employee where name='" + comboBoxSitemngr.SelectedItem + "'", conn);
+            cmd = new SqlCommand("SELECT id from employee where name='" + comboProjects.SelectedItem + "'", conn);
 
             conn.Open();
             rdr = cmd.ExecuteReader();
@@ -195,9 +202,10 @@ namespace LOL_attendance
         private void btnApprove_Click(object sender, EventArgs e)
         {
             int rows = dataGridViewTS.RowCount;
-
+            SqlConnection conn;
+            SqlCommand cmd;
+            SqlDataReader rdr;
             //define selected Site ID
-            int currentSiteID = 0;
             conn = new SqlConnection(connStr);
             cmd = new SqlCommand("SELECT id from site where name='" + comboBoxSitename.SelectedItem + "'", conn);
             conn.Open();
@@ -209,9 +217,8 @@ namespace LOL_attendance
             }
             conn.Close();
             //define selected Site Manager ID
-            int currentSiteManagerID = 0;
             conn = new SqlConnection(connStr);
-            cmd = new SqlCommand("SELECT id from employee where name='" + comboBoxSitemngr.SelectedItem + "'", conn);
+            cmd = new SqlCommand("SELECT id from employee where name='" + comboProjects.SelectedItem + "'", conn);
 
             conn.Open();
             rdr = cmd.ExecuteReader();
@@ -266,11 +273,12 @@ namespace LOL_attendance
 
         private void Updatedata()
         {
-
-
-            cmd.CommandText = "SELECT e.id, name, surname FROM employee e WHERE e.role_id=4";
+            SqlConnection conn;
+            SqlCommand cmd;
+            SqlDataReader rdr;
             conn = new SqlConnection(connStr);
-            cmd.Connection = conn;
+            //load Workers GridVew 
+            cmd =new SqlCommand ("SELECT e.id, name, surname FROM employee e WHERE e.role_id=4",conn);
             conn.Open();
             rdr = cmd.ExecuteReader();
             dtWorkers.Rows.Clear();
@@ -281,32 +289,21 @@ namespace LOL_attendance
             }
             conn.Close();
 
-            //Get selected Site ID
-            conn = new SqlConnection(connStr);
-            cmd = new SqlCommand("SELECT id from site where name='" + comboBoxSitename.SelectedItem + "'", conn);
-            conn.Open();
-            rdr = cmd.ExecuteReader();
-            if (rdr.HasRows)
-            {
-                rdr.Read();
-                currentSiteID = rdr.GetInt32(0);
-            }
-            conn.Close();
-            //Get the selected Site Manager ID
-            int currentSiteManagerID = 0;
-            conn = new SqlConnection(connStr);
-            cmd = new SqlCommand("SELECT id from employee where name='" + comboBoxSitemngr.SelectedItem + "'", conn);
+            ////Get selected Site ID
+            //conn = new SqlConnection(connStr);
+            //cmd = new SqlCommand("SELECT id from site where name='" + comboBoxSitename.SelectedItem + "'", conn);
+            //conn.Open();
+            //rdr = cmd.ExecuteReader();
+            //if (rdr.HasRows)
+            //{
+            //    rdr.Read();
+            //    currentSiteID = rdr.GetInt32(0);
+            //}
+            //conn.Close();
+           
 
-            conn.Open();
-            rdr = cmd.ExecuteReader();
-            if (rdr.HasRows)
-            {
-                rdr.Read();
-                currentSiteManagerID = rdr.GetInt32(0);
-            }
-            conn.Close();
-
-            //Search TS by date, manager_id and site
+            //----------------------------------------------------
+            //Load TS regarding on date and site
             cmd = new SqlCommand("SELECT employee_id , name, surname, hours, status FROM employee e, timesheet ts where e.id=ts.employee_id and date ='" + dateTimePicker.Value.ToString("yyyy-MM-dd") + "' and site_id = @site_id", conn);
 
             cmd.Parameters.AddWithValue("@site_id", currentSiteID);
@@ -322,6 +319,8 @@ namespace LOL_attendance
 
             }
             conn.Close();
+            //----------------------------------------------------
+
         }
         private void btnAddEmployee_Click(object sender, EventArgs e)
         {
@@ -346,7 +345,9 @@ namespace LOL_attendance
 
         private void btnDelEmployee_Click(object sender, EventArgs e)
         {
-
+            SqlConnection conn;
+            SqlCommand cmd;
+            conn = new SqlConnection(connStr);
 
             DialogResult dialogResult = MessageBox.Show("Selected records will be DELETE from this Timesheet", "Delete", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
@@ -385,11 +386,133 @@ namespace LOL_attendance
 
         private void comboBoxSitename_SelectedValueChanged(object sender, EventArgs e)
         {
-            Updatedata();
+      
         }
 
-        private void comboBoxSitemngr_SelectedValueChanged(object sender, EventArgs e)
+  
+        private void comboProjects_SelectedIndexChanged(object sender, EventArgs e)
         {
+            SqlConnection conn;
+            SqlCommand cmd;
+            SqlDataReader rdr;
+            conn = new SqlConnection(connStr);
+
+            if (comboProjects.SelectedItem != null) currentProjectID = (Int32)comboProjects.SelectedValue;
+            Main frm = (Main)this.MdiParent;
+
+            //           MessageBox.Show(currentProjectID.ToString());
+            // Check user role
+            if (frm.User.userRole == userClass.userRoles.SiteManager)
+            {
+                //-----------------Site Manager -------------------
+                currentSiteManagerID = frm.User.userID;
+
+                //*****bind Sites dropdown with values from db *****
+                DataTable dtsite = new DataTable();
+                dtsite.Columns.Add("ID", typeof(Int32));
+                dtsite.Columns.Add("Name", typeof(String));
+                comboBoxSitename.ValueMember = "id";
+                comboBoxSitename.DisplayMember = "name";
+                cmd = new SqlCommand("SELECT id, name FROM site WHERE mngr_id=@SMid and proj_id=@Pid", conn);
+                cmd.Parameters.AddWithValue("@SMid", currentSiteManagerID);
+                cmd.Parameters.AddWithValue("@Pid", currentProjectID);
+
+                conn.Open();
+                rdr = cmd.ExecuteReader();
+                if (rdr.HasRows)
+                {
+                    comboBoxSitename.Enabled = true;
+                    dtsite.Load(rdr);
+                    comboBoxSitename.DataSource = dtsite;
+                    comboBoxSitename.SelectedIndex = 0;
+                    currentProjectID = (Int32)comboBoxSitename.SelectedValue;
+                }
+                conn.Close();
+
+
+
+            }
+            else if (frm.User.userRole == userClass.userRoles.ProjectManager)
+            {
+                //-----------------Project Manager -------------------
+                currentProjectManagerID = frm.User.userID;
+
+                //*****bind Site dropdown with values from db******
+
+                DataTable dtsite = new DataTable();
+                dtsite.Columns.Add("ID", typeof(Int32));
+                dtsite.Columns.Add("Name", typeof(String));
+                comboBoxSitename.ValueMember = "id";
+                comboBoxSitename.DisplayMember = "name";
+                cmd = new SqlCommand("SELECT s.id, s.name FROM site s, project p WHERE p.mngr_id=@PMid and s.proj_id=@Pid", conn);
+                cmd.Parameters.AddWithValue("@PMid", currentProjectManagerID);
+                cmd.Parameters.AddWithValue("@Pid", currentProjectID);
+
+
+                conn.Open();
+                rdr = cmd.ExecuteReader();
+                if (rdr.HasRows)
+                {
+                    comboBoxSitename.Enabled = true;
+                    dtsite.Load(rdr);
+                    comboBoxSitename.DataSource = dtsite;
+                    comboBoxSitename.SelectedIndex = 0;
+                    currentProjectID = (Int32)comboBoxSitename.SelectedValue;
+                }
+                conn.Close();
+
+
+
+
+
+
+            }
+            else if (frm.User.userRole == userClass.userRoles.Admin)
+            {
+                //-----------------    Admin    -------------------
+                currentProjectManagerID = frm.User.userID;
+
+                //*****bind Site dropdown with values from db******
+
+                DataTable dtsite = new DataTable();
+                dtsite.Columns.Add("ID", typeof(Int32));
+                dtsite.Columns.Add("Name", typeof(String));
+                comboBoxSitename.ValueMember = "id";
+                comboBoxSitename.DisplayMember = "name";
+                cmd = new SqlCommand("SELECT id, name FROM site WHERE proj_id=@Pid", conn);
+                cmd.Parameters.AddWithValue("@Pid", currentProjectID);
+
+
+                conn.Open();
+                rdr = cmd.ExecuteReader();
+                if (rdr.HasRows)
+                {
+                    comboBoxSitename.Enabled = true;
+                    dtsite.Load(rdr);
+                    comboBoxSitename.DataSource = dtsite;
+                    comboBoxSitename.SelectedIndex = 0;
+                    currentProjectID = (Int32)comboBoxSitename.SelectedValue;
+                }
+                conn.Close();
+
+
+
+
+
+
+            }
+
+            Updatedata();
+            
+
+        }
+
+        private void comboBoxSitename_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxSitename.SelectedItem != null) currentSiteID = (Int32)comboBoxSitename.SelectedValue;
+            else comboBoxSitename.Enabled = false;
+ 
+//            MessageBox.Show(currentSiteID.ToString());
             Updatedata();
         }
     }
