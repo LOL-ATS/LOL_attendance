@@ -53,7 +53,10 @@ namespace LOL_attendance
                 currentSiteManagerID = frm.User.userID;
 
                 //*****bind Project dropdown with values from db*****
-                cmd = new SqlCommand("SELECT p.id, p.name FROM project p, site s WHERE s.mngr_id="+currentSiteManagerID.ToString()+ " and p.id=s.proj_id", conn);
+                //Liana: Fixed query for isActive flag
+                cmd = new SqlCommand("SELECT p.id, p.name FROM project p, site s WHERE s.mngr_id=" + currentSiteManagerID.ToString() + " and p.id=s.proj_id and s.isActive='True' and p.isActive = 'True'", conn);
+
+
                 DataTable dtproject = new DataTable();
                 dtproject.Columns.Add("ID", typeof(Int32));
                 dtproject.Columns.Add("Name", typeof(String));
@@ -79,7 +82,8 @@ namespace LOL_attendance
                 currentProjectManagerID = frm.User.userID;
 
                 //*******bind Project dropdown with values from db******
-                cmd = new SqlCommand("SELECT id, name FROM project WHERE mngr_id=" +currentProjectManagerID.ToString() , conn);
+                //Liana: change query to consider isActive flag
+                cmd = new SqlCommand("SELECT id, name FROM project WHERE isActive='True' and mngr_id=" + currentProjectManagerID.ToString(), conn);
                 DataTable dtproject = new DataTable();
                 dtproject.Columns.Add("ID", typeof(Int32));
                 dtproject.Columns.Add("Name", typeof(String));
@@ -99,6 +103,8 @@ namespace LOL_attendance
                 conn.Close();
 
                }
+            //Liana: commented Admin part because Admin can't work on TS
+            /*
             else if (frm.User.userRole == userClass.userRoles.Admin)
             {
                 //-----------------  Admin  -------------------
@@ -122,10 +128,8 @@ namespace LOL_attendance
                     currentProjectID = (Int32)comboProjects.SelectedValue;
                 }
                 conn.Close();
-
-
             }
-
+            */
         }
 
         private void btnSave_Click(object sender, EventArgs e)
