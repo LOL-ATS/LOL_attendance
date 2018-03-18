@@ -81,7 +81,6 @@
             this.comboBoxSitename.Size = new System.Drawing.Size(121, 21);
             this.comboBoxSitename.TabIndex = 2;
             this.comboBoxSitename.SelectedIndexChanged += new System.EventHandler(this.comboBoxSitename_SelectedIndexChanged);
-            this.comboBoxSitename.SelectedValueChanged += new System.EventHandler(this.comboBoxSitename_SelectedValueChanged);
             // 
             // lblSitemngr
             // 
@@ -100,7 +99,6 @@
             this.lblSitename.Size = new System.Drawing.Size(56, 13);
             this.lblSitename.TabIndex = 4;
             this.lblSitename.Text = "Site Name";
-            this.lblSitename.Click += new System.EventHandler(this.label2_Click);
             // 
             // lblDate
             // 
@@ -185,7 +183,6 @@
             this.btnSearch.TabIndex = 14;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // dataGridViewEmploye
             // 
