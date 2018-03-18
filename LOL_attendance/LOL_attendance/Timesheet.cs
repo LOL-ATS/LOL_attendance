@@ -236,7 +236,7 @@ namespace LOL_attendance
                 rows = rows - 1;
                 if (dataGridViewTS.Rows[rowIndex].Cells[1].Value != null)
                 {
-                    cmd = new SqlCommand("UPDATE timesheet SET status = 'Approved', approved_by_id = " + currentSiteManagerID + "where date = " + dateTimePicker.Value + "and employee_id = @employee_id and site_id = @site_id", conn);
+                    cmd = new SqlCommand("UPDATE timesheet SET status = 'Approved', approved_by_id = " + currentSiteManagerID + "where date = '" + dateTimePicker.Value.ToString("yyyy-MM-dd") + "' and employee_id = @employee_id and site_id = @site_id", conn);
                     //cmd.Parameters.AddWithValue("@date", dateTimePicker.Value);
                     //cmd.Parameters.AddWithValue("@hours", TimeSpan.FromHours(Convert.ToDouble(dataGridViewTS.Rows[rowIndex].Cells[2].Value.ToString())));
                     //++need to add check for not null value 
@@ -269,7 +269,8 @@ namespace LOL_attendance
             SqlDataReader rdr;
             conn = new SqlConnection(connStr);
             //load Workers GridVew 
-            cmd =new SqlCommand ("SELECT e.id, name, surname FROM employee e WHERE e.role_id=4",conn);
+            //Liana: sql query to select all workers who does not have TS record for selected date and site 
+            cmd = new SqlCommand("SELECT e.id, e.name, e.surname FROM employee e WHERE e.role_id=4 and not exists(select * from timesheet t where t.employee_id=e.id and date = '" + dateTimePicker.Value.ToString("yyyy-MM-dd") + "' and site_id =" + currentSiteID.ToString() + ")", conn);
             conn.Open();
             rdr = cmd.ExecuteReader();
             dtWorkers.Clear();
@@ -306,8 +307,6 @@ namespace LOL_attendance
             {
                 dtTimesheet.Load(rdr);
                 dataGridViewTS.DataSource = dtTimesheet;
-              
-
             }
             conn.Close();
             //----------------------------------------------------
@@ -400,7 +399,8 @@ namespace LOL_attendance
                 dtsite.Columns.Add("Name", typeof(String));
                 comboBoxSitename.ValueMember = "id";
                 comboBoxSitename.DisplayMember = "name";
-                cmd = new SqlCommand("SELECT id, name FROM site WHERE mngr_id=@SMid and proj_id=@Pid", conn);
+                //Liana: edit query to take into account isActive flag
+                cmd = new SqlCommand("SELECT id, name FROM site WHERE isActive = 'True' and mngr_id=@SMid and proj_id=@Pid", conn);
                 cmd.Parameters.AddWithValue("@SMid", currentSiteManagerID);
                 cmd.Parameters.AddWithValue("@Pid", currentProjectID);
 
