@@ -27,11 +27,6 @@ namespace LOL_attendance
         int currentSiteManagerID = 0;
         int currentProjectID = 0;
         int currentProjectManagerID = 0;
-
-
-
-
-
         public frmTimesheet()
         {
             InitializeComponent();
@@ -42,10 +37,6 @@ namespace LOL_attendance
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
         private void frmTimesheet_Load(object sender, EventArgs e)
         {
             SqlConnection conn;
@@ -54,7 +45,6 @@ namespace LOL_attendance
             conn = new SqlConnection(connStr);
             Main frm = (Main)this.MdiParent;
             this.Text = "Timesheet: " + frm.User.userfullname.ToString() + " ("+frm.User.userRole.ToString()+")";
-
 
             //Check Role of User
             if (frm.User.userRole == userClass.userRoles.SiteManager)
@@ -268,15 +258,6 @@ namespace LOL_attendance
 
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-        
-        }
-
-
-
- 
-
         private void Updatedata()
         {
             SqlConnection conn;
@@ -392,12 +373,6 @@ namespace LOL_attendance
             Updatedata();
         }
 
-        private void comboBoxSitename_SelectedValueChanged(object sender, EventArgs e)
-        {
-      
-        }
-
-  
         private void comboProjects_SelectedIndexChanged(object sender, EventArgs e)
         {
             SqlConnection conn;
@@ -502,12 +477,6 @@ namespace LOL_attendance
                     MessageBox.Show("There is no site for this project");
                 }
                 conn.Close();
-
-
-
-
-
-
             }
             else if (frm.User.userRole == userClass.userRoles.Admin)
             {
@@ -536,12 +505,6 @@ namespace LOL_attendance
                     currentProjectID = (Int32)comboBoxSitename.SelectedValue;
                 }
                 conn.Close();
-
-
-
-
-
-
             }
 
             Updatedata();
