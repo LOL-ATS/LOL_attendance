@@ -312,10 +312,29 @@ namespace LOL_attendance
             //----------------------------------------------------
 
         }
+        //add lines in TS for selected workers
         private void btnAddEmployee_Click(object sender, EventArgs e)
         {
-     
-
+            //Liana: add lines in TS for selected workers in for cycle for each checked worker
+            // delete worker line in worker list
+            for (int i = dataGridViewEmploye.Rows.Count - 1; i >= 0; i--)
+            {
+                //check if worker selected
+                if ((bool)dataGridViewEmploye.Rows[i].Cells[0].FormattedValue)
+                {
+                    //create line in TS for selected worker
+                    DataRow workRow = dtTimesheet.NewRow();
+                    workRow[0] = (int)dataGridViewEmploye.Rows[i].Cells[1].Value;
+                    workRow[1] = dataGridViewEmploye.Rows[i].Cells[2].Value.ToString();
+                    workRow[2] = dataGridViewEmploye.Rows[i].Cells[3].Value.ToString();
+                    workRow[3] = TimeSpan.Parse("00:00");
+                    dtTimesheet.Rows.Add(workRow);
+                    dataGridViewTS.DataSource = dtTimesheet;
+                    //remove worker from list of workers
+                    dataGridViewEmploye.Rows.RemoveAt(i);
+                }
+            }
+            /*Liana: commented because works incorrectly
             foreach (DataGridViewRow row in dataGridViewEmploye.Rows)
             {
                 Boolean chk = Convert.ToBoolean(row.Cells[0].Value);
@@ -332,7 +351,7 @@ namespace LOL_attendance
                 }
 
             }
-
+            */
         }
 
         private void btnDelEmployee_Click(object sender, EventArgs e)
@@ -340,35 +359,51 @@ namespace LOL_attendance
             SqlConnection conn;
             SqlCommand cmd;
             conn = new SqlConnection(connStr);
-
-            DialogResult dialogResult = MessageBox.Show("Selected records will be DELETE from this Timesheet except approveed records", "Delete", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Selected records will be DELETE from this Timesheet except approved by Project Manager records", "Delete", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                foreach (DataGridViewRow row in dataGridViewTS.Rows)
+                //Liana: delete rows from TS and add rows to workers list
+                for (int i = dataGridViewTS.Rows.Count - 1; i >= 0; i--)
                 {
-                    
-                    Boolean chk = Convert.ToBoolean(row.Cells[0].Value);
-                    DataTable dt = new DataTable();
-                    if (chk==true && row.Cells[4].ToString()!="Approved")
+                    //delete only checked rows in state not Approved by PM
+                    if (((bool)dataGridViewTS.Rows[i].Cells[0].FormattedValue)&& dataGridViewTS.Rows[i].Cells[4].ToString() != "Approved by PM")
                     {
-                        
+                        //first add worker to worker list
+                        DataRow workRow = dtWorkers.NewRow();
+                        workRow[0] = (int)dataGridViewTS.Rows[i].Cells[1].Value;
+                        workRow[1] = dataGridViewTS.Rows[i].Cells[2].Value.ToString();
+                        workRow[2] = dataGridViewTS.Rows[i].Cells[3].Value.ToString();
+                        dtWorkers.Rows.Add(workRow);
+                        dataGridViewEmploye.DataSource = dtWorkers;
+                        //delete TS from db 
+                        cmd = new SqlCommand("DELETE FROM timesheet WHERE employee_id=" + dataGridViewTS.Rows[i].Cells[1].Value.ToString() + " and date ='" + dateTimePicker.Value.ToString("yyyy-MM-dd") + "' and site_id =" + currentSiteID.ToString(), conn);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                        //delete TS from dataGridView TS
+                        dataGridViewTS.Rows.RemoveAt(i);
+                    }
+                }
+                /*Liana: commented because works incorrectly
+                foreach (DataGridViewRow row in dataGridViewTS.Rows)
+                {   
+                    Boolean chk = Convert.ToBoolean(row.Cells[0].Value);
+
+                    if (chk == true && row.Cells[4].ToString() != "Approved by PM")
+                    {
                         cmd = new SqlCommand("DELETE FROM timesheet WHERE employee_id=" + row.Cells[1].Value.ToString() + " and date ='" + dateTimePicker.Value.ToString("yyyy-MM-dd") + "' and site_id =" + currentSiteID.ToString(), conn);
                         conn.Open();
                         cmd.ExecuteNonQuery();
                         conn.Close();
-                        dtTimesheet.Rows.RemoveAt(row.Index);
+                        dtTimesheet.Rows.RemoveAt(currentRow);
                         dataGridViewTS.DataSource = dtTimesheet;
-
                     }
-
-                }
-            } 
+                }*/
+            }
             else if (dialogResult == DialogResult.No)
             {
                 //do something else
             }
-
-
         }
 
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)
