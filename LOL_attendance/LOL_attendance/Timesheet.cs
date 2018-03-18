@@ -324,6 +324,12 @@ namespace LOL_attendance
         }
         private void btnAddEmployee_Click(object sender, EventArgs e)
         {
+            dtTimesheet.Columns.Add("ID", typeof(Int32));
+            dtTimesheet.Columns.Add("Name", typeof(String));
+            dtTimesheet.Columns.Add("Surname", typeof(String));
+            dtTimesheet.Columns.Add("Working Time", typeof(TimeSpan));
+
+
             foreach (DataGridViewRow row in dataGridViewEmploye.Rows)
             {
                 Boolean chk = Convert.ToBoolean(row.Cells[0].Value);
