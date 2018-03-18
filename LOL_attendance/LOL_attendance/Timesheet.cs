@@ -19,6 +19,7 @@ namespace LOL_attendance
     public partial class frmTimesheet : Form
     {
         DataTable dtTimesheet= new DataTable();
+
         DataTable dtWorkers = new DataTable();
  
         string connStr = ConfigurationManager.ConnectionStrings["myConnection"].ConnectionString;
@@ -34,6 +35,11 @@ namespace LOL_attendance
         public frmTimesheet()
         {
             InitializeComponent();
+            dtTimesheet.Columns.Add("ID", typeof(Int32));
+            dtTimesheet.Columns.Add("Name", typeof(String));
+            dtTimesheet.Columns.Add("Surname", typeof(String));
+            dtTimesheet.Columns.Add("Hours", typeof(TimeSpan));
+
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -281,7 +287,7 @@ namespace LOL_attendance
             cmd =new SqlCommand ("SELECT e.id, name, surname FROM employee e WHERE e.role_id=4",conn);
             conn.Open();
             rdr = cmd.ExecuteReader();
-            dtWorkers.Rows.Clear();
+            dtWorkers.Clear();
             if (rdr.HasRows)
             {        
                 dtWorkers.Load(rdr);
@@ -304,13 +310,13 @@ namespace LOL_attendance
 
             //----------------------------------------------------
             //Load TS regarding on date and site
-            cmd = new SqlCommand("SELECT employee_id , name, surname, hours, status FROM employee e, timesheet ts where e.id=ts.employee_id and date ='" + dateTimePicker.Value.ToString("yyyy-MM-dd") + "' and site_id = @site_id", conn);
+            cmd = new SqlCommand("SELECT employee_id as ID, name, surname, hours, status FROM employee e, timesheet ts where e.id=ts.employee_id and date ='" + dateTimePicker.Value.ToString("yyyy-MM-dd") + "' and site_id = @site_id", conn);
 
             cmd.Parameters.AddWithValue("@site_id", currentSiteID);
             //Fill the Timesheet GrideView
             conn.Open();
             rdr = cmd.ExecuteReader();
-            dtTimesheet.Rows.Clear();
+            dtTimesheet.Clear();
             if (rdr.HasRows)
             {
                 dtTimesheet.Load(rdr);
@@ -324,11 +330,7 @@ namespace LOL_attendance
         }
         private void btnAddEmployee_Click(object sender, EventArgs e)
         {
-            dtTimesheet.Columns.Add("ID", typeof(Int32));
-            dtTimesheet.Columns.Add("Name", typeof(String));
-            dtTimesheet.Columns.Add("Surname", typeof(String));
-            dtTimesheet.Columns.Add("Working Time", typeof(TimeSpan));
-
+     
 
             foreach (DataGridViewRow row in dataGridViewEmploye.Rows)
             {
@@ -355,7 +357,7 @@ namespace LOL_attendance
             SqlCommand cmd;
             conn = new SqlConnection(connStr);
 
-            DialogResult dialogResult = MessageBox.Show("Selected records will be DELETE from this Timesheet", "Delete", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Selected records will be DELETE from this Timesheet except approveed records", "Delete", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 foreach (DataGridViewRow row in dataGridViewTS.Rows)
@@ -363,7 +365,7 @@ namespace LOL_attendance
                     
                     Boolean chk = Convert.ToBoolean(row.Cells[0].Value);
                     DataTable dt = new DataTable();
-                    if (chk)
+                    if (chk==true && row.Cells[4].ToString()!="Approved")
                     {
                         
                         cmd = new SqlCommand("DELETE FROM timesheet WHERE employee_id=" + row.Cells[1].Value.ToString() + " and date ='" + dateTimePicker.Value.ToString("yyyy-MM-dd") + "' and site_id =" + currentSiteID.ToString(), conn);
