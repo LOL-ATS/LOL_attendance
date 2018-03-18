@@ -429,11 +429,28 @@ namespace LOL_attendance
                 rdr = cmd.ExecuteReader();
                 if (rdr.HasRows)
                 {
+                    btnAddEmployee.Enabled = true;
+                    btnDelEmployee.Enabled = true;
+                    btnSave.Enabled = true;
+                    btnReject.Enabled = true;
+                    btnApprove.Enabled = true;
                     comboBoxSitename.Enabled = true;
+                    dateTimePicker.Enabled = true;
                     dtsite.Load(rdr);
                     comboBoxSitename.DataSource = dtsite;
                     comboBoxSitename.SelectedIndex = 0;
                     currentProjectID = (Int32)comboBoxSitename.SelectedValue;
+                }
+                else
+                {
+                    comboBoxSitename.Enabled = false;
+                    btnAddEmployee.Enabled = false;
+                    btnDelEmployee.Enabled = false;
+                    btnSave.Enabled = false;
+                    btnReject.Enabled = false;
+                    dateTimePicker.Enabled = false;
+                    btnApprove.Enabled = false;
+                    MessageBox.Show("There is no site for you!");
                 }
                 conn.Close();
 
@@ -452,8 +469,9 @@ namespace LOL_attendance
                 dtsite.Columns.Add("Name", typeof(String));
                 comboBoxSitename.ValueMember = "id";
                 comboBoxSitename.DisplayMember = "name";
-                cmd = new SqlCommand("SELECT s.id, s.name FROM site s, project p WHERE p.mngr_id=@PMid and s.proj_id=@Pid", conn);
-                cmd.Parameters.AddWithValue("@PMid", currentProjectManagerID);
+                cmd = new SqlCommand("SELECT id, name FROM site WHERE proj_id=@pid", conn);
+                //cmd.Parameters.AddWithValue("@PMid", currentProjectManagerID);
+                currentProjectID = (Int32)comboProjects.SelectedValue;
                 cmd.Parameters.AddWithValue("@Pid", currentProjectID);
 
 
@@ -461,11 +479,27 @@ namespace LOL_attendance
                 rdr = cmd.ExecuteReader();
                 if (rdr.HasRows)
                 {
+                    btnAddEmployee.Enabled = true;
+                    btnDelEmployee.Enabled = true;
+                    btnSave.Enabled = true;
+                    btnReject.Enabled = true;
+                    btnApprove.Enabled = true;
                     comboBoxSitename.Enabled = true;
+                    dateTimePicker.Enabled = true;
                     dtsite.Load(rdr);
                     comboBoxSitename.DataSource = dtsite;
                     comboBoxSitename.SelectedIndex = 0;
-                    currentProjectID = (Int32)comboBoxSitename.SelectedValue;
+                }
+                else
+                {
+                    comboBoxSitename.Enabled = false;
+                    btnAddEmployee.Enabled = false;
+                    btnDelEmployee.Enabled = false;
+                    btnSave.Enabled = false;
+                    btnReject.Enabled = false;
+                    dateTimePicker.Enabled = false;
+                    btnApprove.Enabled = false;
+                    MessageBox.Show("There is no site for this project");
                 }
                 conn.Close();
 
