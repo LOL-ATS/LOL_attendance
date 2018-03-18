@@ -38,7 +38,6 @@
             this.dataGridViewTS = new System.Windows.Forms.DataGridView();
             this.TsSelected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnSave = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.btnApprove = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.btnReject = new System.Windows.Forms.Button();
@@ -56,10 +55,9 @@
             // 
             // dateTimePicker
             // 
-            this.dateTimePicker.Location = new System.Drawing.Point(176, 119);
-            this.dateTimePicker.Margin = new System.Windows.Forms.Padding(6);
+            this.dateTimePicker.Location = new System.Drawing.Point(88, 62);
             this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(396, 31);
+            this.dateTimePicker.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker.TabIndex = 0;
             this.dateTimePicker.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
             // 
@@ -67,10 +65,9 @@
             // 
             this.comboProjects.DisplayMember = "name";
             this.comboProjects.FormattingEnabled = true;
-            this.comboProjects.Location = new System.Drawing.Point(176, 23);
-            this.comboProjects.Margin = new System.Windows.Forms.Padding(6);
+            this.comboProjects.Location = new System.Drawing.Point(88, 12);
             this.comboProjects.Name = "comboProjects";
-            this.comboProjects.Size = new System.Drawing.Size(238, 33);
+            this.comboProjects.Size = new System.Drawing.Size(121, 21);
             this.comboProjects.TabIndex = 1;
             this.comboProjects.ValueMember = "name";
             this.comboProjects.SelectedIndexChanged += new System.EventHandler(this.comboProjects_SelectedIndexChanged);
@@ -79,10 +76,9 @@
             // 
             this.comboBoxSitename.Enabled = false;
             this.comboBoxSitename.FormattingEnabled = true;
-            this.comboBoxSitename.Location = new System.Drawing.Point(176, 71);
-            this.comboBoxSitename.Margin = new System.Windows.Forms.Padding(6);
+            this.comboBoxSitename.Location = new System.Drawing.Point(88, 37);
             this.comboBoxSitename.Name = "comboBoxSitename";
-            this.comboBoxSitename.Size = new System.Drawing.Size(238, 33);
+            this.comboBoxSitename.Size = new System.Drawing.Size(121, 21);
             this.comboBoxSitename.TabIndex = 2;
             this.comboBoxSitename.SelectedIndexChanged += new System.EventHandler(this.comboBoxSitename_SelectedIndexChanged);
             this.comboBoxSitename.SelectedValueChanged += new System.EventHandler(this.comboBoxSitename_SelectedValueChanged);
@@ -90,20 +86,18 @@
             // lblSitemngr
             // 
             this.lblSitemngr.AutoSize = true;
-            this.lblSitemngr.Location = new System.Drawing.Point(24, 31);
-            this.lblSitemngr.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblSitemngr.Location = new System.Drawing.Point(12, 16);
             this.lblSitemngr.Name = "lblSitemngr";
-            this.lblSitemngr.Size = new System.Drawing.Size(90, 25);
+            this.lblSitemngr.Size = new System.Drawing.Size(45, 13);
             this.lblSitemngr.TabIndex = 3;
             this.lblSitemngr.Text = "Projects";
             // 
             // lblSitename
             // 
             this.lblSitename.AutoSize = true;
-            this.lblSitename.Location = new System.Drawing.Point(24, 79);
-            this.lblSitename.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblSitename.Location = new System.Drawing.Point(12, 41);
             this.lblSitename.Name = "lblSitename";
-            this.lblSitename.Size = new System.Drawing.Size(111, 25);
+            this.lblSitename.Size = new System.Drawing.Size(56, 13);
             this.lblSitename.TabIndex = 4;
             this.lblSitename.Text = "Site Name";
             this.lblSitename.Click += new System.EventHandler(this.label2_Click);
@@ -111,10 +105,9 @@
             // lblDate
             // 
             this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(24, 127);
-            this.lblDate.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblDate.Location = new System.Drawing.Point(12, 66);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(57, 25);
+            this.lblDate.Size = new System.Drawing.Size(30, 13);
             this.lblDate.TabIndex = 5;
             this.lblDate.Text = "Date";
             // 
@@ -125,11 +118,10 @@
             this.dataGridViewTS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewTS.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TsSelected});
-            this.dataGridViewTS.Location = new System.Drawing.Point(539, 196);
-            this.dataGridViewTS.Margin = new System.Windows.Forms.Padding(6);
+            this.dataGridViewTS.Location = new System.Drawing.Point(270, 102);
             this.dataGridViewTS.Name = "dataGridViewTS";
             this.dataGridViewTS.RowHeadersVisible = false;
-            this.dataGridViewTS.Size = new System.Drawing.Size(860, 410);
+            this.dataGridViewTS.Size = new System.Drawing.Size(430, 213);
             this.dataGridViewTS.TabIndex = 6;
             // 
             // TsSelected
@@ -140,31 +132,19 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(539, 618);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(6);
+            this.btnSave.Location = new System.Drawing.Point(270, 321);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(150, 44);
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(1013, 618);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(6);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(150, 44);
-            this.btnCancel.TabIndex = 8;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
             // btnApprove
             // 
-            this.btnApprove.Location = new System.Drawing.Point(697, 618);
-            this.btnApprove.Margin = new System.Windows.Forms.Padding(6);
+            this.btnApprove.Location = new System.Drawing.Point(348, 321);
             this.btnApprove.Name = "btnApprove";
-            this.btnApprove.Size = new System.Drawing.Size(150, 44);
+            this.btnApprove.Size = new System.Drawing.Size(75, 23);
             this.btnApprove.TabIndex = 9;
             this.btnApprove.Text = "Approve";
             this.btnApprove.UseVisualStyleBackColor = true;
@@ -173,19 +153,17 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(618, 33);
-            this.lblStatus.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblStatus.Location = new System.Drawing.Point(309, 17);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(73, 25);
+            this.lblStatus.Size = new System.Drawing.Size(37, 13);
             this.lblStatus.TabIndex = 10;
             this.lblStatus.Text = "Status";
             // 
             // btnReject
             // 
-            this.btnReject.Location = new System.Drawing.Point(855, 618);
-            this.btnReject.Margin = new System.Windows.Forms.Padding(6);
+            this.btnReject.Location = new System.Drawing.Point(428, 321);
             this.btnReject.Name = "btnReject";
-            this.btnReject.Size = new System.Drawing.Size(150, 44);
+            this.btnReject.Size = new System.Drawing.Size(75, 23);
             this.btnReject.TabIndex = 12;
             this.btnReject.Text = "Reject";
             this.btnReject.UseVisualStyleBackColor = true;
@@ -193,19 +171,17 @@
             // lblTSStatus
             // 
             this.lblTSStatus.AutoSize = true;
-            this.lblTSStatus.Location = new System.Drawing.Point(704, 33);
-            this.lblTSStatus.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblTSStatus.Location = new System.Drawing.Point(352, 17);
             this.lblTSStatus.Name = "lblTSStatus";
-            this.lblTSStatus.Size = new System.Drawing.Size(54, 25);
+            this.lblTSStatus.Size = new System.Drawing.Size(29, 13);
             this.lblTSStatus.TabIndex = 13;
             this.lblTSStatus.Text = "New";
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(740, 117);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(6);
+            this.btnSearch.Location = new System.Drawing.Point(370, 61);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(150, 44);
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 14;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -218,11 +194,12 @@
             this.dataGridViewEmploye.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEmploye.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Selected});
-            this.dataGridViewEmploye.Location = new System.Drawing.Point(29, 196);
+            this.dataGridViewEmploye.Location = new System.Drawing.Point(14, 102);
+            this.dataGridViewEmploye.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridViewEmploye.Name = "dataGridViewEmploye";
             this.dataGridViewEmploye.RowHeadersVisible = false;
             this.dataGridViewEmploye.RowTemplate.Height = 33;
-            this.dataGridViewEmploye.Size = new System.Drawing.Size(412, 423);
+            this.dataGridViewEmploye.Size = new System.Drawing.Size(206, 220);
             this.dataGridViewEmploye.TabIndex = 15;
             // 
             // Selected
@@ -237,9 +214,10 @@
             // 
             // btnAddEmployee
             // 
-            this.btnAddEmployee.Location = new System.Drawing.Point(455, 376);
+            this.btnAddEmployee.Location = new System.Drawing.Point(228, 177);
+            this.btnAddEmployee.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAddEmployee.Name = "btnAddEmployee";
-            this.btnAddEmployee.Size = new System.Drawing.Size(75, 62);
+            this.btnAddEmployee.Size = new System.Drawing.Size(38, 32);
             this.btnAddEmployee.TabIndex = 16;
             this.btnAddEmployee.Text = ">>";
             this.btnAddEmployee.UseVisualStyleBackColor = true;
@@ -247,9 +225,10 @@
             // 
             // btnDelEmployee
             // 
-            this.btnDelEmployee.Location = new System.Drawing.Point(455, 308);
+            this.btnDelEmployee.Location = new System.Drawing.Point(228, 216);
+            this.btnDelEmployee.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDelEmployee.Name = "btnDelEmployee";
-            this.btnDelEmployee.Size = new System.Drawing.Size(75, 62);
+            this.btnDelEmployee.Size = new System.Drawing.Size(38, 32);
             this.btnDelEmployee.TabIndex = 17;
             this.btnDelEmployee.Text = "<<";
             this.btnDelEmployee.UseVisualStyleBackColor = true;
@@ -257,9 +236,9 @@
             // 
             // frmTimesheet
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1431, 677);
+            this.ClientSize = new System.Drawing.Size(685, 352);
             this.Controls.Add(this.btnDelEmployee);
             this.Controls.Add(this.btnAddEmployee);
             this.Controls.Add(this.dataGridViewEmploye);
@@ -268,7 +247,6 @@
             this.Controls.Add(this.btnReject);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnApprove);
-            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dataGridViewTS);
             this.Controls.Add(this.lblDate);
@@ -277,7 +255,6 @@
             this.Controls.Add(this.comboBoxSitename);
             this.Controls.Add(this.comboProjects);
             this.Controls.Add(this.dateTimePicker);
-            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "frmTimesheet";
             this.Text = "Site Timesheet";
             this.Load += new System.EventHandler(this.frmTimesheet_Load);
@@ -299,7 +276,6 @@
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.DataGridView dataGridViewTS;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnApprove;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Button btnReject;
