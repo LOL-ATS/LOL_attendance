@@ -40,9 +40,11 @@
             // btnLogin
             // 
             this.btnLogin.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnLogin.Location = new System.Drawing.Point(280, 155);
+            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.Location = new System.Drawing.Point(209, 225);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(183, 49);
+            this.btnLogin.Size = new System.Drawing.Size(120, 50);
             this.btnLogin.TabIndex = 6;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -51,51 +53,60 @@
             // lbl_psw
             // 
             this.lbl_psw.AutoSize = true;
-            this.lbl_psw.Location = new System.Drawing.Point(233, 106);
+            this.lbl_psw.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_psw.Location = new System.Drawing.Point(204, 142);
+            this.lbl_psw.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_psw.Name = "lbl_psw";
-            this.lbl_psw.Size = new System.Drawing.Size(106, 25);
+            this.lbl_psw.Size = new System.Drawing.Size(98, 25);
             this.lbl_psw.TabIndex = 3;
             this.lbl_psw.Text = "Password";
             // 
             // lbl_user
             // 
             this.lbl_user.AutoSize = true;
-            this.lbl_user.Location = new System.Drawing.Point(233, 59);
+            this.lbl_user.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_user.Location = new System.Drawing.Point(204, 51);
+            this.lbl_user.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_user.Name = "lbl_user";
-            this.lbl_user.Size = new System.Drawing.Size(119, 25);
+            this.lbl_user.Size = new System.Drawing.Size(110, 25);
             this.lbl_user.TabIndex = 2;
             this.lbl_user.Text = "User Name";
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(354, 103);
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Location = new System.Drawing.Point(209, 169);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(145, 31);
+            this.txtPassword.Size = new System.Drawing.Size(243, 30);
             this.txtPassword.TabIndex = 1;
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(354, 56);
+            this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsername.Location = new System.Drawing.Point(209, 78);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(145, 31);
+            this.txtUsername.Size = new System.Drawing.Size(243, 30);
             this.txtUsername.TabIndex = 0;
             // 
             // pnlLogin
             // 
             this.pnlLogin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlLogin.BackgroundImage")));
             this.pnlLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlLogin.Location = new System.Drawing.Point(12, 27);
+            this.pnlLogin.Location = new System.Drawing.Point(29, 31);
+            this.pnlLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlLogin.Name = "pnlLogin";
-            this.pnlLogin.Size = new System.Drawing.Size(195, 193);
+            this.pnlLogin.Size = new System.Drawing.Size(157, 168);
             this.pnlLogin.TabIndex = 6;
             // 
             // login
             // 
             this.AcceptButton = this.btnLogin;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(524, 279);
+            this.ClientSize = new System.Drawing.Size(492, 353);
             this.ControlBox = false;
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.lbl_psw);
@@ -105,6 +116,7 @@
             this.Controls.Add(this.txtPassword);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "login";
