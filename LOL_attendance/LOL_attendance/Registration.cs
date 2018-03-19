@@ -1150,6 +1150,11 @@ namespace LOL_attendance
             }
 
         }
+
+        private void tabUser_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

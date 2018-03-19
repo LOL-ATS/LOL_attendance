@@ -102,14 +102,14 @@
             this.pnlMainBtn.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMainBtn.Location = new System.Drawing.Point(0, 38);
             this.pnlMainBtn.Name = "pnlMainBtn";
-            this.pnlMainBtn.Size = new System.Drawing.Size(270, 523);
+            this.pnlMainBtn.Size = new System.Drawing.Size(239, 523);
             this.pnlMainBtn.TabIndex = 7;
             this.pnlMainBtn.Visible = false;
             // 
             // btnExit
             // 
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(38, 205);
+            this.btnExit.Location = new System.Drawing.Point(20, 197);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(194, 65);
             this.btnExit.TabIndex = 7;
@@ -121,7 +121,7 @@
             // 
             this.btnTimesheet.Enabled = false;
             this.btnTimesheet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTimesheet.Location = new System.Drawing.Point(38, 115);
+            this.btnTimesheet.Location = new System.Drawing.Point(20, 107);
             this.btnTimesheet.Name = "btnTimesheet";
             this.btnTimesheet.Size = new System.Drawing.Size(194, 65);
             this.btnTimesheet.TabIndex = 5;
@@ -133,7 +133,7 @@
             // 
             this.btnReg.Enabled = false;
             this.btnReg.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReg.Location = new System.Drawing.Point(38, 29);
+            this.btnReg.Location = new System.Drawing.Point(20, 21);
             this.btnReg.Name = "btnReg";
             this.btnReg.Size = new System.Drawing.Size(194, 65);
             this.btnReg.TabIndex = 4;
