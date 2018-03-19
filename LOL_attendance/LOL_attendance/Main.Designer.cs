@@ -68,7 +68,7 @@
             // tSSLUsername
             // 
             this.tSSLUsername.Name = "tSSLUsername";
-            this.tSSLUsername.Size = new System.Drawing.Size(60, 33);
+            this.tSSLUsername.Size = new System.Drawing.Size(75, 33);
             this.tSSLUsername.Text = "Username";
             // 
             // tSSBUser
@@ -79,7 +79,7 @@
             this.tSSBUser.Image = global::LOL_attendance.Properties.Resources.avatar;
             this.tSSBUser.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tSSBUser.Name = "tSSBUser";
-            this.tSSBUser.Size = new System.Drawing.Size(48, 36);
+            this.tSSBUser.Size = new System.Drawing.Size(51, 36);
             this.tSSBUser.Text = "toolStripSplitButton1";
             this.tSSBUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tSSBUser.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -88,13 +88,13 @@
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
             this.logoutToolStripMenuItem.Text = "Log out";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // pnlMainBtn
             // 
-            this.pnlMainBtn.BackColor = System.Drawing.Color.Transparent;
+            this.pnlMainBtn.BackColor = System.Drawing.Color.White;
             this.pnlMainBtn.Controls.Add(this.btnExit);
             this.pnlMainBtn.Controls.Add(this.btnTimesheet);
             this.pnlMainBtn.Controls.Add(this.btnReg);
@@ -108,6 +108,7 @@
             // 
             // btnExit
             // 
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.Location = new System.Drawing.Point(38, 205);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(194, 65);
@@ -119,6 +120,7 @@
             // btnTimesheet
             // 
             this.btnTimesheet.Enabled = false;
+            this.btnTimesheet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTimesheet.Location = new System.Drawing.Point(38, 115);
             this.btnTimesheet.Name = "btnTimesheet";
             this.btnTimesheet.Size = new System.Drawing.Size(194, 65);
@@ -130,6 +132,7 @@
             // btnReg
             // 
             this.btnReg.Enabled = false;
+            this.btnReg.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReg.Location = new System.Drawing.Point(38, 29);
             this.btnReg.Name = "btnReg";
             this.btnReg.Size = new System.Drawing.Size(194, 65);
