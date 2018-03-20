@@ -1155,6 +1155,16 @@ namespace LOL_attendance
         {
 
         }
+
+        private void frmRegistration_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblProjectName_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
