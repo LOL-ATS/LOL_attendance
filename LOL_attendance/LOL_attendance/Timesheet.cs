@@ -34,6 +34,10 @@ namespace LOL_attendance
             dtTimesheet.Columns.Add("Name", typeof(String));
             dtTimesheet.Columns.Add("Surname", typeof(String));
             dtTimesheet.Columns.Add("Hours", typeof(TimeSpan));
+            dtWorkers.Columns.Add("ID", typeof(Int32));
+            dtWorkers.Columns.Add("Name", typeof(String));
+            dtWorkers.Columns.Add("Surname", typeof(String));
+            dtTimesheet.Columns.Add("Status", typeof(String));
 
         }
 
@@ -47,6 +51,8 @@ namespace LOL_attendance
             this.Text = "Timesheet: " + frm.User.userfullname.ToString() + " ("+frm.User.userRole.ToString()+")";
 
             //Check Role of User
+            
+
             if (frm.User.userRole == userClass.userRoles.SiteManager)
             {
                 //-----------------Site Manager -------------------
@@ -54,7 +60,7 @@ namespace LOL_attendance
 
                 //*****bind Project dropdown with values from db*****
                 //Liana: Fixed query for isActive flag
-                cmd = new SqlCommand("SELECT p.id, p.name FROM project p, site s WHERE s.mngr_id=" + currentSiteManagerID.ToString() + " and p.id=s.proj_id and s.isActive='True' and p.isActive = 'True'", conn);
+                cmd = new SqlCommand("SELECT DISTINCT id, name FROM project p JOIN(select distinct proj_id, mngr_id, isActive from site )s ON p.id = s.proj_id WHERE s.mngr_id = " + currentSiteManagerID.ToString() + " and p.isActive = 'True' and s.isActive = 'True'", conn);
 
 
                 DataTable dtproject = new DataTable();
@@ -80,6 +86,9 @@ namespace LOL_attendance
             {
                 //-----------------Project Manager -------------------
                 currentProjectManagerID = frm.User.userID;
+                btnSave.Enabled = false;
+                btnAddEmployee.Enabled = false;
+                btnDelEmployee.Enabled = false;
 
                 //*******bind Project dropdown with values from db******
                 //Liana: change query to consider isActive flag
@@ -136,12 +145,53 @@ namespace LOL_attendance
         {
             SqlConnection conn;
             SqlCommand cmd;
-            SqlDataReader rdr;
             int rows = 0;
             rows = dataGridViewTS.RowCount;
-
-            //define selected Site ID
             conn = new SqlConnection(connStr);
+
+                int rowIndex = 0;
+                int addedRows = 0;
+                while (rows > 0)
+                {
+                    rows = rows - 1;
+                    if (dataGridViewTS.Rows[rowIndex].Cells[4].Value != null )
+                    {
+                        cmd = new SqlCommand("INSERT into timesheet (date, hours, employee_id, site_id, status) VALUES (@date, @hours, @employee_id, @site_id,'Saved')", conn);
+                        cmd.Parameters.AddWithValue("@date", dateTimePicker.Value.ToString("yyyy-MM-dd"));
+
+                        cmd.Parameters.AddWithValue("@hours", TimeSpan.Parse(dataGridViewTS.Rows[rowIndex].Cells[4].Value.ToString()));
+                        //++need to add check for not null value 
+                        cmd.Parameters.AddWithValue("@employee_id", Convert.ToInt32(dataGridViewTS.Rows[rowIndex].Cells[1].Value.ToString()));
+                        cmd.Parameters.AddWithValue("@site_id", currentSiteID);
+
+                        conn.Open();
+                        if (cmd.ExecuteNonQuery() == 1)
+                        {
+                            addedRows++;
+
+                        }
+                        conn.Close();
+                    }
+                if (dataGridViewTS.Rows[rowIndex].Cells[4].Value == null)
+                {
+                    MessageBox.Show("Hours is not filled");
+                }
+                rowIndex++;
+                }
+
+                if (addedRows > 0)
+                {
+                    lblTSStatus.Text = "Saved";
+                    Updatedata();
+                }
+            else
+            {
+                MessageBox.Show("Timesheet is empty");
+            }
+
+
+            /*Omid:Commented becuase it implimented as public variables
+            //define selected Site ID
             cmd = new SqlCommand("SELECT id from site where name='" + comboBoxSitename.SelectedItem + "'", conn);
             conn.Open();
             rdr = cmd.ExecuteReader();
@@ -163,39 +213,8 @@ namespace LOL_attendance
                 currentSiteManagerID = rdr.GetInt32(0);
             }
             conn.Close();
+            */
             //saving TS rows in db
-            int rowIndex = 0;
-            int addedRows = 0;
-            while (rows > 0)
-            {
-                rows = rows - 1;
-                if (dataGridViewTS.Rows[rowIndex].Cells[1].Value != null)
-                {
-                    cmd = new SqlCommand("INSERT into timesheet (date, hours, employee_id, site_id, status) VALUES (@date, @hours, @employee_id, @site_id, 'Saved')", conn);
-                    cmd.Parameters.AddWithValue("@date", dateTimePicker.Value.ToString("yyyy-MM-dd"));
-                    
-                    cmd.Parameters.AddWithValue("@hours", TimeSpan.Parse(dataGridViewTS.Rows[rowIndex].Cells[4].Value.ToString()));
-                    //++need to add check for not null value 
-                    cmd.Parameters.AddWithValue("@employee_id", Convert.ToInt32(dataGridViewTS.Rows[rowIndex].Cells[1].Value.ToString()));
-                    cmd.Parameters.AddWithValue("@site_id", currentSiteID);
-
-                    conn.Open();
-                    if (cmd.ExecuteNonQuery() == 1)
-                    {
-                        addedRows++;
-                        //lblUserStatus.ForeColor = System.Drawing.Color.Green;
-                        //lblUserStatus.Text = "Successfuly added";
-                    }
-                    conn.Close();
-                }
-                rowIndex++;
-            }
-
-            if (addedRows > 0)
-            {
-                lblTSStatus.Text = "Saved";
-                Updatedata();
-            }
 
         }
 
@@ -203,16 +222,40 @@ namespace LOL_attendance
         {
             SqlConnection conn;
             SqlCommand cmd;
-            SqlDataReader rdr;
             conn = new SqlConnection(connStr);
+            Main frm = (Main)this.MdiParent;
+
+            //Check Role of User
+            string TSstatus = "";
+            Int32 ApproverID = 0;
+
+            if (frm.User.userRole == userClass.userRoles.SiteManager)
+            {
+                //-----------------Site Manager -------------------
+                TSstatus = "By SM";
+                ApproverID = currentSiteManagerID;
+
+            }
+            else if (frm.User.userRole == userClass.userRoles.ProjectManager)
+            {
+                //-----------------Project Manager -------------------
+                TSstatus = "By PM";
+                ApproverID = currentProjectManagerID;
+            } else
+            {
+                TSstatus = "";
+            }
+            int approveRows = 0;
+            int NoapprovededRows = 0;
             if (dataGridViewTS.Rows.Count == 0)
             {
-                MessageBox.Show("No TS for approving");
+                MessageBox.Show("No Records for approving");
+
             }
             else
             {
-                int updatedRows = 0;
-                /*
+                /*Omid:commented becuse current site id implimented as public variable
+                
                 //define selected Site ID
                 conn = new SqlConnection(connStr);
                 cmd = new SqlCommand("SELECT id from site where isActive='True and name='" + comboBoxSitename.SelectedItem + "'", conn);
@@ -227,46 +270,62 @@ namespace LOL_attendance
 
                 for (int i = dataGridViewTS.Rows.Count - 1; i >= 0; i--)
                 {
-                    if (((bool)dataGridViewTS.Rows[i].Cells[0].FormattedValue) && (dataGridViewTS.Rows[i].Cells[4].ToString() != "Approved by PM"))
+                    if (((bool)dataGridViewTS.Rows[i].Cells[0].FormattedValue) && (dataGridViewTS.Rows[i].Cells[5].Value.ToString() != "By PM"))
                     {
-                        if (dataGridViewTS.Rows[i].Cells[4].ToString() == "")
+                        if (dataGridViewTS.Rows[i].Cells[5].Value.ToString() == "" && frm.User.userRole==userClass.userRoles.SiteManager)
                         {
-                            conn = new SqlConnection(connStr);
-                            cmd = new SqlCommand("INSERT into timesheet (employee_id, site_id, date, approved_by_id, status, hours) VALUES ( @employee_id, @site_id, '" + dateTimePicker.Value.ToString("yyyy-MM-dd") + "'," + currentSiteManagerID + ", 'Approved by SM', @hours)", conn);
-
-                            cmd.Parameters.AddWithValue("@hours", dataGridViewTS.Rows[i].Cells[4].Value);
-
-                            cmd.Parameters.AddWithValue("@employee_id", Convert.ToInt32(dataGridViewTS.Rows[i].Cells[1].Value.ToString()));
-                            cmd.Parameters.AddWithValue("@site_id", currentSiteID);
-                            conn.Open();
-                            if (cmd.ExecuteNonQuery() == 1)
-                            {
-                                updatedRows++;
-                            }
-                            conn.Close();
-                        }
-                        else
-                        {
-                            conn = new SqlConnection(connStr);
-                            cmd = new SqlCommand("UPDATE timesheet set hours = @hours, status = 'Approved by SM', approved_by_id = "+ currentSiteManagerID + " where employee_id= @employee_id and site_id = @site_id and date= '" + dateTimePicker.Value.ToString("yyyy-MM-dd") + "'", conn);
+                            cmd = new SqlCommand("INSERT into timesheet(date, hours, employee_id, site_id, status,approved_by_id) VALUES(@date, @hours, @employee_id, @site_id, @status,@approverid)", conn);
+                            cmd.Parameters.AddWithValue("@date", dateTimePicker.Value.ToString("yyyy-MM-dd"));
 
                             cmd.Parameters.AddWithValue("@hours", TimeSpan.Parse(dataGridViewTS.Rows[i].Cells[4].Value.ToString()));
-
                             cmd.Parameters.AddWithValue("@employee_id", Convert.ToInt32(dataGridViewTS.Rows[i].Cells[1].Value.ToString()));
                             cmd.Parameters.AddWithValue("@site_id", currentSiteID);
+                            cmd.Parameters.AddWithValue("@status", TSstatus);
+                            cmd.Parameters.AddWithValue("@approverid", ApproverID);
+
+                            
+                            
                             conn.Open();
                             if (cmd.ExecuteNonQuery() == 1)
                             {
-                                updatedRows++;
+                                approveRows++;
                             }
                             conn.Close();
                         }
+                        else if ((dataGridViewTS.Rows[i].Cells[5].Value.ToString() == "Saved" && frm.User.userRole == userClass.userRoles.SiteManager) || (dataGridViewTS.Rows[i].Cells[5].Value.ToString() == "By SM" && frm.User.userRole == userClass.userRoles.ProjectManager))
+                        {
+                           cmd = new SqlCommand("UPDATE timesheet set hours = @hours, status = @status, approved_by_id =@approverid where employee_id= @employee_id and site_id = @site_id and date= @date", conn);
+                            cmd.Parameters.AddWithValue("@status", TSstatus);
+
+                            cmd.Parameters.AddWithValue("@hours", TimeSpan.Parse(dataGridViewTS.Rows[i].Cells[4].Value.ToString()));
+                            cmd.Parameters.AddWithValue("@approverid", ApproverID);
+                            cmd.Parameters.AddWithValue("@employee_id", Convert.ToInt32(dataGridViewTS.Rows[i].Cells[1].Value.ToString()));
+                            cmd.Parameters.AddWithValue("@site_id", currentSiteID);
+                            cmd.Parameters.AddWithValue("@date", dateTimePicker.Value.ToString("yyyy-MM-dd"));
+
+                            conn.Open();
+                            if (cmd.ExecuteNonQuery() == 1)
+                            {
+                                approveRows++;
+                            }
+                            conn.Close();
+                        }
+                        else { NoapprovededRows++; }
 
                     }
                 }
-                MessageBox.Show(Convert.ToString(updatedRows) + "string updated");
+                if (frm.User.userRole == userClass.userRoles.SiteManager)
+                {
+                    if (NoapprovededRows>0) MessageBox.Show(String.Format("The {0} records is not approved ", approveRows));
+                }
+                else
+                {
+                    if (NoapprovededRows > 0) MessageBox.Show(String.Format("{0} records need Site manager approval", NoapprovededRows));
+                    
+                }
+               
             }
-            Updatedata();
+            if (approveRows > 0) Updatedata();
         }
 
         private void Updatedata()
@@ -316,6 +375,8 @@ namespace LOL_attendance
                 dataGridViewTS.DataSource = dtTimesheet;
             }
             conn.Close();
+            Main frm = (Main)this.MdiParent;
+            if (frm.User.userRole == userClass.userRoles.ProjectManager && dataGridViewTS.Rows.Count == 0) MessageBox.Show("There is no Timesheet created for this site yet!");
             //----------------------------------------------------
 
         }
@@ -514,9 +575,9 @@ namespace LOL_attendance
                 rdr = cmd.ExecuteReader();
                 if (rdr.HasRows)
                 {
-                    btnAddEmployee.Enabled = true;
-                    btnDelEmployee.Enabled = true;
-                    btnSave.Enabled = true;
+                   // btnAddEmployee.Enabled = true;
+                    //btnDelEmployee.Enabled = true;
+                    //btnSave.Enabled = true;
                     btnReject.Enabled = true;
                     btnApprove.Enabled = true;
                     comboBoxSitename.Enabled = true;
@@ -528,9 +589,9 @@ namespace LOL_attendance
                 else
                 {
                     comboBoxSitename.Enabled = false;
-                    btnAddEmployee.Enabled = false;
-                    btnDelEmployee.Enabled = false;
-                    btnSave.Enabled = false;
+                    //btnAddEmployee.Enabled = false;
+                    //btnDelEmployee.Enabled = false;
+                    //btnSave.Enabled = false;
                     btnReject.Enabled = false;
                     dateTimePicker.Enabled = false;
                     btnApprove.Enabled = false;
@@ -579,6 +640,7 @@ namespace LOL_attendance
  
 //            MessageBox.Show(currentSiteID.ToString());
             Updatedata();
+    
         }
     }
 }

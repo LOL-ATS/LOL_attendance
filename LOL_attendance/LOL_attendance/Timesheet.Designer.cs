@@ -56,10 +56,10 @@
             // dateTimePicker
             // 
             this.dateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker.Location = new System.Drawing.Point(153, 203);
-            this.dateTimePicker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker.Location = new System.Drawing.Point(230, 317);
+            this.dateTimePicker.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(367, 30);
+            this.dateTimePicker.Size = new System.Drawing.Size(548, 44);
             this.dateTimePicker.TabIndex = 0;
             this.dateTimePicker.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
             // 
@@ -68,10 +68,10 @@
             this.comboProjects.DisplayMember = "name";
             this.comboProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboProjects.FormattingEnabled = true;
-            this.comboProjects.Location = new System.Drawing.Point(153, 87);
-            this.comboProjects.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboProjects.Location = new System.Drawing.Point(230, 136);
+            this.comboProjects.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.comboProjects.Name = "comboProjects";
-            this.comboProjects.Size = new System.Drawing.Size(367, 33);
+            this.comboProjects.Size = new System.Drawing.Size(548, 45);
             this.comboProjects.TabIndex = 1;
             this.comboProjects.ValueMember = "name";
             this.comboProjects.SelectedIndexChanged += new System.EventHandler(this.comboProjects_SelectedIndexChanged);
@@ -81,10 +81,10 @@
             this.comboBoxSitename.Enabled = false;
             this.comboBoxSitename.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxSitename.FormattingEnabled = true;
-            this.comboBoxSitename.Location = new System.Drawing.Point(153, 143);
-            this.comboBoxSitename.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxSitename.Location = new System.Drawing.Point(230, 223);
+            this.comboBoxSitename.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.comboBoxSitename.Name = "comboBoxSitename";
-            this.comboBoxSitename.Size = new System.Drawing.Size(367, 33);
+            this.comboBoxSitename.Size = new System.Drawing.Size(548, 45);
             this.comboBoxSitename.TabIndex = 2;
             this.comboBoxSitename.SelectedIndexChanged += new System.EventHandler(this.comboBoxSitename_SelectedIndexChanged);
             // 
@@ -92,10 +92,10 @@
             // 
             this.lblSitemngr.AutoSize = true;
             this.lblSitemngr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSitemngr.Location = new System.Drawing.Point(36, 95);
-            this.lblSitemngr.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSitemngr.Location = new System.Drawing.Point(54, 148);
+            this.lblSitemngr.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblSitemngr.Name = "lblSitemngr";
-            this.lblSitemngr.Size = new System.Drawing.Size(82, 25);
+            this.lblSitemngr.Size = new System.Drawing.Size(132, 37);
             this.lblSitemngr.TabIndex = 3;
             this.lblSitemngr.Text = "Projects";
             // 
@@ -103,10 +103,10 @@
             // 
             this.lblSitename.AutoSize = true;
             this.lblSitename.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSitename.Location = new System.Drawing.Point(36, 151);
-            this.lblSitename.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSitename.Location = new System.Drawing.Point(54, 236);
+            this.lblSitename.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblSitename.Name = "lblSitename";
-            this.lblSitename.Size = new System.Drawing.Size(103, 25);
+            this.lblSitename.Size = new System.Drawing.Size(166, 37);
             this.lblSitename.TabIndex = 4;
             this.lblSitename.Text = "Site Name";
             // 
@@ -114,10 +114,10 @@
             // 
             this.lblDate.AutoSize = true;
             this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(36, 208);
-            this.lblDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDate.Location = new System.Drawing.Point(54, 325);
+            this.lblDate.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(53, 25);
+            this.lblDate.Size = new System.Drawing.Size(84, 37);
             this.lblDate.TabIndex = 5;
             this.lblDate.Text = "Date";
             // 
@@ -128,11 +128,11 @@
             this.dataGridViewTS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewTS.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TsSelected});
-            this.dataGridViewTS.Location = new System.Drawing.Point(689, 343);
-            this.dataGridViewTS.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewTS.Location = new System.Drawing.Point(1034, 536);
+            this.dataGridViewTS.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.dataGridViewTS.Name = "dataGridViewTS";
             this.dataGridViewTS.RowHeadersVisible = false;
-            this.dataGridViewTS.Size = new System.Drawing.Size(928, 400);
+            this.dataGridViewTS.Size = new System.Drawing.Size(932, 625);
             this.dataGridViewTS.TabIndex = 6;
             // 
             // TsSelected
@@ -144,10 +144,10 @@
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(1241, 770);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSave.Location = new System.Drawing.Point(1402, 1193);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(120, 50);
+            this.btnSave.Size = new System.Drawing.Size(180, 78);
             this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -156,10 +156,10 @@
             // btnApprove
             // 
             this.btnApprove.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApprove.Location = new System.Drawing.Point(1369, 770);
-            this.btnApprove.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnApprove.Location = new System.Drawing.Point(1594, 1193);
+            this.btnApprove.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnApprove.Name = "btnApprove";
-            this.btnApprove.Size = new System.Drawing.Size(120, 50);
+            this.btnApprove.Size = new System.Drawing.Size(180, 78);
             this.btnApprove.TabIndex = 9;
             this.btnApprove.Text = "Approve";
             this.btnApprove.UseVisualStyleBackColor = true;
@@ -169,20 +169,20 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(724, 53);
-            this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblStatus.Location = new System.Drawing.Point(1086, 83);
+            this.lblStatus.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(68, 25);
+            this.lblStatus.Size = new System.Drawing.Size(108, 37);
             this.lblStatus.TabIndex = 10;
             this.lblStatus.Text = "Status";
             // 
             // btnReject
             // 
             this.btnReject.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReject.Location = new System.Drawing.Point(1497, 770);
-            this.btnReject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReject.Location = new System.Drawing.Point(1786, 1193);
+            this.btnReject.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnReject.Name = "btnReject";
-            this.btnReject.Size = new System.Drawing.Size(120, 50);
+            this.btnReject.Size = new System.Drawing.Size(180, 78);
             this.btnReject.TabIndex = 12;
             this.btnReject.Text = "Reject";
             this.btnReject.UseVisualStyleBackColor = true;
@@ -191,20 +191,20 @@
             // 
             this.lblTSStatus.AutoSize = true;
             this.lblTSStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTSStatus.Location = new System.Drawing.Point(855, 53);
-            this.lblTSStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTSStatus.Location = new System.Drawing.Point(1282, 83);
+            this.lblTSStatus.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblTSStatus.Name = "lblTSStatus";
-            this.lblTSStatus.Size = new System.Drawing.Size(51, 25);
+            this.lblTSStatus.Size = new System.Drawing.Size(81, 37);
             this.lblTSStatus.TabIndex = 13;
             this.lblTSStatus.Text = "New";
             // 
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(400, 268);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearch.Location = new System.Drawing.Point(600, 419);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(120, 50);
+            this.btnSearch.Size = new System.Drawing.Size(180, 78);
             this.btnSearch.TabIndex = 14;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -216,12 +216,12 @@
             this.dataGridViewEmploye.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEmploye.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Selected});
-            this.dataGridViewEmploye.Location = new System.Drawing.Point(41, 343);
-            this.dataGridViewEmploye.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dataGridViewEmploye.Location = new System.Drawing.Point(62, 536);
+            this.dataGridViewEmploye.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dataGridViewEmploye.Name = "dataGridViewEmploye";
             this.dataGridViewEmploye.RowHeadersVisible = false;
             this.dataGridViewEmploye.RowTemplate.Height = 33;
-            this.dataGridViewEmploye.Size = new System.Drawing.Size(479, 400);
+            this.dataGridViewEmploye.Size = new System.Drawing.Size(718, 625);
             this.dataGridViewEmploye.TabIndex = 15;
             // 
             // Selected
@@ -237,10 +237,10 @@
             // btnAddEmployee
             // 
             this.btnAddEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddEmployee.Location = new System.Drawing.Point(544, 421);
-            this.btnAddEmployee.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAddEmployee.Location = new System.Drawing.Point(816, 658);
+            this.btnAddEmployee.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddEmployee.Name = "btnAddEmployee";
-            this.btnAddEmployee.Size = new System.Drawing.Size(120, 50);
+            this.btnAddEmployee.Size = new System.Drawing.Size(180, 78);
             this.btnAddEmployee.TabIndex = 16;
             this.btnAddEmployee.Text = ">>";
             this.btnAddEmployee.UseVisualStyleBackColor = true;
@@ -249,10 +249,10 @@
             // btnDelEmployee
             // 
             this.btnDelEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelEmployee.Location = new System.Drawing.Point(544, 475);
-            this.btnDelEmployee.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDelEmployee.Location = new System.Drawing.Point(816, 742);
+            this.btnDelEmployee.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDelEmployee.Name = "btnDelEmployee";
-            this.btnDelEmployee.Size = new System.Drawing.Size(120, 50);
+            this.btnDelEmployee.Size = new System.Drawing.Size(180, 78);
             this.btnDelEmployee.TabIndex = 17;
             this.btnDelEmployee.Text = "<<";
             this.btnDelEmployee.UseVisualStyleBackColor = true;
@@ -260,9 +260,9 @@
             // 
             // frmTimesheet
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1667, 874);
+            this.ClientSize = new System.Drawing.Size(2011, 1366);
             this.Controls.Add(this.btnDelEmployee);
             this.Controls.Add(this.btnAddEmployee);
             this.Controls.Add(this.dataGridViewEmploye);
@@ -279,7 +279,7 @@
             this.Controls.Add(this.comboBoxSitename);
             this.Controls.Add(this.comboProjects);
             this.Controls.Add(this.dateTimePicker);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "frmTimesheet";
             this.Text = "Site Timesheet";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
