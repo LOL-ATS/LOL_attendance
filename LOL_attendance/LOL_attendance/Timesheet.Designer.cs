@@ -276,7 +276,6 @@
         private System.Windows.Forms.DataGridView dataGridViewTS;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnApprove;
-        private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Button btnReject;
 
         private System.Windows.Forms.BindingSource employeeBindingSource;
