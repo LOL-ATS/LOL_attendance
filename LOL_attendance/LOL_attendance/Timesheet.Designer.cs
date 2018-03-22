@@ -40,7 +40,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnApprove = new System.Windows.Forms.Button();
             this.btnReject = new System.Windows.Forms.Button();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.dataGridViewEmploye = new System.Windows.Forms.DataGridView();
             this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -171,16 +170,6 @@
             this.btnReject.UseVisualStyleBackColor = true;
             this.btnReject.Click += new System.EventHandler(this.btnReject_Click);
             // 
-            // btnSearch
-            // 
-            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(392, 58);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(90, 32);
-            this.btnSearch.TabIndex = 4;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            // 
             // dataGridViewEmploye
             // 
             this.dataGridViewEmploye.AllowUserToAddRows = false;
@@ -191,7 +180,7 @@
             this.dataGridViewEmploye.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Selected});
             this.dataGridViewEmploye.Location = new System.Drawing.Point(9, 164);
-            this.dataGridViewEmploye.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridViewEmploye.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewEmploye.Name = "dataGridViewEmploye";
             this.dataGridViewEmploye.RowHeadersVisible = false;
             this.dataGridViewEmploye.RowTemplate.Height = 33;
@@ -212,7 +201,7 @@
             // 
             this.btnAddEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddEmployee.Location = new System.Drawing.Point(218, 216);
-            this.btnAddEmployee.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddEmployee.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddEmployee.Name = "btnAddEmployee";
             this.btnAddEmployee.Size = new System.Drawing.Size(75, 32);
             this.btnAddEmployee.TabIndex = 5;
@@ -224,7 +213,7 @@
             // 
             this.btnDelEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelEmployee.Location = new System.Drawing.Point(218, 252);
-            this.btnDelEmployee.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDelEmployee.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelEmployee.Name = "btnDelEmployee";
             this.btnDelEmployee.Size = new System.Drawing.Size(75, 32);
             this.btnDelEmployee.TabIndex = 6;
@@ -240,7 +229,6 @@
             this.Controls.Add(this.btnDelEmployee);
             this.Controls.Add(this.btnAddEmployee);
             this.Controls.Add(this.dataGridViewEmploye);
-            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnReject);
             this.Controls.Add(this.btnApprove);
             this.Controls.Add(this.btnSave);
@@ -279,7 +267,6 @@
         private System.Windows.Forms.Button btnReject;
 
         private System.Windows.Forms.BindingSource employeeBindingSource;
-        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DataGridView dataGridViewEmploye;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
         private System.Windows.Forms.Button btnAddEmployee;
