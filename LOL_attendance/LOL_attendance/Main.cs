@@ -60,13 +60,23 @@ namespace LOL_attendance
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
+          //Omid: close buttons panel and disable status bar
             pnlMainBtn.Visible = false;
             statusStrip1.Enabled = false;
+          //Omid:Close all child forms when loging out 
+            foreach (Form aForm in this.MdiChildren)
+            {
+                aForm.Close();
+            }
+
+            //Omid: Show login form
             this.Refresh();
-            login formLogin = new login();
+            login formLogin = new login();        
             formLogin.MdiParent = this;
             formLogin.TopMost = true;
+       
             formLogin.Show();
+            
 
         }
         protected override void OnResize(EventArgs e)

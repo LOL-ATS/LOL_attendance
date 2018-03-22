@@ -43,75 +43,14 @@ namespace LOL_attendance
 
         private void frmTimesheet_Load(object sender, EventArgs e)
         {
-            SqlConnection conn;
-            SqlCommand cmd;
-            SqlDataReader rdr;
-            conn = new SqlConnection(connStr);
+        
             Main frm = (Main)this.MdiParent;
             this.Text = "Timesheet: " + frm.User.userfullname.ToString() + " ("+frm.User.userRole.ToString()+")";
 
             //Check Role of User
             
 
-            if (frm.User.userRole == userClass.userRoles.SiteManager)
-            {
-                //-----------------Site Manager -------------------
-                currentSiteManagerID = frm.User.userID;
-
-                //*****bind Project dropdown with values from db*****
-                //Liana: Fixed query for isActive flag
-                cmd = new SqlCommand("SELECT DISTINCT id, name FROM project p JOIN(select distinct proj_id, mngr_id, isActive from site )s ON p.id = s.proj_id WHERE s.mngr_id = " + currentSiteManagerID.ToString() + " and p.isActive = 'True' and s.isActive = 'True'", conn);
-
-
-                DataTable dtproject = new DataTable();
-                dtproject.Columns.Add("ID", typeof(Int32));
-                dtproject.Columns.Add("Name", typeof(String));
-                comboProjects.ValueMember = "id";
-                comboProjects.DisplayMember = "name";
-
-                conn.Open();
-                rdr = cmd.ExecuteReader();
-
-                if (rdr.HasRows)
-                {
-                    dtproject.Load(rdr);
-                    comboProjects.DataSource = dtproject;
-                    comboProjects.SelectedIndex = 0;
-                    currentProjectID = (Int32)comboProjects.SelectedValue;
-                }
-
-                conn.Close();
-            }
-            else if (frm.User.userRole == userClass.userRoles.ProjectManager)
-            {
-                //-----------------Project Manager -------------------
-                currentProjectManagerID = frm.User.userID;
-                btnSave.Enabled = false;
-                btnAddEmployee.Enabled = false;
-                btnDelEmployee.Enabled = false;
-
-                //*******bind Project dropdown with values from db******
-                //Liana: change query to consider isActive flag
-                cmd = new SqlCommand("SELECT id, name FROM project WHERE isActive='True' and mngr_id=" + currentProjectManagerID.ToString(), conn);
-                DataTable dtproject = new DataTable();
-                dtproject.Columns.Add("ID", typeof(Int32));
-                dtproject.Columns.Add("Name", typeof(String));
-                comboProjects.ValueMember = "id";
-                comboProjects.DisplayMember = "name";
-
-                conn.Open();
-                rdr = cmd.ExecuteReader();
-
-                if (rdr.HasRows)
-                {
-                    dtproject.Load(rdr);
-                    comboProjects.DataSource = dtproject;
-                    comboProjects.SelectedIndex = 0;
-                    currentProjectID = (Int32)comboProjects.SelectedValue;
-                }
-                conn.Close();
-
-               }
+           
             //Liana: commented Admin part because Admin can't work on TS
             /*
             else if (frm.User.userRole == userClass.userRoles.Admin)
@@ -641,6 +580,76 @@ namespace LOL_attendance
 //            MessageBox.Show(currentSiteID.ToString());
             Updatedata();
     
+        }
+
+        private void frmTimesheet_Shown(object sender, EventArgs e)
+        {
+            SqlConnection conn;
+            SqlCommand cmd;
+            SqlDataReader rdr;
+            conn = new SqlConnection(connStr);
+            Main frm = (Main)this.MdiParent;
+            
+            if (frm.User.userRole == userClass.userRoles.SiteManager)
+            {
+                //-----------------Site Manager -------------------
+                currentSiteManagerID = frm.User.userID;
+
+                //*****bind Project dropdown with values from db*****
+                //Liana: Fixed query for isActive flag
+                cmd = new SqlCommand("SELECT DISTINCT id, name FROM project p JOIN(select distinct proj_id, mngr_id, isActive from site )s ON p.id = s.proj_id WHERE s.mngr_id = " + currentSiteManagerID.ToString() + " and p.isActive = 'True' and s.isActive = 'True'", conn);
+
+
+                DataTable dtproject = new DataTable();
+                dtproject.Columns.Add("ID", typeof(Int32));
+                dtproject.Columns.Add("Name", typeof(String));
+                comboProjects.ValueMember = "id";
+                comboProjects.DisplayMember = "name";
+
+                conn.Open();
+                rdr = cmd.ExecuteReader();
+
+                if (rdr.HasRows)
+                {
+                    dtproject.Load(rdr);
+                    comboProjects.DataSource = dtproject;
+                    comboProjects.SelectedIndex = 0;
+                    currentProjectID = (Int32)comboProjects.SelectedValue;
+                }
+
+                conn.Close();
+            }
+            else if (frm.User.userRole == userClass.userRoles.ProjectManager)
+            {
+                //-----------------Project Manager -------------------
+                currentProjectManagerID = frm.User.userID;
+                btnSave.Enabled = false;
+                btnAddEmployee.Enabled = false;
+                btnDelEmployee.Enabled = false;
+
+                //*******bind Project dropdown with values from db******
+                //Liana: change query to consider isActive flag
+                cmd = new SqlCommand("SELECT id, name FROM project WHERE isActive='True' and mngr_id=" + currentProjectManagerID.ToString(), conn);
+                DataTable dtproject = new DataTable();
+                dtproject.Columns.Add("ID", typeof(Int32));
+                dtproject.Columns.Add("Name", typeof(String));
+                comboProjects.ValueMember = "id";
+                comboProjects.DisplayMember = "name";
+
+                conn.Open();
+                rdr = cmd.ExecuteReader();
+
+                if (rdr.HasRows)
+                {
+                    dtproject.Load(rdr);
+                    comboProjects.DataSource = dtproject;
+                    comboProjects.SelectedIndex = 0;
+                    currentProjectID = (Int32)comboProjects.SelectedValue;
+                }
+                conn.Close();
+
+            }
+
         }
     }
 }
