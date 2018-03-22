@@ -203,14 +203,14 @@ namespace LOL_attendance
             if (frm.User.userRole == userClass.userRoles.SiteManager)
             {
                 //-----------------Site Manager -------------------
-                TSstatus = "By SM";
+                TSstatus = "Approved By SM";
                 ApproverID = currentSiteManagerID;
 
             }
             else if (frm.User.userRole == userClass.userRoles.ProjectManager)
             {
                 //-----------------Project Manager -------------------
-                TSstatus = "By PM";
+                TSstatus = "Approved By PM";
                 ApproverID = currentProjectManagerID;
             } else
             {
@@ -241,7 +241,7 @@ namespace LOL_attendance
 
                 for (int i = dataGridViewTS.Rows.Count - 1; i >= 0; i--)
                 {
-                    if (((bool)dataGridViewTS.Rows[i].Cells[0].FormattedValue) && (dataGridViewTS.Rows[i].Cells[5].Value.ToString() != "By PM"))
+                    if (((bool)dataGridViewTS.Rows[i].Cells[0].FormattedValue) && (dataGridViewTS.Rows[i].Cells[5].Value.ToString() != "Approved By PM"))
                     {
                         if (dataGridViewTS.Rows[i].Cells[5].Value.ToString() == "" && frm.User.userRole==userClass.userRoles.SiteManager)
                         {
@@ -263,7 +263,7 @@ namespace LOL_attendance
                             }
                             conn.Close();
                         }
-                        else if ((dataGridViewTS.Rows[i].Cells[5].Value.ToString() == "Saved" && frm.User.userRole == userClass.userRoles.SiteManager) || (dataGridViewTS.Rows[i].Cells[5].Value.ToString() == "By SM" && frm.User.userRole == userClass.userRoles.ProjectManager))
+                        else if ((dataGridViewTS.Rows[i].Cells[5].Value.ToString() == "Saved" && frm.User.userRole == userClass.userRoles.SiteManager) || (dataGridViewTS.Rows[i].Cells[5].Value.ToString() == "Approved By SM" && frm.User.userRole == userClass.userRoles.ProjectManager))
                         {
                            cmd = new SqlCommand("UPDATE timesheet set hours = @hours, status = @status, approved_by_id =@approverid where employee_id= @employee_id and site_id = @site_id and date= @date", conn);
                             cmd.Parameters.AddWithValue("@status", TSstatus);
