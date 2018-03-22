@@ -252,22 +252,19 @@ namespace LOL_attendance
             }
             conn.Close();
 
-            ////Get selected Site ID
-            //conn = new SqlConnection(connStr);
-            //cmd = new SqlCommand("SELECT id from site where name='" + comboBoxSitename.SelectedItem + "'", conn);
-            //conn.Open();
-            //rdr = cmd.ExecuteReader();
-            //if (rdr.HasRows)
-            //{
-            //    rdr.Read();
-            //    currentSiteID = rdr.GetInt32(0);
-            //}
-            //conn.Close();
-           
+            Main frm = (Main)this.MdiParent;
 
-            //----------------------------------------------------
-            //Load TS regarding on date and site
-            cmd = new SqlCommand("SELECT employee_id as ID, name, surname, hours, status FROM employee e, timesheet ts where e.id=ts.employee_id and date ='" + dateTimePicker.Value.ToString("yyyy-MM-dd") + "' and site_id = @site_id", conn);
+
+
+            if (frm.User.userRole == userClass.userRoles.ProjectManager)
+            {
+                cmd = new SqlCommand("SELECT employee_id as ID, name, surname, hours, status FROM employee e, timesheet ts where e.id=ts.employee_id and date ='" + dateTimePicker.Value.ToString("yyyy-MM-dd") + "' and site_id = @site_id and ( ts.status = 'Approved By SM' or ts.status = 'Approved By PM' or ts.status='Rejected')", conn);
+            }
+            else
+            {
+                cmd = new SqlCommand("SELECT employee_id as ID, name, surname, hours, status FROM employee e, timesheet ts where e.id=ts.employee_id and date ='" + dateTimePicker.Value.ToString("yyyy-MM-dd") + "' and site_id = @site_id", conn);
+            }
+            
 
             cmd.Parameters.AddWithValue("@site_id", currentSiteID);
             //Fill the Timesheet GrideView
@@ -280,7 +277,6 @@ namespace LOL_attendance
                 dataGridViewTS.DataSource = dtTimesheet;
             }
             conn.Close();
-            Main frm = (Main)this.MdiParent;
             if (frm.User.userRole == userClass.userRoles.ProjectManager && dataGridViewTS.Rows.Count == 0) MessageBox.Show("There is no Timesheet created for this site yet!");
             //----------------------------------------------------
 
