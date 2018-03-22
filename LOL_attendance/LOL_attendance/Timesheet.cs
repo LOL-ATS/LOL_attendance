@@ -277,7 +277,8 @@ namespace LOL_attendance
                 dataGridViewTS.DataSource = dtTimesheet;
             }
             conn.Close();
-            if (frm.User.userRole == userClass.userRoles.ProjectManager && dataGridViewTS.Rows.Count == 0) MessageBox.Show("There is no Timesheet created for this site yet!");
+            //Omid:commented As Lana ask me 
+            //if (frm.User.userRole == userClass.userRoles.ProjectManager && dataGridViewTS.Rows.Count == 0) MessageBox.Show("There is no Timesheet created for this site yet!");
             //----------------------------------------------------
 
         }
