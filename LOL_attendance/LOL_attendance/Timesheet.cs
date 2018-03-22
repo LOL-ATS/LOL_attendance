@@ -433,7 +433,7 @@ namespace LOL_attendance
                     btnAddEmployee.Enabled = true;
                     btnDelEmployee.Enabled = true;
                     btnSave.Enabled = true;
-                    btnReject.Enabled = true;
+                    btnReject.Enabled = false;
                     btnApprove.Enabled = true;
                     comboBoxSitename.Enabled = true;
                     dateTimePicker.Enabled = true;
@@ -567,7 +567,7 @@ namespace LOL_attendance
                 //*****bind Project dropdown with values from db*****
                 //Liana: Fixed query for isActive flag
                 cmd = new SqlCommand("SELECT DISTINCT id, name FROM project p JOIN(select distinct proj_id, mngr_id, isActive from site )s ON p.id = s.proj_id WHERE s.mngr_id = " + currentSiteManagerID.ToString() + " and p.isActive = 'True' and s.isActive = 'True'", conn);
-
+                btnReject.Enabled = false;
 
                 DataTable dtproject = new DataTable();
                 dtproject.Columns.Add("ID", typeof(Int32));
