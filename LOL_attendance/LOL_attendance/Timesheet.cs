@@ -82,7 +82,7 @@ namespace LOL_attendance
                         {
                             TS TSRecord = new TS();
                             int returnValue =
-                            TSRecord.UpdateSaved(dateTimePicker.Value.ToString("yyyy-MM-dd"), TimeSpan.Parse(dataGridViewTS.Rows[i].Cells[4].Value.ToString()).ToString(), Convert.ToInt32(dataGridViewTS.Rows[i].Cells[1].Value.ToString()), currentSiteID);
+                            TSRecord.UpdateSavedOrRejected(dateTimePicker.Value.ToString("yyyy-MM-dd"), TimeSpan.Parse(dataGridViewTS.Rows[i].Cells[4].Value.ToString()).ToString(), Convert.ToInt32(dataGridViewTS.Rows[i].Cells[1].Value.ToString()), currentSiteID);
                             if (returnValue == 1) updatedRows++;
                         }
                         else
