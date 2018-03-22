@@ -18,10 +18,10 @@ namespace LOL_attendance
     //Created by Liana 
     public partial class frmTimesheet : Form
     {
-        DataTable dtTimesheet= new DataTable();
+        DataTable dtTimesheet = new DataTable();
 
         DataTable dtWorkers = new DataTable();
- 
+
         string connStr = ConfigurationManager.ConnectionStrings["myConnection"].ConnectionString;
         int currentSiteID = 0;
         int currentSiteManagerID = 0;
@@ -43,14 +43,75 @@ namespace LOL_attendance
 
         private void frmTimesheet_Load(object sender, EventArgs e)
         {
-        
+            SqlConnection conn;
+            SqlCommand cmd;
+            SqlDataReader rdr;
+            conn = new SqlConnection(connStr);
             Main frm = (Main)this.MdiParent;
-            this.Text = "Timesheet: " + frm.User.userfullname.ToString() + " ("+frm.User.userRole.ToString()+")";
+            this.Text = "Timesheet: " + frm.User.userfullname.ToString() + " (" + frm.User.userRole.ToString() + ")";
 
             //Check Role of User
-            
 
-           
+
+            if (frm.User.userRole == userClass.userRoles.SiteManager)
+            {
+                //-----------------Site Manager -------------------
+                currentSiteManagerID = frm.User.userID;
+
+                //*****bind Project dropdown with values from db*****
+                //Liana: Fixed query for isActive flag
+                cmd = new SqlCommand("SELECT DISTINCT id, name FROM project p JOIN(select distinct proj_id, mngr_id, isActive from site )s ON p.id = s.proj_id WHERE s.mngr_id = " + currentSiteManagerID.ToString() + " and p.isActive = 'True' and s.isActive = 'True'", conn);
+
+
+                DataTable dtproject = new DataTable();
+                dtproject.Columns.Add("ID", typeof(Int32));
+                dtproject.Columns.Add("Name", typeof(String));
+                comboProjects.ValueMember = "id";
+                comboProjects.DisplayMember = "name";
+
+                conn.Open();
+                rdr = cmd.ExecuteReader();
+
+                if (rdr.HasRows)
+                {
+                    dtproject.Load(rdr);
+                    comboProjects.DataSource = dtproject;
+                    comboProjects.SelectedIndex = 0;
+                    currentProjectID = (Int32)comboProjects.SelectedValue;
+                }
+
+                conn.Close();
+            }
+            else if (frm.User.userRole == userClass.userRoles.ProjectManager)
+            {
+                //-----------------Project Manager -------------------
+                currentProjectManagerID = frm.User.userID;
+                btnSave.Enabled = false;
+                btnAddEmployee.Enabled = false;
+                btnDelEmployee.Enabled = false;
+
+                //*******bind Project dropdown with values from db******
+                //Liana: change query to consider isActive flag
+                cmd = new SqlCommand("SELECT id, name FROM project WHERE isActive='True' and mngr_id=" + currentProjectManagerID.ToString(), conn);
+                DataTable dtproject = new DataTable();
+                dtproject.Columns.Add("ID", typeof(Int32));
+                dtproject.Columns.Add("Name", typeof(String));
+                comboProjects.ValueMember = "id";
+                comboProjects.DisplayMember = "name";
+
+                conn.Open();
+                rdr = cmd.ExecuteReader();
+
+                if (rdr.HasRows)
+                {
+                    dtproject.Load(rdr);
+                    comboProjects.DataSource = dtproject;
+                    comboProjects.SelectedIndex = 0;
+                    currentProjectID = (Int32)comboProjects.SelectedValue;
+                }
+                conn.Close();
+
+            }
             //Liana: commented Admin part because Admin can't work on TS
             /*
             else if (frm.User.userRole == userClass.userRoles.Admin)
@@ -82,80 +143,51 @@ namespace LOL_attendance
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            SqlConnection conn;
-            SqlCommand cmd;
-            int rows = 0;
-            rows = dataGridViewTS.RowCount;
-            conn = new SqlConnection(connStr);
-
-                int rowIndex = 0;
-                int addedRows = 0;
-                while (rows > 0)
-                {
-                    rows = rows - 1;
-                    if (dataGridViewTS.Rows[rowIndex].Cells[4].Value != null )
-                    {
-                        cmd = new SqlCommand("INSERT into timesheet (date, hours, employee_id, site_id, status) VALUES (@date, @hours, @employee_id, @site_id,'Saved')", conn);
-                        cmd.Parameters.AddWithValue("@date", dateTimePicker.Value.ToString("yyyy-MM-dd"));
-
-                        cmd.Parameters.AddWithValue("@hours", TimeSpan.Parse(dataGridViewTS.Rows[rowIndex].Cells[4].Value.ToString()));
-                        //++need to add check for not null value 
-                        cmd.Parameters.AddWithValue("@employee_id", Convert.ToInt32(dataGridViewTS.Rows[rowIndex].Cells[1].Value.ToString()));
-                        cmd.Parameters.AddWithValue("@site_id", currentSiteID);
-
-                        conn.Open();
-                        if (cmd.ExecuteNonQuery() == 1)
-                        {
-                            addedRows++;
-
-                        }
-                        conn.Close();
-                    }
-                if (dataGridViewTS.Rows[rowIndex].Cells[4].Value == null)
-                {
-                    MessageBox.Show("Hours is not filled");
-                }
-                rowIndex++;
-                }
-
-                if (addedRows > 0)
-                {
-                    lblTSStatus.Text = "Saved";
-                    Updatedata();
-                }
+            int totalRows = 0;
+            totalRows = dataGridViewTS.RowCount;
+            int tickedRows = 0;
+            int updatedRows = 0;
+            //if there is no rows in TS show message NO rows in TS
+            if (totalRows == tickedRows)
+            {
+                MessageBox.Show("No data to save");
+            }
             else
             {
-                MessageBox.Show("Timesheet is empty");
+                for (int i = dataGridViewTS.Rows.Count - 1; i >= 0; i--)
+                {
+                    //if row is ticked proceed and tickedRow++
+                    if ((bool)dataGridViewTS.Rows[i].Cells[0].FormattedValue)
+                    {
+                        tickedRows++;
+                        //if row status is null create new TS records with status Saved
+                        if (dataGridViewTS.Rows[i].Cells[5].Value.ToString() == "")
+                        {
+                            TS TSRecord = new TS();
+                            int returnValue =
+                            TSRecord.Add(dateTimePicker.Value.ToString("yyyy-MM-dd"), TimeSpan.Parse(dataGridViewTS.Rows[i].Cells[4].Value.ToString()).ToString(), Convert.ToInt32(dataGridViewTS.Rows[i].Cells[1].Value.ToString()), currentSiteID);
+                            if (returnValue == 1) updatedRows++;
+                        }
+                        else if (dataGridViewTS.Rows[i].Cells[5].Value.ToString() == "Saved")
+                        {
+                            TS TSRecord = new TS();
+                            int returnValue =
+                            TSRecord.UpdateSaved(dateTimePicker.Value.ToString("yyyy-MM-dd"), TimeSpan.Parse(dataGridViewTS.Rows[i].Cells[4].Value.ToString()).ToString(), Convert.ToInt32(dataGridViewTS.Rows[i].Cells[1].Value.ToString()), currentSiteID);
+                            if (returnValue == 1) updatedRows++;
+                        }
+                        else
+                        {
+                            //lines with status Rejected, Approved By SM, Approved By PM are not updated
+                        }
+                    }
+                    else
+                    {
+                    }
+                }
+                MessageBox.Show(updatedRows.ToString() + " updated");
+                Updatedata();
             }
-
-
-            /*Omid:Commented becuase it implimented as public variables
-            //define selected Site ID
-            cmd = new SqlCommand("SELECT id from site where name='" + comboBoxSitename.SelectedItem + "'", conn);
-            conn.Open();
-            rdr = cmd.ExecuteReader();
-            if (rdr.HasRows)
-            {
-                rdr.Read();
-                currentSiteID = rdr.GetInt32(0);
-            }
-            conn.Close();
-            //define selected Site Manager ID
-            conn = new SqlConnection(connStr);
-            cmd = new SqlCommand("SELECT id from employee where name='" + comboProjects.SelectedItem + "'", conn);
-
-            conn.Open();
-            rdr = cmd.ExecuteReader();
-            if (rdr.HasRows)
-            {
-                rdr.Read();
-                currentSiteManagerID = rdr.GetInt32(0);
-            }
-            conn.Close();
-            */
-            //saving TS rows in db
-
-        }
+         }
 
         private void btnApprove_Click(object sender, EventArgs e)
         {
@@ -580,76 +612,6 @@ namespace LOL_attendance
 //            MessageBox.Show(currentSiteID.ToString());
             Updatedata();
     
-        }
-
-        private void frmTimesheet_Shown(object sender, EventArgs e)
-        {
-            SqlConnection conn;
-            SqlCommand cmd;
-            SqlDataReader rdr;
-            conn = new SqlConnection(connStr);
-            Main frm = (Main)this.MdiParent;
-            
-            if (frm.User.userRole == userClass.userRoles.SiteManager)
-            {
-                //-----------------Site Manager -------------------
-                currentSiteManagerID = frm.User.userID;
-
-                //*****bind Project dropdown with values from db*****
-                //Liana: Fixed query for isActive flag
-                cmd = new SqlCommand("SELECT DISTINCT id, name FROM project p JOIN(select distinct proj_id, mngr_id, isActive from site )s ON p.id = s.proj_id WHERE s.mngr_id = " + currentSiteManagerID.ToString() + " and p.isActive = 'True' and s.isActive = 'True'", conn);
-
-
-                DataTable dtproject = new DataTable();
-                dtproject.Columns.Add("ID", typeof(Int32));
-                dtproject.Columns.Add("Name", typeof(String));
-                comboProjects.ValueMember = "id";
-                comboProjects.DisplayMember = "name";
-
-                conn.Open();
-                rdr = cmd.ExecuteReader();
-
-                if (rdr.HasRows)
-                {
-                    dtproject.Load(rdr);
-                    comboProjects.DataSource = dtproject;
-                    comboProjects.SelectedIndex = 0;
-                    currentProjectID = (Int32)comboProjects.SelectedValue;
-                }
-
-                conn.Close();
-            }
-            else if (frm.User.userRole == userClass.userRoles.ProjectManager)
-            {
-                //-----------------Project Manager -------------------
-                currentProjectManagerID = frm.User.userID;
-                btnSave.Enabled = false;
-                btnAddEmployee.Enabled = false;
-                btnDelEmployee.Enabled = false;
-
-                //*******bind Project dropdown with values from db******
-                //Liana: change query to consider isActive flag
-                cmd = new SqlCommand("SELECT id, name FROM project WHERE isActive='True' and mngr_id=" + currentProjectManagerID.ToString(), conn);
-                DataTable dtproject = new DataTable();
-                dtproject.Columns.Add("ID", typeof(Int32));
-                dtproject.Columns.Add("Name", typeof(String));
-                comboProjects.ValueMember = "id";
-                comboProjects.DisplayMember = "name";
-
-                conn.Open();
-                rdr = cmd.ExecuteReader();
-
-                if (rdr.HasRows)
-                {
-                    dtproject.Load(rdr);
-                    comboProjects.DataSource = dtproject;
-                    comboProjects.SelectedIndex = 0;
-                    currentProjectID = (Int32)comboProjects.SelectedValue;
-                }
-                conn.Close();
-
-            }
-
         }
     }
 }
