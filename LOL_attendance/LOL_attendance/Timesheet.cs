@@ -617,5 +617,56 @@ namespace LOL_attendance
             }
         }
 
+        private void btnReject_Click(object sender, EventArgs e)
+        {
+                SqlConnection conn;
+                SqlCommand cmd;
+                conn = new SqlConnection(connStr);
+                Main frm = (Main)this.MdiParent;
+
+                //Check Role of User
+                string TSstatus = "";
+                Int32 ApproverID = 0;
+
+                if (frm.User.userRole == userClass.userRoles.ProjectManager)
+                {
+                    //-----------------Project Manager -------------------
+                    TSstatus = "Rejected";
+                    ApproverID = currentProjectManagerID;
+                }
+                int rejectedRows = 0;
+
+                if (dataGridViewTS.Rows.Count == 0)
+                {
+                    MessageBox.Show("No Records for rejecting");
+                }
+                else
+                {
+
+                    for (int i = dataGridViewTS.Rows.Count - 1; i >= 0; i--)
+                    {
+                        if (((bool)dataGridViewTS.Rows[i].Cells[0].FormattedValue) && (dataGridViewTS.Rows[i].Cells[5].Value.ToString() != "Approved By PM") || (dataGridViewTS.Rows[i].Cells[5].Value.ToString() != "Approved By SM"))
+                        {
+                            cmd = new SqlCommand("UPDATE timesheet set status = @status where employee_id= @employee_id and site_id = @site_id and date= @date", conn);
+                            cmd.Parameters.AddWithValue("@status", TSstatus);
+                            cmd.Parameters.AddWithValue("@employee_id", Convert.ToInt32(dataGridViewTS.Rows[i].Cells[1].Value.ToString()));
+                            cmd.Parameters.AddWithValue("@site_id", currentSiteID);
+                            cmd.Parameters.AddWithValue("@date", dateTimePicker.Value.ToString("yyyy-MM-dd"));
+
+                            conn.Open();
+                            if (cmd.ExecuteNonQuery() == 1)
+                            {
+                                rejectedRows++;
+                            }
+                            conn.Close();
+                        }
+                        else { }
+
+                    }
+
+                }
+                if (rejectedRows > 0) Updatedata();
+            }
+        
     }
 }
