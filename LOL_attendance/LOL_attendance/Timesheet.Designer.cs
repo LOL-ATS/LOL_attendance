@@ -57,7 +57,7 @@
             // 
             this.dateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker.Location = new System.Drawing.Point(186, 217);
-            this.dateTimePicker.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.dateTimePicker.Margin = new System.Windows.Forms.Padding(6);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(548, 44);
             this.dateTimePicker.TabIndex = 3;
@@ -69,7 +69,7 @@
             this.comboProjects.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboProjects.FormattingEnabled = true;
             this.comboProjects.Location = new System.Drawing.Point(186, 36);
-            this.comboProjects.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.comboProjects.Margin = new System.Windows.Forms.Padding(6);
             this.comboProjects.Name = "comboProjects";
             this.comboProjects.Size = new System.Drawing.Size(548, 45);
             this.comboProjects.TabIndex = 1;
@@ -82,7 +82,7 @@
             this.comboBoxSitename.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxSitename.FormattingEnabled = true;
             this.comboBoxSitename.Location = new System.Drawing.Point(186, 123);
-            this.comboBoxSitename.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.comboBoxSitename.Margin = new System.Windows.Forms.Padding(6);
             this.comboBoxSitename.Name = "comboBoxSitename";
             this.comboBoxSitename.Size = new System.Drawing.Size(548, 45);
             this.comboBoxSitename.TabIndex = 2;
@@ -132,7 +132,7 @@
             this.dataGridViewTS.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TsSelected});
             this.dataGridViewTS.Location = new System.Drawing.Point(596, 316);
-            this.dataGridViewTS.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.dataGridViewTS.Margin = new System.Windows.Forms.Padding(6);
             this.dataGridViewTS.Name = "dataGridViewTS";
             this.dataGridViewTS.RowHeadersVisible = false;
             this.dataGridViewTS.Size = new System.Drawing.Size(560, 438);
@@ -149,7 +149,7 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Location = new System.Drawing.Point(591, 766);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(6);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(180, 62);
             this.btnSave.TabIndex = 7;
@@ -162,7 +162,7 @@
             this.btnApprove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnApprove.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnApprove.Location = new System.Drawing.Point(783, 766);
-            this.btnApprove.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnApprove.Margin = new System.Windows.Forms.Padding(6);
             this.btnApprove.Name = "btnApprove";
             this.btnApprove.Size = new System.Drawing.Size(180, 62);
             this.btnApprove.TabIndex = 8;
@@ -186,7 +186,7 @@
             this.btnReject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReject.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReject.Location = new System.Drawing.Point(975, 766);
-            this.btnReject.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnReject.Margin = new System.Windows.Forms.Padding(6);
             this.btnReject.Name = "btnReject";
             this.btnReject.Size = new System.Drawing.Size(180, 62);
             this.btnReject.TabIndex = 9;
@@ -208,7 +208,7 @@
             // 
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.Location = new System.Drawing.Point(783, 112);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(6);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(180, 62);
             this.btnSearch.TabIndex = 4;
@@ -287,7 +287,7 @@
             this.Controls.Add(this.comboBoxSitename);
             this.Controls.Add(this.comboProjects);
             this.Controls.Add(this.dateTimePicker);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.MinimumSize = new System.Drawing.Size(1187, 898);
             this.Name = "frmTimesheet";
             this.Text = "Site Timesheet";
