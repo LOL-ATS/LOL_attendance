@@ -30,6 +30,7 @@ namespace LOL_attendance
         public frmTimesheet()
         {
             InitializeComponent();
+            //Omid:Define Timesheet and Workers Column
             dtTimesheet.Columns.Add("ID", typeof(Int32));
             dtTimesheet.Columns.Add("Name", typeof(String));
             dtTimesheet.Columns.Add("Surname", typeof(String));
@@ -43,36 +44,11 @@ namespace LOL_attendance
 
         private void frmTimesheet_Load(object sender, EventArgs e)
         {
+
             Main frm = (Main)this.MdiParent;
+            //Change the title of form acording the user name and role 
             this.Text = "Timesheet: " + frm.User.userfullname.ToString() + " (" + frm.User.userRole.ToString() + ")";
-
-            //Liana: commented Admin part because Admin can't work on TS
-            /*
-            else if (frm.User.userRole == userClass.userRoles.Admin)
-            {
-                //-----------------  Admin  -------------------
-                
-                //*******bind Project dropdown with values from db******
-                cmd = new SqlCommand("SELECT id, name FROM project", conn);
-                DataTable dtproject = new DataTable();
-                dtproject.Columns.Add("ID", typeof(Int32));
-                dtproject.Columns.Add("Name", typeof(String));
-                comboProjects.ValueMember = "id";
-                comboProjects.DisplayMember = "name";
-
-                conn.Open();
-                rdr = cmd.ExecuteReader();
-
-                if (rdr.HasRows)
-                {
-                    dtproject.Load(rdr);
-                    comboProjects.DataSource = dtproject;
-                    comboProjects.SelectedIndex = 0;
-                    currentProjectID = (Int32)comboProjects.SelectedValue;
-                }
-                conn.Close();
-            }
-            */
+            
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -94,7 +70,7 @@ namespace LOL_attendance
                     if ((bool)dataGridViewTS.Rows[i].Cells[0].FormattedValue)
                     {
                         tickedRows++;
-                        //if row status is null create new TS records with status Saved
+                    //if row status is null create new TS records with status Saved
                         if (dataGridViewTS.Rows[i].Cells[5].Value.ToString() == "")
                         {
                             TS TSRecord = new TS();
@@ -123,6 +99,7 @@ namespace LOL_attendance
             }
          }
 
+        //Omid:Approve button
         private void btnApprove_Click(object sender, EventArgs e)
         {
             SqlConnection conn;
@@ -130,7 +107,8 @@ namespace LOL_attendance
             conn = new SqlConnection(connStr);
             Main frm = (Main)this.MdiParent;
 
-            //Check Role of User
+            //Check Role of User and change the status
+
             string TSstatus = "";
             Int32 ApproverID = 0;
 
@@ -152,44 +130,27 @@ namespace LOL_attendance
             }
             int approveRows = 0;
             int NoapprovededRows = 0;
+            //...................... Approving process-------------------------
             if (dataGridViewTS.Rows.Count == 0)
-            {
+            {//Omid:check if there are some record for approving
                 MessageBox.Show("No Records for approving");
 
             }
             else
-            {
-                /*Omid:commented becuse current site id implimented as public variable
-                
-                //define selected Site ID
-                conn = new SqlConnection(connStr);
-                cmd = new SqlCommand("SELECT id from site where isActive='True and name='" + comboBoxSitename.SelectedItem + "'", conn);
-                conn.Open();
-                rdr = cmd.ExecuteReader();
-                if (rdr.HasRows)
-                {
-                    rdr.Read();
-                    currentSiteID = rdr.GetInt32(0);
-                }
-                conn.Close();*/
-
+            {//Omid:there is some record for approving
                 for (int i = dataGridViewTS.Rows.Count - 1; i >= 0; i--)
                 {
                     if (((bool)dataGridViewTS.Rows[i].Cells[0].FormattedValue) && (dataGridViewTS.Rows[i].Cells[5].Value.ToString() != "Approved By PM"))
-                    {
-                        if (dataGridViewTS.Rows[i].Cells[5].Value.ToString() == "" && frm.User.userRole==userClass.userRoles.SiteManager)
-                        {
+                    {//Omid:checked record is NOT approved by PM
+                        if (dataGridViewTS.Rows[i].Cells[5].Value.ToString() == "" && frm.User.userRole == userClass.userRoles.SiteManager)
+                        {//Omid:record is without Status for Site Manager should be INSERT in TS
                             cmd = new SqlCommand("INSERT into timesheet(date, hours, employee_id, site_id, status,approved_by_id) VALUES(@date, @hours, @employee_id, @site_id, @status,@approverid)", conn);
                             cmd.Parameters.AddWithValue("@date", dateTimePicker.Value.ToString("yyyy-MM-dd"));
-
                             cmd.Parameters.AddWithValue("@hours", TimeSpan.Parse(dataGridViewTS.Rows[i].Cells[4].Value.ToString()));
                             cmd.Parameters.AddWithValue("@employee_id", Convert.ToInt32(dataGridViewTS.Rows[i].Cells[1].Value.ToString()));
                             cmd.Parameters.AddWithValue("@site_id", currentSiteID);
                             cmd.Parameters.AddWithValue("@status", TSstatus);
                             cmd.Parameters.AddWithValue("@approverid", ApproverID);
-
-                            
-                            
                             conn.Open();
                             if (cmd.ExecuteNonQuery() == 1)
                             {
@@ -197,17 +158,15 @@ namespace LOL_attendance
                             }
                             conn.Close();
                         }
-                        else if ((dataGridViewTS.Rows[i].Cells[5].Value.ToString() == "Saved" && frm.User.userRole == userClass.userRoles.SiteManager) || (dataGridViewTS.Rows[i].Cells[5].Value.ToString() == "Approved By SM" && frm.User.userRole == userClass.userRoles.ProjectManager))
-                        {
-                           cmd = new SqlCommand("UPDATE timesheet set hours = @hours, status = @status, approved_by_id =@approverid where employee_id= @employee_id and site_id = @site_id and date= @date", conn);
+                        else if (((dataGridViewTS.Rows[i].Cells[5].Value.ToString() == "Saved" || dataGridViewTS.Rows[i].Cells[5].Value.ToString() == "Rejected") && frm.User.userRole == userClass.userRoles.SiteManager) || (dataGridViewTS.Rows[i].Cells[5].Value.ToString() == "Approved By SM" && frm.User.userRole == userClass.userRoles.ProjectManager))
+                        {//Omid: the status of record is Rejected or Saved for Site Manager Updated TS
+                            cmd = new SqlCommand("UPDATE timesheet set hours = @hours, status = @status, approved_by_id =@approverid where employee_id= @employee_id and site_id = @site_id and date= @date", conn);
                             cmd.Parameters.AddWithValue("@status", TSstatus);
-
                             cmd.Parameters.AddWithValue("@hours", TimeSpan.Parse(dataGridViewTS.Rows[i].Cells[4].Value.ToString()));
                             cmd.Parameters.AddWithValue("@approverid", ApproverID);
                             cmd.Parameters.AddWithValue("@employee_id", Convert.ToInt32(dataGridViewTS.Rows[i].Cells[1].Value.ToString()));
                             cmd.Parameters.AddWithValue("@site_id", currentSiteID);
                             cmd.Parameters.AddWithValue("@date", dateTimePicker.Value.ToString("yyyy-MM-dd"));
-
                             conn.Open();
                             if (cmd.ExecuteNonQuery() == 1)
                             {
