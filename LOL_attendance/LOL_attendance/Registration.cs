@@ -320,7 +320,8 @@ namespace LOL_attendance
             //if employee ID defined show message employee already exists
             else
             {
-                MessageBox.Show("Employee already exists");
+                MessageBox.Show("This employee already exists");
+                ClearUserInputFields();
             }
 
         }
@@ -415,7 +416,8 @@ namespace LOL_attendance
             }
             else
             {
-                MessageBox.Show("Project already exists");
+                MessageBox.Show("This project already exists");
+                ClearProjectInputFields();
             }
         }
         //Liana: 
@@ -580,7 +582,8 @@ namespace LOL_attendance
             }
             else
             {
-                MessageBox.Show("Site already exists");
+                MessageBox.Show("This site already exists");
+                ClearSiteInputFields();
             }
         }
 

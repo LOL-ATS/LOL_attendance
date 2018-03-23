@@ -309,23 +309,23 @@ namespace LOL_attendance
                     for (int i = dataGridViewTS.Rows.Count - 1; i >= 0; i--)
                     {
                         //delete only checked rows in state not Approved by PM
-                        if (((bool)dataGridViewTS.Rows[i].Cells[0].FormattedValue) && dataGridViewTS.Rows[i].Cells[4].ToString() != "Approved by PM")
-                        {
-                            //first add worker to worker list
-                            DataRow workRow = dtWorkers.NewRow();
-                            workRow[0] = (int)dataGridViewTS.Rows[i].Cells[1].Value;
-                            workRow[1] = dataGridViewTS.Rows[i].Cells[2].Value.ToString();
-                            workRow[2] = dataGridViewTS.Rows[i].Cells[3].Value.ToString();
-                            dtWorkers.Rows.Add(workRow);
-                            dataGridViewEmploye.DataSource = dtWorkers;
-                            //delete TS from db 
-                            cmd = new SqlCommand("DELETE FROM timesheet WHERE employee_id=" + dataGridViewTS.Rows[i].Cells[1].Value.ToString() + " and date ='" + dateTimePicker.Value.ToString("yyyy-MM-dd") + "' and site_id =" + currentSiteID.ToString(), conn);
-                            conn.Open();
-                            cmd.ExecuteNonQuery();
-                            conn.Close();
-                            //delete TS from dataGridView TS
-                            dataGridViewTS.Rows.RemoveAt(i);
-                        }
+                        if (((bool)dataGridViewTS.Rows[i].Cells[0].FormattedValue) && (dataGridViewTS.Rows[i].Cells[5].Value.ToString() != "Approved By PM"))
+                            {
+                                //first add worker to worker list
+                                DataRow workRow = dtWorkers.NewRow();
+                                workRow[0] = (int)dataGridViewTS.Rows[i].Cells[1].Value;
+                                workRow[1] = dataGridViewTS.Rows[i].Cells[2].Value.ToString();
+                                workRow[2] = dataGridViewTS.Rows[i].Cells[3].Value.ToString();
+                                dtWorkers.Rows.Add(workRow);
+                                dataGridViewEmploye.DataSource = dtWorkers;
+                                //delete TS from db 
+                                cmd = new SqlCommand("DELETE FROM timesheet WHERE employee_id=" + dataGridViewTS.Rows[i].Cells[1].Value.ToString() + " and date ='" + dateTimePicker.Value.ToString("yyyy-MM-dd") + "' and site_id =" + currentSiteID.ToString(), conn);
+                                conn.Open();
+                                cmd.ExecuteNonQuery();
+                                conn.Close();
+                                //delete TS from dataGridView TS
+                                dataGridViewTS.Rows.RemoveAt(i);
+                            }
                     }
                     /*Liana: commented because works incorrectly
                     foreach (DataGridViewRow row in dataGridViewTS.Rows)
