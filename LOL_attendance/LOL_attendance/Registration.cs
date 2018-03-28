@@ -23,6 +23,8 @@ namespace LOL_attendance
         string connstr = ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString;
         SqlDataReader rdr;
 
+        Boolean isupdated;
+
         public frmRegistration()
         {
             InitializeComponent();
@@ -36,7 +38,7 @@ namespace LOL_attendance
             DataGridViewRow row = dgdViewEmployee.Rows[e.RowIndex];
             
             conn = new SqlConnection(connstr);
-            cmd = new SqlCommand("SELECT name FROM role WHERE id =" + Convert.ToInt32(row.Cells["role_id"].Value.ToString()), conn);
+            cmd = new SqlCommand("SELECT * FROM employee WHERE id =" + Convert.ToInt32(row.Cells[0].Value.ToString()), conn);
 
             conn.Open();
             rdr = cmd.ExecuteReader();
@@ -44,7 +46,6 @@ namespace LOL_attendance
             if (rdr.HasRows)
             {
                 rdr.Read();
-                role_name = rdr.GetString(0);
             }
             conn.Close();
 
@@ -56,7 +57,9 @@ namespace LOL_attendance
             txtBoxPhone.Text = row.Cells["phone"].Value.ToString();
             txtBoxAddress.Text = row.Cells["address"].Value.ToString();
             lblEmployeeIDValue.Text = row.Cells["id"].Value.ToString();
-            cboRole.Text = role_name.ToString();
+            cboRole.SelectedIndex = (Int32)row.Cells["role_id"].Value - 1;
+            btnUpdateUser.Enabled = false;
+            isupdated = true;
 
         }
 
@@ -211,123 +214,32 @@ namespace LOL_attendance
         //Lana, Liana:
         private void btnCreateUser_Click(object sender, EventArgs e)
         {
+            btnUpdateUser.Enabled = false;
+            btnUpdateUser.Text = "Save";
+            cboRole.SelectedIndex = 3;
+            txtBoxAddress.Text = "";
+            txtBoxEmail.Text = "";
+            txtBoxLogin.Text = "";
+            txtBoxName.Text = "";
+            txtBoxSurname.Text = "";
+            txtBoxPass.Text = "";
+            txtBoxPhone.Text = "";
+            lblEmployeeIDValue.Text = "";
+            this.ActiveControl=cboRole;
+            isupdated = false;
+            
+
+            /*
             //Liana: 
             //if employee does not exist create employee
-            if (lblEmployeeIDValue.Text == "")
-            {
-                //Liana: 
-                //if employee surname is not defined
-                if (txtBoxSurname.Text == "")
-                {
-                    MessageBox.Show("Please input Surname");
-                }
-                //Liana:
-                //else employee surname is defined, create employee
-                else
-                {
-                    //Liana:
-                    //if role selected create employee
-                    if (cboRole.SelectedIndex != -1)
-                    {
-                        if (cboRole.SelectedIndex == 3)
-                        {
-                            int roleID = 0;
-                            //Lana
-                            //define role_id by role_name from db
-                            roleID = RoleIDByName(cboRole.Text);
-
-                            DataTable dt = new DataTable();
-
-                            //Lana
-                            //create new user
-                            cmd = new SqlCommand("INSERT INTO employee (name, surname, email, phone, address, role_id, isActive) VALUES (@name,@surname,@email,@phone,@address,@role_id,'True')", conn);
-                            cmd.Parameters.AddWithValue("@name", txtBoxName.Text);
-                            cmd.Parameters.AddWithValue("@surname", txtBoxSurname.Text);
-                            cmd.Parameters.AddWithValue("@email", txtBoxEmail.Text);
-                            cmd.Parameters.AddWithValue("@phone", txtBoxPhone.Text);
-                            cmd.Parameters.AddWithValue("@address", txtBoxAddress.Text);
-                            cmd.Parameters.AddWithValue("@role_id", roleID);
-                            conn.Open();
-                            if (cmd.ExecuteNonQuery() == 1)
-                            {
-                                MessageBox.Show("Employee successfully added");
-                                ShowAllEmployees();
-                                ClearUserInputFields();
-                            }
-                            conn.Close();
-                        }
-                        else
-                        {
-                            if (txtBoxLogin.Text == "")
-                            {
-                                MessageBox.Show("Please, fill in Login field");
-                            }
-                            else
-                            {
-                                if (IsExistingUserByLogin(txtBoxLogin.Text))
-                                {
-                                    MessageBox.Show("User with defined Login already exists");
-                                }
-                                else
-                                { 
-                                    if (txtBoxPass.Text == "")
-                                    {
-                                        MessageBox.Show("Please, fill in Password field");
-                                    }
-                                    else
-                                    {
-                                        int roleID = 0;
-                                        
-                                        //Lana:
-                                        //define role_id by role_name from db
-                                        roleID = RoleIDByName(cboRole.Text);
-
-                                        DataTable dt = new DataTable();
-
-                                        //Lana:
-                                        //create new user
-                                        cmd = new SqlCommand("INSERT INTO employee (login, password, name, surname, email, phone, address, role_id, isActive) VALUES (@login,@password,@name,@surname,@email,@phone,@address,@role_id,'True')", conn);
-                                        cmd.Parameters.AddWithValue("@login", txtBoxLogin.Text);
-                                        cmd.Parameters.AddWithValue("@password", txtBoxPass.Text);
-                                        cmd.Parameters.AddWithValue("@name", txtBoxName.Text);
-                                        cmd.Parameters.AddWithValue("@surname", txtBoxSurname.Text);
-                                        cmd.Parameters.AddWithValue("@email", txtBoxEmail.Text);
-                                        cmd.Parameters.AddWithValue("@phone", txtBoxPhone.Text);
-                                        cmd.Parameters.AddWithValue("@address", txtBoxAddress.Text);
-                                        cmd.Parameters.AddWithValue("@role_id", roleID);
-                                        conn.Open();
-                                        if (cmd.ExecuteNonQuery() == 1)
-                                        {
-                                            MessageBox.Show("Successfully added");
-                                            ShowAllEmployees();
-                                            ClearUserInputFields();
-                                        }
-                                        conn.Close();
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    //Liana: 
-                    //if role is not selected show message
-                    else
-                    {
-                        MessageBox.Show("Please, select role");
-                    }
-                }
-            }
-            //Liana: 
-            //if employee ID defined show message employee already exists
-            else
-            {
-                MessageBox.Show("This employee already exists");
-                ClearUserInputFields();
-            }
-
+            
+            */
         }
 
         //Lana:
         //Clear all input fields
+ 
+
         private void ClearUserInputFields()
         {
             txtBoxLogin.Clear();
@@ -358,7 +270,9 @@ namespace LOL_attendance
             }
             conn.Close();
             return projectExists;
+
         }
+
 
         //Liana & Lana:
         //Create new project
@@ -618,12 +532,61 @@ namespace LOL_attendance
             {
                 dt.Load(rdr);
                 dgdViewSite.DataSource = dt;
+                conn.Close();
+                DataGridViewRow row = dgdViewSite.Rows[0];
+
+                string project_name = ProjectNameByID(Convert.ToInt32(row.Cells["proj_id"].Value.ToString()));
+
+                conn = new SqlConnection(connstr);
+
+                cmd = new SqlCommand("SELECT name FROM project WHERE id =" + Convert.ToInt32(row.Cells["proj_id"].Value.ToString()), conn);
+
+                conn.Open();
+                rdr = cmd.ExecuteReader();
+
+                if (rdr.HasRows)
+                {
+                    rdr.Read();
+                    project_name = rdr.GetString(0);
+                }
+
+                conn.Close();
+                if (row.Cells["mngr_id"].Value.ToString() == "")
+                {
+                    cboSiteManager.SelectedIndex = -1;
+                    lblSiteManagerIDValue.Text = "";
+                }
+                else
+                {
+                    conn = new SqlConnection(connstr);
+                    cmd = new SqlCommand("SELECT surname FROM employee WHERE id =" + Convert.ToInt32(row.Cells["mngr_id"].Value.ToString()), conn);
+
+                    conn.Open();
+                    rdr = cmd.ExecuteReader();
+                    string sitemng_name = "";
+                    if (rdr.HasRows)
+                    {
+                        rdr.Read();
+                        sitemng_name = rdr.GetString(0);
+                    }
+                    cboSiteManager.Text = sitemng_name.ToString();
+                    lblSiteManagerIDValue.Text = row.Cells["mngr_id"].Value.ToString();
+                    conn.Close();
+                }
+
+                txtBoxSiteName.Text = row.Cells["name"].Value.ToString();
+                txtBoxSiteAddress.Text = row.Cells["address"].Value.ToString();
+                lblSiteIDValue.Text = row.Cells["id"].Value.ToString();
+                cboProject.Text = project_name.ToString();
+                lblProjectIDOnSiteValue.Text = row.Cells["proj_id"].Value.ToString();
+
             }
             else
             {
                 MessageBox.Show("No Data to show");
+                conn.Close();
+
             }
-            conn.Close();
         }
 
         private void btnShowAllProjects_Click(object sender, EventArgs e)
@@ -646,13 +609,39 @@ namespace LOL_attendance
                 {
                     dt.Load(rdr);
                     dgdViewProject.DataSource = dt;
+
+                //Fill text boxes
+                DataGridViewRow row = dgdViewProject.Rows[0];
+
+                conn = new SqlConnection(connstr);
+                cmd = new SqlCommand("SELECT surname FROM employee WHERE id =" + Convert.ToInt32(row.Cells["mngr_id"].Value.ToString()), conn);
+                conn.Close();
+
+                conn.Open();
+                rdr = cmd.ExecuteReader();
+                string mngr_name = "";
+                if (rdr.HasRows)
+                {
+                    rdr.Read();
+                    mngr_name = rdr.GetString(0);
                 }
-                else
+
+                conn.Close();
+
+                lblProjectIDValue.Text = row.Cells["id"].Value.ToString();
+                lblPMngrIDValue.Text = row.Cells["mngr_id"].Value.ToString();
+                txtBoxProjectName.Text = row.Cells["name"].Value.ToString();
+                txtBoxPAddress.Text = row.Cells["address"].Value.ToString();
+                cboPM.Text = mngr_name.ToString();
+
+            }
+            else
                 {
                     MessageBox.Show("No Data to show");
-                }
                 conn.Close();
+
             }
+        }
 
         //Lana:
         //Show all Data related to employee from DB
@@ -673,13 +662,30 @@ namespace LOL_attendance
                 {
                     dt.Load(rdr);
                     dgdViewEmployee.DataSource = dt;
-                }
-                else
+                // hide Role_ID, Login and password columns 
+                dgdViewEmployee.Columns[1].Visible = false;
+                dgdViewEmployee.Columns[2].Visible = false;
+                dgdViewEmployee.Columns[3].Visible = false;
+
+                txtBoxLogin.Text = dt.Rows[0]["login"].ToString();
+                txtBoxPass.Text = dt.Rows[0]["password"].ToString();
+                txtBoxName.Text = dt.Rows[0]["name"].ToString();
+                txtBoxSurname.Text = dt.Rows[0]["surname"].ToString();
+                txtBoxEmail.Text = dt.Rows[0]["email"].ToString();
+                txtBoxPhone.Text = dt.Rows[0]["phone"].ToString();
+                txtBoxAddress.Text = dt.Rows[0]["address"].ToString();
+                lblEmployeeIDValue.Text = dt.Rows[0]["id"].ToString();
+                cboRole.SelectedIndex = (Int32)dt.Rows[0]["role_id"]-1;
+
+            }
+            else
                 {
                     MessageBox.Show("No Data to show");
                 }
                 conn.Close();
-            }
+            btnUpdateUser.Enabled = false;
+            isupdated = true;
+        }
 
         //Lana:
         //Make changes in Project and save 
@@ -746,13 +752,7 @@ namespace LOL_attendance
         {
             //Liana: 
             //if employee is not selected show message 
-            if (lblEmployeeIDValue.Text == "")
-            {
-                MessageBox.Show("Please, select employee for updating");
-            }
-            //Liana: 
-            //employee is selected proceed updating
-            else
+            if (isupdated)
             {
                 //if selected employee is worker
                 if (cboRole.SelectedIndex == 3)
@@ -787,7 +787,8 @@ namespace LOL_attendance
                         {
                             MessageBox.Show("Employee successfully updated");
                             ShowAllEmployees();
-                            ClearUserInputFields();
+                            btnUpdateUser.Enabled = false;
+                            //ClearUserInputFields();
                         }
                         conn.Close();
                     }
@@ -840,7 +841,7 @@ namespace LOL_attendance
                                 {
                                     MessageBox.Show("Successfully updated");
                                     ShowAllEmployees();
-                                    ClearUserInputFields();
+                                    //ClearUserInputFields();
                                 }
                                 conn.Close();
                             }
@@ -853,7 +854,124 @@ namespace LOL_attendance
                     }
                 }
             }
+            else
+            {
+                if (lblEmployeeIDValue.Text == "")
+                {
+                    //Liana: 
+                    //if employee surname is not defined
+                    if (txtBoxSurname.Text == "")
+                    {
+                        MessageBox.Show("Please input Surname");
+                    }
+                    //Liana:
+                    //else employee surname is defined, create employee
+                    else
+                    {
+                        //Liana:
+                        //if role selected create employee
+                        if (cboRole.SelectedIndex != -1)
+                        {
+                            if (cboRole.SelectedIndex == 3)
+                            {
+                                int roleID = 0;
+                                //Lana
+                                //define role_id by role_name from db
+                                roleID = RoleIDByName(cboRole.Text);
+
+                                DataTable dt = new DataTable();
+
+                                //Lana
+                                //create new user
+                                cmd = new SqlCommand("INSERT INTO employee (name, surname, email, phone, address, role_id, isActive) VALUES (@name,@surname,@email,@phone,@address,@role_id,'True')", conn);
+                                cmd.Parameters.AddWithValue("@name", txtBoxName.Text);
+                                cmd.Parameters.AddWithValue("@surname", txtBoxSurname.Text);
+                                cmd.Parameters.AddWithValue("@email", txtBoxEmail.Text);
+                                cmd.Parameters.AddWithValue("@phone", txtBoxPhone.Text);
+                                cmd.Parameters.AddWithValue("@address", txtBoxAddress.Text);
+                                cmd.Parameters.AddWithValue("@role_id", roleID);
+                                conn.Open();
+                                if (cmd.ExecuteNonQuery() == 1)
+                                {
+                                    MessageBox.Show("Employee successfully added");
+                                    ShowAllEmployees();
+                                    //ClearUserInputFields();
+                                    btnUpdateUser.Enabled = false;
+                                }
+                                conn.Close();
+                            }
+                            else
+                            {
+                                if (txtBoxLogin.Text == "")
+                                {
+                                    MessageBox.Show("Please, fill in Login field");
+                                }
+                                else
+                                {
+                                    if (IsExistingUserByLogin(txtBoxLogin.Text))
+                                    {
+                                        MessageBox.Show("User with defined Login already exists");
+                                    }
+                                    else
+                                    {
+                                        if (txtBoxPass.Text == "")
+                                        {
+                                            MessageBox.Show("Please, fill in Password field");
+                                        }
+                                        else
+                                        {
+                                            int roleID = 0;
+
+                                            //Lana:
+                                            //define role_id by role_name from db
+                                            roleID = RoleIDByName(cboRole.Text);
+
+                                            DataTable dt = new DataTable();
+
+                                            //Lana:
+                                            //create new user
+                                            cmd = new SqlCommand("INSERT INTO employee (login, password, name, surname, email, phone, address, role_id, isActive) VALUES (@login,@password,@name,@surname,@email,@phone,@address,@role_id,'True')", conn);
+                                            cmd.Parameters.AddWithValue("@login", txtBoxLogin.Text);
+                                            cmd.Parameters.AddWithValue("@password", txtBoxPass.Text);
+                                            cmd.Parameters.AddWithValue("@name", txtBoxName.Text);
+                                            cmd.Parameters.AddWithValue("@surname", txtBoxSurname.Text);
+                                            cmd.Parameters.AddWithValue("@email", txtBoxEmail.Text);
+                                            cmd.Parameters.AddWithValue("@phone", txtBoxPhone.Text);
+                                            cmd.Parameters.AddWithValue("@address", txtBoxAddress.Text);
+                                            cmd.Parameters.AddWithValue("@role_id", roleID);
+                                            conn.Open();
+                                            if (cmd.ExecuteNonQuery() == 1)
+                                            {
+                                                MessageBox.Show("Successfully added");
+                                                ShowAllEmployees();
+                                                //ClearUserInputFields();
+                                                btnUpdateUser.Enabled = false;
+                                            }
+                                            conn.Close();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        //Liana: 
+                        //if role is not selected show message
+                        else
+                        {
+                            MessageBox.Show("Please, select role");
+                        }
+                    }
+                }
+                //Liana: 
+                //if employee ID defined show message employee already exists
+                else
+                {
+                    MessageBox.Show("This employee already exists");
+                    ClearUserInputFields();
+                }
+            }
+            
         }
+
 
         //Liana:
         //messages if fields are empty
@@ -1227,10 +1345,27 @@ namespace LOL_attendance
 
         private void frmRegistration_Load(object sender, EventArgs e)
         {
-
+            ShowAllEmployees();
+            ShowAllProjects();
+            ShowAllSites();
         }
 
         private void lblProjectName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FieldChanged(object sender, EventArgs e)
+        {
+            if (txtBoxName.Text!="" && txtBoxSurname.Text!="" )
+            {
+                btnUpdateUser.Enabled = true;
+             }
+
+
+        }
+
+        private void grpBoxUserInfo_Enter(object sender, EventArgs e)
         {
 
         }
