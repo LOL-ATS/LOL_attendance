@@ -58,11 +58,11 @@
             this.cboRole = new System.Windows.Forms.ComboBox();
             this.tabProject = new System.Windows.Forms.TabPage();
             this.lblPStatus = new System.Windows.Forms.Label();
-            this.btnUpdateProject = new System.Windows.Forms.Button();
             this.btnDeleteProject = new System.Windows.Forms.Button();
             this.btnCreateProject = new System.Windows.Forms.Button();
             this.groupBoxProject = new System.Windows.Forms.GroupBox();
             this.lblMngrID = new System.Windows.Forms.Label();
+            this.btnUpdateProject = new System.Windows.Forms.Button();
             this.lblPMngrIDValue = new System.Windows.Forms.Label();
             this.lblProjectID = new System.Windows.Forms.Label();
             this.lblProjectIDValue = new System.Windows.Forms.Label();
@@ -73,19 +73,17 @@
             this.txtBoxProjectName = new System.Windows.Forms.TextBox();
             this.lblProjectName = new System.Windows.Forms.Label();
             this.groupBoxSearch = new System.Windows.Forms.GroupBox();
-            this.btnShowAllProjects = new System.Windows.Forms.Button();
             this.txtBoxSearchP = new System.Windows.Forms.TextBox();
             this.dgdViewProject = new System.Windows.Forms.DataGridView();
             this.tabSite = new System.Windows.Forms.TabPage();
             this.lblSiteStatus = new System.Windows.Forms.Label();
-            this.btnUpdateSite = new System.Windows.Forms.Button();
             this.btnDeleteSite = new System.Windows.Forms.Button();
             this.grpBoxSiteName = new System.Windows.Forms.GroupBox();
-            this.btnShowAllSites = new System.Windows.Forms.Button();
             this.txtBoxSiteSearch = new System.Windows.Forms.TextBox();
             this.dgdViewSite = new System.Windows.Forms.DataGridView();
             this.grpBoxSiteInfo = new System.Windows.Forms.GroupBox();
             this.lblProjectIDOnSiteValue = new System.Windows.Forms.Label();
+            this.btnUpdateSite = new System.Windows.Forms.Button();
             this.lblProjectIDOnSite = new System.Windows.Forms.Label();
             this.lblSiteManagerIDValue = new System.Windows.Forms.Label();
             this.lblSiteManagerID = new System.Windows.Forms.Label();
@@ -152,7 +150,7 @@
             this.tabUser.TabIndex = 0;
             this.tabUser.Text = "User";
             this.tabUser.UseVisualStyleBackColor = true;
-            this.tabUser.Click += new System.EventHandler(this.tabUser_Click);
+//            this.tabUser.Click += new System.EventHandler(this.tabUser_Click);
             // 
             // lblUserStatus
             // 
@@ -252,7 +250,7 @@
             this.grpBoxUserInfo.TabIndex = 28;
             this.grpBoxUserInfo.TabStop = false;
             this.grpBoxUserInfo.Text = "User Information";
-            this.grpBoxUserInfo.Enter += new System.EventHandler(this.grpBoxUserInfo_Enter);
+//            this.grpBoxUserInfo.Enter += new System.EventHandler(this.grpBoxUserInfo_Enter);
             // 
             // btnUpdateUser
             // 
@@ -481,7 +479,6 @@
             // tabProject
             // 
             this.tabProject.Controls.Add(this.lblPStatus);
-            this.tabProject.Controls.Add(this.btnUpdateProject);
             this.tabProject.Controls.Add(this.btnDeleteProject);
             this.tabProject.Controls.Add(this.btnCreateProject);
             this.tabProject.Controls.Add(this.groupBoxProject);
@@ -504,18 +501,6 @@
             this.lblPStatus.Size = new System.Drawing.Size(0, 37);
             this.lblPStatus.TabIndex = 39;
             // 
-            // btnUpdateProject
-            // 
-            this.btnUpdateProject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdateProject.Location = new System.Drawing.Point(740, 729);
-            this.btnUpdateProject.Margin = new System.Windows.Forms.Padding(6);
-            this.btnUpdateProject.Name = "btnUpdateProject";
-            this.btnUpdateProject.Size = new System.Drawing.Size(180, 62);
-            this.btnUpdateProject.TabIndex = 7;
-            this.btnUpdateProject.Text = "Update";
-            this.btnUpdateProject.UseVisualStyleBackColor = true;
-            this.btnUpdateProject.Click += new System.EventHandler(this.btnUpdateProject_Click);
-            // 
             // btnDeleteProject
             // 
             this.btnDeleteProject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -532,7 +517,7 @@
             // btnCreateProject
             // 
             this.btnCreateProject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCreateProject.Location = new System.Drawing.Point(548, 729);
+            this.btnCreateProject.Location = new System.Drawing.Point(734, 729);
             this.btnCreateProject.Margin = new System.Windows.Forms.Padding(6);
             this.btnCreateProject.Name = "btnCreateProject";
             this.btnCreateProject.Size = new System.Drawing.Size(180, 62);
@@ -546,6 +531,7 @@
             this.groupBoxProject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBoxProject.Controls.Add(this.lblMngrID);
+            this.groupBoxProject.Controls.Add(this.btnUpdateProject);
             this.groupBoxProject.Controls.Add(this.lblPMngrIDValue);
             this.groupBoxProject.Controls.Add(this.lblProjectID);
             this.groupBoxProject.Controls.Add(this.lblProjectIDValue);
@@ -573,6 +559,19 @@
             this.lblMngrID.Size = new System.Drawing.Size(291, 37);
             this.lblMngrID.TabIndex = 33;
             this.lblMngrID.Text = "Project Manager ID";
+            // 
+            // btnUpdateProject
+            // 
+            this.btnUpdateProject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUpdateProject.Enabled = false;
+            this.btnUpdateProject.Location = new System.Drawing.Point(162, 566);
+            this.btnUpdateProject.Margin = new System.Windows.Forms.Padding(6);
+            this.btnUpdateProject.Name = "btnUpdateProject";
+            this.btnUpdateProject.Size = new System.Drawing.Size(180, 62);
+            this.btnUpdateProject.TabIndex = 7;
+            this.btnUpdateProject.Text = "Update";
+            this.btnUpdateProject.UseVisualStyleBackColor = true;
+            this.btnUpdateProject.Click += new System.EventHandler(this.btnUpdateProject_Click);
             // 
             // lblPMngrIDValue
             // 
@@ -630,6 +629,7 @@
             this.cboPM.Name = "cboPM";
             this.cboPM.Size = new System.Drawing.Size(492, 45);
             this.cboPM.TabIndex = 2;
+            this.cboPM.SelectedIndexChanged += new System.EventHandler(this.FieldChanged);
             this.cboPM.DropDownClosed += new System.EventHandler(this.cboPM_DropDownClosed);
             // 
             // txtBoxPAddress
@@ -639,6 +639,7 @@
             this.txtBoxPAddress.Name = "txtBoxPAddress";
             this.txtBoxPAddress.Size = new System.Drawing.Size(492, 44);
             this.txtBoxPAddress.TabIndex = 3;
+            this.txtBoxPAddress.TextChanged += new System.EventHandler(this.FieldChanged);
             // 
             // txtBoxProjectName
             // 
@@ -647,6 +648,7 @@
             this.txtBoxProjectName.Name = "txtBoxProjectName";
             this.txtBoxProjectName.Size = new System.Drawing.Size(492, 44);
             this.txtBoxProjectName.TabIndex = 1;
+            this.txtBoxProjectName.TextChanged += new System.EventHandler(this.FieldChanged);
             // 
             // lblProjectName
             // 
@@ -657,14 +659,13 @@
             this.lblProjectName.Size = new System.Drawing.Size(211, 37);
             this.lblProjectName.TabIndex = 26;
             this.lblProjectName.Text = "Project Name";
-            this.lblProjectName.Click += new System.EventHandler(this.lblProjectName_Click);
+//            this.lblProjectName.Click += new System.EventHandler(this.lblProjectName_Click);
             // 
             // groupBoxSearch
             // 
             this.groupBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxSearch.Controls.Add(this.btnShowAllProjects);
             this.groupBoxSearch.Controls.Add(this.txtBoxSearchP);
             this.groupBoxSearch.Controls.Add(this.dgdViewProject);
             this.groupBoxSearch.Location = new System.Drawing.Point(548, 27);
@@ -675,18 +676,6 @@
             this.groupBoxSearch.TabIndex = 31;
             this.groupBoxSearch.TabStop = false;
             this.groupBoxSearch.Text = "Search by Project Name";
-            // 
-            // btnShowAllProjects
-            // 
-            this.btnShowAllProjects.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnShowAllProjects.Location = new System.Drawing.Point(384, 602);
-            this.btnShowAllProjects.Margin = new System.Windows.Forms.Padding(4);
-            this.btnShowAllProjects.Name = "btnShowAllProjects";
-            this.btnShowAllProjects.Size = new System.Drawing.Size(180, 62);
-            this.btnShowAllProjects.TabIndex = 5;
-            this.btnShowAllProjects.Text = "Show All";
-            this.btnShowAllProjects.UseVisualStyleBackColor = true;
-            this.btnShowAllProjects.Click += new System.EventHandler(this.btnShowAllProjects_Click);
             // 
             // txtBoxSearchP
             // 
@@ -712,14 +701,13 @@
             this.dgdViewProject.Name = "dgdViewProject";
             this.dgdViewProject.ReadOnly = true;
             this.dgdViewProject.RowTemplate.Height = 24;
-            this.dgdViewProject.Size = new System.Drawing.Size(542, 446);
+            this.dgdViewProject.Size = new System.Drawing.Size(542, 503);
             this.dgdViewProject.TabIndex = 30;
             this.dgdViewProject.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProject_CellClick);
             // 
             // tabSite
             // 
             this.tabSite.Controls.Add(this.lblSiteStatus);
-            this.tabSite.Controls.Add(this.btnUpdateSite);
             this.tabSite.Controls.Add(this.btnDeleteSite);
             this.tabSite.Controls.Add(this.grpBoxSiteName);
             this.tabSite.Controls.Add(this.grpBoxSiteInfo);
@@ -742,18 +730,6 @@
             this.lblSiteStatus.Size = new System.Drawing.Size(0, 37);
             this.lblSiteStatus.TabIndex = 39;
             // 
-            // btnUpdateSite
-            // 
-            this.btnUpdateSite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdateSite.Location = new System.Drawing.Point(740, 729);
-            this.btnUpdateSite.Margin = new System.Windows.Forms.Padding(6);
-            this.btnUpdateSite.Name = "btnUpdateSite";
-            this.btnUpdateSite.Size = new System.Drawing.Size(180, 62);
-            this.btnUpdateSite.TabIndex = 8;
-            this.btnUpdateSite.Text = "Update";
-            this.btnUpdateSite.UseVisualStyleBackColor = true;
-            this.btnUpdateSite.Click += new System.EventHandler(this.btnUpdateSite_Click);
-            // 
             // btnDeleteSite
             // 
             this.btnDeleteSite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -772,7 +748,6 @@
             this.grpBoxSiteName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpBoxSiteName.Controls.Add(this.btnShowAllSites);
             this.grpBoxSiteName.Controls.Add(this.txtBoxSiteSearch);
             this.grpBoxSiteName.Controls.Add(this.dgdViewSite);
             this.grpBoxSiteName.Location = new System.Drawing.Point(546, 27);
@@ -783,18 +758,6 @@
             this.grpBoxSiteName.TabIndex = 33;
             this.grpBoxSiteName.TabStop = false;
             this.grpBoxSiteName.Text = "Search by Site Name";
-            // 
-            // btnShowAllSites
-            // 
-            this.btnShowAllSites.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnShowAllSites.Location = new System.Drawing.Point(384, 602);
-            this.btnShowAllSites.Margin = new System.Windows.Forms.Padding(4);
-            this.btnShowAllSites.Name = "btnShowAllSites";
-            this.btnShowAllSites.Size = new System.Drawing.Size(180, 62);
-            this.btnShowAllSites.TabIndex = 6;
-            this.btnShowAllSites.Text = "Show All";
-            this.btnShowAllSites.UseVisualStyleBackColor = true;
-            this.btnShowAllSites.Click += new System.EventHandler(this.btnShowAllSites_Click);
             // 
             // txtBoxSiteSearch
             // 
@@ -820,7 +783,7 @@
             this.dgdViewSite.Name = "dgdViewSite";
             this.dgdViewSite.ReadOnly = true;
             this.dgdViewSite.RowTemplate.Height = 24;
-            this.dgdViewSite.Size = new System.Drawing.Size(542, 446);
+            this.dgdViewSite.Size = new System.Drawing.Size(542, 523);
             this.dgdViewSite.TabIndex = 30;
             this.dgdViewSite.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgdViewSite_CellClick);
             // 
@@ -829,6 +792,7 @@
             this.grpBoxSiteInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.grpBoxSiteInfo.Controls.Add(this.lblProjectIDOnSiteValue);
+            this.grpBoxSiteInfo.Controls.Add(this.btnUpdateSite);
             this.grpBoxSiteInfo.Controls.Add(this.lblProjectIDOnSite);
             this.grpBoxSiteInfo.Controls.Add(this.lblSiteManagerIDValue);
             this.grpBoxSiteInfo.Controls.Add(this.lblSiteManagerID);
@@ -846,7 +810,7 @@
             this.grpBoxSiteInfo.Margin = new System.Windows.Forms.Padding(4);
             this.grpBoxSiteInfo.Name = "grpBoxSiteInfo";
             this.grpBoxSiteInfo.Padding = new System.Windows.Forms.Padding(4);
-            this.grpBoxSiteInfo.Size = new System.Drawing.Size(524, 679);
+            this.grpBoxSiteInfo.Size = new System.Drawing.Size(524, 764);
             this.grpBoxSiteInfo.TabIndex = 34;
             this.grpBoxSiteInfo.TabStop = false;
             this.grpBoxSiteInfo.Text = "Site Information";
@@ -859,6 +823,19 @@
             this.lblProjectIDOnSiteValue.Name = "lblProjectIDOnSiteValue";
             this.lblProjectIDOnSiteValue.Size = new System.Drawing.Size(0, 37);
             this.lblProjectIDOnSiteValue.TabIndex = 37;
+            // 
+            // btnUpdateSite
+            // 
+            this.btnUpdateSite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUpdateSite.Enabled = false;
+            this.btnUpdateSite.Location = new System.Drawing.Point(174, 662);
+            this.btnUpdateSite.Margin = new System.Windows.Forms.Padding(6);
+            this.btnUpdateSite.Name = "btnUpdateSite";
+            this.btnUpdateSite.Size = new System.Drawing.Size(180, 62);
+            this.btnUpdateSite.TabIndex = 8;
+            this.btnUpdateSite.Text = "Update";
+            this.btnUpdateSite.UseVisualStyleBackColor = true;
+            this.btnUpdateSite.Click += new System.EventHandler(this.btnUpdateSite_Click);
             // 
             // lblProjectIDOnSite
             // 
@@ -926,6 +903,7 @@
             this.cboProject.Name = "cboProject";
             this.cboProject.Size = new System.Drawing.Size(492, 45);
             this.cboProject.TabIndex = 3;
+            this.cboProject.SelectedIndexChanged += new System.EventHandler(this.FieldChanged);
             this.cboProject.DropDownClosed += new System.EventHandler(this.cboProject_DropDownClosed);
             // 
             // lblSiteManager
@@ -956,6 +934,7 @@
             this.cboSiteManager.Name = "cboSiteManager";
             this.cboSiteManager.Size = new System.Drawing.Size(492, 45);
             this.cboSiteManager.TabIndex = 2;
+            this.cboSiteManager.SelectedIndexChanged += new System.EventHandler(this.FieldChanged);
             this.cboSiteManager.DropDownClosed += new System.EventHandler(this.cboSiteManager_DropDownClosed);
             // 
             // txtBoxSiteAddress
@@ -965,6 +944,7 @@
             this.txtBoxSiteAddress.Name = "txtBoxSiteAddress";
             this.txtBoxSiteAddress.Size = new System.Drawing.Size(492, 44);
             this.txtBoxSiteAddress.TabIndex = 4;
+            this.txtBoxSiteAddress.TextChanged += new System.EventHandler(this.FieldChanged);
             // 
             // txtBoxSiteName
             // 
@@ -973,6 +953,7 @@
             this.txtBoxSiteName.Name = "txtBoxSiteName";
             this.txtBoxSiteName.Size = new System.Drawing.Size(492, 44);
             this.txtBoxSiteName.TabIndex = 1;
+            this.txtBoxSiteName.TextChanged += new System.EventHandler(this.FieldChanged);
             // 
             // lblSiteName
             // 
@@ -987,7 +968,7 @@
             // btnCreateSite
             // 
             this.btnCreateSite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCreateSite.Location = new System.Drawing.Point(548, 729);
+            this.btnCreateSite.Location = new System.Drawing.Point(740, 729);
             this.btnCreateSite.Margin = new System.Windows.Forms.Padding(6);
             this.btnCreateSite.Name = "btnCreateSite";
             this.btnCreateSite.Size = new System.Drawing.Size(180, 62);
@@ -1063,13 +1044,11 @@
         private System.Windows.Forms.GroupBox groupBoxSearch;
         private System.Windows.Forms.TextBox txtBoxSearchP;
         private System.Windows.Forms.GroupBox groupBoxProject;
-        private System.Windows.Forms.Button btnShowAllProjects;
         private System.Windows.Forms.GroupBox grpBoxUserInfo;
         private System.Windows.Forms.Button btnCreateUser;
         private System.Windows.Forms.GroupBox grpBoxSearchByName;
         private System.Windows.Forms.TextBox txtBoxSearchByID;
         private System.Windows.Forms.GroupBox grpBoxSiteName;
-        private System.Windows.Forms.Button btnShowAllSites;
         private System.Windows.Forms.TextBox txtBoxSiteSearch;
         private System.Windows.Forms.DataGridView dgdViewSite;
         private System.Windows.Forms.GroupBox grpBoxSiteInfo;
