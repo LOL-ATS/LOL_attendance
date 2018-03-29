@@ -270,24 +270,7 @@ namespace LOL_attendance
                         dataGridViewEmploye.Rows.RemoveAt(i);
                     }
                 }
-                /*Liana: commented because works incorrectly
-                foreach (DataGridViewRow row in dataGridViewEmploye.Rows)
-                {
-                    Boolean chk = Convert.ToBoolean(row.Cells[0].Value);
-                    DataTable dt = new DataTable();
-                    if (chk)
-                    {
-                        DataRow workRow = dtTimesheet.NewRow();
-                        workRow[0] = (int)row.Cells[1].Value;
-                        workRow[1] = row.Cells[2].Value.ToString();
-                        workRow[2] = row.Cells[3].Value.ToString();
-                        workRow[3] = TimeSpan.Parse("00:00");
-                        dtTimesheet.Rows.Add(workRow);
-                        dataGridViewTS.DataSource = dtTimesheet;
-                    }
 
-                }
-                */
             }
         }
 
@@ -327,21 +310,7 @@ namespace LOL_attendance
                                 dataGridViewTS.Rows.RemoveAt(i);
                             }
                     }
-                    /*Liana: commented because works incorrectly
-                    foreach (DataGridViewRow row in dataGridViewTS.Rows)
-                    {   
-                        Boolean chk = Convert.ToBoolean(row.Cells[0].Value);
 
-                        if (chk == true && row.Cells[4].ToString() != "Approved by PM")
-                        {
-                            cmd = new SqlCommand("DELETE FROM timesheet WHERE employee_id=" + row.Cells[1].Value.ToString() + " and date ='" + dateTimePicker.Value.ToString("yyyy-MM-dd") + "' and site_id =" + currentSiteID.ToString(), conn);
-                            conn.Open();
-                            cmd.ExecuteNonQuery();
-                            conn.Close();
-                            dtTimesheet.Rows.RemoveAt(currentRow);
-                            dataGridViewTS.DataSource = dtTimesheet;
-                        }
-                    }*/
                 }
                 else if (dialogResult == DialogResult.No)
                 {
@@ -365,7 +334,6 @@ namespace LOL_attendance
             if (comboProjects.SelectedItem != null) currentProjectID = (Int32)comboProjects.SelectedValue;
             Main frm = (Main)this.MdiParent;
 
-            //           MessageBox.Show(currentProjectID.ToString());
             // Check user role
             if (frm.User.userRole == userClass.userRoles.SiteManager)
             {
@@ -437,9 +405,7 @@ namespace LOL_attendance
                 rdr = cmd.ExecuteReader();
                 if (rdr.HasRows)
                 {
-                   // btnAddEmployee.Enabled = true;
-                    //btnDelEmployee.Enabled = true;
-                    //btnSave.Enabled = true;
+
                     btnReject.Enabled = true;
                     btnApprove.Enabled = true;
                     comboBoxSitename.Enabled = true;
@@ -451,9 +417,6 @@ namespace LOL_attendance
                 else
                 {
                     comboBoxSitename.Enabled = false;
-                    //btnAddEmployee.Enabled = false;
-                    //btnDelEmployee.Enabled = false;
-                    //btnSave.Enabled = false;
                     btnReject.Enabled = false;
                     dateTimePicker.Enabled = false;
                     btnApprove.Enabled = false;

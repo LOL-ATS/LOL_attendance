@@ -17,37 +17,35 @@ namespace LOL_attendance
     {
         //Liana and Lana: 
         //Add connection to DB
-
         SqlConnection conn;
         SqlCommand cmd;
         string connstr = ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString;
         SqlDataReader rdr;
+        // Variable for identify update or insert 
+        Boolean isUpdated;
+        public int ID;
+
 
         public frmRegistration()
         {
             InitializeComponent();
         }
 
-        //Lana:
-        //This method is inserting the values from UI-Employee screen to DB
-        public int ID;
         private void dataGridViewEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = dgdViewEmployee.Rows[e.RowIndex];
             
             conn = new SqlConnection(connstr);
-            cmd = new SqlCommand("SELECT name FROM role WHERE id =" + Convert.ToInt32(row.Cells["role_id"].Value.ToString()), conn);
+            cmd = new SqlCommand("SELECT * FROM employee WHERE id =" + Convert.ToInt32(row.Cells[0].Value.ToString()), conn);
 
             conn.Open();
             rdr = cmd.ExecuteReader();
-            string role_name = "";
             if (rdr.HasRows)
             {
                 rdr.Read();
-                role_name = rdr.GetString(0);
             }
             conn.Close();
-
+            //fill text boxes by selected row data
             txtBoxLogin.Text = row.Cells["login"].Value.ToString();
             txtBoxPass.Text = row.Cells["password"].Value.ToString();
             txtBoxName.Text = row.Cells["name"].Value.ToString();
@@ -56,12 +54,13 @@ namespace LOL_attendance
             txtBoxPhone.Text = row.Cells["phone"].Value.ToString();
             txtBoxAddress.Text = row.Cells["address"].Value.ToString();
             lblEmployeeIDValue.Text = row.Cells["id"].Value.ToString();
-            cboRole.Text = role_name.ToString();
+            cboRole.SelectedIndex = (Int32)row.Cells["role_id"].Value - 1;
+            btnUpdateUser.Enabled = false;
+            isUpdated = true;
 
         }
 
-        //Lana:
-        //This method is inserting the values from UI-Project screen to DB
+
         private void dataGridViewProject_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = dgdViewProject.Rows[e.RowIndex];
@@ -79,13 +78,15 @@ namespace LOL_attendance
             }
 
             conn.Close();
-
+            //fill text boxes by selected row data
             lblProjectIDValue.Text = row.Cells["id"].Value.ToString();
             lblPMngrIDValue.Text = row.Cells["mngr_id"].Value.ToString();
             txtBoxProjectName.Text = row.Cells["name"].Value.ToString();
             txtBoxPAddress.Text = row.Cells["address"].Value.ToString();
             cboPM.Text = mngr_name.ToString();
-
+            btnUpdateProject.Enabled = false;
+            btnUpdateProject.Text = "Update";
+            isUpdated = true;
         }
 
         //Lana:
@@ -109,7 +110,7 @@ namespace LOL_attendance
         }
 
         //Lana:
-        //Fill in fields at the left when user click on cell in gridview 
+        //Fill in text boxes at the left when user click on cell in gridview 
         private void dgdViewSite_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = dgdViewSite.Rows[e.RowIndex];
@@ -152,16 +153,20 @@ namespace LOL_attendance
                 lblSiteManagerIDValue.Text = row.Cells["mngr_id"].Value.ToString();
                 conn.Close();
             }
+            //fill text boxes by selected row data
 
             txtBoxSiteName.Text = row.Cells["name"].Value.ToString();
             txtBoxSiteAddress.Text = row.Cells["address"].Value.ToString();
             lblSiteIDValue.Text = row.Cells["id"].Value.ToString();
             cboProject.Text = project_name.ToString();
             lblProjectIDOnSiteValue.Text = row.Cells["proj_id"].Value.ToString();
+            btnUpdateSite.Enabled = false;
+            btnUpdateSite.Text = "Update";
+            isUpdated = true;
 
         }
         //Liana:
-        //Check for unique login
+        //Check if login field is unique
         private bool IsExistingUserByLogin(string userLogin)
         {
             bool userExists = true;
@@ -211,123 +216,23 @@ namespace LOL_attendance
         //Lana, Liana:
         private void btnCreateUser_Click(object sender, EventArgs e)
         {
+            ClearUserInputFields();
+            this.ActiveControl=cboRole;
+            isUpdated = false;
+            btnUpdateUser.Text = "Save";
+            
+
+            /*
             //Liana: 
             //if employee does not exist create employee
-            if (lblEmployeeIDValue.Text == "")
-            {
-                //Liana: 
-                //if employee surname is not defined
-                if (txtBoxSurname.Text == "")
-                {
-                    MessageBox.Show("Please input Surname");
-                }
-                //Liana:
-                //else employee surname is defined, create employee
-                else
-                {
-                    //Liana:
-                    //if role selected create employee
-                    if (cboRole.SelectedIndex != -1)
-                    {
-                        if (cboRole.SelectedIndex == 3)
-                        {
-                            int roleID = 0;
-                            //Lana
-                            //define role_id by role_name from db
-                            roleID = RoleIDByName(cboRole.Text);
-
-                            DataTable dt = new DataTable();
-
-                            //Lana
-                            //create new user
-                            cmd = new SqlCommand("INSERT INTO employee (name, surname, email, phone, address, role_id, isActive) VALUES (@name,@surname,@email,@phone,@address,@role_id,'True')", conn);
-                            cmd.Parameters.AddWithValue("@name", txtBoxName.Text);
-                            cmd.Parameters.AddWithValue("@surname", txtBoxSurname.Text);
-                            cmd.Parameters.AddWithValue("@email", txtBoxEmail.Text);
-                            cmd.Parameters.AddWithValue("@phone", txtBoxPhone.Text);
-                            cmd.Parameters.AddWithValue("@address", txtBoxAddress.Text);
-                            cmd.Parameters.AddWithValue("@role_id", roleID);
-                            conn.Open();
-                            if (cmd.ExecuteNonQuery() == 1)
-                            {
-                                MessageBox.Show("Employee successfully added");
-                                ShowAllEmployees();
-                                ClearUserInputFields();
-                            }
-                            conn.Close();
-                        }
-                        else
-                        {
-                            if (txtBoxLogin.Text == "")
-                            {
-                                MessageBox.Show("Please, fill in Login field");
-                            }
-                            else
-                            {
-                                if (IsExistingUserByLogin(txtBoxLogin.Text))
-                                {
-                                    MessageBox.Show("User with defined Login already exists");
-                                }
-                                else
-                                { 
-                                    if (txtBoxPass.Text == "")
-                                    {
-                                        MessageBox.Show("Please, fill in Password field");
-                                    }
-                                    else
-                                    {
-                                        int roleID = 0;
-                                        
-                                        //Lana:
-                                        //define role_id by role_name from db
-                                        roleID = RoleIDByName(cboRole.Text);
-
-                                        DataTable dt = new DataTable();
-
-                                        //Lana:
-                                        //create new user
-                                        cmd = new SqlCommand("INSERT INTO employee (login, password, name, surname, email, phone, address, role_id, isActive) VALUES (@login,@password,@name,@surname,@email,@phone,@address,@role_id,'True')", conn);
-                                        cmd.Parameters.AddWithValue("@login", txtBoxLogin.Text);
-                                        cmd.Parameters.AddWithValue("@password", txtBoxPass.Text);
-                                        cmd.Parameters.AddWithValue("@name", txtBoxName.Text);
-                                        cmd.Parameters.AddWithValue("@surname", txtBoxSurname.Text);
-                                        cmd.Parameters.AddWithValue("@email", txtBoxEmail.Text);
-                                        cmd.Parameters.AddWithValue("@phone", txtBoxPhone.Text);
-                                        cmd.Parameters.AddWithValue("@address", txtBoxAddress.Text);
-                                        cmd.Parameters.AddWithValue("@role_id", roleID);
-                                        conn.Open();
-                                        if (cmd.ExecuteNonQuery() == 1)
-                                        {
-                                            MessageBox.Show("Successfully added");
-                                            ShowAllEmployees();
-                                            ClearUserInputFields();
-                                        }
-                                        conn.Close();
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    //Liana: 
-                    //if role is not selected show message
-                    else
-                    {
-                        MessageBox.Show("Please, select role");
-                    }
-                }
-            }
-            //Liana: 
-            //if employee ID defined show message employee already exists
-            else
-            {
-                MessageBox.Show("This employee already exists");
-                ClearUserInputFields();
-            }
-
+            
+            */
         }
 
         //Lana:
         //Clear all input fields
+ 
+
         private void ClearUserInputFields()
         {
             txtBoxLogin.Clear();
@@ -358,67 +263,21 @@ namespace LOL_attendance
             }
             conn.Close();
             return projectExists;
+
         }
+
 
         //Liana & Lana:
         //Create new project
         private void btnCreateProject_Click(object sender, EventArgs e)
         {
-            if (lblProjectIDValue.Text == "")
-            {
-                if (txtBoxProjectName.Text == "" || txtBoxProjectName.Text =="Input name")
-                {
-                        MessageBox.Show("Please input Project name");
-                }
-                else
-                {
-                    if (IsExistingProject(txtBoxProjectName.Text))
-                    {
-                        MessageBox.Show("Project name already exists");
-                    }
-                    else
-                    {
-                        if (lblPMngrIDValue.Text == "")
-                        {
-                            cmd = new SqlCommand("INSERT INTO project (name, address, isActive) VALUES (@name,@address, 'True')", conn);
+            ClearProjectInputFields();
+            this.ActiveControl = txtBoxProjectName;
+            isUpdated = false;
+            btnUpdateProject.Text = "Save";
 
-                            cmd.Parameters.AddWithValue("@name", txtBoxProjectName.Text);
-                            cmd.Parameters.AddWithValue("@address", txtBoxPAddress.Text);
-
-                            conn.Open();
-                            if (cmd.ExecuteNonQuery() == 1)
-                            {
-                                MessageBox.Show("Successfully Added");
-                                ClearProjectInputFields();
-                                ShowAllProjects();
-                            }
-                            conn.Close();
-                        }
-                        else
-                        {
-
-                            cmd = new SqlCommand("INSERT INTO project (name, mngr_id, address, isActive) VALUES (@name,@mngr_id,@address, 'True')", conn);
-
-                            cmd.Parameters.AddWithValue("@name", txtBoxProjectName.Text);
-                            cmd.Parameters.AddWithValue("@address", txtBoxPAddress.Text);
-                            cmd.Parameters.AddWithValue("@mngr_id", lblPMngrIDValue.Text);
-                            conn.Open();
-                            if (cmd.ExecuteNonQuery() == 1)
-                            {
-                                MessageBox.Show("Successfully Added");
-                                ClearProjectInputFields();
-                                ShowAllProjects();
-                            }
-                            conn.Close();
-                        }
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("This project already exists");
-                ClearProjectInputFields();
-            }
+            /*
+            }*/
         }
         //Liana: 
         //define employee ID by login
@@ -499,94 +358,15 @@ namespace LOL_attendance
         }
 
 
-        //Lana, Liana:
+        //Omid:Create new site
         private void btnCreateSite_Click(object sender, EventArgs e)
         {
-            if (lblSiteID.Text != "")
-            {
-                if (txtBoxSiteName.Text == "")
-                {
-                    MessageBox.Show("Please input Sitename");
-                }
-                else
-                {
-                    if (cboProject.SelectedItem == null)
-                    {
-                        MessageBox.Show("Please select Project");
-                    }
-                    else
-                    {
-                        if (cboSiteManager.SelectedItem == null)
-                        {
-                            //Lana:
-                            //Define selected Project ID
-                            int currentProjectID = 0;
-                            currentProjectID = ProjectIDByName(cboProject.SelectedItem.ToString());
-
-                            conn = new SqlConnection(connstr);
-                            cmd = new SqlCommand("INSERT INTO site (name, address, proj_id, isActive) VALUES (@name,@address,@proj_id, 'True')", conn);
-
-                            cmd.Parameters.AddWithValue("@name", txtBoxSiteName.Text);
-                            cmd.Parameters.AddWithValue("@address", txtBoxSiteAddress.Text);
-                            cmd.Parameters.AddWithValue("@proj_id", currentProjectID);
-
-                            conn.Open();
-                            if (cmd.ExecuteNonQuery() == 1)
-                            {
-                                MessageBox.Show("Successfully Added");
-
-                                //Lana:
-                                //Clear fields after Creating the Site
-                                ClearSiteInputFields();
-                                ShowAllSites();
-                            }
-                            conn.Close();
-                        }
-                        else
-                        {
-                            //Lana:
-                            //Define selected SiteManager ID
-                            int currentSiteManagerID = 0;
-
-                            currentSiteManagerID = EmployeeIDByRoleAndSurname("Site Manager", cboSiteManager.SelectedItem.ToString());
-
-                            //Lana:
-                            //Define selected Project ID
-                            int currentProjectID = 0;
-                            currentProjectID = ProjectIDByName(cboProject.SelectedItem.ToString());
-
-                            //Lana:
-                            //Insert the values to DB
-                            conn = new SqlConnection(connstr);
-                            cmd = new SqlCommand("INSERT INTO site (name, mngr_id, address, proj_id, isActive) VALUES (@name,@mngr_id,@address,@proj_id, 'True')", conn);
-
-                            cmd.Parameters.AddWithValue("@name", txtBoxSiteName.Text);
-                            cmd.Parameters.AddWithValue("@address", txtBoxSiteAddress.Text);
-                            cmd.Parameters.AddWithValue("@mngr_id", currentSiteManagerID);
-                            cmd.Parameters.AddWithValue("@proj_id", currentProjectID);
-
-                            conn.Open();
-                            if (cmd.ExecuteNonQuery() == 1)
-                            {
-                                MessageBox.Show("Successfully Added");
-
-                                //Lana:
-                                //Clear fields after Creating the Site
-                                ClearSiteInputFields();
-                                ShowAllSites();
-                            }
-                            conn.Close();
-                        }
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("This site already exists");
-                ClearSiteInputFields();
-            }
+            ClearSiteInputFields();
+            this.ActiveControl = txtBoxSiteName;
+            isUpdated = false;
+            btnUpdateSite.Text = "Save";
         }
-
+        //omid:Clear site data in text boxes 
         private void ClearSiteInputFields()
         {
             lblSiteIDValue.Text = "";
@@ -599,12 +379,7 @@ namespace LOL_attendance
         }
 
         //Lana:
-        //Show all Data related to sites from DB
-        private void btnShowAllSites_Click(object sender, EventArgs e)
-        {
-            ShowAllSites();
-        }
-
+        //Show all Data related to sites from DB in graidview
         private void ShowAllSites()
         {
             conn = new SqlConnection(connstr);
@@ -618,21 +393,67 @@ namespace LOL_attendance
             {
                 dt.Load(rdr);
                 dgdViewSite.DataSource = dt;
+                conn.Close();
+                DataGridViewRow row = dgdViewSite.Rows[0];
+
+                string project_name = ProjectNameByID(Convert.ToInt32(row.Cells["proj_id"].Value.ToString()));
+
+                conn = new SqlConnection(connstr);
+
+                cmd = new SqlCommand("SELECT name FROM project WHERE id =" + Convert.ToInt32(row.Cells["proj_id"].Value.ToString()), conn);
+
+                conn.Open();
+                rdr = cmd.ExecuteReader();
+
+                if (rdr.HasRows)
+                {
+                    rdr.Read();
+                    project_name = rdr.GetString(0);
+                }
+
+                conn.Close();
+                if (row.Cells["mngr_id"].Value.ToString() == "")
+                {
+                    cboSiteManager.SelectedIndex = -1;
+                    lblSiteManagerIDValue.Text = "";
+                }
+                else
+                {
+                    conn = new SqlConnection(connstr);
+                    cmd = new SqlCommand("SELECT surname FROM employee WHERE id =" + Convert.ToInt32(row.Cells["mngr_id"].Value.ToString()), conn);
+
+                    conn.Open();
+                    rdr = cmd.ExecuteReader();
+                    string sitemng_name = "";
+                    if (rdr.HasRows)
+                    {
+                        rdr.Read();
+                        sitemng_name = rdr.GetString(0);
+                    }
+                    cboSiteManager.Text = sitemng_name.ToString();
+                    lblSiteManagerIDValue.Text = row.Cells["mngr_id"].Value.ToString();
+                    conn.Close();
+                }
+                
+                txtBoxSiteName.Text = row.Cells["name"].Value.ToString();
+                txtBoxSiteAddress.Text = row.Cells["address"].Value.ToString();
+                lblSiteIDValue.Text = row.Cells["id"].Value.ToString();
+                cboProject.Text = project_name.ToString();
+                lblProjectIDOnSiteValue.Text = row.Cells["proj_id"].Value.ToString();
+
             }
             else
             {
                 MessageBox.Show("No Data to show");
+                conn.Close();
+
             }
-            conn.Close();
         }
 
-        private void btnShowAllProjects_Click(object sender, EventArgs e)
-            {
-                ShowAllProjects();
-            }
+
 
         //Lana:
-        //Show all Data related to projects from DB
+        //Show all Data related to Projects from DB
         private void ShowAllProjects()
             {
                 conn = new SqlConnection(connstr);
@@ -646,20 +467,43 @@ namespace LOL_attendance
                 {
                     dt.Load(rdr);
                     dgdViewProject.DataSource = dt;
+
+                //Fill text boxes
+                DataGridViewRow row = dgdViewProject.Rows[0];
+
+                conn = new SqlConnection(connstr);
+                cmd = new SqlCommand("SELECT surname FROM employee WHERE id =" + Convert.ToInt32(row.Cells["mngr_id"].Value.ToString()), conn);
+                conn.Close();
+
+                conn.Open();
+                rdr = cmd.ExecuteReader();
+                string mngr_name = "";
+                if (rdr.HasRows)
+                {
+                    rdr.Read();
+                    mngr_name = rdr.GetString(0);
                 }
-                else
+
+                conn.Close();
+
+                lblProjectIDValue.Text = row.Cells["id"].Value.ToString();
+                lblPMngrIDValue.Text = row.Cells["mngr_id"].Value.ToString();
+                txtBoxProjectName.Text = row.Cells["name"].Value.ToString();
+                txtBoxPAddress.Text = row.Cells["address"].Value.ToString();
+                cboPM.Text = mngr_name.ToString();
+
+            }
+            else
                 {
                     MessageBox.Show("No Data to show");
-                }
                 conn.Close();
+
             }
+        }
 
         //Lana:
-        //Show all Data related to employee from DB
-        private void btnShowAllID_Click(object sender, EventArgs e)
-            {
-                ShowAllEmployees();
-            }
+        //Show all Data related to Employee from DB
+
         private void ShowAllEmployees()
             {
                 conn = new SqlConnection(connstr);
@@ -673,86 +517,141 @@ namespace LOL_attendance
                 {
                     dt.Load(rdr);
                     dgdViewEmployee.DataSource = dt;
-                }
-                else
+                // hide Role_ID, Login and password columns 
+                dgdViewEmployee.Columns[1].Visible = false;
+                dgdViewEmployee.Columns[2].Visible = false;
+                dgdViewEmployee.Columns[3].Visible = false;
+
+                txtBoxLogin.Text = dt.Rows[0]["login"].ToString();
+                txtBoxPass.Text = dt.Rows[0]["password"].ToString();
+                txtBoxName.Text = dt.Rows[0]["name"].ToString();
+                txtBoxSurname.Text = dt.Rows[0]["surname"].ToString();
+                txtBoxEmail.Text = dt.Rows[0]["email"].ToString();
+                txtBoxPhone.Text = dt.Rows[0]["phone"].ToString();
+                txtBoxAddress.Text = dt.Rows[0]["address"].ToString();
+                lblEmployeeIDValue.Text = dt.Rows[0]["id"].ToString();
+                cboRole.SelectedIndex = (Int32)dt.Rows[0]["role_id"]-1;
+                btnUpdateUser.Enabled = false;
+
+
+            }
+            else
                 {
                     MessageBox.Show("No Data to show");
                 }
                 conn.Close();
-            }
+            btnUpdateUser.Enabled = false;
+            isUpdated = true;
+        }
 
         //Lana:
-        //Make changes in Project and save 
+        //Updating Project's data
         private void btnUpdateProject_Click(object sender, EventArgs e)
         {
+            //*
             //Liana: 
             //proceed if project id is defined
-            if (lblProjectIDValue.Text != "")
+            if (isUpdated)
             {
-                //Liana: 
-                //show error message if project name is undefind
-                if (txtBoxProjectName.Text == "")
+                if (lblProjectIDValue.Text != "")
                 {
-                    MessageBox.Show("Please, fill in project name field");
+                    //Liana: 
+                    //show error message if project name is undefind
+                    if (txtBoxProjectName.Text == "")
+                    {
+                        MessageBox.Show("Please, fill in project name field");
+                    }
+                    //Liana:
+                    //proceed if project name is defined
+                    else
+                    {
+                        //Liana: 
+                        //proceed if there are no projects with defined project name or project name is not changed
+                        if (ProjectIDByName(txtBoxProjectName.Text) == -1 || Convert.ToInt32(lblProjectIDValue.Text) == ProjectIDByName(txtBoxProjectName.Text))
+                        {
+                            conn = new SqlConnection(connstr);
+
+                            //Lana:
+                            //create SQL request for updating project
+                            cmd = new SqlCommand("Update project Set name=@name,address=@address, mngr_id=@mngr_id WHERE ID=@id", conn);
+
+                            cmd.Parameters.AddWithValue("@id", lblProjectIDValue.Text);
+                            cmd.Parameters.AddWithValue("@mngr_id", lblPMngrIDValue.Text);
+                            cmd.Parameters.AddWithValue("@name", txtBoxProjectName.Text);
+                            cmd.Parameters.AddWithValue("@address", txtBoxPAddress.Text);
+                            conn.Open();
+
+                            //Lana:
+                            //if request was succesful, clear all data in input fields and show all projects
+                            if (cmd.ExecuteNonQuery() == 1)
+                            {
+                                ShowAllProjects();
+                                //ClearProjectInputFields();
+                                MessageBox.Show("Project succesfully updated");
+                            }
+                            conn.Close();
+                        }
+                        //Liana: 
+                        //show error message if changed project name already exists
+                        else
+                        {
+                            MessageBox.Show("Project with such name already exists!");
+                        }
+
+                    }
                 }
-                //Liana:
-                //proceed if project name is defined
+                //Liana: 
+                //show message if project ID is undefined
                 else
                 {
-                    //Liana: 
-                    //proceed if there are no projects with defined project name or project name is not changed
-                    if (ProjectIDByName(txtBoxProjectName.Text)==-1 || Convert.ToInt32(lblProjectIDValue.Text) == ProjectIDByName(txtBoxProjectName.Text))
-                    {
-                        conn = new SqlConnection(connstr);
-                        
-                        //Lana:
-                        //create SQL request for updating project
-                        cmd = new SqlCommand("Update project Set name=@name,address=@address, mngr_id=@mngr_id WHERE ID=@id", conn);
-
-                        cmd.Parameters.AddWithValue("@id", lblProjectIDValue.Text);
-                        cmd.Parameters.AddWithValue("@mngr_id", lblPMngrIDValue.Text);
-                        cmd.Parameters.AddWithValue("@name", txtBoxProjectName.Text);
-                        cmd.Parameters.AddWithValue("@address", txtBoxPAddress.Text);
-                        conn.Open();
-
-                        //Lana:
-                        //if request was succesful, clear all data in input fields and show all projects
-                        if (cmd.ExecuteNonQuery() == 1)
-                        {
-                            ShowAllProjects();
-                            ClearProjectInputFields();
-                            MessageBox.Show("Project succesfully updated");
-                        }
-                        conn.Close();
-                    }
-                    //Liana: 
-                    //show error message if changed project name already exists
-                    else 
-                    {
-                        MessageBox.Show("Project with such name already exists!");
-                    }
-
+                    MessageBox.Show("Please, select project for updating");
                 }
             }
-            //Liana: 
-            //show message if project ID is undefined
             else
             {
-                MessageBox.Show("Please, select project for updating");
+                if (lblProjectIDValue.Text == "")
+                {
+                    if (txtBoxProjectName.Text == "" || txtBoxProjectName.Text == "")
+                    {
+                        MessageBox.Show("Please input Project name");
+                    }
+                    else
+                    {
+                        if (IsExistingProject(txtBoxProjectName.Text))
+                        {
+                            MessageBox.Show("Project name already exists");
+                        }
+                        else
+                        {
+                         cmd = new SqlCommand("INSERT INTO project (name, mngr_id, address, isActive) VALUES (@name,@mngr_id,@address, 'True')", conn);
+
+                         cmd.Parameters.AddWithValue("@name", txtBoxProjectName.Text);
+                                cmd.Parameters.AddWithValue("@address", txtBoxPAddress.Text);
+                                cmd.Parameters.AddWithValue("@mngr_id", lblPMngrIDValue.Text);
+                                conn.Open();
+                                if (cmd.ExecuteNonQuery() == 1)
+                                {
+                                    MessageBox.Show("Successfully Added");
+                                    ShowAllProjects();
+                                }
+                                conn.Close();
+                            
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("This project already exists");
+                }
             }
         }
 
+        
         private void btnUpdateUser_Click(object sender, EventArgs e)
         {
             //Liana: 
             //if employee is not selected show message 
-            if (lblEmployeeIDValue.Text == "")
-            {
-                MessageBox.Show("Please, select employee for updating");
-            }
-            //Liana: 
-            //employee is selected proceed updating
-            else
+            if (isUpdated)
             {
                 //if selected employee is worker
                 if (cboRole.SelectedIndex == 3)
@@ -787,7 +686,8 @@ namespace LOL_attendance
                         {
                             MessageBox.Show("Employee successfully updated");
                             ShowAllEmployees();
-                            ClearUserInputFields();
+                            btnUpdateUser.Enabled = false;
+                            //ClearUserInputFields();
                         }
                         conn.Close();
                     }
@@ -840,7 +740,8 @@ namespace LOL_attendance
                                 {
                                     MessageBox.Show("Successfully updated");
                                     ShowAllEmployees();
-                                    ClearUserInputFields();
+                                    btnUpdateUser.Enabled = false;
+                                    //ClearUserInputFields();
                                 }
                                 conn.Close();
                             }
@@ -853,93 +754,309 @@ namespace LOL_attendance
                     }
                 }
             }
+            else
+            {
+                if (lblEmployeeIDValue.Text == "")
+                {
+                    //Liana: 
+                    //if employee surname is not defined
+                    if (txtBoxSurname.Text == "")
+                    {
+                        MessageBox.Show("Please input Surname");
+                    }
+                    //Liana:
+                    //else employee surname is defined, create employee
+                    else
+                    {
+                        //Liana:
+                        //if role selected create employee
+                        if (cboRole.SelectedIndex != -1)
+                        {
+                            if (cboRole.SelectedIndex == 3)
+                            {
+                                int roleID = 0;
+                                //Lana
+                                //define role_id by role_name from db
+                                roleID = RoleIDByName(cboRole.Text);
+
+                                DataTable dt = new DataTable();
+
+                                //Lana
+                                //create new user
+                                cmd = new SqlCommand("INSERT INTO employee (name, surname, email, phone, address, role_id, isActive) VALUES (@name,@surname,@email,@phone,@address,@role_id,'True')", conn);
+                                cmd.Parameters.AddWithValue("@name", txtBoxName.Text);
+                                cmd.Parameters.AddWithValue("@surname", txtBoxSurname.Text);
+                                cmd.Parameters.AddWithValue("@email", txtBoxEmail.Text);
+                                cmd.Parameters.AddWithValue("@phone", txtBoxPhone.Text);
+                                cmd.Parameters.AddWithValue("@address", txtBoxAddress.Text);
+                                cmd.Parameters.AddWithValue("@role_id", roleID);
+                                conn.Open();
+                                if (cmd.ExecuteNonQuery() == 1)
+                                {
+                                    MessageBox.Show("Employee successfully added");
+                                    ShowAllEmployees();
+                                    //ClearUserInputFields();
+                                    btnUpdateUser.Enabled = false;
+                                    btnUpdateUser.Text = "Update";
+                                }
+                                conn.Close();
+                            }
+                            else
+                            {
+                                if (txtBoxLogin.Text == "")
+                                {
+                                    MessageBox.Show("Please, fill in Login field");
+                                }
+                                else
+                                {
+                                    if (IsExistingUserByLogin(txtBoxLogin.Text))
+                                    {
+                                        MessageBox.Show("User with defined Login already exists");
+                                    }
+                                    else
+                                    {
+                                        if (txtBoxPass.Text == "")
+                                        {
+                                            MessageBox.Show("Please, fill in Password field");
+                                        }
+                                        else
+                                        {
+                                            int roleID = 0;
+
+                                            //Lana:
+                                            //define role_id by role_name from db
+                                            roleID = RoleIDByName(cboRole.Text);
+
+                                            DataTable dt = new DataTable();
+
+                                            //Lana:
+                                            //create new user
+                                            cmd = new SqlCommand("INSERT INTO employee (login, password, name, surname, email, phone, address, role_id, isActive) VALUES (@login,@password,@name,@surname,@email,@phone,@address,@role_id,'True')", conn);
+                                            cmd.Parameters.AddWithValue("@login", txtBoxLogin.Text);
+                                            cmd.Parameters.AddWithValue("@password", txtBoxPass.Text);
+                                            cmd.Parameters.AddWithValue("@name", txtBoxName.Text);
+                                            cmd.Parameters.AddWithValue("@surname", txtBoxSurname.Text);
+                                            cmd.Parameters.AddWithValue("@email", txtBoxEmail.Text);
+                                            cmd.Parameters.AddWithValue("@phone", txtBoxPhone.Text);
+                                            cmd.Parameters.AddWithValue("@address", txtBoxAddress.Text);
+                                            cmd.Parameters.AddWithValue("@role_id", roleID);
+                                            conn.Open();
+                                            if (cmd.ExecuteNonQuery() == 1)
+                                            {
+                                                MessageBox.Show("Successfully added");
+                                                ShowAllEmployees();
+                                                //ClearUserInputFields();
+                                                btnUpdateUser.Enabled = false;
+                                                btnUpdateUser.Text = "Update";
+                                            }
+                                            conn.Close();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        //Liana: 
+                        //if role is not selected show message
+                        else
+                        {
+                            MessageBox.Show("Please, select role");
+                        }
+                    }
+                }
+                //Liana: 
+                //if employee ID defined show message employee already exists
+                else
+                {
+                    MessageBox.Show("This employee already exists");
+                    ClearUserInputFields();
+                }
+            }
+            
         }
+
 
         //Liana:
         //messages if fields are empty
         private void btnUpdateSite_Click(object sender, EventArgs e)
         {
-            if (lblSiteIDValue.Text == "")
+            if (isUpdated)
             {
-                MessageBox.Show("Please, select site for updating");
-            }
-            else
-            {
-                if (txtBoxSiteName.Text == "")
+
+                if (lblSiteIDValue.Text == "")
                 {
-                    MessageBox.Show("Please, input Sitename");
+                    MessageBox.Show("Please, select site for updating");
                 }
                 else
                 {
-                    if (cboProject.SelectedItem == null)
+                    if (txtBoxSiteName.Text == "")
                     {
-                        MessageBox.Show("Please, select Project");
+                        MessageBox.Show("Please, input Sitename");
                     }
                     else
                     {
-                        if (cboSiteManager.SelectedItem == null)
+                        if (cboProject.SelectedItem == null)
                         {
-                            //Lana:
-                            //Define selected Project ID
-                            int currentProjectID = 0;
-                            currentProjectID = ProjectIDByName(cboProject.SelectedItem.ToString());
-
-                            conn = new SqlConnection(connstr);
-                            cmd = new SqlCommand("Update site Set name=@name,address=@address, proj_id=@proj_id WHERE ID=@id", conn);
-
-                            cmd.Parameters.AddWithValue("@name", txtBoxSiteName.Text);
-                            cmd.Parameters.AddWithValue("@address", txtBoxSiteAddress.Text);
-                            cmd.Parameters.AddWithValue("@proj_id", currentProjectID);
-                            cmd.Parameters.AddWithValue("@id", lblSiteIDValue.Text);
-
-                            conn.Open();
-                            if (cmd.ExecuteNonQuery() == 1)
-                            {
-                                MessageBox.Show("Successfully updated");
-
-                                //Lana:
-                                //Clear fields after Creating the Site
-                                ClearSiteInputFields();
-                                ShowAllSites();
-                            }
-                            conn.Close();
+                            MessageBox.Show("Please, select Project");
                         }
                         else
                         {
-                            //Lana:
-                            //Define selected SiteManager ID
-                            int currentSiteManagerID = 0;
-
-                            currentSiteManagerID = EmployeeIDByRoleAndSurname("Site Manager", cboSiteManager.SelectedItem.ToString());
-
-                            //Lana:
-                            //Define selected Project ID
-                            int currentProjectID = 0;
-                            currentProjectID = ProjectIDByName(cboProject.SelectedItem.ToString());
-
-                            //Lana:
-                            //Update the fields
-                            conn = new SqlConnection(connstr);
-                            cmd = new SqlCommand("Update site Set name=@name, mngr_id =@mngr_id, address=@address, proj_id=@proj_id WHERE ID=@id", conn);
-
-                            cmd.Parameters.AddWithValue("@name", txtBoxSiteName.Text);
-                            cmd.Parameters.AddWithValue("@address", txtBoxSiteAddress.Text);
-                            cmd.Parameters.AddWithValue("@mngr_id", currentSiteManagerID);
-                            cmd.Parameters.AddWithValue("@proj_id", currentProjectID);
-                            cmd.Parameters.AddWithValue("@id", lblSiteIDValue.Text);
-
-                            conn.Open();
-                            if (cmd.ExecuteNonQuery() == 1)
+                            if (cboSiteManager.SelectedItem == null)
                             {
-                                MessageBox.Show("Successfully updated");
                                 //Lana:
-                                //Clear fields after Creating the Site
-                                ClearSiteInputFields();
-                                ShowAllSites();
+                                //Define selected Project ID
+                                int currentProjectID = 0;
+                                currentProjectID = ProjectIDByName(cboProject.SelectedItem.ToString());
+
+                                conn = new SqlConnection(connstr);
+                                cmd = new SqlCommand("Update site Set name=@name,address=@address, proj_id=@proj_id WHERE ID=@id", conn);
+
+                                cmd.Parameters.AddWithValue("@name", txtBoxSiteName.Text);
+                                cmd.Parameters.AddWithValue("@address", txtBoxSiteAddress.Text);
+                                cmd.Parameters.AddWithValue("@proj_id", currentProjectID);
+                                cmd.Parameters.AddWithValue("@id", lblSiteIDValue.Text);
+
+                                conn.Open();
+                                if (cmd.ExecuteNonQuery() == 1)
+                                {
+                                    MessageBox.Show("Successfully updated");
+
+                                    //Lana:
+                                    //Clear fields after Creating the Site
+                                    // ClearSiteInputFields();
+                                    ShowAllSites();
+                                    btnUpdateSite.Enabled = false;
+                                }
+                                conn.Close();
                             }
-                            conn.Close();
+                            else
+                            {
+                                //Lana:
+                                //Define selected SiteManager ID
+                                int currentSiteManagerID = 0;
+
+                                currentSiteManagerID = EmployeeIDByRoleAndSurname("Site Manager", cboSiteManager.SelectedItem.ToString());
+
+                                //Lana:
+                                //Define selected Project ID
+                                int currentProjectID = 0;
+                                currentProjectID = ProjectIDByName(cboProject.SelectedItem.ToString());
+
+                                //Lana:
+                                //Update the fields
+                                conn = new SqlConnection(connstr);
+                                cmd = new SqlCommand("Update site Set name=@name, mngr_id =@mngr_id, address=@address, proj_id=@proj_id WHERE ID=@id", conn);
+
+                                cmd.Parameters.AddWithValue("@name", txtBoxSiteName.Text);
+                                cmd.Parameters.AddWithValue("@address", txtBoxSiteAddress.Text);
+                                cmd.Parameters.AddWithValue("@mngr_id", currentSiteManagerID);
+                                cmd.Parameters.AddWithValue("@proj_id", currentProjectID);
+                                cmd.Parameters.AddWithValue("@id", lblSiteIDValue.Text);
+
+                                conn.Open();
+                                if (cmd.ExecuteNonQuery() == 1)
+                                {
+                                    MessageBox.Show("Successfully updated");
+                                    //Lana:
+                                    //Clear fields after Creating the Site
+                                    //ClearSiteInputFields();
+                                    ShowAllSites();
+                                    btnUpdateSite.Enabled = false;
+
+                                }
+                                conn.Close();
+                            }
                         }
                     }
+                }
+            }
+            else
+            {
+                if (lblSiteID.Text != "")
+                {
+                    if (txtBoxSiteName.Text == "")
+                    {
+                        MessageBox.Show("Please input Sitename");
+                    }
+                    else
+                    {
+                        if (cboProject.SelectedItem == null)
+                        {
+                            MessageBox.Show("Please select Project");
+                        }
+                        else
+                        {
+                            if (cboSiteManager.SelectedItem == null)
+                            {
+                                //Lana:
+                                //Define selected Project ID
+                                int currentProjectID = 0;
+                                currentProjectID = ProjectIDByName        (cboProject.SelectedItem.ToString());
+
+                                conn = new SqlConnection(connstr);
+                                cmd = new SqlCommand("INSERT INTO site (name, address, proj_id, isActive) VALUES (@name,@address,@proj_id, 'True')", conn);
+
+                                cmd.Parameters.AddWithValue("@name", txtBoxSiteName.Text);
+                                cmd.Parameters.AddWithValue("@address", txtBoxSiteAddress.Text);
+                                cmd.Parameters.AddWithValue("@proj_id", currentProjectID);
+
+                                conn.Open();
+                                if (cmd.ExecuteNonQuery() == 1)
+                                {
+                                    MessageBox.Show("Successfully Added");
+
+                                    //Lana:
+                                    //Clear fields after Creating the Site
+                                    //ClearSiteInputFields();
+                                    btnUpdateSite.Text = "Update";
+                                    isUpdated = false;
+                                    ShowAllSites();
+                                }
+                                conn.Close();
+                            }
+                            else
+                            {
+                                //Lana:
+                                //Define selected SiteManager ID
+                                int currentSiteManagerID = 0;
+
+                                currentSiteManagerID = EmployeeIDByRoleAndSurname("Site Manager", cboSiteManager.SelectedItem.ToString());
+
+                                //Lana:
+                                //Define selected Project ID
+                                int currentProjectID = 0;
+                                currentProjectID = ProjectIDByName(cboProject.SelectedItem.ToString());
+
+                                //Lana:
+                                //Insert the values to DB
+                                conn = new SqlConnection(connstr);
+                                cmd = new SqlCommand("INSERT INTO site (name, mngr_id, address, proj_id, isActive) VALUES (@name,@mngr_id,@address,@proj_id, 'True')", conn);
+
+                                cmd.Parameters.AddWithValue("@name", txtBoxSiteName.Text);
+                                cmd.Parameters.AddWithValue("@address", txtBoxSiteAddress.Text);
+                                cmd.Parameters.AddWithValue("@mngr_id", currentSiteManagerID);
+                                cmd.Parameters.AddWithValue("@proj_id", currentProjectID);
+
+                                conn.Open();
+                                if (cmd.ExecuteNonQuery() == 1)
+                                {
+                                    MessageBox.Show("Successfully Added");
+
+                                    //Lana:
+                                    //Clear fields after Creating the Site
+                                    //ClearSiteInputFields();
+                                    btnUpdateSite.Text = "Update";
+                                    isUpdated = false;
+                                    ShowAllSites();
+                                }
+                                conn.Close();
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("This site already exists");
+                    ClearSiteInputFields();
                 }
             }
         }
@@ -964,7 +1081,8 @@ namespace LOL_attendance
                 {
                     MessageBox.Show("Successfully Deleted");
                     ShowAllEmployees();
-                    ClearUserInputFields();
+                    btnUpdateUser.Enabled = false;
+                    //ClearUserInputFields();
                 }
                 conn.Close();
             }
@@ -1090,10 +1208,10 @@ namespace LOL_attendance
         private void ClearProjectInputFields()
         {
             lblProjectIDValue.Text = "";
-            lblPMngrIDValue.Text = "";
-            cboPM.SelectedIndex = 0;
-            txtBoxProjectName.Text = "Input name";
-            txtBoxPAddress.Text = "Input Address";
+            //lblPMngrIDValue.Text = "";
+            //cboPM.SelectedIndex = 0;
+            txtBoxProjectName.Text = "";
+            txtBoxPAddress.Text = "";
         }
 
         //Liana:
@@ -1220,19 +1338,74 @@ namespace LOL_attendance
 
         }
 
-        private void tabUser_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void frmRegistration_Load(object sender, EventArgs e)
         {
+            ShowAllEmployees();
+            ShowAllProjects();
+            ShowAllSites();
+            btnUpdateUser.Enabled = false;
 
         }
 
-        private void lblProjectName_Click(object sender, EventArgs e)
-        {
 
+
+        private void FieldChanged(object sender, EventArgs e)
+
+        {
+            switch (tabRegistration.SelectedIndex)
+            {
+                case 0:
+
+                    if (txtBoxName.Text != "" && txtBoxSurname.Text != "" )
+                    {
+                        btnUpdateUser.Enabled = true;
+                    }
+                    break;
+
+                case 1:
+
+                    if (txtBoxProjectName.Text != "")
+                    {
+                        btnUpdateProject.Enabled = true;
+                    }
+                    break;
+                case 2:
+
+                    if (txtBoxSiteName.Text != "" )
+                    {
+                        btnUpdateSite.Enabled = true;
+                    }
+
+                    break;
+
+            }
+          
+
+
+        }
+
+        private void txtBoxEmail_Validating(object sender, CancelEventArgs e)
+        {
+            System.Text.RegularExpressions.Regex rEMail = new System.Text.RegularExpressions.Regex(@"^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$");
+
+            if (txtBoxEmail.Text.Length > 0)
+
+            {
+
+                if (!rEMail.IsMatch(txtBoxEmail.Text))
+
+                {
+
+                    MessageBox.Show("E-Mail is not valid", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    txtBoxEmail.SelectAll();
+
+                    e.Cancel = true;
+
+                }
+
+            }
         }
     }
 }
