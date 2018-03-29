@@ -1385,7 +1385,28 @@ namespace LOL_attendance
 
         }
 
+        private void txtBoxEmail_Validating(object sender, CancelEventArgs e)
+        {
+            System.Text.RegularExpressions.Regex rEMail = new System.Text.RegularExpressions.Regex(@"^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$");
 
+            if (txtBoxEmail.Text.Length > 0)
+
+            {
+
+                if (!rEMail.IsMatch(txtBoxEmail.Text))
+
+                {
+
+                    MessageBox.Show("E-Mail is not valid", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    txtBoxEmail.SelectAll();
+
+                    e.Cancel = true;
+
+                }
+
+            }
+        }
     }
 }
 

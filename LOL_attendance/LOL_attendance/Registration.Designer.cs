@@ -150,7 +150,6 @@
             this.tabUser.TabIndex = 0;
             this.tabUser.Text = "User";
             this.tabUser.UseVisualStyleBackColor = true;
-//            this.tabUser.Click += new System.EventHandler(this.tabUser_Click);
             // 
             // lblUserStatus
             // 
@@ -250,7 +249,6 @@
             this.grpBoxUserInfo.TabIndex = 28;
             this.grpBoxUserInfo.TabStop = false;
             this.grpBoxUserInfo.Text = "User Information";
-//            this.grpBoxUserInfo.Enter += new System.EventHandler(this.grpBoxUserInfo_Enter);
             // 
             // btnUpdateUser
             // 
@@ -362,6 +360,7 @@
             this.txtBoxEmail.Size = new System.Drawing.Size(344, 44);
             this.txtBoxEmail.TabIndex = 6;
             this.txtBoxEmail.TextChanged += new System.EventHandler(this.FieldChanged);
+            this.txtBoxEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtBoxEmail_Validating);
             // 
             // txtBoxName
             // 
@@ -659,7 +658,6 @@
             this.lblProjectName.Size = new System.Drawing.Size(211, 37);
             this.lblProjectName.TabIndex = 26;
             this.lblProjectName.Text = "Project Name";
-//            this.lblProjectName.Click += new System.EventHandler(this.lblProjectName_Click);
             // 
             // groupBoxSearch
             // 
