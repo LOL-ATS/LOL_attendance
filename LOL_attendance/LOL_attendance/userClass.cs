@@ -21,11 +21,10 @@ namespace LOL_attendance
 
         public string userName { get; set; }
         //the time of login
-         public DateTime userDOB{ get; set; }
-         public userRoles userRole { get; set; }
-         public string userfullname { get; set; }
+        public DateTime userDOB{ get; set; }
+        public userRoles userRole { get; set; }
+        public string userfullname { get; set; }
         public int userID { get; set; }
-
 
     }
 }

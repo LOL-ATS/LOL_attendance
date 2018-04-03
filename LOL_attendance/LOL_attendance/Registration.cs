@@ -15,8 +15,7 @@ namespace LOL_attendance
 {
     public partial class frmRegistration : Form
     {
-        //Liana and Lana: 
-        //Add connection to DB
+        //Lana: Add connection to DB
         SqlConnection conn;
         SqlCommand cmd;
         string connstr = ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString;
@@ -25,27 +24,17 @@ namespace LOL_attendance
         Boolean isUpdated;
         public int ID;
 
-
         public frmRegistration()
         {
             InitializeComponent();
         }
 
+        //Lana: Employee tab: fill in text boxes with values from selected row of datagridview 
         private void dataGridViewEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = dgdViewEmployee.Rows[e.RowIndex];
-            
-            conn = new SqlConnection(connstr);
-            cmd = new SqlCommand("SELECT * FROM employee WHERE id =" + Convert.ToInt32(row.Cells[0].Value.ToString()), conn);
 
-            conn.Open();
-            rdr = cmd.ExecuteReader();
-            if (rdr.HasRows)
-            {
-                rdr.Read();
-            }
-            conn.Close();
-            //fill text boxes by selected row data
+            //Liana: fill text boxes by selected row data
             txtBoxLogin.Text = row.Cells["login"].Value.ToString();
             txtBoxPass.Text = row.Cells["password"].Value.ToString();
             txtBoxName.Text = row.Cells["name"].Value.ToString();
@@ -54,59 +43,32 @@ namespace LOL_attendance
             txtBoxPhone.Text = row.Cells["phone"].Value.ToString();
             txtBoxAddress.Text = row.Cells["address"].Value.ToString();
             lblEmployeeIDValue.Text = row.Cells["id"].Value.ToString();
+            //Liana: select value in Role drop down list
             cboRole.SelectedIndex = (Int32)row.Cells["role_id"].Value - 1;
+            //Omid: disable btn Update since nothing to update
             btnUpdateUser.Enabled = false;
+            //Omid: set isUpdated flag to true
             isUpdated = true;
-
         }
 
-
+        //Lana: Project tab: fill in text boxes with values from selected row of datagridview 
         private void dataGridViewProject_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = dgdViewProject.Rows[e.RowIndex];
-            
-            conn = new SqlConnection(connstr);
-            cmd = new SqlCommand("SELECT surname FROM employee WHERE id =" + Convert.ToInt32(row.Cells["mngr_id"].Value.ToString()), conn);
+            //Liana: define manager surname by id
+            Employee empl = new Employee();
+            string mngr_surname = empl.GetSurnameByID(Convert.ToInt32(row.Cells["mngr_id"].Value.ToString()));
 
-            conn.Open();
-            rdr = cmd.ExecuteReader();
-            string mngr_name = "";
-            if (rdr.HasRows)
-            {
-                rdr.Read();
-                mngr_name = rdr.GetString(0);
-            }
-
-            conn.Close();
             //fill text boxes by selected row data
             lblProjectIDValue.Text = row.Cells["id"].Value.ToString();
             lblPMngrIDValue.Text = row.Cells["mngr_id"].Value.ToString();
             txtBoxProjectName.Text = row.Cells["name"].Value.ToString();
             txtBoxPAddress.Text = row.Cells["address"].Value.ToString();
-            cboPM.Text = mngr_name.ToString();
+            cboPM.Text = mngr_surname;
+
             btnUpdateProject.Enabled = false;
             btnUpdateProject.Text = "Update";
             isUpdated = true;
-        }
-
-        //Lana:
-        //Define project name by project ID
-        private string ProjectNameByID(int projectID)
-        {
-            string projectName = "";
-
-            conn = new SqlConnection(connstr);
-            cmd = new SqlCommand("SELECT name FROM project WHERE id =" + projectID, conn);
-
-            conn.Open();
-            rdr = cmd.ExecuteReader();
-            if (rdr.HasRows)
-            {
-                rdr.Read();
-                projectName = rdr.GetString(0);
-            }
-            conn.Close();
-            return projectName;
         }
 
         //Lana:
@@ -114,23 +76,10 @@ namespace LOL_attendance
         private void dgdViewSite_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = dgdViewSite.Rows[e.RowIndex];
-
-            string project_name = ProjectNameByID(Convert.ToInt32(row.Cells["proj_id"].Value.ToString()));
-
-            conn = new SqlConnection(connstr);
-
-            cmd = new SqlCommand("SELECT name FROM project WHERE id =" + Convert.ToInt32(row.Cells["proj_id"].Value.ToString()), conn);
-
-            conn.Open();
-            rdr = cmd.ExecuteReader();
-            
-            if (rdr.HasRows)
-            {
-                rdr.Read();
-                project_name = rdr.GetString(0);
-            }
-
-            conn.Close();
+            //Liana: define project name by ID
+            Project proj = new Project();
+            string project_name = proj.GetNameByID(Convert.ToInt32(row.Cells["proj_id"].Value.ToString()));
+            // if site manager does not defined for selected site then ID is empty and drop down list shows nothing
             if (row.Cells["mngr_id"].Value.ToString() == "")
             {
                 cboSiteManager.SelectedIndex = -1;
@@ -138,21 +87,12 @@ namespace LOL_attendance
             }
             else
             {
-                conn = new SqlConnection(connstr);
-                cmd = new SqlCommand("SELECT surname FROM employee WHERE id =" + Convert.ToInt32(row.Cells["mngr_id"].Value.ToString()), conn);
+                Employee empl = new Employee();
+                string sitemng_surname = empl.GetSurnameByID(Convert.ToInt32(row.Cells["mngr_id"].Value.ToString()));
 
-                conn.Open();
-                rdr = cmd.ExecuteReader();
-                string sitemng_name = "";
-                if (rdr.HasRows)
-                {
-                    rdr.Read();
-                    sitemng_name = rdr.GetString(0);
-                }
-                cboSiteManager.Text = sitemng_name.ToString();
+                cboSiteManager.Text = sitemng_surname;
                 lblSiteManagerIDValue.Text = row.Cells["mngr_id"].Value.ToString();
-                conn.Close();
-            }
+             }
             //fill text boxes by selected row data
 
             txtBoxSiteName.Text = row.Cells["name"].Value.ToString();
@@ -163,76 +103,21 @@ namespace LOL_attendance
             btnUpdateSite.Enabled = false;
             btnUpdateSite.Text = "Update";
             isUpdated = true;
-
-        }
-        //Liana:
-        //Check if login field is unique
-        private bool IsExistingUserByLogin(string userLogin)
-        {
-            bool userExists = true;
-            conn = new SqlConnection(connstr);
-            cmd = new SqlCommand("SELECT login FROM employee WHERE login = '" + userLogin + "' and isActive = 'True'", conn);
-
-            conn.Open();
-            rdr = cmd.ExecuteReader();
-            if (rdr.HasRows)
-            {
-                rdr.Read();
-                userExists = true;
-            }
-            else
-            {
-                userExists = false;
-            }
-
-            conn.Close();
-            return userExists;
         }
 
-        //Liana: 
-        //define role ID by role name
-        private int RoleIDByName(string roleName)
-        {
-            int roleID;
 
-            //define role_id by role_name from db
-            conn = new SqlConnection(connstr);
-            cmd = new SqlCommand("SELECT id FROM role WHERE name='" + roleName + "'", conn);
-            conn.Open();
-            rdr = cmd.ExecuteReader();
-            if (rdr.HasRows)
-            {
-                rdr.Read();
-                roleID = rdr.GetInt32(0);
-            }
-            else
-            {
-                roleID = -1;
-            }
-            conn.Close();
-            return roleID;
-        }
-
-        //Lana, Liana:
+        //Lana: to create new user clear all text fields
+        //Rename button Update to Save
         private void btnCreateUser_Click(object sender, EventArgs e)
         {
             ClearUserInputFields();
             this.ActiveControl=cboRole;
             isUpdated = false;
             btnUpdateUser.Text = "Save";
-            
-
-            /*
-            //Liana: 
-            //if employee does not exist create employee
-            
-            */
         }
 
         //Lana:
         //Clear all input fields
- 
-
         private void ClearUserInputFields()
         {
             txtBoxLogin.Clear();
@@ -245,116 +130,15 @@ namespace LOL_attendance
             cboRole.SelectedIndex = -1;
             lblEmployeeIDValue.Text = "";
         }
-        //Liana:
-        //check if project with such name already exists
-        private bool IsExistingProject(string name)
-        {
-            bool projectExists=true;
-            cmd = new SqlCommand("SELECT * FROM project WHERE name='" + name + "'", conn);
 
-            conn.Open();
-            if (cmd.ExecuteReader().HasRows)
-            {
-                projectExists = true;
-            }
-            else
-            {
-                projectExists = false;
-            }
-            conn.Close();
-            return projectExists;
-
-        }
-
-
-        //Liana & Lana:
-        //Create new project
+        //Lana: to create new project clear all input fields
+        //Rename button Update to Save
         private void btnCreateProject_Click(object sender, EventArgs e)
         {
             ClearProjectInputFields();
             this.ActiveControl = txtBoxProjectName;
             isUpdated = false;
             btnUpdateProject.Text = "Save";
-
-            /*
-            }*/
-        }
-        //Liana: 
-        //define employee ID by login
-        private int EmployeeIDByLogin(string login)
-        {
-            int employee_id = 0;
-            conn = new SqlConnection(connstr);
-            cmd = new SqlCommand("SELECT e.id FROM employee e WHERE login ='" + login + "'", conn);
-            conn.Open();
-            rdr = cmd.ExecuteReader();
-            if (rdr.HasRows)
-            {
-                rdr.Read();
-                employee_id = rdr.GetInt32(0);
-            }
-            else
-            {
-                employee_id = -1;
-            }
-            conn.Close();
-            return employee_id;
-        }
-
-        //Lana & Liana: 
-        //define employee id by role and surname 
-        private int EmployeeIDByRoleAndSurname(string employee_role, string employee_surname)
-        {
-            int employee_id = 0;
-            if (employee_role != "" & employee_surname != "")
-            {
-                conn = new SqlConnection(connstr);
-                cmd = new SqlCommand("SELECT e.id FROM employee e, role r WHERE e.role_id = r.id and r.name = '" + employee_role + "' and surname ='" + employee_surname + "'", conn);
-
-                conn.Open();
-                rdr = cmd.ExecuteReader();
-                if (rdr.HasRows)
-                {
-                    rdr.Read();
-                    employee_id = rdr.GetInt32(0);
-                }
-                else
-                {
-                    employee_id = -1;
-                }
-                conn.Close();
-                return employee_id;
-            }
-            else
-                return -1;
-        }
-
-        //Liana:
-        //Define project ID by name
-        private int ProjectIDByName(string name)
-        {
-            int projectID = 0;
-            if (name != "")
-            {
-                conn = new SqlConnection(connstr);
-                cmd = new SqlCommand("SELECT id FROM project WHERE isActive = 'True' and name = '" + name + "'", conn);
-
-                conn.Open();
-                rdr = cmd.ExecuteReader();
-                if (rdr.HasRows)
-                {
-                    rdr.Read();
-                    projectID = rdr.GetInt32(0);
-                }
-                else
-                {
-                    projectID = -1;
-                }
-                conn.Close();
-                return projectID;
-            }
-            else
-                return -1;
         }
 
 
@@ -366,6 +150,7 @@ namespace LOL_attendance
             isUpdated = false;
             btnUpdateSite.Text = "Save";
         }
+        
         //omid:Clear site data in text boxes 
         private void ClearSiteInputFields()
         {
@@ -395,23 +180,10 @@ namespace LOL_attendance
                 dgdViewSite.DataSource = dt;
                 conn.Close();
                 DataGridViewRow row = dgdViewSite.Rows[0];
+                // define project name by ID
+                Project proj = new Project();
+                string project_name = proj.GetNameByID(Convert.ToInt32(row.Cells["proj_id"].Value.ToString()));
 
-                string project_name = ProjectNameByID(Convert.ToInt32(row.Cells["proj_id"].Value.ToString()));
-
-                conn = new SqlConnection(connstr);
-
-                cmd = new SqlCommand("SELECT name FROM project WHERE id =" + Convert.ToInt32(row.Cells["proj_id"].Value.ToString()), conn);
-
-                conn.Open();
-                rdr = cmd.ExecuteReader();
-
-                if (rdr.HasRows)
-                {
-                    rdr.Read();
-                    project_name = rdr.GetString(0);
-                }
-
-                conn.Close();
                 if (row.Cells["mngr_id"].Value.ToString() == "")
                 {
                     cboSiteManager.SelectedIndex = -1;
@@ -419,38 +191,23 @@ namespace LOL_attendance
                 }
                 else
                 {
-                    conn = new SqlConnection(connstr);
-                    cmd = new SqlCommand("SELECT surname FROM employee WHERE id =" + Convert.ToInt32(row.Cells["mngr_id"].Value.ToString()), conn);
-
-                    conn.Open();
-                    rdr = cmd.ExecuteReader();
-                    string sitemng_name = "";
-                    if (rdr.HasRows)
-                    {
-                        rdr.Read();
-                        sitemng_name = rdr.GetString(0);
-                    }
+                    Employee empl = new Employee();
+                    string sitemng_name = empl.GetSurnameByID(Convert.ToInt32(row.Cells["mngr_id"].Value.ToString()));
                     cboSiteManager.Text = sitemng_name.ToString();
                     lblSiteManagerIDValue.Text = row.Cells["mngr_id"].Value.ToString();
-                    conn.Close();
                 }
-                
                 txtBoxSiteName.Text = row.Cells["name"].Value.ToString();
                 txtBoxSiteAddress.Text = row.Cells["address"].Value.ToString();
                 lblSiteIDValue.Text = row.Cells["id"].Value.ToString();
                 cboProject.Text = project_name.ToString();
                 lblProjectIDOnSiteValue.Text = row.Cells["proj_id"].Value.ToString();
-
             }
             else
             {
                 MessageBox.Show("No Data to show");
                 conn.Close();
-
             }
         }
-
-
 
         //Lana:
         //Show all Data related to Projects from DB
@@ -471,20 +228,8 @@ namespace LOL_attendance
                 //Fill text boxes
                 DataGridViewRow row = dgdViewProject.Rows[0];
 
-                conn = new SqlConnection(connstr);
-                cmd = new SqlCommand("SELECT surname FROM employee WHERE id =" + Convert.ToInt32(row.Cells["mngr_id"].Value.ToString()), conn);
-                conn.Close();
-
-                conn.Open();
-                rdr = cmd.ExecuteReader();
-                string mngr_name = "";
-                if (rdr.HasRows)
-                {
-                    rdr.Read();
-                    mngr_name = rdr.GetString(0);
-                }
-
-                conn.Close();
+                Employee empl = new Employee();
+                string mngr_name = empl.GetSurnameByID(Convert.ToInt32(row.Cells["mngr_id"].Value.ToString()));
 
                 lblProjectIDValue.Text = row.Cells["id"].Value.ToString();
                 lblPMngrIDValue.Text = row.Cells["mngr_id"].Value.ToString();
@@ -494,10 +239,9 @@ namespace LOL_attendance
 
             }
             else
-                {
-                    MessageBox.Show("No Data to show");
+            {
+                MessageBox.Show("No Data to show");
                 conn.Close();
-
             }
         }
 
@@ -517,38 +261,34 @@ namespace LOL_attendance
                 {
                     dt.Load(rdr);
                     dgdViewEmployee.DataSource = dt;
-                // hide Role_ID, Login and password columns 
-                dgdViewEmployee.Columns[1].Visible = false;
-                dgdViewEmployee.Columns[2].Visible = false;
-                dgdViewEmployee.Columns[3].Visible = false;
-
-                txtBoxLogin.Text = dt.Rows[0]["login"].ToString();
-                txtBoxPass.Text = dt.Rows[0]["password"].ToString();
-                txtBoxName.Text = dt.Rows[0]["name"].ToString();
-                txtBoxSurname.Text = dt.Rows[0]["surname"].ToString();
-                txtBoxEmail.Text = dt.Rows[0]["email"].ToString();
-                txtBoxPhone.Text = dt.Rows[0]["phone"].ToString();
-                txtBoxAddress.Text = dt.Rows[0]["address"].ToString();
-                lblEmployeeIDValue.Text = dt.Rows[0]["id"].ToString();
-                cboRole.SelectedIndex = (Int32)dt.Rows[0]["role_id"]-1;
-                btnUpdateUser.Enabled = false;
-
-
-            }
-            else
+                    // hide Role_ID, password columns 
+                    dgdViewEmployee.Columns["role_id"].Visible = false;
+                    dgdViewEmployee.Columns["password"].Visible = false;
+                
+                    txtBoxLogin.Text = dt.Rows[0]["login"].ToString();
+                    txtBoxPass.Text = dt.Rows[0]["password"].ToString();
+                    txtBoxName.Text = dt.Rows[0]["name"].ToString();
+                    txtBoxSurname.Text = dt.Rows[0]["surname"].ToString();
+                    txtBoxEmail.Text = dt.Rows[0]["email"].ToString();
+                    txtBoxPhone.Text = dt.Rows[0]["phone"].ToString();
+                    txtBoxAddress.Text = dt.Rows[0]["address"].ToString();
+                    lblEmployeeIDValue.Text = dt.Rows[0]["id"].ToString();
+                    cboRole.SelectedIndex = (Int32)dt.Rows[0]["role_id"]-1;
+                    btnUpdateUser.Enabled = false;
+                }
+                else
                 {
                     MessageBox.Show("No Data to show");
                 }
                 conn.Close();
-            btnUpdateUser.Enabled = false;
-            isUpdated = true;
+                btnUpdateUser.Enabled = false;
+                isUpdated = true;
         }
 
         //Lana:
         //Updating Project's data
         private void btnUpdateProject_Click(object sender, EventArgs e)
         {
-            //*
             //Liana: 
             //proceed if project id is defined
             if (isUpdated)
@@ -567,7 +307,10 @@ namespace LOL_attendance
                     {
                         //Liana: 
                         //proceed if there are no projects with defined project name or project name is not changed
-                        if (ProjectIDByName(txtBoxProjectName.Text) == -1 || Convert.ToInt32(lblProjectIDValue.Text) == ProjectIDByName(txtBoxProjectName.Text))
+                        Project proj = new Project();
+                        int projID = 0;
+                        projID = proj.GetIDByName(txtBoxProjectName.Text);
+                        if (projID == -1 || Convert.ToInt32(lblProjectIDValue.Text) == projID)
                         {
                             conn = new SqlConnection(connstr);
 
@@ -617,7 +360,8 @@ namespace LOL_attendance
                     }
                     else
                     {
-                        if (IsExistingProject(txtBoxProjectName.Text))
+                        Project proj = new Project();
+                        if (proj.IsExisting(txtBoxProjectName.Text))
                         {
                             MessageBox.Show("Project name already exists");
                         }
@@ -646,7 +390,7 @@ namespace LOL_attendance
             }
         }
 
-        
+        //Liana: Update employee info
         private void btnUpdateUser_Click(object sender, EventArgs e)
         {
             //Liana: 
@@ -668,7 +412,8 @@ namespace LOL_attendance
 
                         //Lana:
                         //define role_id by role_name from db
-                        roleID = RoleIDByName(cboRole.Text);
+                        Role currentRole = new Role();
+                        roleID = currentRole.GetIDByName(cboRole.Text);
 
                         DataTable dt = new DataTable();
 
@@ -704,7 +449,8 @@ namespace LOL_attendance
                     //proceed if login defined 
                     else
                     {
-                        int employeeID=EmployeeIDByLogin(txtBoxLogin.Text);
+                        Employee empl = new Employee();
+                        int employeeID=empl.GetIDByLogin(txtBoxLogin.Text);
                         //check login is not changed or it is new login
                         if (employeeID == Convert.ToInt32(lblEmployeeIDValue.Text)||employeeID == -1)
                         { 
@@ -720,7 +466,8 @@ namespace LOL_attendance
                                 //Lana:
                                 //define role_id by role_name from db
                                 int roleID = 0;
-                                roleID = RoleIDByName(cboRole.Text);
+                                Role currentRole = new Role();
+                                roleID = currentRole.GetIDByName(cboRole.Text);
 
                                 DataTable dt = new DataTable();
 
@@ -756,6 +503,7 @@ namespace LOL_attendance
             }
             else
             {
+                // if it is new Employee and ID is not defined yet
                 if (lblEmployeeIDValue.Text == "")
                 {
                     //Liana: 
@@ -777,7 +525,8 @@ namespace LOL_attendance
                                 int roleID = 0;
                                 //Lana
                                 //define role_id by role_name from db
-                                roleID = RoleIDByName(cboRole.Text);
+                                Role currentRole = new Role();
+                                roleID = currentRole.GetIDByName(cboRole.Text);
 
                                 DataTable dt = new DataTable();
 
@@ -809,7 +558,8 @@ namespace LOL_attendance
                                 }
                                 else
                                 {
-                                    if (IsExistingUserByLogin(txtBoxLogin.Text))
+                                    Employee empl = new Employee();
+                                    if (empl.IsExistingByLogin(txtBoxLogin.Text))
                                     {
                                         MessageBox.Show("User with defined Login already exists");
                                     }
@@ -825,7 +575,8 @@ namespace LOL_attendance
 
                                             //Lana:
                                             //define role_id by role_name from db
-                                            roleID = RoleIDByName(cboRole.Text);
+                                            Role currentRole = new Role();
+                                            roleID = currentRole.GetIDByName(cboRole.Text);
 
                                             DataTable dt = new DataTable();
 
@@ -905,7 +656,8 @@ namespace LOL_attendance
                                 //Lana:
                                 //Define selected Project ID
                                 int currentProjectID = 0;
-                                currentProjectID = ProjectIDByName(cboProject.SelectedItem.ToString());
+                                Project proj = new Project();
+                                currentProjectID = proj.GetIDByName(cboProject.SelectedItem.ToString());
 
                                 conn = new SqlConnection(connstr);
                                 cmd = new SqlCommand("Update site Set name=@name,address=@address, proj_id=@proj_id WHERE ID=@id", conn);
@@ -922,7 +674,6 @@ namespace LOL_attendance
 
                                     //Lana:
                                     //Clear fields after Creating the Site
-                                    // ClearSiteInputFields();
                                     ShowAllSites();
                                     btnUpdateSite.Enabled = false;
                                 }
@@ -933,13 +684,14 @@ namespace LOL_attendance
                                 //Lana:
                                 //Define selected SiteManager ID
                                 int currentSiteManagerID = 0;
-
-                                currentSiteManagerID = EmployeeIDByRoleAndSurname("Site Manager", cboSiteManager.SelectedItem.ToString());
+                                Employee empl = new Employee();
+                                currentSiteManagerID = empl.GetIDByRoleAndSurname("Site Manager", cboSiteManager.SelectedItem.ToString());
 
                                 //Lana:
                                 //Define selected Project ID
                                 int currentProjectID = 0;
-                                currentProjectID = ProjectIDByName(cboProject.SelectedItem.ToString());
+                                Project proj = new Project();
+                                currentProjectID = proj.GetIDByName(cboProject.SelectedItem.ToString());
 
                                 //Lana:
                                 //Update the fields
@@ -990,7 +742,8 @@ namespace LOL_attendance
                                 //Lana:
                                 //Define selected Project ID
                                 int currentProjectID = 0;
-                                currentProjectID = ProjectIDByName        (cboProject.SelectedItem.ToString());
+                                Project proj = new Project();
+                                currentProjectID = proj.GetIDByName        (cboProject.SelectedItem.ToString());
 
                                 conn = new SqlConnection(connstr);
                                 cmd = new SqlCommand("INSERT INTO site (name, address, proj_id, isActive) VALUES (@name,@address,@proj_id, 'True')", conn);
@@ -1006,7 +759,6 @@ namespace LOL_attendance
 
                                     //Lana:
                                     //Clear fields after Creating the Site
-                                    //ClearSiteInputFields();
                                     btnUpdateSite.Text = "Update";
                                     isUpdated = false;
                                     ShowAllSites();
@@ -1018,13 +770,14 @@ namespace LOL_attendance
                                 //Lana:
                                 //Define selected SiteManager ID
                                 int currentSiteManagerID = 0;
-
-                                currentSiteManagerID = EmployeeIDByRoleAndSurname("Site Manager", cboSiteManager.SelectedItem.ToString());
+                                Employee empl = new Employee();
+                                currentSiteManagerID = empl.GetIDByRoleAndSurname("Site Manager", cboSiteManager.SelectedItem.ToString());
 
                                 //Lana:
                                 //Define selected Project ID
                                 int currentProjectID = 0;
-                                currentProjectID = ProjectIDByName(cboProject.SelectedItem.ToString());
+                                Project proj = new Project();
+                                currentProjectID = proj.GetIDByName(cboProject.SelectedItem.ToString());
 
                                 //Lana:
                                 //Insert the values to DB
@@ -1043,7 +796,6 @@ namespace LOL_attendance
 
                                     //Lana:
                                     //Clear fields after Creating the Site
-                                    //ClearSiteInputFields();
                                     btnUpdateSite.Text = "Update";
                                     isUpdated = false;
                                     ShowAllSites();
@@ -1198,7 +950,8 @@ namespace LOL_attendance
         {
             if (cboPM.SelectedItem  != null)
             {
-                lblPMngrIDValue.Text = Convert.ToString(EmployeeIDByRoleAndSurname("Project Manager", cboPM.SelectedItem.ToString()));
+                Employee empl = new Employee();
+                lblPMngrIDValue.Text = Convert.ToString(empl.GetIDByRoleAndSurname("Project Manager", cboPM.SelectedItem.ToString()));
             }
 
         }
@@ -1319,11 +1072,13 @@ namespace LOL_attendance
 
         }
 
+        //Liana: change site manager ID if Site manager was changed
         private void cboSiteManager_DropDownClosed(object sender, EventArgs e)
         {
             if (cboSiteManager.SelectedItem != null)
             {
-                lblSiteManagerIDValue.Text = Convert.ToString(EmployeeIDByRoleAndSurname("Site Manager", cboSiteManager.SelectedItem.ToString()));
+                Employee empl = new Employee();
+                lblSiteManagerIDValue.Text = Convert.ToString(empl.GetIDByRoleAndSurname("Site Manager", cboSiteManager.SelectedItem.ToString()));
             }
         }
 
@@ -1333,11 +1088,11 @@ namespace LOL_attendance
         {
             if (cboProject.SelectedItem != null)
             {
-                lblProjectIDOnSiteValue.Text = Convert.ToString(ProjectIDByName(cboProject.SelectedItem.ToString()));
+                Project proj = new Project();
+                lblProjectIDOnSiteValue.Text = Convert.ToString(proj.GetIDByName(cboProject.SelectedItem.ToString()));
             }
 
         }
-
 
         private void frmRegistration_Load(object sender, EventArgs e)
         {
@@ -1345,13 +1100,9 @@ namespace LOL_attendance
             ShowAllProjects();
             ShowAllSites();
             btnUpdateUser.Enabled = false;
-
         }
 
-
-
         private void FieldChanged(object sender, EventArgs e)
-
         {
             switch (tabRegistration.SelectedIndex)
             {
@@ -1378,16 +1129,13 @@ namespace LOL_attendance
                     }
 
                     break;
-
             }
           
-
-
         }
 
         private void txtBoxEmail_Validating(object sender, CancelEventArgs e)
         {
-            System.Text.RegularExpressions.Regex rEMail = new System.Text.RegularExpressions.Regex(@"^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$");
+            System.Text.RegularExpressions.Regex rEMail = new System.Text.RegularExpressions.Regex(@"^[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$");
 
             if (txtBoxEmail.Text.Length > 0)
 
@@ -1396,13 +1144,9 @@ namespace LOL_attendance
                 if (!rEMail.IsMatch(txtBoxEmail.Text))
 
                 {
-
                     MessageBox.Show("E-Mail is not valid", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                     txtBoxEmail.SelectAll();
-
                     e.Cancel = true;
-
                 }
 
             }

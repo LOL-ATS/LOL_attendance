@@ -27,10 +27,11 @@ namespace LOL_attendance
         int currentSiteManagerID = 0;
         int currentProjectID = 0;
         int currentProjectManagerID = 0;
+
+        //Omid:Define Timesheet and Workers Column
         public frmTimesheet()
         {
             InitializeComponent();
-            //Omid:Define Timesheet and Workers Column
             dtTimesheet.Columns.Add("ID", typeof(Int32));
             dtTimesheet.Columns.Add("Name", typeof(String));
             dtTimesheet.Columns.Add("Surname", typeof(String));
@@ -42,15 +43,17 @@ namespace LOL_attendance
 
         }
 
+        //Omid: change the title of form acording the user name and role 
         private void frmTimesheet_Load(object sender, EventArgs e)
         {
 
             Main frm = (Main)this.MdiParent;
-            //Change the title of form acording the user name and role 
             this.Text = "Timesheet: " + frm.User.userfullname.ToString() + " (" + frm.User.userRole.ToString() + ")";
             
         }
-
+        
+        //Liana: Save added or updated timerecords
+        //This function is available only for Site Manager
         private void btnSave_Click(object sender, EventArgs e)
         {
             int totalRows = 0;
@@ -71,15 +74,15 @@ namespace LOL_attendance
                     {
                         tickedRows++;
                     //if row status is null create new TS records with status Saved
-                        if (dataGridViewTS.Rows[i].Cells[5].Value.ToString() == "")
+                        if (dataGridViewTS.Rows[i].Cells["Status"].Value.ToString() == "")
                         {
                             TS TSRecord = new TS();
                             int returnValue =
                             TSRecord.Add(dateTimePicker.Value.ToString("yyyy-MM-dd"), TimeSpan.Parse(dataGridViewTS.Rows[i].Cells[4].Value.ToString()).ToString(), Convert.ToInt32(dataGridViewTS.Rows[i].Cells[1].Value.ToString()), currentSiteID);
                             if (returnValue == 1) updatedRows++;
                         }
-                        else if ((dataGridViewTS.Rows[i].Cells[5].Value.ToString() == "Saved")||
-                                (dataGridViewTS.Rows[i].Cells[5].Value.ToString() == "Rejected"))
+                        else if ((dataGridViewTS.Rows[i].Cells["Status"].Value.ToString() == "Saved")||
+                                (dataGridViewTS.Rows[i].Cells["Status"].Value.ToString() == "Rejected"))
                         {
                             TS TSRecord = new TS();
                             int returnValue =
@@ -193,6 +196,7 @@ namespace LOL_attendance
             if (approveRows > 0) Updatedata();
         }
 
+        //Omid: update data in dataGridViews
         private void Updatedata()
         {
             SqlConnection conn;
@@ -214,8 +218,6 @@ namespace LOL_attendance
 
             Main frm = (Main)this.MdiParent;
 
-
-
             if (frm.User.userRole == userClass.userRoles.ProjectManager)
             {
                 cmd = new SqlCommand("SELECT employee_id as ID, name, surname, hours, status FROM employee e, timesheet ts where e.id=ts.employee_id and date ='" + dateTimePicker.Value.ToString("yyyy-MM-dd") + "' and site_id = @site_id and ( ts.status = 'Approved By SM' or ts.status = 'Approved By PM' or ts.status='Rejected')", conn);
@@ -224,7 +226,6 @@ namespace LOL_attendance
             {
                 cmd = new SqlCommand("SELECT employee_id as ID, name, surname, hours, status FROM employee e, timesheet ts where e.id=ts.employee_id and date ='" + dateTimePicker.Value.ToString("yyyy-MM-dd") + "' and site_id = @site_id", conn);
             }
-            
 
             cmd.Parameters.AddWithValue("@site_id", currentSiteID);
             //Fill the Timesheet GrideView
@@ -237,15 +238,11 @@ namespace LOL_attendance
                 dataGridViewTS.DataSource = dtTimesheet;
             }
             conn.Close();
-            //Omid:commented As Lana ask me 
-            //if (frm.User.userRole == userClass.userRoles.ProjectManager && dataGridViewTS.Rows.Count == 0) MessageBox.Show("There is no Timesheet created for this site yet!");
-            //----------------------------------------------------
-
         }
-        //add lines in TS for selected workers
+
+        //Liana: add lines in TS for selected workers in "for"- cycle for each checked worker
         private void btnAddEmployee_Click(object sender, EventArgs e)
         {
-            //Liana: add lines in TS for selected workers in for cycle for each checked worker
             // delete worker line in worker list
             if (dataGridViewEmploye.Rows.Count == 0)
             {
@@ -273,7 +270,8 @@ namespace LOL_attendance
 
             }
         }
-
+        
+        //Liana: delete all checked lines from TS
         private void btnDelEmployee_Click(object sender, EventArgs e)
         {
             SqlConnection conn;
@@ -285,14 +283,14 @@ namespace LOL_attendance
             }
             else
             {
-                DialogResult dialogResult = MessageBox.Show("Selected records will be DELETE from this Timesheet except approved by Project Manager records", "Delete", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("Selected records will be DELETED except in status 'Approved by Project Manager'", "Delete", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     //Liana: delete rows from TS and add rows to workers list
                     for (int i = dataGridViewTS.Rows.Count - 1; i >= 0; i--)
                     {
-                        //delete only checked rows in state not Approved by PM
-                        if (((bool)dataGridViewTS.Rows[i].Cells[0].FormattedValue) && (dataGridViewTS.Rows[i].Cells[5].Value.ToString() != "Approved By PM"))
+                        //delete only checked rows in state not "Approved by PM"
+                        if (((bool)dataGridViewTS.Rows[i].Cells[0].FormattedValue) && (dataGridViewTS.Rows[i].Cells["Status"].Value.ToString() != "Approved By PM"))
                             {
                                 //first add worker to worker list
                                 DataRow workRow = dtWorkers.NewRow();
@@ -319,11 +317,13 @@ namespace LOL_attendance
             }
         }
 
+        //Omid: call update method if selected date changed
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             Updatedata();
         }
 
+        //Omid: enable and disable controls depend on selected Project
         private void comboProjects_SelectedIndexChanged(object sender, EventArgs e)
         {
             SqlConnection conn;
@@ -379,9 +379,6 @@ namespace LOL_attendance
                     MessageBox.Show("There is no site for you!");
                 }
                 conn.Close();
-
-
-
             }
             else if (frm.User.userRole == userClass.userRoles.ProjectManager)
             {
@@ -399,7 +396,6 @@ namespace LOL_attendance
                 //cmd.Parameters.AddWithValue("@PMid", currentProjectManagerID);
                 currentProjectID = (Int32)comboProjects.SelectedValue;
                 cmd.Parameters.AddWithValue("@Pid", currentProjectID);
-
 
                 conn.Open();
                 rdr = cmd.ExecuteReader();
@@ -454,16 +450,13 @@ namespace LOL_attendance
             }
 
             Updatedata();
-            
-
         }
 
+        //Omid: call Update data in grid views if selected Site changed
         private void comboBoxSitename_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxSitename.SelectedItem != null) currentSiteID = (Int32)comboBoxSitename.SelectedValue;
             else comboBoxSitename.Enabled = false;
- 
-//            MessageBox.Show(currentSiteID.ToString());
             Updatedata();
     
         }
@@ -477,7 +470,6 @@ namespace LOL_attendance
             Main frm = (Main)this.MdiParent;
 
             //Check Role of User
-
 
             if (frm.User.userRole == userClass.userRoles.SiteManager)
             {
@@ -539,7 +531,9 @@ namespace LOL_attendance
 
             }
         }
-
+        
+        //Liana: reject selected timerecords
+        //available only for Project Manager
         private void btnReject_Click(object sender, EventArgs e)
         {
                 SqlConnection conn;

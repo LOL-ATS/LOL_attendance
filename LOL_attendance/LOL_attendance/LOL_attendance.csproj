@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Employee.cs" />
+    <Compile Include="Project.cs" />
+    <Compile Include="Role.cs" />
     <Compile Include="TS.cs" />
     <Compile Include="userClass.cs" />
     <Compile Include="login.cs">
