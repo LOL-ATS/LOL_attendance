@@ -894,7 +894,7 @@ namespace LOL_attendance
             conn = new SqlConnection(connstr);
             //Liana: 
             //add Active into the search 
-            cmd = new SqlCommand("SELECT id, mngr_id, name, proj_id, address FROM site WHERE isActive='True' and surname LIKE'" + txtBoxSiteSearch.Text + "%'", conn);
+            cmd = new SqlCommand("SELECT id, mngr_id, name, proj_id, address FROM site WHERE isActive='True' and name LIKE'" + txtBoxSiteSearch.Text + "%'", conn);
 
             DataTable dt = new DataTable();
 
